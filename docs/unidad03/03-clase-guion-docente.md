@@ -280,3 +280,4 @@ Ver el desarrollo completo, con la corrección de cada uno, en [`05-actividad-pr
 - **Bloque 7 (demo PASS/FAIL):** código completo y guion paso a paso en [`02-caso-practico-testing-videojuego.md`](./02-caso-practico-testing-videojuego.md), Sección C.
 - **Bloque 8 (TDD):** ciclo completo con las dos vueltas en [`02-caso-practico-testing-videojuego.md`](./02-caso-practico-testing-videojuego.md), Sección H.
 - **Diapositivas sugeridas por bloque:** ver [`04-diapositivas.md`](./04-diapositivas.md) (36 slides numeradas, mapeadas a estos mismos bloques, con las heredadas de `docs/Unidad 3 -2024.pptx` marcadas [RECICLADO 2024]).
+- **Ejemplos de respuesta para cada pregunta y material de apoyo para los ejercicios en vivo (incluidos los 4 casos del ejercicio de clasificación del Bloque 3):** ver [`07-ejemplos-y-respuestas-de-apoyo.md`](./07-ejemplos-y-respuestas-de-apoyo.md), organizado con la misma numeración de bloques que este guion.

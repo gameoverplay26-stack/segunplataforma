@@ -61,8 +61,11 @@ Unidades IV–VII — Diseño según plataforma (móvil, consola, PC, emergentes
 | [`04-diapositivas.md`](./04-diapositivas.md) | Presentación de 36 diapositivas, con las heredadas de `docs/Unidad 3 -2024.pptx` marcadas [RECICLADO 2024] |
 | [`05-actividad-practica-y-evaluacion.md`](./05-actividad-practica-y-evaluacion.md) | Dos actividades en equipo (suite de tests + ciclo TDD completo), consignas del TP N° 2, evaluación conceptual/práctica/de análisis con rúbrica, y los 10 errores conceptuales frecuentes con su corrección |
 | [`06-investigacion-recursos.md`](./06-investigacion-recursos.md) | Recursos verificados: documentación oficial de Unity y Microsoft, TDD (Fowler/Beck), videos en español e inglés, material universitario, casos de industria AAA (Rare, Activision, Sony Santa Monica) |
+| [`07-ejemplos-y-respuestas-de-apoyo.md`](./07-ejemplos-y-respuestas-de-apoyo.md) | Referencia rápida para el día de la clase: ejemplos de respuesta para cada pregunta al alumno del guion/diapositivas, más el material de apoyo que las slides mencionan sin desarrollar (ej. los 4 casos del ejercicio de clasificación de la Slide 11, con su respuesta) |
+| [`Unidad-3-Diapositivas-2026.pptx`](./Unidad-3-Diapositivas-2026.pptx) | Deck de PowerPoint generado a partir de `04-diapositivas.md` (36 diapositivas, tablas reales, bloques de código, notas del docente incluidas). Ver `scripts/` para regenerarlo. |
+| [`scripts/generar_diapositivas.py`](./scripts/generar_diapositivas.py) + [`scripts/build_deck.py`](./scripts/build_deck.py) | Generador del `.pptx` con `python-pptx` (paleta de colores, layouts reutilizables, contenido de las 36 slides). Ejecutar `python scripts/build_deck.py` desde `docs/unidad03/` para regenerar el archivo tras editar `04-diapositivas.md`. Requiere `pip install python-pptx`. |
 
-No se agregó ningún archivo adicional a los seis mínimos pedidos — a diferencia de Unidad 2, esta unidad no presentó una contradicción entre el encargo y el programa oficial que justificara un anexo de extensión no evaluable.
+Los seis archivos `01`-`06` son los mínimos pedidos originalmente — esta unidad no presentó, a diferencia de Unidad 2, una contradicción entre el encargo y el programa oficial que justificara un anexo de extensión no evaluable. `07-ejemplos-y-respuestas-de-apoyo.md` y el `.pptx` (con su generador) se agregaron después, a pedido del usuario, como material derivado y complementario — no duplican contenido nuevo, lo hacen utilizable en el momento de dar la clase.
 
 ---
 
@@ -86,9 +89,10 @@ Ver el detalle completo y verificado en [`06-investigacion-recursos.md`](./06-in
 
 1. Leer primero `01-analisis-programa-y-objetivos.md` para entender el encuadre y qué queda deliberadamente fuera.
 2. Repasar `02-caso-practico-testing-videojuego.md` — es la fuente de todo el código y los ejemplos que se usan en clase y en la actividad.
-3. Dar la clase siguiendo `03-clase-guion-docente.md`, apoyado en `04-diapositivas.md` para armar la presentación real (ese archivo no es el texto literal de pantalla, sino el contenido fuente de cada slide).
+3. Dar la clase siguiendo `03-clase-guion-docente.md`, apoyado en `Unidad-3-Diapositivas-2026.pptx` (o en `04-diapositivas.md`, su fuente de contenido, si se prefiere rearmar el diseño en otra herramienta).
 4. Lanzar la actividad y evaluar con `05-actividad-practica-y-evaluacion.md`.
 5. Usar `06-investigacion-recursos.md` para asignar lecturas/videos complementarios y para citar fuentes con autoridad verificada frente a la cátedra.
+6. Si se edita `04-diapositivas.md` (contenido nuevo, corrección, más ejemplos), regenerar el `.pptx` corriendo `python scripts/build_deck.py` desde `docs/unidad03/` — mantiene la paleta y el diseño consistentes en vez de editar el archivo binario a mano.
 
 ## Decisiones pedagógicas importantes
 
