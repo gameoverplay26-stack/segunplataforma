@@ -164,30 +164,30 @@ SLIDES = [
                "= ESTRATEGIA DE CALIDAD"],
          notes="Automatizar pruebas no significa eliminar las pruebas manuales."),
 
-    dict(num=17, type="bullets", title="Unity Test Framework: qué es", badge="RECICLADO 2024",
+    dict(num=17, type="bullets", title="Unity Test Framework: qué es",
          quote="La función de pruebas unitarias que ofrece Unity — por dentro utiliza NUnit.",
          notes="Afirmación textual del material 2024, sigue vigente. Fuente oficial verificada en 06-investigacion-recursos.md."),
 
-    dict(num=18, type="bullets", title="Verificar el paquete", badge="RECICLADO 2024",
+    dict(num=18, type="bullets", title="Verificar el paquete",
          quote="Window ▸ Package Manager ▸ Unity Registry ▸ Test Framework",
          bullets=["En Unity 6: paquete 'core', fijo a la versión del Editor — no se administra por separado"],
          notes="Mencionar brevemente la diferencia de empaquetado si la cátedra usa Unity 6."),
 
-    dict(num=19, type="bullets", title="Abrir Test Runner", badge="RECICLADO 2024",
+    dict(num=19, type="bullets", title="Abrir Test Runner",
          quote="Window ▸ General ▸ Test Runner",
          notes="Mostrar la ventana acoplada junto al Inspector."),
 
-    dict(num=20, type="bullets", title="Crear la carpeta de tests", badge="RECICLADO 2024",
+    dict(num=20, type="bullets", title="Crear la carpeta de tests",
          quote="Botón 'Create Test Assembly Folder' → carpeta Tests + Tests.asmdef",
          bullets=["Referencias automáticas: nunit.framework.dll, UnityEngine.TestRunner, UnityEditor.TestRunner"],
          notes="Por eso el test puede usar 'using NUnit.Framework;' sin configurar nada más."),
 
-    dict(num=21, type="bullets", title="Crear GameAssembly y referenciarlo", badge="RECICLADO 2024",
+    dict(num=21, type="bullets", title="Crear GameAssembly y referenciarlo",
          quote="Assets/Scripts ▸ Create ▸ Assembly Definition → nombrarlo GameAssembly",
          bullets=["Agregarlo como referencia del asmdef de Tests — si no, el test no ve las clases del juego"],
          notes="No es un trámite: es el motivo técnico detrás del paso."),
 
-    dict(num=22, type="bullets", title="Qué es un Test Suite", badge="RECICLADO 2024 · adaptado",
+    dict(num=22, type="bullets", title="Qué es un Test Suite",
          tag="PlayerHealthTests · InventoryTests · CombatSystemTests",
          quote="Un archivo de clase con pruebas unitarias = Test Suite. Se organiza por agrupación lógica.",
          notes="Ver estructura de carpetas completa en 02-caso-practico-testing-videojuego.md, Sección B."),
