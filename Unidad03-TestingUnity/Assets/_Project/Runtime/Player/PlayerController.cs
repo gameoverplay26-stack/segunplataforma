@@ -81,7 +81,8 @@ public class PlayerController : MonoBehaviour
         }
 
         Destroy(projectile);
-        target.PlayHitFlash();
+        var knockbackDirection = target.transform.position - transform.position;
+        target.PlayHitReaction(knockbackDirection);
     }
 
     private void UpdateCooldownUI()

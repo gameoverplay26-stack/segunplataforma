@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class EnemyTarget : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 60;
+    [SerializeField] private int maxHealth = 100; // con attackDamage=20 por defecto en PlayerController, son 5 golpes minimo (menos si hay critico)
     [SerializeField] private Slider healthSlider;
     [SerializeField] private Text healthLabel;
     [SerializeField] private Renderer bodyRenderer;
@@ -14,6 +14,9 @@ public class EnemyTarget : MonoBehaviour
     private static readonly Color FlashColor = Color.white;
     private const float FlashDuration = 0.1f;
     private const float FlashScale = 1.15f;
+    private const float KnockbackDistance = 1f;
+    private const float GroundBoundX = 8f;
+    private const float GroundBoundZ = 5f;
 
     public PlayerHealth Health { get; private set; }
     public bool IsDead => Health.IsDead;
@@ -47,29 +50,46 @@ public class EnemyTarget : MonoBehaviour
         UpdateUI();
     }
 
-    public void PlayHitFlash()
+    // knockbackDirection: sentido contrario al golpe (del atacante hacia el objetivo) —
+    // el enemigo retrocede una vez por cada disparo que conecta.
+    public void PlayHitReaction(Vector3 knockbackDirection)
     {
         if (bodyRenderer == null)
         {
             return;
         }
 
-        StopCoroutine(nameof(HitFlashRoutine));
-        StartCoroutine(nameof(HitFlashRoutine));
+        StopCoroutine(nameof(HitReactionRoutine));
+        StartCoroutine("HitReactionRoutine", knockbackDirection);
     }
 
-    private IEnumerator HitFlashRoutine()
+    private IEnumerator HitReactionRoutine(Vector3 knockbackDirection)
     {
         isFlashing = true;
         var originalScale = transform.localScale;
+        var startPosition = transform.position;
+        var targetPosition = ClampToGround(startPosition + knockbackDirection.normalized * KnockbackDistance);
 
         bodyRenderer.material.color = FlashColor;
         transform.localScale = originalScale * FlashScale;
 
-        yield return new WaitForSeconds(FlashDuration);
+        float elapsed = 0f;
+        while (elapsed < FlashDuration)
+        {
+            elapsed += Time.deltaTime;
+            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsed / FlashDuration);
+            yield return null;
+        }
 
         transform.localScale = originalScale;
         isFlashing = false;
+    }
+
+    private static Vector3 ClampToGround(Vector3 position)
+    {
+        position.x = Mathf.Clamp(position.x, -GroundBoundX, GroundBoundX);
+        position.z = Mathf.Clamp(position.z, -GroundBoundZ, GroundBoundZ);
+        return position;
     }
 
     private void UpdateUI()
@@ -86,8 +106,8 @@ public class EnemyTarget : MonoBehaviour
                 : $"Enemigo: {Health.CurrentHealth}/{Health.MaxHealth}";
         }
 
-        // Mientras isFlashing, HitFlashRoutine controla el color — si lo pisaramos aca
-        // ac cada frame, el flash nunca se llegaria a ver (dura menos que este chequeo).
+        // Mientras isFlashing, HitReactionRoutine controla el color — si lo pisaramos aca
+        // cada frame, el flash nunca se llegaria a ver (Update corre mas seguido que dura el flash).
         if (bodyRenderer != null && !isFlashing)
         {
             bodyRenderer.material.color = Health.IsDead ? DeadColor : AliveColor;
