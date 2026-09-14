@@ -22,9 +22,13 @@ public class EnemyTarget : MonoBehaviour
     public bool IsDead => Health.IsDead;
 
     private bool isFlashing;
+    private Vector3 spawnPosition;
+    private Vector3 spawnScale;
 
     private void Awake()
     {
+        spawnPosition = transform.position;
+        spawnScale = transform.localScale;
         ResetEnemy();
     }
 
@@ -40,6 +44,13 @@ public class EnemyTarget : MonoBehaviour
 
     public void ResetEnemy()
     {
+        // Cancela cualquier retroceso en curso — si no, la corutina puede seguir
+        // moviendolo un par de frames mas y pisar la posicion que acabamos de restaurar.
+        StopCoroutine(nameof(HitReactionRoutine));
+        isFlashing = false;
+        transform.position = spawnPosition;
+        transform.localScale = spawnScale;
+
         Health = new PlayerHealth(maxHealth);
 
         if (healthSlider != null)
