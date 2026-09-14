@@ -95,7 +95,7 @@ public static class CombatDemoSceneBuilder
         var font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
         // Enemy health bar (arriba, centro)
-        var enemyLabel = CreateText(canvasGO.transform, "EnemyLabel", "Enemigo: 60/60",
+        var enemyLabel = CreateText(canvasGO.transform, "EnemyLabel", "Enemigo: 100/100",
             new Vector2(0f, -40f), new Vector2(400f, 40f), 26, Color.white, font);
         var enemySlider = CreateSlider(canvasGO.transform, "EnemyHealthSlider",
             new Vector2(0f, -85f), new Vector2(400f, 24f), new Color(0.75f, 0.2f, 0.2f));
