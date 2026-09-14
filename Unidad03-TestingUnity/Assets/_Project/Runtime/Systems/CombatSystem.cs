@@ -3,7 +3,11 @@ using UnityEngine;
 public class CombatSystem : MonoBehaviour
 {
     [SerializeField] private float cooldownSeconds = 1f;
-    [SerializeField] private float criticalChance = 0.2f;
+
+    [Tooltip("Probabilidad de critico (x2 dano). En 0 por defecto para que la demo sea " +
+             "predecible: cada golpe saca siempre 'damage' de vida, sin variacion aleatoria. " +
+             "Subir este valor a mano en el Inspector si se quiere mostrar el critico en vivo.")]
+    [SerializeField] private float criticalChance = 0f;
 
     [Tooltip("CRYPT-201 (docs/unidad03/02-caso-practico-testing-videojuego.md, Seccion F). " +
              "Activado, el 'critico' duplica el dano llamando TakeDamage() dos veces en vez de " +
