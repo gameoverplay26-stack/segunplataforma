@@ -78,6 +78,8 @@ A diferencia del resto del material, Cryptbound nunca se construyó como proyect
 
 `CombatSystem` expone en el Inspector del Player un toggle `Enable Critical Hit Bug` (apagado por defecto): activarlo reproduce en vivo, sobre la barra de vida del Enemy, la regresión real de CRYPT-201 (el "crítico" duplica el golpe en vez de aumentarlo) — mismo bug que ya narra la Sección F, ahora visible sin necesidad de leer el Test Runner.
 
+`CombatDemo.unity` tiene además dos refuerzos puramente visuales (no afectan la lógica de `CombatSystem`, viven en `PlayerController`/`EnemyTarget`): un anillo alrededor del Player del tamaño de `attackRange` (gris = fuera de rango, verde = adentro y listo para atacar, ámbar = adentro pero en cooldown) y un pequeño "disparo" (esfera) que viaja del Player al Enemy en cada golpe conectado, con un flash + punch de escala al impactar.
+
 Ambas escenas se generan/reconstruyen con `Tools ▸ Demo ▸ Build PlayerHealth Demo Scene` y `Tools ▸ Demo ▸ Build Combat Demo Scene` (menús agregados por `Assets/_Project/Editor/DemoSceneBuilder.cs` y `CombatDemoSceneBuilder.cs`) — útil si alguna se rompe y hay que rearmarla sin repetir los pasos a mano. Validadas en batch mode (compilación limpia + `EditMode`/`PlayMode` sin regresiones) antes de cada commit.
 
 **Fase 1 (jugable) completa. Ideas para una fase 2, no implementadas:** que el Enemy también ataque al Player (reutilizando el mismo `CombatSystem`, para que el Player tenga su propio riesgo), y/o un `EnemyArcher` con patrulla/alerta/ataque (Sección G del caso práctico) en vez de un Enemy fijo.
