@@ -21,4 +21,16 @@ public class PlayerHealthTests
         health.TakeDamage(150);
         Assert.AreEqual(0, health.CurrentHealth);
     }
+
+    [Test]
+    public void Heal_DoesNotExceedMaxHealth()
+    {
+        var health = new PlayerHealth(100);
+        health.TakeDamage(10); // 90/100
+
+        health.Heal(130);       // intenta pasarse de 100
+
+
+        Assert.AreEqual(100, health.CurrentHealth);
+    }
 }

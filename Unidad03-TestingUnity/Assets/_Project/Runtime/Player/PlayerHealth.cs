@@ -18,7 +18,7 @@ public class PlayerHealth
     }
 
     public void Heal(int amount)
-    {
+    {   //                        [  100     -   90+30=120]
         CurrentHealth = Mathf.Min(MaxHealth, CurrentHealth + amount);
     }
 }
