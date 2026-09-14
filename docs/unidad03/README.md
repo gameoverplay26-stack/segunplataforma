@@ -67,6 +67,21 @@ Unidades IV–VII — Diseño según plataforma (móvil, consola, PC, emergentes
 
 Los seis archivos `01`-`06` son los mínimos pedidos originalmente — esta unidad no presentó, a diferencia de Unidad 2, una contradicción entre el encargo y el programa oficial que justificara un anexo de extensión no evaluable. `07-ejemplos-y-respuestas-de-apoyo.md` y el `.pptx` (con su generador) se agregaron después, a pedido del usuario, como material derivado y complementario — no duplican contenido nuevo, lo hacen utilizable en el momento de dar la clase.
 
+## Escenas jugables de demostración (`Unidad03-TestingUnity/`)
+
+A diferencia del resto del material, Cryptbound nunca se construyó como proyecto jugable (ver "Decisiones pedagógicas importantes" más abajo) — es un caso narrativo. Como complemento, y solo para uso del docente en la demo en vivo (no forman parte de ninguna actividad evaluable de la Sección R/S/T de `05-actividad-practica-y-evaluacion.md`), el proyecto `Unidad03-TestingUnity/` incluye dos escenas jugables mínimas que envuelven visualmente el código ya explicado en clase, sin modificarlo:
+
+| Escena | Qué muestra | Sistemas que envuelve |
+|---|---|---|
+| `Assets/_Project/Scenes/PlayModeDemo.unity` | Barra de vida interactiva: botones/teclado (Espacio = dañar, H = curar, R = reset) sobre `PlayerHealth`, con color dinámico y estado "MUERTO" | `PlayerHealth` (Sección C del caso práctico) |
+| `Assets/_Project/Scenes/CombatDemo.unity` | Un Player que se mueve (WASD/flechas) y ataca (Espacio, con rango y cooldown) a un Enemy con su propia barra de vida | `CombatSystem` + `PlayerHealth` (Sección F, el bug de regresión CRYPT-201) |
+
+`CombatSystem` expone en el Inspector del Player un toggle `Enable Critical Hit Bug` (apagado por defecto): activarlo reproduce en vivo, sobre la barra de vida del Enemy, la regresión real de CRYPT-201 (el "crítico" duplica el golpe en vez de aumentarlo) — mismo bug que ya narra la Sección F, ahora visible sin necesidad de leer el Test Runner.
+
+Ambas escenas se generan/reconstruyen con `Tools ▸ Demo ▸ Build PlayerHealth Demo Scene` y `Tools ▸ Demo ▸ Build Combat Demo Scene` (menús agregados por `Assets/_Project/Editor/DemoSceneBuilder.cs` y `CombatDemoSceneBuilder.cs`) — útil si alguna se rompe y hay que rearmarla sin repetir los pasos a mano. Validadas en batch mode (compilación limpia + `EditMode`/`PlayMode` sin regresiones) antes de cada commit.
+
+**Fase 1 (jugable) completa. Ideas para una fase 2, no implementadas:** que el Enemy también ataque al Player (reutilizando el mismo `CombatSystem`, para que el Player tenga su propio riesgo), y/o un `EnemyArcher` con patrulla/alerta/ataque (Sección G del caso práctico) en vez de un Enemy fijo.
+
 ---
 
 ## Duración estimada
