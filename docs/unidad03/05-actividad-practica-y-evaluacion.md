@@ -51,7 +51,7 @@ public class PlayerHealth
 3. Ejecutar la suite en Test Runner. Encontrar el test que falla (vida negativa al recibir más daño del que queda).
 4. Corregir `PlayerHealth.TakeDamage` (agregar el clamp con `Mathf.Max`).
 5. Ejecutar de nuevo — todos los tests deben pasar.
-6. Agregar explícitamente un **test de regresión** con un nombre que documente el bug corregido, por ejemplo `TakeDamage_NeverGoesBelowZero_RegressionCRYPT202`, para que quede protegido a futuro.
+6. Agregar explícitamente un **test de regresión** con un nombre que documente el bug corregido, por ejemplo `TakeDamage_NeverGoesBelowZero_Regression`, para que quede protegido a futuro. (No es el mismo bug que CRYPT-202 del backlog de la Sección I del caso práctico — ese es sobre `Heal()`, no sobre `TakeDamage`; no le asignen ese ticket.)
 7. Responder por escrito: ¿cuál de los tests que escribieron NO hubiera sido necesario si el código nunca cambia? (objetivo: que noten que la protección real está en los tests que cubren los casos límite, no en los "felices").
 
 ### Entregable

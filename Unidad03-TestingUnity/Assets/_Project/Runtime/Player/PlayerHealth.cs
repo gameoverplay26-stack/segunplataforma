@@ -14,7 +14,7 @@ public class PlayerHealth
 
     public void TakeDamage(int amount)
     {
-        CurrentHealth = CurrentHealth - amount;
+        CurrentHealth = CurrentHealth - amount; // sin clamp — bug deliberado
     }
 
     public void Heal(int amount)
