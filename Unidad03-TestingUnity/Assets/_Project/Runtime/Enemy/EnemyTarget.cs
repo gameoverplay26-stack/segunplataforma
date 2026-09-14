@@ -15,7 +15,13 @@ public class EnemyTarget : MonoBehaviour
     private const float FlashDuration = 0.1f;
     private const float FlashScale = 1.15f;
     private const float KnockbackDistance = 1f;
-    private const float GroundBoundX = 8f;
+
+    // La camara top-down tiene orthographicSize=7 (mitad vertical, mapea a Z, siempre 7).
+    // La mitad horizontal (mapea a X) depende del aspect ratio de la ventana Game y puede
+    // ser MENOR a 7 si la ventana no es panoramica — por eso el limite en X se deja bien
+    // por debajo de 7, no solo dentro del piso, para que el Enemy nunca quede fuera de
+    // cuadro por la acumulacion de varios retrocesos seguidos en la misma direccion.
+    private const float GroundBoundX = 5f;
     private const float GroundBoundZ = 5f;
 
     public PlayerHealth Health { get; private set; }
