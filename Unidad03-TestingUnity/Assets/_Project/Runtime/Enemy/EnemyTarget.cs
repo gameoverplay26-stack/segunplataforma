@@ -85,7 +85,14 @@ public class EnemyTarget : MonoBehaviour
         isFlashing = true;
         var originalScale = transform.localScale;
         var startPosition = transform.position;
-        var targetPosition = ClampToGround(startPosition + knockbackDirection.normalized * KnockbackDistance);
+
+        // Aplanado a X/Z: Player y Enemy estan a distinta altura (1 vs 0.5), asi que la
+        // direccion cruda traia una componente Y que lo hundia bajo el piso un poco mas
+        // en cada golpe (la diferencia de altura se retroalimentaba con cada retroceso).
+        var flatKnockback = knockbackDirection;
+        flatKnockback.y = 0f;
+        var targetPosition = ClampToGround(startPosition + flatKnockback.normalized * KnockbackDistance);
+        targetPosition.y = startPosition.y;
 
         bodyRenderer.material.color = FlashColor;
         transform.localScale = originalScale * FlashScale;
