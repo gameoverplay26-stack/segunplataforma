@@ -79,6 +79,41 @@ public class TestSuite
         Assert.False(game.isGameOver);
     }
 
+    // Test de integracion (a diferencia de los demas tests de esta suite, que en general
+    // verifican un unico efecto observable): Game.GameOver() coordina tres colaboradores
+    // reales (Game, Spawner, Ship) y este test verifica que los tres queden consistentes
+    // entre si, no solo que "isGameOver" se haya puesto en true. Si alguien borrara por
+    // error la linea "spawner.StopSpawning()" dentro de Game.GameOver(), este test fallaria
+    // aunque GameOverOccursOnAsteroidCollision siguiera pasando sin problemas.
+    [UnityTest]
+    public IEnumerator GameOverStopsSpawningAndDisablesShip()
+    {
+        // Arrange: arrancar el spawn automatico, igual que lo hace NewGame() en una partida real
+        game.GetSpawner().BeginSpawning();
+
+        // Act: mismo choque que ya dispara GameOverOccursOnAsteroidCollision
+        GameObject asteroid = game.GetSpawner().SpawnAsteroid();
+        asteroid.transform.position = game.GetShip().transform.position;
+        yield return new WaitForSeconds(0.1f);
+
+        // Assert 1 y 2: los dos efectos directos de GameOver() sobre sus colaboradores
+        Assert.True(game.isGameOver, "El Game Over deberia haberse activado");
+        Assert.True(game.GetShip().isDead, "La nave deberia quedar destruida (Ship.Explode())");
+
+        // Assert 3, la parte de integracion: el Spawner realmente dejo de generar asteroides
+        // nuevos (no alcanza con mirar el flag isGameOver para saber si el juego "se detuvo" de verdad)
+        int asteroidCountRightAfterGameOver =
+            Object.FindObjectsByType<Asteroid>(FindObjectsSortMode.None).Length;
+
+        yield return new WaitForSeconds(0.5f); // mayor al intervalo de spawn automatico (0.4s)
+
+        int asteroidCountAfterWaiting =
+            Object.FindObjectsByType<Asteroid>(FindObjectsSortMode.None).Length;
+
+        Assert.AreEqual(asteroidCountRightAfterGameOver, asteroidCountAfterWaiting,
+            "El Spawner no deberia seguir generando asteroides despues del Game Over");
+    }
+
     [UnityTest]
     public IEnumerator LaserMovesUp()
     {
