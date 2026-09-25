@@ -12,7 +12,7 @@ Punto de partida conceptual (no copiar Brawl Stars, solo su núcleo): partidas c
 
 ## Alternativas analizadas
 
-Se evaluó la idea inicial **"Arena"** más 4 alternativas, sin declarar una "mejor" — la decisión final del concepto queda a cargo del usuario.
+Se evaluó la idea inicial **"Arena"** más 5 alternativas (Alt.5 incorporada el 2026-09-25), sin declarar una "mejor" — la decisión final del concepto queda a cargo del usuario.
 
 ### Arena (idea inicial)
 
@@ -78,31 +78,59 @@ Se evaluó la idea inicial **"Arena"** más 4 alternativas, sin declarar una "me
 - **Riesgos de alcance:** medio — variar obstáculos/carriles puede crecer rápido.
 - **Pertinencia:** el concepto más alejado de la referencia "Brawl Stars"; útil como contraste, menor conexión directa con la idea original.
 
+### Alternativa 5 — "Nave + Asteroides" (vertical slice provisional: *Asteroid Survival*)
+
+> Incorporada el 2026-09-25 mediante reapertura controlada de este documento (ver `docs/SDD-STATUS.md`). Es un **concepto candidato**: no es GDD, ni arquitectura, ni especificación.
+
+- **Concepto:** juego de supervivencia espacial en vista superior donde el jugador controla una nave, se mueve, esquiva asteroides, dispara, destruye asteroides, obtiene puntos y debe sobrevivir durante un período determinado.
+- **Objetivo:** sobrevivir durante la partida mientras se destruyen asteroides y se obtiene puntuación.
+- **Core loop:** mover → esquivar → disparar → destruir → conseguir puntos → sobrevivir.
+- **Mecánica principal:** movimiento libre de la nave + disparo contra asteroides que aparecen y se desplazan por la zona de juego.
+- **Sistemas (candidatos, MVP conceptual deliberadamente pequeño):** Input, Nave/Player, Movimiento, Weapon, Projectile, Asteroid, Collision, Destruction, Score, Timer/condición de supervivencia, Game Over, Spawner de asteroides.
+  - **No son requisitos:** múltiples tipos de asteroides, múltiples armas, power-ups, escudos, respawn, bosses, progresión, niveles, multiplayer, monetización. La cantidad de tipos de asteroides se define en el GDD.
+  - **No se decide aquí** si el jugador tiene vida, escudo, varias vidas, invulnerabilidad o respawn (corresponde al GDD).
+- **Unit testing (candidatos, sin clases ni APIs definidas):** puntos por asteroide; cooldown del arma; daño/destrucción del asteroide; generación de asteroides; posiciones válidas de aparición; movimiento; condición de supervivencia. La generación involucra aleatoriedad: la futura implementación deberá permitir determinismo en las pruebas (sin definir aquí cómo).
+- **Integration testing (candidatos):**
+  - Cadena principal: Nave → Weapon → Projectile → Asteroid → Collision → Destruction → Score (disparo → impacto → destrucción → score).
+  - Cadena secundaria posible: Asteroid → Collision → daño/muerte del jugador → Game Over.
+- **PC vs Mobile:** PC — teclado para movimiento, mouse u otra entrada para apuntado/disparo; Mobile — joystick virtual/touch para movimiento, botón táctil de disparo. La arquitectura del Input System no se decide aquí (decisión pendiente #5).
+- **Arquitectura conceptual (solo observación):** puede representarse adaptando la arquitectura conceptual de este documento como `Input → Player/Nave → Weapon → Projectile → Asteroid → Collision/Destruction → Score → GameManager/Survival`, con tres diferencias: (1) `Enemy/EnemyAI` no representa necesariamente al asteroide; (2) aparece un spawner de asteroides; (3) GameManager debe contemplar la condición de supervivencia. La arquitectura definitiva corresponde a Technical Specification / Architecture Specification.
+- **Bugs intencionales candidatos (solo si se elige Alt.5; NO se introducen):** proyectil impacta pero no destruye; asteroide destruido sin otorgar score; score duplicado; colisión procesada dos veces; cooldown incorrecto; aparición inválida de asteroide; Game Over antes/después de la condición esperada.
+- **Posibles extensiones futuras (fuera del MVP; NO son alternativas formales ni generan decisiones):**
+  - *Extensión A — Nave + Dodge & Shoot:* enemigos que disparan; oleadas.
+  - *Extensión B — Nave + Point Defense:* estación a proteger; vida de la estación; oleadas; dificultad; posibles power-ups.
+- **Relación con las decisiones pendientes:** #1 — nueva alternativa candidata, no seleccionada. #2 — el loop conceptual usa combate a distancia; la decisión no se cierra. #3 — la cantidad de tipos de asteroides/enemigos queda para el GDD. #4 — N/A, no aplica directamente: la decisión está formulada para "conceptos donde no es el núcleo (Alt.3)" y en Alt.5 el disparo forma parte del loop base (observación, no decisión general de diseño). #5 — sigue diferida. #6 — power-ups/progresión fuera del MVP conceptual; su alcance queda para el GDD. #7 — sin cambios.
+- **Complejidad estimada:** baja-media (estimación).
+- **Riesgos de alcance:** bajo-medio — el spawner y la variedad de asteroides/armas pueden crecer antes de cerrar el slice base.
+- **Observación de alcance:** el repositorio contiene material académico relacionado con asteroides (proyectos de cátedra fuera del alcance SDD). Si Alt.5 es seleccionada, Concept Definition deberá definir claramente si el proyecto utiliza material propio, material académico de referencia o una combinación, evitando mezclar accidentalmente el proyecto SDD con los ejercicios existentes.
+
 ## Comparación técnica (matriz)
 
 Escala 1–5, más alto = más favorable / menor riesgo en todos los criterios (incluido "Riesgo técnico", donde 5 = riesgo más bajo).
 
-| Criterio | Arena | Alt.1 Dodge&Shoot | Alt.2 Point Defense | Alt.3 Capture Zone | Alt.4 Brawler Runner |
-|---|---:|---:|---:|---:|---:|
-| Alcance controlable | 2 | 4 | 3 | 3 | 3 |
-| Facilidad de implementación | 2 | 4 | 3 | 3 | 3 |
-| Unit Testing | 3 | 5 | 4 | 4 | 3 |
-| Integration Testing | 3 | 5 | 3 | 4 | 3 |
-| Diseño PC/Mobile | 3 | 4 | 2 | 4 | 5 |
-| Separación Input/GameLogic | 3 | 4 | 3 | 4 | 4 |
-| Posibilidad de regresión (didáctica) | 4 | 4 | 3 | 4 | 3 |
-| Valor académico | 4 | 5 | 3 | 4 | 2 |
-| Riesgo técnico (5=más bajo) | 2 | 4 | 3 | 3 | 3 |
+| Criterio | Arena | Alt.1 Dodge&Shoot | Alt.2 Point Defense | Alt.3 Capture Zone | Alt.4 Brawler Runner | Alt.5 Nave+Asteroides* |
+|---|---:|---:|---:|---:|---:|---:|
+| Alcance controlable | 2 | 4 | 3 | 3 | 3 | 4 |
+| Facilidad de implementación | 2 | 4 | 3 | 3 | 3 | 4 |
+| Unit Testing | 3 | 5 | 4 | 4 | 3 | 4 |
+| Integration Testing | 3 | 5 | 3 | 4 | 3 | 5 |
+| Diseño PC/Mobile | 3 | 4 | 2 | 4 | 5 | 4 |
+| Separación Input/GameLogic | 3 | 4 | 3 | 4 | 4 | 4 |
+| Posibilidad de regresión (didáctica) | 4 | 4 | 3 | 4 | 3 | 4 |
+| Valor académico | 4 | 5 | 3 | 4 | 2 | 4 |
+| Riesgo técnico (5=más bajo) | 2 | 4 | 3 | 3 | 3 | 4 |
+
+\* **Alt.5 — estimaciones de análisis (2026-09-25), no declaración de ganador.** Justificación por criterio: *Alcance controlable 4* — slice acotado; el spawner agrega una responsabilidad adicional. *Facilidad 4* — sin IA compleja; movimiento de asteroides y colisiones simples. *Unit Testing 4* — buen número de unidades testeables; la generación aleatoria requiere determinismo. *Integration Testing 5* — cadena disparo → impacto → destrucción → score muy clara. *Diseño PC/Mobile 4* — el patrón movimiento + disparo se puede mapear a ambas plataformas. *Separación Input/GameLogic 4* — la lógica de juego puede mantenerse independiente del dispositivo. *Posibilidad de regresión 4* — varias reglas observables y bugs reproducibles. *Valor académico 4* — permite demostrar testing, input y adaptación de plataforma. *Riesgo técnico 4* — sin IA compleja; principal riesgo en spawner/colisiones. Las puntuaciones de Arena y Alt.1–Alt.4 no se modificaron.
 
 No se declara un "ganador". Fortalezas, debilidades, riesgos y dependencias de cada concepto están detallados en la sección anterior, por concepto.
 
 ## Concepto provisional
 
-Ninguno fue seleccionado todavía. "Arena" sigue siendo la semilla conceptual (referencia de Brawl Stars: partidas cortas, personaje controlable, enemigos, recompensas, progresión), pero las 4 alternativas están abiertas para elección consciente. **Esta decisión queda exclusivamente a cargo del usuario.**
+Ninguno fue seleccionado todavía. "Arena" sigue siendo la semilla conceptual (referencia de Brawl Stars: partidas cortas, personaje controlable, enemigos, recompensas, progresión), pero las 5 alternativas están abiertas para elección consciente. **Esta decisión queda exclusivamente a cargo del usuario.**
 
 ## Decisiones pendientes (requieren aprobación del usuario)
 
-1. Selección del concepto final (Arena / Alt.1 / Alt.2 / Alt.3 / Alt.4, o una combinación acotada — ej. Alt.1 + Alt.3 con zona como variante de modo de juego).
+1. Selección del concepto final (Arena / Alt.1 / Alt.2 / Alt.3 / Alt.4 / Alt.5, o una combinación acotada — ej. Alt.1 + Alt.3 con zona como variante de modo de juego).
 2. Si el concepto elegido incluye combate cuerpo a cuerpo, a distancia, o ambos (afecta directamente cuántos contratos de Input hay que abstraer).
 3. Cantidad de tipos de enemigo para el vertical slice inicial (1 vs. 2+).
 4. Si el combate es MUST HAVE u opcional/COULD HAVE en conceptos donde no es el núcleo (Alt.3).
@@ -243,7 +271,7 @@ UNITY SCENES CHANGED: NONE
 PACKAGES CHANGED: NONE
 
 DECISIONS REQUIRING USER APPROVAL:
-- Selección del concepto final (Arena / Alt.1 Dodge&Shoot / Alt.2 Point Defense / Alt.3 Capture Zone / Alt.4 Brawler Runner, o combinación acotada)
+- Selección del concepto final (Arena / Alt.1 Dodge&Shoot / Alt.2 Point Defense / Alt.3 Capture Zone / Alt.4 Brawler Runner / Alt.5 Nave + Asteroides, o combinación acotada)
 - Alcance de combate (melee / ranged / ambos) y cantidad de tipos de enemigo para el vertical slice
 - Estrategia de Input System (interfaz propia vs. Input System nativo con Action Maps) — se define en Architecture Specification
 - Estrategia Git: confirmar trunk-based + tags por etapa (en lugar de una rama por etapa)

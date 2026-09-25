@@ -86,7 +86,7 @@ No modificar escenas, prefabs, assets, `ProjectSettings/` ni `Packages/` fuera d
 
 - **No** hacer commit, tag, push, merge, rebase ni cambios de rama sin pedido explícito del usuario.
 - No reescribir historial.
-- La estrategia "trunk-based + tag por etapa" es una **recomendación pendiente (DEC-007)**, no una regla.
+- Estrategia Git: **DEC-007 — RESOLVED — trunk-based + tag por etapa**. Hay una rama principal (`main`) con ramas cortas de trabajo por fase que se integran por fast-forward, y un tag local por etapa SDD cerrada. Cada operación (commit, integración, tag) sigue requiriendo pedido explícito del usuario.
 - `.claude/settings.json` exige confirmación para operaciones git destructivas y deniega `git push --force`.
 
 ## Infraestructura Claude de este repo

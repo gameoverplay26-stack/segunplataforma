@@ -50,7 +50,7 @@ Estos son los nombres de Discovery. **No** usar "Technical Design" ni "Validatio
 ## Decisiones
 
 - Las decisiones de producto y diseño son del usuario. Claude presenta opciones con consecuencias y **no elige**.
-- Las decisiones pendientes heredadas de Discovery (#1–#7) reciben IDs `DEC-###` en Concept Definition. DEC-007 (estrategia Git) ya está referida con ese ID.
+- Las decisiones heredadas de Discovery (#1–#7) tienen IDs `DEC-001`…`DEC-007`, asignados el 2026-09-25. Su estado vigente está en `docs/SDD-STATUS.md`. DEC-007 (estrategia Git): **RESOLVED — trunk-based + tag por etapa**.
 - Una decisión se marca RESOLVED solo con aprobación explícita, registrada con fecha.
 
 ## Discovery = CLOSED CHECKPOINT
