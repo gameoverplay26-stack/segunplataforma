@@ -161,11 +161,11 @@ DECK = dict(
                  "¿Qué pasa si reinicio la partida con asteroides todavía en pantalla?",
                  "¿Y si dos láseres golpean el mismo asteroide en el mismo instante?",
                  "¿Qué pasa si un asteroide choca con otro asteroide?",
-                 "El reporte de cobertura dice 65,5 %. ¿Qué tan protegidos estamos?",
+                 "El reporte de cobertura dice 73,6 %, y Game.cs tiene 100 %. ¿Qué tan protegidos estamos?",
              ],
-             image="Captura del Test Runner con los 7 tests en verde junto al badge de cobertura «65,5 %» del reporte del proyecto.",
+             image="Captura del Test Runner con los 7 tests en verde junto al resumen del reporte de cobertura regenerado (73,6 % de líneas).",
              pregunta="¿Cuál de estas preguntas responde hoy la suite? (Respuesta: ninguna)",
-             notes="5 min. Las cuatro preguntas son el mapa de la clase: 1 → Actividad 3 (INT-AST-14); 2 → Actividad 2 (INT-AST-13); 3 → Actividad 1 (INT-AST-11); 4 → Bloque 4 (cobertura). Mostrar la imagen de Summary.md del reporte real (CodeCoverage/Report)."),
+             notes="5 min. Las cuatro preguntas son el mapa de la clase: 1 → Actividad 3 (INT-AST-14); 2 → Actividad 2 (INT-AST-13); 3 → Actividad 1 (INT-AST-11); 4 → Bloque 4 (cobertura). Datos reales: la suite de 7 tests se ejecutó en batchmode el 28/09/2026 (7/7 PASS) con cobertura en una carpeta limpia."),
 
         # ---------------------------------------------------------------- bloque 1
         dict(title="Positivos, negativos y borde", kicker="Bloque 1 · teoría",
@@ -210,7 +210,7 @@ DECK = dict(
                               ["Bug que detecta", "Alguien relaja la condición de Asteroid.cs 54 y cualquier choque termina la partida"],
                               ["¿Por qué integración?", "Verifica el contrato por nombre entre Asteroid y Game a través de la física real"],
                           ])],
-             notes="Este es el formato de ficha que usarán en las actividades (8 campos). En el juego real los asteroides aparecen en x aleatoria entre −8 y 8 (Spawner.cs 101–107), así que el choque entre asteroides es posible. [A VERIFICAR] que los prefabs de asteroides tengan Rigidbody y collider no-trigger: el proyecto no incluye la carpeta Assets/ en el repositorio."),
+             notes="Este es el formato de ficha que usarán en las actividades (8 campos). En el juego real los asteroides aparecen en x aleatoria entre −8 y 8 (Spawner.cs 101–107), así que el choque entre asteroides es posible. Verificado en los prefabs (rama activity-r-player-health): Asteroid, Asteroid2, Asteroid3 y Asteroid4 tienen Rigidbody dinámico sin gravedad y BoxCollider que no es trigger, así que el choque entre asteroides genera OnCollisionEnter."),
 
         dict(title="Actividad 1 · Diseñar casos nuevos (12 min)", kicker="Práctica · en grupos",
              bullets=[
@@ -235,8 +235,8 @@ DECK = dict(
                               ["C +", "INT-AST-08 · Reinicio tras Game Over real", "Nave viva en (0,0,0) · score 0 · spawner activo", "RepairShip o BeginSpawning omitidos"],
                               ["C −", "NewGame con partida en curso", "Estado inicial, sin doble spawner", "Ver INT-AST-15 (repetición)"],
                           ])],
-             nota="HUD: scoreText es privado → hay que ubicarlo por nombre en el prefab o exponer un getter (PROPUESTA).",
-             notes="5 min. Puntos de discusión: (1) el flujo B ya tiene positivos (02 y 04): aceptar que un grupo proponga 'GameOver muestra el texto de Game Over' (gameOverText, Game.cs 64) como positivo válido; (2) INT-AST-08 reemplaza con ventaja a 03, que simula el Game Over poniendo isGameOver = true a mano: un estado que el juego nunca produce así; (3) INT-AST-10 necesita un objeto de prueba (un cubo con collider) que no existe en el juego: primer ejemplo de dato de prueba artificial. [A VERIFICAR] que el prefab del láser tenga Rigidbody; si no, el cubo necesita uno para que ocurra OnCollisionEnter."),
+             nota="HUD: scoreText es privado, pero está dentro del prefab Game (UICanvas/ScoreText): el test puede encontrarlo con GetComponentsInChildren<Text>().",
+             notes="5 min. Puntos de discusión: (1) el flujo B ya tiene positivos (02 y 04): aceptar que un grupo proponga 'GameOver muestra el texto de Game Over' (gameOverText, Game.cs 64) como positivo válido; (2) INT-AST-08 reemplaza con ventaja a 03, que simula el Game Over poniendo isGameOver = true a mano: un estado que el juego nunca produce así; (3) INT-AST-10 necesita un objeto de prueba (un cubo con collider) que no existe en el juego: primer ejemplo de dato de prueba artificial. Verificado: el prefab Laser tiene Rigidbody dinámico y BoxCollider, así que un cubo con solo un collider alcanza para que ocurra OnCollisionEnter."),
 
         dict(title="Actividad 2 · Casos borde (10 min)", kicker="Práctica · análisis sin código",
              quote="Una fila por dimensión, con valores concretos y resultado esperado. Marquen con ⚠ las filas cuyo resultado no pueden decidir ustedes.",
@@ -254,12 +254,12 @@ DECK = dict(
                           rows=[
                               ["Valor", "Asteroide en y = −4,99 · −5,00 · −5,01", "Vivo · vivo · destruido (condición estricta «< −5») → INT-AST-12", ""],
                               ["Tiempo", "Disparo a 0,39 s y 0,41 s del anterior", "No dispara · dispara → INT-AST-16 (hoy no se puede automatizar)", ""],
-                              ["Simultaneidad", "2 láseres → 1 asteroide, mismo paso", "score +1 y sin excepción → INT-AST-13 (HIPÓTESIS: hoy suma 2)", ""],
+                              ["Simultaneidad", "2 láseres → 1 asteroide, mismo paso", "score +1 y sin excepción → INT-AST-13 (EJECUTADO: suma 2 y lanza excepción)", ""],
                               ["Simultaneidad", "1 láser → 2 asteroides superpuestos", "¿+1 o +2? Decisión de diseño", "⚠"],
-                              ["Repetición", "NewGame() dos veces seguidas", "Una sola corrutina de spawn → INT-AST-15 (HIPÓTESIS)", ""],
+                              ["Repetición", "NewGame() dos veces seguidas", "Misma tasa de aparición → INT-AST-15 (EJECUTADO: 8 asteroides vs. 5)", ""],
                               ["Orden", "Punto sumado en el frame del Game Over", "¿Cuenta o no? Decisión de diseño", "⚠"],
                           ])],
-             notes="5 min. Las filas ⚠ no se resuelven por inferencia: se registran como pregunta al diseño y el caso queda pendiente hasta tener respuesta. INT-AST-13 (hipótesis por lectura de código): ambos Laser.OnCollisionEnter corren antes de que Destroy se haga efectivo → Game.AsteroidDestroyed() se llama dos veces (score 2) y el segundo spawner.asteroids.Release(...) debería lanzar InvalidOperationException, porque el ObjectPool controla dobles liberaciones (collectionCheck). Un test de Unity falla ante una excepción no esperada en el log. Confirmarlo ejecutando antes de afirmarlo en clase."),
+             notes="5 min. Las filas ⚠ no se resuelven por inferencia: se registran como pregunta al diseño y el caso queda pendiente hasta tener respuesta. Resultados reales (Unity 6000.3.11f1, batchmode, 28/09/2026, Assets/Tests/IntegrationHypothesesTests.cs). INT-AST-13: FAIL con «Unhandled log message: InvalidOperationException: Trying to release an object that has already been released to the pool», lanzada en Laser.cs:52; en una corrida de diagnóstico que ignoraba ese error, el score quedó en 2. Causa: los dos OnCollisionEnter corren antes de que Destroy se haga efectivo. INT-AST-15: con una llamada a NewGame aparecen 5 asteroides en 2,1 s; con dos llamadas seguidas, 8 (nave alejada para evitar un Game Over que detendría el spawner). Causa: StartCoroutine sobre el mismo IEnumerator (Spawner.cs 49–62)."),
 
         # ---------------------------------------------------------------- bloque 2
         dict(title="Fixtures y datos de prueba", kicker="Bloque 2 · teoría",
@@ -306,8 +306,8 @@ DECK = dict(
                    "Un frame de espera: Start() ya corrió",
                    "Limpieza total, no solo del prefab",
                    "Otro frame: el próximo test empieza limpio"],
-             nota="Código propio de la cátedra (PROPUESTA), no incluido en el proyecto. No se probó todavía en Unity.",
-             notes="Demo de 5 min comparando con TestSuite.cs 40–51. [UnitySetUp] y [UnityTearDown] son atributos del Unity Test Framework que permiten usar yield. FindObjectsByType por defecto ignora objetos inactivos: la plantilla inactiva del láser, si está dentro del prefab, no se toca. Sin evidencia de ejecución, el estado de esta fixture es UNKNOWN."),
+             nota="Código propio de la cátedra. La limpieza (UnityTearDown) ya corre en IntegrationHypothesesTests.cs; la semilla no se probó.",
+             notes="Demo de 5 min comparando con TestSuite.cs 40–51. [UnitySetUp] y [UnityTearDown] son atributos del Unity Test Framework que permiten usar yield. FindObjectsByType por defecto ignora objetos inactivos: la plantilla inactiva del láser, si está dentro del prefab, no se toca. Evidencia: una limpieza equivalente se usa en Assets/Tests/IntegrationHypothesesTests.cs y corrió en batchmode el 28/09/2026. La parte de Random.InitState no se ejecutó: su estado es UNKNOWN."),
 
         dict(title="Tests frágiles (flaky)", kicker="Bloque 2 · teoría",
              tag="Martin Fowler · «Eradicating Non-Determinism in Tests»",
@@ -347,9 +347,10 @@ DECK = dict(
 
         dict(type="code", title="Actividad 3 · Un test que falla (10 min)", kicker="Práctica · análisis",
              code=[
-                 "[UnityTest]  // INT-AST-14 (PROPUESTA)",
+                 "[UnityTest]  // INT-AST-14 · IntegrationHypothesesTests.cs",
                  "public IEnumerator NewGame_RemovesLeftoverAsteroids()",
                  "{",
+                 "    yield return null;                     // Start() asigna Game.instance",
                  "    game.NewGame();",
                  "    GameObject leftover = game.GetSpawner().SpawnAsteroid();",
                  "    leftover.transform.position = new Vector3(6f, 3f, leftover.transform.position.z);",
@@ -362,12 +363,12 @@ DECK = dict(
                  "    Assert.IsTrue(leftover == null, \"NewGame debería eliminar los asteroides previos\");",
                  "}",
                  "",
-                 "✗ NewGame_RemovesLeftoverAsteroids — NewGame debería eliminar los asteroides previos",
+                 "✗ FAIL (batchmode 28/09/2026) — NewGame debería eliminar los asteroides previos",
                  "  Expected: True   But was: False",
              ],
-             csize=12,
+             csize=11.5,
              actividad="1) ¿Falla el juego o el test?  2) Causa en el código  3) Impacto para el jugador  4) Ticket  5) ¿Y después del arreglo?",
-             notes="IMPORTANTE: la salida mostrada es una PREDICCIÓN hecha leyendo el código, no una ejecución. Correr el test antes de la clase y reemplazar la salida por la real. Objetivo: practicar el análisis de causa raíz de un fallo de integración. Resultado esperado: una cadena causal con archivo y líneas, más un ticket. Discusión: ¿cómo sabemos que el resultado esperado es correcto? (ver resolución)."),
+             notes="La salida es REAL: Unity 6000.3.11f1 en batchmode, 28/09/2026, test en Assets/Tests/IntegrationHypothesesTests.cs. La primera línea (yield return null) es necesaria: sin ella, Game.GameOver() se ejecuta antes de que Start() asigne Game.instance. Objetivo: practicar el análisis de causa raíz de un fallo de integración. Resultado esperado: una cadena causal con archivo y líneas, más un ticket. Discusión: ¿cómo sabemos que el resultado esperado es correcto? (ver resolución)."),
 
         dict(title="Actividad 3 · Resolución", kicker="Resolución docente",
              flow=[
@@ -385,7 +386,7 @@ DECK = dict(
              ],
              bsize=14,
              coderef="Spawner.cs 73–99 (Instantiate) y 115–117 (Dispose) · Game.cs 78 (ClearAsteroids) · Spawner.cs 52–53 (creación del pool)",
-             notes="5 min. (1) ¿Juego o test? El test está bien construido: el asteroide está lejos de la nave, el spawner automático recién crea uno nuevo a los 0,4 s y se espera 1 frame. El nombre ClearAsteroids sugiere la intención, pero NO inferir el requisito: confirmarlo con diseño. Si el diseño dijera que los asteroides deben seguir cayendo, el que está mal es el test. (2) Causa: el pool se construye con SpawnAsteroid como función de creación (Spawner.cs 52–53) pero nunca se llama a Get(); SpawnAsteroid se usa directo. Laser.cs 52 hace Release de objetos que nunca se pidieron al pool. (3) Impacto: con un reinicio rápido, un asteroide viejo puede chocar la nave en (0,0,0) → Game Over inmediato. (4) Ticket con pasos, esperado/actual y evidencia (salida del test). (5) Regresión: el test queda en rojo hasta el arreglo y luego protege contra la reaparición del defecto."),
+             notes="5 min. Confirmado ejecutando (FAIL, Expected True / But was False). (1) ¿Juego o test? El test está bien construido: el asteroide está lejos de la nave, el spawner automático recién crea uno nuevo a los 0,4 s y se espera 1 frame. El nombre ClearAsteroids sugiere la intención, pero NO inferir el requisito: confirmarlo con diseño. Si el diseño dijera que los asteroides deben seguir cayendo, el que está mal es el test. (2) Causa: el pool se construye con SpawnAsteroid como función de creación (Spawner.cs 52–53) pero nunca se llama a Get(); SpawnAsteroid se usa directo. Laser.cs 52 hace Release de objetos que nunca se pidieron al pool. (3) Impacto: con un reinicio rápido, un asteroide viejo puede chocar la nave en (0,0,0) → Game Over inmediato. (4) Ticket con pasos, esperado/actual y evidencia (salida del test). (5) Regresión: el test queda en rojo hasta el arreglo y luego protege contra la reaparición del defecto."),
 
         # ---------------------------------------------------------------- bloque 3
         dict(title="Dependencias y dobles de prueba", kicker="Bloque 3 · teoría",
@@ -416,23 +417,23 @@ DECK = dict(
              image="Diagrama: hoy «Teclado → Ship.Update (regla + movimiento)»; propuesta «Teclado / Stub → Entrada → Ship (regla)», con el stub resaltado.",
              coderef="Ship.cs 61–64 (regla + tecla) · Ship.cs 77–80 (ShootLaser sin chequeo) · Ship.cs 82–90 (cooldown)",
              pregunta="Esperado con Espacio mantenido 1 s: ¿cuántos láseres? (Respuesta: 3, en t = 0; 0,4; 0,8)",
-             notes="2 min de demo del problema + discusión. Conecta con la clase de plataformas: la misma separación de la entrada que permite portar a móvil permite testear la regla. No instalar el paquete Input System sin autorización. En el reporte de cobertura, Ship.cs 61–74 figura como no ejecutado."),
+             notes="2 min de demo del problema + discusión. Conecta con la clase de plataformas: la misma separación de la entrada que permite portar a móvil permite testear la regla. Verificado en Packages/manifest.json: el proyecto NO tiene el paquete Input System. No instalarlo sin autorización. En el reporte regenerado, Ship.cs 61–74 no se ejecuta: durante los frames de los tests la nave está «muerta» (isDead empieza en true y solo RepairShip lo cambia), así que Update sale en la línea 57."),
 
         # ---------------------------------------------------------------- bloque 4
         dict(title="Cobertura: qué mide y qué no", kicker="Bloque 4 · caso real del proyecto",
-             tag="CodeCoverage/Report del proyecto nave + asteroides",
+             tag="Reporte regenerado: 7 tests, carpeta limpia, 28/09/2026",
              bullets=[
-                 "El resumen dice 65,5 % de líneas… pero mezcla 6 archivos de corridas distintas (15/09 y 18/09)",
-                 "El detalle línea por línea viene de una corrida donde se ejecutó solo 1 de los 7 tests",
+                 "Reporte viejo del repo: 65,5 %, mezclando 3 corridas (15/09 y 18/09) y el código de los tests",
+                 "Regenerado: 73,6 % de líneas y 87 % de métodos de GameAssembly · Game.cs 100 % · Ship.cs 43 %",
+                 "Game.cs 100 %… pero la línea del HUD (85) se ejecuta sin que ningún test la compruebe",
+                 "Nunca ejecutado: entrada del jugador, movimiento lateral, asteroide que sale de pantalla, spawn automático",
                  "Cobertura de ramas: 0 de 0 → no se midió",
-                 "Ship.Update (entrada del jugador) no aparece ejecutado en ningún test",
-                 "Cobertura = código EJECUTADO, no VERIFICADO: el test 07 recorre la línea del HUD sin comprobarla",
              ],
              bsize=15,
-             image="Captura de Summary.md del reporte (65,5 %, 6x OpenCoverParser, branches 0/0) junto a la vista línea por línea de Laser.cs en rojo.",
-             coderef="CodeCoverage/Report/Summary.md · Tests_TestSuite.html (solo 88–115 ejecutadas) · GameAssembly_Ship.html (61–74)",
-             pregunta="¿Qué significa realmente el 65,5 %? ¿Lo usarían para decidir si el juego está listo?",
-             notes="5 min + 3 de demo abriendo el reporte. Datos verificados leyendo los archivos: Summary.md indica 'MultiReportParser (6x OpenCoverParser)', 18 archivos para 6 clases y 644 líneas coverables sobre 616 totales (inconsistente: el resumen suma corridas). Tests_TestSuite.html muestra ejecutadas solo las líneas de GameOverStopsSpawningAndDisablesShip. Recomendación: regenerar el reporte con la suite completa en una carpeta limpia antes de la clase. Paquete: Code Coverage de Unity (docs.unity3d.com/Packages/com.unity.testtools.codecoverage@1.2)."),
+             image="Captura del reporte regenerado: resumen por clase (Game 100 %, Ship 43 %) y la vista línea por línea de Ship.cs con las líneas 61–74 en rojo.",
+             coderef="Sin cubrir: Ship.cs 61–74 y 99–115 · Asteroid.cs 48 · Spawner.cs 69 · Laser.cs 42 — Ejecutada sin verificar: Game.cs 85",
+             pregunta="Game.cs tiene 100 % de cobertura: ¿está bien probado? ¿Usarían ese número para decidir si el juego está listo?",
+             notes="5 min + 3 de demo abriendo el reporte. Reporte VIEJO (Asteroides/asteroide-final/CodeCoverage): 'MultiReportParser (6x OpenCoverParser)', 3 carpetas de resultados (cada corrida genera 2 XML), incluye el assembly de tests y reporta 644 líneas coverables sobre 616 totales; su vista línea por línea corresponde a una corrida con un solo test. Reporte REGENERADO (Unity 6000.3.11f1, batchmode, 28/09/2026, -testFilter TestSuite, assemblyFilters:+GameAssembly, carpeta limpia fuera del repo): 7/7 PASS; 137 de 186 líneas (73,6 %); 27 de 31 métodos (87 %); Asteroid 84,2 %, Game 100 %, Laser 81,2 %, Ship 43 %, Spawner 86,9 %. Sin cubrir: Ship 61–74 (la nave está muerta durante los frames de los tests), Ship 99–115 (MoveLeft/MoveRight), Asteroid 48 (destrucción bajo y = −5), Spawner 69 (spawn automático), Laser 42 (láser fuera de pantalla). Game.cs 85 figura cubierta (2 visitas, tests 06 y 07) aunque ningún assert la verifica. Paquete: Code Coverage 1.3 (docs.unity3d.com/Packages/com.unity.testtools.codecoverage@1.3)."),
 
         dict(title="Regresión: del bug al test que lo vigila", kicker="Bloque 4 · teoría",
              flow=[
@@ -468,7 +469,7 @@ DECK = dict(
                               ["Fuera de esta suite", "01 y 05 → movimiento de un solo componente · 03 → reemplazado por 08 · 16 → pendiente del refactor de entrada", "—"],
                           ])],
              nota="Fixture común: semilla fija + limpieza total · Nombres: Flujo_Condición_Resultado · [Category(\"Smoke\")]",
-             notes="5 min. Suite final: 11 tests. Justificaciones: 03 simula un Game Over que el juego no produce y 08 lo cubre con el flujo real; 07 queda absorbido por 09, que verifica el puntaje y el texto (contra: si falla 09 hay que mirar el mensaje del Assert para saber cuál de los dos falló); 01 y 05 verifican el movimiento de un componente: pueden ir a una carpeta de tests por componente. 13 y 15 son hipótesis: si al ejecutarlos pasan, igual quedan como protección. Criterio de independencia: cada test debe poder correr solo y en cualquier orden."),
+             notes="5 min. Suite final: 11 tests. Justificaciones: 03 simula un Game Over que el juego no produce y 08 lo cubre con el flujo real; 07 queda absorbido por 09, que verifica el puntaje y el texto (contra: si falla 09 hay que mirar el mensaje del Assert para saber cuál de los dos falló); 01 y 05 verifican el movimiento de un componente: pueden ir a una carpeta de tests por componente. 13, 14 y 15 ya se ejecutaron y FALLAN: quedan en rojo como tests de regresión hasta que se corrijan los defectos. Criterio de independencia: cada test debe poder correr solo y en cualquier orden."),
 
         dict(title="Cierre", kicker="Ideas para llevarse",
              bullets=[
@@ -490,13 +491,13 @@ DECK = dict(
                               ["INT-AST-10", "Láser contra un objeto que no es asteroide", "Negativo", "PROPUESTA"],
                               ["INT-AST-11", "Choque entre asteroides no da Game Over", "Negativo", "PROPUESTA"],
                               ["INT-AST-12", "Asteroide que cruza y = −5", "Borde · valor", "PROPUESTA"],
-                              ["INT-AST-13", "Dos láseres contra el mismo asteroide", "Borde · simultaneidad", "HIPÓTESIS"],
-                              ["INT-AST-14", "NewGame elimina los asteroides previos", "Regresión", "HIPÓTESIS de fallo"],
-                              ["INT-AST-15", "NewGame dos veces seguidas", "Borde · repetición", "HIPÓTESIS"],
+                              ["INT-AST-13", "Dos láseres contra el mismo asteroide", "Borde · simultaneidad", "EJECUTADO · FAIL"],
+                              ["INT-AST-14", "NewGame elimina los asteroides previos", "Regresión", "EJECUTADO · FAIL"],
+                              ["INT-AST-15", "NewGame dos veces seguidas", "Borde · repetición", "EJECUTADO · FAIL"],
                               ["INT-AST-16", "Cooldown de disparo con tecla mantenida", "Dependencia de entrada", "PROPUESTA (refactor)"],
                           ])],
-             nota="PROPUESTA: no existe en el proyecto. HIPÓTESIS: resultado predicho leyendo el código, sin ejecutar.",
-             notes="Fichas completas (8 campos) de cada caso en la guía entregada junto con esta presentación."),
+             nota="PROPUESTA: todavía no existe en el proyecto. EJECUTADO: en Assets/Tests/IntegrationHypothesesTests.cs (batchmode, 28/09/2026).",
+             notes="Resultados de 13–15: 13 → excepción en Laser.cs:52 y score 2; 14 → el asteroide previo sobrevive; 15 → 8 asteroides con doble NewGame contra 5 con uno."),
 
         dict(title="Anexo · Para una clase futura", kicker="Contenido reservado",
              cols=[
@@ -513,7 +514,7 @@ DECK = dict(
                      "Relación con la plataforma: la misma suite en PC y en móvil",
                  ], TEAL),
              ],
-             notes="Referencias verificadas: Unity Test Framework (docs.unity3d.com/Packages/com.unity.test-framework@1.4), Input System Testing (docs.unity3d.com/Packages/com.unity.inputsystem@1.11/manual/Testing.html), LogAssert (docs.unity3d.com/Packages/com.unity.test-framework@1.4/api/UnityEngine.TestTools.LogAssert.html), ObjectPool (docs.unity3d.com/ScriptReference/Pool.ObjectPool_1.html)."),
+             notes="Referencias verificadas (versiones del proyecto: Test Framework 1.6.0, Code Coverage 1.3.0): Unity Test Framework (docs.unity3d.com/Packages/com.unity.test-framework@1.6), Input System Testing (docs.unity3d.com/Packages/com.unity.inputsystem@1.11/manual/Testing.html), LogAssert (docs.unity3d.com/Packages/com.unity.test-framework@1.4/api/UnityEngine.TestTools.LogAssert.html), ObjectPool (docs.unity3d.com/ScriptReference/Pool.ObjectPool_1.html)."),
     ],
 )
 
