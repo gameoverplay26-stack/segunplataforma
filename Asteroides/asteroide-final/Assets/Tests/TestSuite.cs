@@ -79,12 +79,12 @@ public class TestSuite
         Assert.False(game.isGameOver);
     }
 
-    // Test de integracion (a diferencia de los demas tests de esta suite, que en general
-    // verifican un unico efecto observable): Game.GameOver() coordina tres colaboradores
-    // reales (Game, Spawner, Ship) y este test verifica que los tres queden consistentes
-    // entre si, no solo que "isGameOver" se haya puesto en true. Si alguien borrara por
-    // error la linea "spawner.StopSpawning()" dentro de Game.GameOver(), este test fallaria
-    // aunque GameOverOccursOnAsteroidCollision siguiera pasando sin problemas.
+    // Test de integracion con varios efectos de un mismo flujo (los demas tests tambien integran
+    // sistemas reales via el prefab Game, pero en general verifican un unico efecto observable).
+    // Game.GameOver() coordina Game, Spawner y Ship; este test verifica mas que "isGameOver".
+    // Si alguien borrara por error "spawner.StopSpawning()" dentro de Game.GameOver(), este test
+    // fallaria aunque GameOverOccursOnAsteroidCollision siguiera pasando. Limitacion: el assert 2
+    // no prueba que Explode() corrio (Ship.isDead ya vale true desde el inicio, ver Ship.cs).
     [UnityTest]
     public IEnumerator GameOverStopsSpawningAndDisablesShip()
     {
@@ -96,7 +96,7 @@ public class TestSuite
         asteroid.transform.position = game.GetShip().transform.position;
         yield return new WaitForSeconds(0.1f);
 
-        // Assert 1 y 2: los dos efectos directos de GameOver() sobre sus colaboradores
+        // Assert 1 y 2: efectos directos de GameOver() (el 2 no discrimina: ver limitacion arriba)
         Assert.True(game.isGameOver, "El Game Over deberia haberse activado");
         Assert.True(game.GetShip().isDead, "La nave deberia quedar destruida (Ship.Explode())");
 
