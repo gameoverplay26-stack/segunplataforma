@@ -1,0 +1,30 @@
+# --- Unity (cada proyecto tiene además su propio .gitignore) ---
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Bb]uild/
+[Bb]uilds/
+*.csproj
+*.sln
+*.slnx
+*.apk
+*.aab
+
+# --- Proyectos de terceros / archivos locales que no se versionan ---
+proyectos-unity/Match-3-Game/
+proyectos-unity/com.unity.multiplayer.samples.coop/
+proyectos-unity/_archivos/
+*.zip
+
+# --- Office / sistema ---
+~$*
+Thumbs.db
+.DS_Store
+
+# --- Python ---
+__pycache__/
+
+# --- Claude Code: configuración personal ---
+.claude/settings.local.json
