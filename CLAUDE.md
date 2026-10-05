@@ -6,8 +6,9 @@ Este repositorio **no es un único proyecto**. Contiene contextos independientes
 
 | Contexto | Ubicación | Reglas que aplican |
 |---|---|---|
-| Material de cátedra "Diseño según Plataforma" (UNJu) | `docs/unidadNN/`, `Unidad 1/`, archivos `.md`/`.pptx`/`.pdf`/`.docx` de la raíz | Convenciones propias de cada unidad. **No** aplican las reglas SDD. |
-| Proyectos Unity de clase / ejemplos | `Asteroides/`, `Match-3-Game/`, `Unidad03-TestingUnity/`, `com.unity.multiplayer.samples.coop/` (Boss Room), `Introduction-To-Unity-Unit-Testing/` | Independientes entre sí. **No** aplican las reglas SDD. |
+| Material de cátedra "Diseño según Plataforma" (UNJu) | `diseno-plataformas/` (`programa/`, `unidad-NN/`, `clases/`, `transversal/`, `herramientas/`, `status-unidad.md`) | Convenciones propias de cada unidad. Control de avance en `diseno-plataformas/status-unidad.md`. **No** aplican las reglas SDD. |
+| Proyectos Unity de clase / ejemplos | `proyectos-unity/` (`Asteroides/` y `Unidad03-TestingUnity/` versionados; `Match-3-Game/`, Boss Room y `_archivos/` locales, ignorados por git) | Independientes entre sí. **No** aplican las reglas SDD. |
+| Setup de transmisión de clases en vivo | `streaming/` | Documentación operativa. **No** aplican las reglas SDD. |
 | **Proyecto académico SDD "Arena"** | ver §2 | **Reglas SDD de este archivo (§3–§10).** |
 
 Si una tarea no toca rutas del §2, ignorar §3–§10 y trabajar según el contexto correspondiente.
