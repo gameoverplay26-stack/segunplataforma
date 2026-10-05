@@ -49,7 +49,7 @@ SOURCE_Y = Inches(6.70)
 CALLOUT_H = Inches(0.5)
 IMG_W = Inches(4.3)
 
-KEYS = ("tipo", "kicker", "pregunta", "actividad", "imagen", "diagrama", "cronologia", "video", "fuente")
+KEYS = ("tipo", "kicker", "pregunta", "actividad", "imagen", "diagrama", "cronologia", "hitos", "video", "fuente")
 CALLOUTS = (  # clave, etiqueta, color
     ("pregunta", "PREGUNTA", AMBER),
     ("actividad", "ACTIVIDAD", GREEN),
@@ -325,6 +325,51 @@ def timeline_chart(slide, spec, x, y, w, h, end_year=2026):
         run(p, footnote.strip(), 11, MUTED, italic=True)
 
 
+def milestones_chart(slide, spec, x, y, w, h):
+    """Linea de tiempo de hitos en orden cronologico, con rotulos alternados arriba/abajo.
+    Sintaxis:  hitos: 1972 · Nombre · aporte | 1978 · Nombre · aporte | ...
+    Los hitos van equiespaciados (escala ordinal): cada tarjeta muestra su anio y una
+    leyenda aclara que la separacion no es proporcional al tiempo. Asi no hay cruces
+    cuando varios hitos caen en anios cercanos o en el mismo anio.
+    """
+    items = []
+    for part in spec.split("|"):
+        f = [t.strip() for t in part.split("·")]
+        items.append((int(f[0]), f[1], f[2] if len(f) > 2 else ""))
+    n = len(items)
+    caption_h = Inches(0.3)
+    lab_w = min(Inches(2.2), int(2 * w / (n + 1)) - Inches(0.15))
+    lab_h, stem = Inches(0.85), Inches(0.35)
+    ax_x0, ax_x1 = x + lab_w / 2, x + w - lab_w / 2
+    axis_y = y + int((h - caption_h) / 2)
+    step = (ax_x1 - ax_x0) / (n - 1) if n > 1 else 0
+    rect(slide, int(ax_x0 - Inches(0.2)), axis_y - Pt(1.5), int(ax_x1 - ax_x0 + Inches(0.4)), Pt(3), MUTED)
+    for i, (yr, name, contrib) in enumerate(items):
+        cx = int(ax_x0 + i * step)
+        up = i % 2 == 0
+        ly = axis_y - stem - lab_h if up else axis_y + stem
+        rect(slide, cx - Pt(0.75), axis_y - stem if up else axis_y, Pt(1.5), stem, MUTED)
+        rect(slide, cx - Inches(0.1), axis_y - Inches(0.1), Inches(0.2), Inches(0.2), NAVY, MSO_SHAPE.OVAL)
+        box = rect(slide, int(cx - lab_w / 2), ly, lab_w, lab_h, LIGHT_BG, MSO_SHAPE.ROUNDED_RECTANGLE)
+        box.adjustments[0] = 0.1
+        tf = box.text_frame
+        tf.word_wrap = True
+        tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+        tf.margin_left = tf.margin_right = Inches(0.06)
+        tf.margin_top = tf.margin_bottom = Inches(0.02)
+        p = tf.paragraphs[0]
+        p.alignment = PP_ALIGN.CENTER
+        run(p, str(yr) + "  ", 12, TEAL, bold=True)
+        run(p, name, 12, SLATE, bold=True)
+        if contrib:
+            p2 = tf.add_paragraph()
+            p2.alignment = PP_ALIGN.CENTER
+            run(p2, contrib, 11, MUTED)
+    tf = textbox(slide, x, y + h - caption_h, w, caption_h, MSO_ANCHOR.MIDDLE)
+    p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.RIGHT
+    run(p, "Orden cronológico: la separación entre hitos no es proporcional al tiempo", 11, MUTED, italic=True)
+
 def callout(slide, label, text, color, y):
     rect(slide, MARGIN, y, Inches(0.12), CALLOUT_H, color)
     bg = rect(slide, MARGIN + Inches(0.12), y, SLIDE_W - 2 * MARGIN - Inches(0.12), CALLOUT_H, LIGHT_BG)
@@ -385,6 +430,9 @@ def build_content(prs, deck, s, total):
     has_img = bool(s.get("imagen")) and not (has_diag or has_chart)
     panel_w = Inches(7.4) if has_chart else Inches(5.6) if has_diag else IMG_W
     body_w = SLIDE_W - 2 * MARGIN - (panel_w + Inches(0.3) if (has_img or has_diag or has_chart) else 0)
+    if s.get("hitos"):  # ocupa todo el ancho del cuerpo
+        milestones_chart(slide, s["hitos"], MARGIN, BODY_TOP, SLIDE_W - 2 * MARGIN, body_h)
+        return slide
     if has_chart:
         timeline_chart(slide, s["cronologia"], SLIDE_W - MARGIN - panel_w, BODY_TOP, panel_w, body_h)
     elif has_diag:

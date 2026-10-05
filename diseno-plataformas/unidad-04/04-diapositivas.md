@@ -1,7 +1,7 @@
 # Unidad 4 — Diapositivas definitivas (texto + notas del docente)
 
 Fuente única de los 4 decks de la Unidad 4. Basado en la arquitectura **aprobada** ([`04-diapositivas-arquitectura.md`](./04-diapositivas-arquitectura.md)).
-Para regenerar los `.pptx` después de editar este archivo: `python scripts/build_decks.py` desde `diseno-plataformas/unidad-04/` (requiere `pip install python-pptx`). Opciones: `--decks 1 3` genera solo esos decks; `--version 2` agrega el sufijo `-v2` al nombre del archivo; `--out-dir RUTA` escribe en otra carpeta (útil si el .pptx está abierto). Claves adicionales: `diagrama: Capa: a, b | Capa: c || nota` dibuja capas apiladas con flechas (slide 3 de la Clase 1 v2); `cronologia: Etiqueta: 1972 | *Destacada: 2008 || nota` dibuja una cronología de barras hasta 2026, y el `*` destaca una barra (slide 6).
+Para regenerar los `.pptx` después de editar este archivo: `python scripts/build_decks.py` desde `diseno-plataformas/unidad-04/` (requiere `pip install python-pptx`). Opciones: `--decks 1 3` genera solo esos decks; `--version 2` agrega el sufijo `-v2` al nombre del archivo; `--out-dir RUTA` escribe en otra carpeta (útil si el .pptx está abierto). Claves adicionales: `diagrama: Capa: a, b | Capa: c || nota` dibuja capas apiladas con flechas (slide 3 de la Clase 1 v2); `cronologia: Etiqueta: 1972 | *Destacada: 2008 || nota` dibuja una cronología de barras hasta 2026, y el `*` destaca una barra (slide 6); `hitos: 1972 · Nombre · aporte | …` dibuja una línea de tiempo de hitos a todo el ancho (slide 7).
 
 **Versiones:** el deck 1 está en su **versión 2** (2026-10-05): incorpora conceptos del artículo de Kevuru Games, con texto breve en las slides y notas del docente completas. Se genera con `python scripts/build_decks.py --decks 1 --version 2`. La v1 (`Unidad-4-Clase-1-2026.pptx`) se conserva como archivo; su texto fuente está en el historial de git (commit `acb7c4c`).
 
@@ -26,7 +26,7 @@ imagen: Teléfono en vertical con Asteroides corriendo, sostenido con una mano.
 notas:
 Presentar la unidad como continuación directa del panorama del 28/09: ese día recorrimos todas las plataformas; desde hoy, y durante cuatro clases, nos quedamos en el bolsillo del jugador.
 No anticipar contenidos: la clase arranca con un problema, no con una definición ni con una herramienta.
-Versión 2 de la clase (2026-10-05): incorpora conceptos del artículo "What Are the Best Platforms for Games?" de Kevuru Games (definición de plataforma, rol de las tiendas móviles, criterios para elegir plataforma), leído con mirada crítica (slide 19).
+Versión 2 de la clase (2026-10-05): incorpora conceptos del artículo "What Are the Best Platforms for Games?" de Kevuru Games (definición de plataforma, rol de las tiendas móviles, criterios para elegir plataforma), leído con mirada crítica (slide 20).
 
 ## 2 | El juego que anda… hasta que no
 tipo: contenido
@@ -41,7 +41,7 @@ notas:
 Relato completo: "Asteroides funciona perfecto en la PC del aula. Lo instalamos en un teléfono: a los 10 minutos empieza a trabarse, el teléfono quema en la mano, y si entra una llamada y volvemos, la nave ya explotó y perdimos la partida".
 Dejar que discutan 3–4 minutos. Respuesta esperada: al menos tres problemas de distinta naturaleza: (1) calor y rendimiento sostenido, (2) consumo de batería, (3) interrupción del sistema operativo.
 Ninguno aparece en el editor y ninguno es un error de lógica en sentido estricto: son supuestos de PC que el juego trae consigo. Esa es la idea de toda la unidad.
-No dar todavía las explicaciones: anotarlas en el pizarrón para volver a ellas en las slides 10 a 15.
+No dar todavía las explicaciones: anotarlas en el pizarrón para volver a ellas en las slides 11 a 16.
 
 ## 3 | Lo que ya vimos el 28/09
 tipo: contenido
@@ -67,7 +67,7 @@ Diagrama de las tres capas (pedido por la titular, agregado en la v2):
 Leerlo de arriba hacia abajo: cada dispositivo se traduce a la misma intención, y la nave solo recibe intenciones. Así, llevar el juego a móvil significa agregar un dispositivo (táctil), no reescribir la nave.
 El problema real de Asteroides (nota en rojo de la slide): hoy Ship.cs (líneas 61–73) lee Input.GetKey(KeyCode.Space / LeftArrow / RightArrow) directamente, salteando la capa de intención. Por eso, para pasar a móvil habría que modificar la clase de la nave: es el supuesto S1 del caso práctico, que los alumnos van a encontrar en la actividad A4.2.
 En Unity, la capa de intención la ofrece el Input System: las Actions (Move, Fire) separan la acción de sus bindings (teclado, táctil, gamepad). Solo mencionarlo; se trabaja en la Clase 2 (On-Screen Controls).
-Preguntar: ¿qué partes de la nave NO deberían cambiar al pasar a móvil? Respuesta: la lógica de movimiento, disparo y límites; solo cambia la capa de dispositivo (y los límites, por el aspect ratio, como vamos a ver en la slide 17).
+Preguntar: ¿qué partes de la nave NO deberían cambiar al pasar a móvil? Respuesta: la lógica de movimiento, disparo y límites; solo cambia la capa de dispositivo (y los límites, por el aspect ratio, como vamos a ver en la slide 18).
 Hoy vamos a ver por qué cada viñeta es una restricción de diseño, con números y fuentes oficiales.
 
 ## 4 | Al terminar la unidad podrán
@@ -117,15 +117,35 @@ fuente: Kevuru Games (blog); Apple Newsroom (App Store, 10/07/2008); lanzamiento
 notas:
 [Diapositiva nueva en la versión 2.]
 Idea del artículo: cada época tuvo una plataforma que definió cómo se juega. Los arcades fueron las primeras plataformas reales, y además eran espacios sociales.
-Ejemplos que da el artículo, por si alguien pregunta: Pong (1972), Space Invaders (1978), Pac-Man (1980), Donkey Kong (1981, primera aparición de Mario como "Jumpman"), Galaga (1981), Street Fighter II (1991) y Mortal Kombat (1992), cuya polémica contribuyó a la creación de la ESRB (el sistema de clasificación por edades que vamos a ver en la Unidad V).
+Los ejemplos de arcade del artículo (Pong, Space Invaders, Pac-Man, Donkey Kong, Galaga, Street Fighter II y Mortal Kombat) se desarrollan con gráfico en la slide siguiente (7).
 Conexión con el diseño: el arcade se diseñaba para cobrar por partida (partidas cortas y difíciles, "insert coin"); la consola, para el sillón y la TV; el teléfono, para el bolsillo y las interrupciones. La plataforma siempre moldeó el diseño: no es un fenómeno nuevo.
 Dato a remarcar: Asteroids, el juego que inspira nuestro proyecto, es justamente un clásico arcade (Atari, 1979). Estamos llevando un diseño de arcade al teléfono.
 Cómo leer la cronología (pedido de la titular): cada barra arranca en el hito que abre una época y llega hasta hoy (2026). Las barras no "terminan" porque ninguna plataforma desapareció: los arcades, las consolas y la PC siguen vigentes, y cada época nueva se SUMA a las anteriores en lugar de reemplazarlas. La barra destacada es la del teléfono (2008, lanzamiento del App Store), la época de esta unidad.
 Hitos usados: Pong (1972, arcade); Atari 2600 (1977, popularizó la consola doméstica con cartuchos); IBM PC (1981); Game Boy (1989); App Store (10/07/2008, verificado en Apple Newsroom); Oculus Rift (28/03/2016, primer visor de VR de consumo masivo); GeForce Now (04/02/2020, lanzamiento comercial del cloud gaming de NVIDIA). Son hitos de referencia, no "inventos" de cada época: por ejemplo, la primera consola doméstica fue la Magnavox Odyssey (1972) y en PC se jugaba antes de 1981.
-Pregunta posible: ¿qué tiene de distinto la época del teléfono respecto de las anteriores? Respuesta esperada: el jugador no compra el dispositivo para jugar, porque ya lo lleva en el bolsillo por otros motivos; por eso el juego compite con llamadas, mensajes y notificaciones (lo que vemos hoy en las slides 12 y 13).
+Pregunta posible: ¿qué tiene de distinto la época del teléfono respecto de las anteriores? Respuesta esperada: el jugador no compra el dispositivo para jugar, porque ya lo lleva en el bolsillo por otros motivos; por eso el juego compite con llamadas, mensajes y notificaciones (lo que vemos hoy en las slides 13 y 14).
 No detenerse más de 3 minutos: es contexto, no contenido evaluable.
 
-## 7 | Las tiendas cambiaron quién publica
+## 7 | Clásicos del arcade
+tipo: contenido
+kicker: CONTEXTO HISTÓRICO
+hitos: 1972 · Pong · tenis en pantalla | 1978 · Space Invaders · nace el shooter | 1980 · Pac-Man · fenómeno cultural | 1981 · Donkey Kong · debuta Mario | 1981 · Galaga · riesgo y recompensa | 1991 · Street Fighter II · comunidad de pelea | 1992 · Mortal Kombat · lleva a la ESRB
+pregunta: ¿Qué diseño impone una máquina que cobra por partida?
+fuente: Kevuru Games (blog); ESRB: Game Developer, "A Brief History of the ESRB"
+notas:
+[Diapositiva nueva en la versión 2, pedida por la titular: los ejemplos del artículo, con gráfico.]
+Los ejemplos que da el artículo de Kevuru Games, con lo que aportó cada uno:
+- Pong (1972): dos paletas y una pelota. Se lo llama "el abuelo de los videojuegos": para mucha gente fue la primera vez que una pantalla de TV resultó interactiva.
+- Space Invaders (1978): filas de alienígenas que bajan y una música que se acelera hasta poner nervioso a cualquiera. Según el artículo, prácticamente inventó la plantilla del género shooter.
+- Pac-Man (1980): un círculo amarillo comiendo puntos en un laberinto que se volvió un fenómeno cultural (dibujos animados, cereales y merchandising).
+- Donkey Kong (1981): primera aparición de Mario, entonces llamado "Jumpman". Subir escaleras y esquivar barriles: el comienzo de los juegos de plataformas.
+- Galaga (1981): los enemigos podían capturar tu nave y, si la recuperabas, duplicabas tu poder de fuego. Riesgo y recompensa en una sola mecánica.
+- Street Fighter II (1991): en los arcades de los 90 estaba en el centro de la escena; rivalidades y combos que construyeron la comunidad de los juegos de pelea.
+- Mortal Kombat (1992): tan conocido por su polémica como por su jugabilidad. Sus personajes digitalizados y las "Fatalities" contribuyeron a la creación de la ESRB. Dato verificado: tras las audiencias del Congreso de EE. UU. de diciembre de 1993, donde se mostraron Mortal Kombat y Night Trap, la industria creó en 1994 la ESRB como sistema voluntario de clasificación por edades (Game Developer, "A Brief History of the ESRB"). La retomamos en la Unidad V (certificación y clasificación).
+Las fechas son las de lanzamiento original en arcade, según el artículo. Coinciden con las fuentes de referencia habituales, pero no se verificaron una por una en esta sesión.
+Respuesta esperada a la pregunta: una máquina que cobra por ficha impone partidas cortas, dificultad creciente y un "Game Over" que invita a pagar de nuevo. Conexión con móvil: ese mismo patrón reaparece en el "continuar" con un anuncio o con una compra (lo analizamos en la Clase 3, monetización). Y Asteroids, el juego que inspira nuestro proyecto, también es un clásico arcade de esa época (Atari, 1979).
+Recorrer el gráfico de izquierda a derecha y no detenerse más de 3 minutos.
+
+## 8 | Las tiendas cambiaron quién publica
 tipo: contenido
 kicker: DISTRIBUCIÓN MÓVIL
 - Estudios chicos llegan a millones
@@ -144,7 +164,7 @@ Conclusión del artículo: el juego móvil no es una moda pasajera, es una parte
 Matiz docente (importante): que la tienda esté abierta no significa que no tenga reglas. Para publicar hay que cumplir políticas de pago, de anuncios, de privacidad y de nivel de API (lo vemos en la Clase 3). Y que cualquiera pueda publicar crea otro problema: la visibilidad entre millones de juegos.
 Respuesta esperada a la pregunta: la visibilidad depende de la propia tienda (búsqueda, destacados, calificaciones), de la comunidad (streamers, boca en boca) y de la calidad técnica (Android vitals puede bajar la visibilidad de un juego con muchos cierres inesperados; lo vemos en la Clase 3).
 
-## 8 | Adentro del teléfono
+## 9 | Adentro del teléfono
 tipo: contenido
 kicker: LA MÁQUINA
 - CPU, GPU y memoria en un chip (SoC)
@@ -159,7 +179,7 @@ La documentación de Android (ADPF) menciona explícitamente la diversidad de to
 No dar arquitectura de hardware: alcanza con la idea de que todo comparte energía y calor.
 Pregunta rápida: ¿qué pasa con la GPU si la CPU se calienta? Respuesta: comparten el presupuesto térmico; si uno se calienta, ambos pueden bajar su frecuencia.
 
-## 9 | Dibujar dos veces cuesta más
+## 10 | Dibujar dos veces cuesta más
 tipo: contenido
 kicker: LA MÁQUINA
 - GPU por tiles (TBDR)
@@ -174,7 +194,7 @@ Overdraw: pintar varias veces el mismo píxel, típico de transparencias y part�
 Citas de Arm para leer en voz alta: "Overdraw causes excess memory bandwidth use" y "Excess memory bandwidth use causes excess power use".
 Llegar solo hasta acá: no explicar el pipeline de la GPU. Conectar con Asteroides: la explosión de la nave usa partículas con transparencia, candidata a medir en la Clase 4.
 
-## 10 | Pico vs. sostenido
+## 11 | Pico vs. sostenido
 tipo: contenido
 kicker: LA MÁQUINA · CONCEPTO CLAVE
 - Calor → throttling → caen los fps
@@ -191,7 +211,7 @@ Recomendación de Unity: usar alrededor del 65 % del tiempo de frame disponible,
 Respuesta esperada a la pregunta: medir durante un tiempo largo (10 minutos o más), registrar el frame time (no solo el promedio de fps) y hacerlo en un dispositivo de gama baja.
 Para mencionar, sin profundizar: Android ofrece getThermalHeadroom e iOS ofrece thermalState para que el juego reaccione al calor; Unity 6.3 trae Adaptive Performance como módulo integrado.
 
-## 11 | 30 fps no es un error
+## 12 | 30 fps no es un error
 tipo: contenido
 kicker: LA MÁQUINA · BATERÍA
 - Unity móvil: 30 fps por defecto
@@ -205,7 +225,7 @@ En Asteroides no se define targetFrameRate: nadie tomó la decisión (supuesto S
 Preguntar: ¿qué juegos necesitan 60 fps y cuáles no? Respuesta: acción rápida o competitiva sí; puzzle, estrategia o narrativa, generalmente no.
 Android recomienda además igualar la frecuencia de refresco de la pantalla al fps objetivo (frame pacing).
 
-## 12 | El sistema operativo manda
+## 13 | El sistema operativo manda
 tipo: contenido
 kicker: LA MÁQUINA · CICLO DE VIDA
 - Salir de la app = segundo plano
@@ -219,7 +239,7 @@ Cuando el jugador sale de la app (llamada, notificación, cambio de app), el jue
 Corrección de un mito frecuente: los callbacks onTrimMemory de Android NO evitan el cierre. Android los declara deprecados salvo dos niveles (UI_HIDDEN y BACKGROUND) y dice textualmente que "haven't been helpful at preventing low-memory kills".
 Conclusión de diseño: el juego puede morir sin aviso. Si puede retomarse, hay que guardar estado; si no puede, al menos no castigar al jugador por algo que hizo el sistema.
 
-## 13 | Qué hace Unity con eso
+## 14 | Qué hace Unity con eso
 tipo: contenido
 kicker: LA MÁQUINA · UNITY
 - OnApplicationPause(bool)
@@ -233,7 +253,7 @@ Asteroides no implementa ninguno de los dos (supuesto S8 del caso práctico).
 No escribir código todavía: eso se hace en la Clase 3 con el defecto deliberado. Solo mostrar que el motor avisa y que el juego base no escucha.
 Anticipar: ¿alcanza con escuchar el aviso? No: si el sistema mata el proceso, no se llama nada.
 
-## 14 | Actividad A4.1 — Diagnóstico
+## 15 | Actividad A4.1 — Diagnóstico
 tipo: actividad
 kicker: ACTIVIDAD · 15 MIN · PAREJAS
 | Reporte del jugador | ¿Restricción? | ¿Evidencia? | ¿Qué prueba? |
@@ -255,7 +275,7 @@ Respuestas esperadas (detalle en 05, A4.1):
 6. El emulador no representa el rendimiento → Profiler en un teléfono de gama baja.
 Error típico a corregir: proponer un unit test para los casos 2, 3 o 5. Recordar pedir siempre el modelo del dispositivo.
 
-## 15 | Demo: el simulador y sus límites
+## 16 | Demo: el simulador y sus límites
 tipo: demo
 kicker: DEMO EN VIVO
 - Player Settings de Android
@@ -272,7 +292,7 @@ Pasos de la demo:
 4. Poner Asteroides en un perfil de teléfono en vertical. Confirmar en vivo el supuesto de que la cámara está centrada en x = 0.
 No revelar todavía el problema del spawn: lo descubren en A4.2.
 
-## 16 | Actividad A4.2 — Supuestos de PC
+## 17 | Actividad A4.2 — Supuestos de PC
 tipo: actividad
 kicker: ACTIVIDAD · 20 MIN · GRUPOS
 - Ship.cs 61–73: el control
@@ -286,7 +306,7 @@ Consigna completa: listar al menos 5 supuestos que dejan de valer en un teléfon
 La respuesta completa es la tabla S1–S13 de 02-caso-practico. Para aprobar alcanza con S1 (teclado), S3/S4/S5 (límites, cámara, spawn), S6 (Canvas en Constant Pixel Size) y S8 (sin pausa).
 Pista si se traban: "¿qué pasa con la cámara si la pantalla es más angosta que alta?".
 
-## 17 | Lo que encontramos
+## 18 | Lo que encontramos
 tipo: contenido
 kicker: PUESTA EN COMÚN
 - Vista: 5 × aspect a cada lado
@@ -301,7 +321,7 @@ El Spawner crea asteroides en x ∈ [−8, 8] (coordenadas de mundo). En vertica
 No hay error de lógica: hay un supuesto de plataforma. Ningún archivo tiene un error por sí solo; el problema aparece en la combinación cámara + spawner + orientación.
 Mostrarlo en el Device Simulator. Conectar con el testing de integración de la U3: es un defecto de integración con la plataforma.
 
-## 18 | ¿Cómo se elige una plataforma?
+## 19 | ¿Cómo se elige una plataforma?
 tipo: contenido
 kicker: DECISIÓN
 - Audiencia
@@ -321,7 +341,7 @@ El artículo de Kevuru propone cuatro consideraciones para elegir plataforma, y 
 Lo que agrega la cátedra: un quinto criterio, las restricciones técnicas y de diseño de la plataforma (todo lo que vimos hoy: calor, batería, memoria, interrupciones, pantalla). El artículo no lo menciona y es justamente el núcleo de esta materia.
 Respuesta esperada a la pregunta: Asteroides encaja en móvil por audiencia (partidas cortas y casuales) y por sus requisitos técnicos bajos, pero exige rediseñar el control, la pantalla y la pausa (lo que encontramos en A4.2). La monetización se decide en la Clase 3.
 
-## 19 | Leer con lupa
+## 20 | Leer con lupa
 tipo: actividad
 kicker: LECTURA CRÍTICA · 5 MIN
 - Lo escribe un estudio que vende servicios
@@ -332,7 +352,7 @@ actividad: Antes de citar un dato, busquen la fuente primaria.
 fuente: Google — mensaje oficial sobre el cierre de Stadia (2022); EA — anuncio de la EA app (06/10/2022)
 notas:
 [Diapositiva nueva en la versión 2.]
-El artículo que usamos para las slides 5, 6, 7 y 18 es útil para los conceptos, pero tiene problemas que conviene mostrar:
+El artículo que usamos para las slides 5, 6, 7, 8 y 19 es útil para los conceptos, pero tiene problemas que conviene mostrar:
 1. Es el blog de un estudio de desarrollo (Kevuru Games) que termina ofreciendo sus servicios y un formulario de cotización: es una fuente comercial, no una autoridad.
 2. Presenta Google Stadia como un servicio activo. Google anunció el cierre el 29/09/2022 y fue efectivo el 18/01/2023, con reembolsos (verificado en la investigación de la Unidad VII, fuente oficial de Google).
 3. Nombra la tienda "Origin" entre las plataformas de PC. EA anunció el 06/10/2022 que la EA app la reemplaza como su plataforma principal de PC (fuente oficial de EA).
@@ -340,7 +360,7 @@ El artículo que usamos para las slides 5, 6, 7 y 18 es útil para los conceptos
 5. Mezcla bajo "plataforma" hardware, tiendas, cloud y sitios de streaming (lo ordenamos en la slide 5).
 Mensaje para los alumnos: el mismo criterio que aplicamos a los tests (¿qué demuestra y qué no?) se aplica a las fuentes. Un blog sirve para ideas; los datos se verifican en la documentación oficial o en papers. Es el mismo criterio que van a usar en el TP 3.
 
-## 20 | Qué no resuelve esto · TP 3
+## 21 | Qué no resuelve esto · TP 3
 tipo: cierre
 kicker: CIERRE
 - El simulador no mide calor ni batería

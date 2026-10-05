@@ -1053,3 +1053,16 @@ Clasificación: **PRIMARIA** (documentación oficial de plataforma, motor, tiend
 - **No verificado:** la fecha de cierre definitivo de Origin (abril de 2025) aparece solo en foros de EA, no en una página oficial abierta. No se cita.
 
 El cierre de Google Stadia (anuncio 29/09/2022, efectivo 18/01/2023) se respalda con la ficha del blog oficial de Google de la investigación de la Unidad VII (`../unidad-07/00-investigacion-preliminar.md`).
+
+**B-64**
+- **Título:** A Brief History of the ESRB
+- **Autor:** Game Developer (publicación profesional) · **Tipo:** artículo
+- **URL:** https://www.gamedeveloper.com/business/a-brief-history-of-the-esrb
+- **Verificación:** localizado por búsqueda web el 2026-10-05; el dato coincide con la entrada de la ESRB en Wikipedia. Página no abierta con fetch: re-verificar antes de citarla textualmente.
+- **Dato:** la ESRB se creó en 1994, tras las audiencias del Congreso de EE. UU. de diciembre de 1993 sobre violencia en videojuegos, en las que se mostraron Mortal Kombat y Night Trap.
+- **Uso:** notas de la slide 7 de la Clase 1 v2 (clásicos del arcade) y puente con la Unidad V (clasificación por edades) · **Complementario** · FUENTE PROFESIONAL.
+
+**Fechas de los hitos de las slides 6 y 7 (Clase 1 v2):**
+- **Verificadas el 2026-10-05:** App Store, 10/07/2008 (Apple Newsroom); Oculus Rift, 28/03/2016; GeForce Now, 04/02/2020 (TechCrunch, CNN).
+- **Tomadas del artículo de Kevuru y ampliamente documentadas, sin re-verificar una por una:** Pong 1972, Space Invaders 1978, Pac-Man 1980, Donkey Kong 1981, Galaga 1981, Street Fighter II 1991, Mortal Kombat 1992, Atari 2600 1977, IBM PC 1981, Game Boy 1989.
+
