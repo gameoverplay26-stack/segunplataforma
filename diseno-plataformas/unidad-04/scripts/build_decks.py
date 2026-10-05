@@ -47,7 +47,7 @@ SOURCE_Y = Inches(6.70)
 CALLOUT_H = Inches(0.5)
 IMG_W = Inches(4.3)
 
-KEYS = ("tipo", "kicker", "pregunta", "actividad", "imagen", "video", "fuente")
+KEYS = ("tipo", "kicker", "pregunta", "actividad", "imagen", "diagrama", "video", "fuente")
 CALLOUTS = (  # clave, etiqueta, color
     ("pregunta", "PREGUNTA", AMBER),
     ("actividad", "ACTIVIDAD", GREEN),
@@ -213,6 +213,58 @@ def image_placeholder(slide, text, x, y, w, h):
     run(p2, text, 13, MUTED, italic=True)
 
 
+def layer_diagram(slide, spec, x, y, w, h):
+    """Diagrama de capas apiladas con flechas.
+    Sintaxis en el .md:  diagrama: Capa: chip, chip | Capa: chip, chip | ... [|| nota al pie]
+    """
+    spec, _, footnote = spec.partition("||")
+    layers = []
+    for part in spec.split("|"):
+        name, _, chips = part.partition(":")
+        layers.append((name.strip(), [c.strip() for c in chips.split(",") if c.strip()]))
+    colors = [TEAL, AMBER, NAVY, GREEN, RED]
+    foot_h = Inches(0.45) if footnote.strip() else 0
+    n = len(layers)
+    arrow_h = Inches(0.42)
+    box_h = int((h - foot_h - arrow_h * (n - 1)) / n)
+    cy = y
+    for i, (name, chips) in enumerate(layers):
+        color = colors[i % len(colors)]
+        box = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x, cy, w, box_h)
+        box.adjustments[0] = 0.12
+        box.fill.solid()
+        box.fill.fore_color.rgb = LIGHT_BG
+        box.line.color.rgb = color
+        box.line.width = Pt(2)
+        box.shadow.inherit = False
+        tf = textbox(slide, x + Inches(0.2), cy + Inches(0.1), w - Inches(0.4), Inches(0.4))
+        run(tf.paragraphs[0], name.upper(), 15, color, bold=True)
+        if chips:  # chips en una fila
+            gap = Inches(0.15)
+            cw = int((w - Inches(0.4) - gap * (len(chips) - 1)) / len(chips))
+            ch = min(Inches(0.55), box_h - Inches(0.65))
+            for j, c in enumerate(chips):
+                chip = rect(slide, x + Inches(0.2) + j * (cw + gap), cy + box_h - ch - Inches(0.15), cw, ch,
+                            color, MSO_SHAPE.ROUNDED_RECTANGLE)
+                ctf = chip.text_frame
+                ctf.word_wrap = True
+                ctf.vertical_anchor = MSO_ANCHOR.MIDDLE
+                ctf.margin_left = ctf.margin_right = Inches(0.05)
+                cp = ctf.paragraphs[0]
+                cp.alignment = PP_ALIGN.CENTER
+                run(cp, c, 14, WHITE, bold=True)
+        cy += box_h
+        if i < n - 1:
+            arr = rect(slide, x + w / 2 - Inches(0.25), cy + Inches(0.04), Inches(0.5), arrow_h - Inches(0.08),
+                       MUTED, MSO_SHAPE.DOWN_ARROW)
+            cy += arrow_h
+    if footnote.strip():
+        tf = textbox(slide, x, cy + Inches(0.1), w, foot_h - Inches(0.1), MSO_ANCHOR.MIDDLE)
+        p = tf.paragraphs[0]
+        p.alignment = PP_ALIGN.CENTER
+        run(p, footnote.strip(), 13, RED, italic=True)
+
+
 def callout(slide, label, text, color, y):
     rect(slide, MARGIN, y, Inches(0.12), CALLOUT_H, color)
     bg = rect(slide, MARGIN + Inches(0.12), y, SLIDE_W - 2 * MARGIN - Inches(0.12), CALLOUT_H, LIGHT_BG)
@@ -268,9 +320,13 @@ def build_content(prs, deck, s, total):
             callout(slide, label, s[key], color, bottom)
     body_h = bottom - BODY_TOP - Inches(0.15)
 
-    has_img = bool(s.get("imagen"))
-    body_w = SLIDE_W - 2 * MARGIN - (IMG_W + Inches(0.3) if has_img else 0)
-    if has_img:
+    has_diag = bool(s.get("diagrama"))
+    has_img = bool(s.get("imagen")) and not has_diag
+    panel_w = Inches(5.6) if has_diag else IMG_W
+    body_w = SLIDE_W - 2 * MARGIN - (panel_w + Inches(0.3) if (has_img or has_diag) else 0)
+    if has_diag:
+        layer_diagram(slide, s["diagrama"], SLIDE_W - MARGIN - panel_w, BODY_TOP, panel_w, body_h)
+    elif has_img:
         image_placeholder(slide, s["imagen"], SLIDE_W - MARGIN - IMG_W, BODY_TOP, IMG_W, body_h)
 
     y = BODY_TOP
@@ -291,7 +347,7 @@ def add_notes(slide, notes):
         slide.notes_slide.notes_text_frame.text = "\n".join(notes)
 
 
-def build(decks, only=None, version=None):
+def build(decks, only=None, version=None, out_dir=UNIT_DIR):
     out = []
     for deck in decks:
         if only and deck["num"] not in only:
@@ -303,7 +359,7 @@ def build(decks, only=None, version=None):
             maker = build_cover if s.get("tipo") == "portada" else build_content
             add_notes(maker(prs, deck, s, total), s["notes"])
         suffix = "-v%d" % version if version and version > 1 else ""
-        path = os.path.join(UNIT_DIR, "Unidad-4-Clase-%d-2026%s.pptx" % (deck["num"], suffix))
+        path = os.path.join(out_dir, "Unidad-4-Clase-%d-2026%s.pptx" % (deck["num"], suffix))
         prs.save(path)
         out.append((path, total))
     return out
@@ -313,9 +369,10 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description="Genera los decks de la Unidad 4.")
     ap.add_argument("--decks", type=int, nargs="+", help="numeros de deck a generar (por defecto, todos)")
     ap.add_argument("--version", type=int, help="agrega el sufijo -vN al nombre del archivo (N > 1)")
+    ap.add_argument("--out-dir", default=UNIT_DIR, help="carpeta de salida (por defecto, la de la unidad)")
     args = ap.parse_args()
     decks = parse(SOURCE)
     if len(decks) != 4:
         sys.exit("Se esperaban 4 decks y se encontraron %d" % len(decks))
-    for path, total in build(decks, args.decks, args.version):
+    for path, total in build(decks, args.decks, args.version, args.out_dir):
         print("OK  %-40s %2d slides" % (os.path.basename(path), total))

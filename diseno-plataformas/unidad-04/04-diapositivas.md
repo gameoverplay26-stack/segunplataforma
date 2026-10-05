@@ -1,7 +1,7 @@
 # Unidad 4 — Diapositivas definitivas (texto + notas del docente)
 
 Fuente única de los 4 decks de la Unidad 4. Basado en la arquitectura **aprobada** ([`04-diapositivas-arquitectura.md`](./04-diapositivas-arquitectura.md)).
-Para regenerar los `.pptx` después de editar este archivo: `python scripts/build_decks.py` desde `diseno-plataformas/unidad-04/` (requiere `pip install python-pptx`). Opciones: `--decks 1 3` genera solo esos decks; `--version 2` agrega el sufijo `-v2` al nombre del archivo.
+Para regenerar los `.pptx` después de editar este archivo: `python scripts/build_decks.py` desde `diseno-plataformas/unidad-04/` (requiere `pip install python-pptx`). Opciones: `--decks 1 3` genera solo esos decks; `--version 2` agrega el sufijo `-v2` al nombre del archivo; `--out-dir RUTA` escribe en otra carpeta (útil si el .pptx está abierto). Clave adicional `diagrama: Capa: a, b | Capa: c || nota` dibuja un diagrama de capas con flechas (slide 3 de la Clase 1 v2).
 
 **Versiones:** el deck 1 está en su **versión 2** (2026-10-05): incorpora conceptos del artículo de Kevuru Games, con texto breve en las slides y notas del docente completas. Se genera con `python scripts/build_decks.py --decks 1 --version 2`. La v1 (`Unidad-4-Clase-1-2026.pptx`) se conserva como archivo; su texto fuente está en el historial de git (commit `acb7c4c`).
 
@@ -51,8 +51,8 @@ kicker: CONTINUIDAD [RECICLADO 28/09]
 - Batería y temperatura
 - Interrupciones del sistema
 - Intención ≠ dispositivo
-imagen: Miniaturas de las slides 8 (móvil) y 12 (intención vs. dispositivo) de la clase del 28/09.
-fuente: Clase 28/09/2026 — Clase2-Plataformas.pptx
+diagrama: Dispositivo: Teclado, Táctil, Gamepad | Intención: Mover, Disparar | Nave: Movimiento, Disparo, Límites || Hoy Ship.cs lee el teclado directo: falta la capa del medio
+fuente: Clase 28/09/2026 — Clase2-Plataformas.pptx; código del proyecto (Ship.cs 61–73)
 notas:
 Recuperar, no repetir. Las cinco ideas del 28/09, completas:
 - Táctil: no hay respuesta física del botón y los dedos tapan la pantalla.
@@ -60,7 +60,15 @@ Recuperar, no repetir. Las cinco ideas del 28/09, completas:
 - Batería y temperatura: si el equipo se calienta, baja el rendimiento.
 - Interrupciones: llamadas, notificaciones, cambio de app.
 - Separar QUÉ quiere hacer el jugador (mover, disparar) de CÓMO lo pide (teclado, toque, mando).
-Preguntar quién recuerda el diagrama de tres capas (dispositivo → intención → nave). Hoy vamos a ver por qué cada viñeta es una restricción de diseño, con números y fuentes oficiales.
+Diagrama de las tres capas (pedido por la titular, agregado en la v2):
+- Dispositivo: CÓMO pide el jugador la acción (teclado, pantalla táctil, gamepad). Es lo que cambia de una plataforma a otra.
+- Intención: QUÉ quiere hacer el jugador (mover, disparar). Es independiente del dispositivo.
+- Nave: la lógica del juego (movimiento, disparo, límites). No debería saber de dónde vino la orden.
+Leerlo de arriba hacia abajo: cada dispositivo se traduce a la misma intención, y la nave solo recibe intenciones. Así, llevar el juego a móvil significa agregar un dispositivo (táctil), no reescribir la nave.
+El problema real de Asteroides (nota en rojo de la slide): hoy Ship.cs (líneas 61–73) lee Input.GetKey(KeyCode.Space / LeftArrow / RightArrow) directamente, salteando la capa de intención. Por eso, para pasar a móvil habría que modificar la clase de la nave: es el supuesto S1 del caso práctico, que los alumnos van a encontrar en la actividad A4.2.
+En Unity, la capa de intención la ofrece el Input System: las Actions (Move, Fire) separan la acción de sus bindings (teclado, táctil, gamepad). Solo mencionarlo; se trabaja en la Clase 2 (On-Screen Controls).
+Preguntar: ¿qué partes de la nave NO deberían cambiar al pasar a móvil? Respuesta: la lógica de movimiento, disparo y límites; solo cambia la capa de dispositivo (y los límites, por el aspect ratio, como vamos a ver en la slide 17).
+Hoy vamos a ver por qué cada viñeta es una restricción de diseño, con números y fuentes oficiales.
 
 ## 4 | Al terminar la unidad podrán
 tipo: contenido
