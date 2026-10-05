@@ -102,3 +102,4 @@ F1 Auditoría · F2 Investigación · F3 Correcciones · F4 Objetivos · F5 Acti
 | 2026-10-05 | El usuario **aprueba** la U4 corregida. Comienza el armado de las slides definitivas |
 | 2026-10-05 | Slides definitivas: texto + notas en `04-diapositivas.md` (fuente única); generador data-driven `scripts/build_decks.py`; 4 decks (15/14/13/11). Verificadas por fetch las URLs de configuración de Android. Pendiente: imágenes, defecto de pausa en Asteroides, Input System 1.20, Zagal 2013, fragmentos de video |
 | 2026-10-05 | Reorganización del repo (rama `catedra/reorganizacion`): materia en `diseno-plataformas/`, código en `proyectos-unity/`, streaming en `streaming/`, `docs/` solo SDD. Boss Room quedó en la raíz (bloqueado por VS Code), ignorado por git, pendiente de mover |
+| 2026-10-05 | `catedra/reorganizacion` integrada a `main` (fast-forward) y subida a GitHub. U4 completa, U5–U7 preliminares y SDD (Concept) publicados en `origin/main` |
