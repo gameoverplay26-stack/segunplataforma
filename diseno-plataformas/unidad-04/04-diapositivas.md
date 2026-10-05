@@ -1,7 +1,9 @@
 # Unidad 4 — Diapositivas definitivas (texto + notas del docente)
 
 Fuente única de los 4 decks de la Unidad 4. Basado en la arquitectura **aprobada** ([`04-diapositivas-arquitectura.md`](./04-diapositivas-arquitectura.md)).
-Para regenerar los `.pptx` después de editar este archivo: `python scripts/build_decks.py` desde `diseno-plataformas/unidad-04/` (requiere `pip install python-pptx`).
+Para regenerar los `.pptx` después de editar este archivo: `python scripts/build_decks.py` desde `diseno-plataformas/unidad-04/` (requiere `pip install python-pptx`). Opciones: `--decks 1 3` genera solo esos decks; `--version 2` agrega el sufijo `-v2` al nombre del archivo.
+
+**Versiones:** el deck 1 está en su **versión 2** (2026-10-05): incorpora conceptos del artículo de Kevuru Games, con texto breve en las slides y notas del docente completas. Se genera con `python scripts/build_decks.py --decks 1 --version 2`. La v1 (`Unidad-4-Clase-1-2026.pptx`) se conserva como archivo; su texto fuente está en el historial de git (commit `acb7c4c`).
 
 **Formato que lee el generador (no cambiar la sintaxis):**
 - `# DECK n | Título | Subtítulo` empieza un deck.
@@ -13,7 +15,7 @@ Para regenerar los `.pptx` después de editar este archivo: `python scripts/buil
 
 ---
 
-# DECK 1 | Un teléfono no es una PC chica | Unidad IV · Clase 1
+# DECK 1 | Un teléfono no es una PC chica | Unidad IV · Clase 1 · v2
 
 ## 1 | Diseño según Plataforma Móvil
 tipo: portada
@@ -22,177 +24,325 @@ kicker: UNIDAD IV · CLASE 1 DE 4
 - Diseño según Plataformas de Juego · Ing. Elsa Daniela Ramírez · FI – UNJu · 2026
 imagen: Teléfono en vertical con Asteroides corriendo, sostenido con una mano.
 notas:
-Presentar la unidad como continuación directa del panorama del 28/09: ese día recorrimos todas las plataformas; desde hoy y durante cuatro clases nos quedamos en el bolsillo del jugador. No anticipar contenidos: la clase arranca con un problema.
+Presentar la unidad como continuación directa del panorama del 28/09: ese día recorrimos todas las plataformas; desde hoy, y durante cuatro clases, nos quedamos en el bolsillo del jugador.
+No anticipar contenidos: la clase arranca con un problema, no con una definición ni con una herramienta.
+Versión 2 de la clase (2026-10-05): incorpora conceptos del artículo "What Are the Best Platforms for Games?" de Kevuru Games (definición de plataforma, rol de las tiendas móviles, criterios para elegir plataforma), leído con mirada crítica (slide 19).
 
 ## 2 | El juego que anda… hasta que no
 tipo: contenido
 kicker: APERTURA
-- En la PC del aula, Asteroides funciona perfecto
-- En un teléfono, a los 10 minutos empieza a trabarse
-- El teléfono quema en la mano
-- Entra una llamada, volvés… y la nave ya explotó
-pregunta: ¿Cuántos problemas distintos hay acá? ¿Alguno es un "bug" del código?
+- En la PC del aula: perfecto
+- En el teléfono, a los 10 min: se traba
+- El teléfono quema
+- Llamada, volvés… y la nave explotó
+pregunta: ¿Cuántos problemas distintos hay? ¿Alguno es un "bug"?
 imagen: Captura del juego con tres íconos superpuestos: termómetro, batería baja y llamada entrante.
 notas:
-Dejar que discutan 3–4 minutos. Respuesta esperada: al menos tres problemas de distinta naturaleza (calor/rendimiento sostenido, batería, interrupción del sistema operativo). Ninguno aparece en el editor y ninguno es un error de lógica en sentido estricto: son supuestos de PC que el juego trae. Esa es la idea de toda la unidad. No dar todavía las explicaciones; anotarlas en el pizarrón para volver a ellas.
+Relato completo: "Asteroides funciona perfecto en la PC del aula. Lo instalamos en un teléfono: a los 10 minutos empieza a trabarse, el teléfono quema en la mano, y si entra una llamada y volvemos, la nave ya explotó y perdimos la partida".
+Dejar que discutan 3–4 minutos. Respuesta esperada: al menos tres problemas de distinta naturaleza: (1) calor y rendimiento sostenido, (2) consumo de batería, (3) interrupción del sistema operativo.
+Ninguno aparece en el editor y ninguno es un error de lógica en sentido estricto: son supuestos de PC que el juego trae consigo. Esa es la idea de toda la unidad.
+No dar todavía las explicaciones: anotarlas en el pizarrón para volver a ellas en las slides 10 a 15.
 
 ## 3 | Lo que ya vimos el 28/09
 tipo: contenido
 kicker: CONTINUIDAD [RECICLADO 28/09]
-- Táctil: sin respuesta física del botón, los dedos tapan la pantalla
-- Pantallas muy variadas: muescas, bordes, zonas seguras
-- Batería y temperatura: si el equipo se calienta, baja el rendimiento
-- Interrupciones: llamadas, notificaciones, cambio de app
-- Separar QUÉ quiere hacer el jugador de CÓMO lo pide
+- Táctil sin botón físico
+- Pantallas y zonas seguras
+- Batería y temperatura
+- Interrupciones del sistema
+- Intención ≠ dispositivo
 imagen: Miniaturas de las slides 8 (móvil) y 12 (intención vs. dispositivo) de la clase del 28/09.
-fuente: diseno-plataformas/clases/2026-09-28-integracion-y-plataformas/Clase2-Plataformas.pptx
+fuente: Clase 28/09/2026 — Clase2-Plataformas.pptx
 notas:
-Recuperar, no repetir. Preguntar quién recuerda el diagrama de tres capas (dispositivo → intención → nave). Hoy vamos a ver por qué cada una de estas viñetas es en realidad una restricción de diseño, con números y fuentes oficiales.
+Recuperar, no repetir. Las cinco ideas del 28/09, completas:
+- Táctil: no hay respuesta física del botón y los dedos tapan la pantalla.
+- Pantallas muy variadas: muescas, bordes y zonas seguras.
+- Batería y temperatura: si el equipo se calienta, baja el rendimiento.
+- Interrupciones: llamadas, notificaciones, cambio de app.
+- Separar QUÉ quiere hacer el jugador (mover, disparar) de CÓMO lo pide (teclado, toque, mando).
+Preguntar quién recuerda el diagrama de tres capas (dispositivo → intención → nave). Hoy vamos a ver por qué cada viñeta es una restricción de diseño, con números y fuentes oficiales.
 
 ## 4 | Al terminar la unidad podrán
 tipo: contenido
 kicker: OBJETIVOS
-- Explicar por qué el rendimiento sostenido, la memoria y la batería condicionan el diseño
-- Detectar en un juego existente los supuestos de PC que fallan en móvil
-- Diseñar controles y HUD táctiles con medidas verificables
-- Elegir y defender un modelo de monetización con sus reglas y su ética
-- Decidir qué se prueba en el editor y qué exige un teléfono real
+- Explicar las restricciones del móvil
+- Detectar supuestos de PC en un juego
+- Diseñar controles táctiles medibles
+- Defender un modelo de monetización
+- Decidir qué probar y dónde
 notas:
-Remarcar los verbos: explicar, detectar, diseñar, defender, decidir. La unidad no evalúa memorizar especificaciones sino tomar decisiones justificadas. El TP 3 recorre las cinco.
+Versión completa de los objetivos:
+1. Explicar por qué el rendimiento sostenido, la memoria y la batería condicionan el diseño.
+2. Detectar en un juego existente los supuestos de PC que fallan en móvil.
+3. Diseñar controles y HUD táctiles con medidas verificables (pt, dp, safe area).
+4. Elegir y defender un modelo de monetización con sus reglas de tienda y su ética.
+5. Decidir qué se prueba en el editor y qué exige un teléfono real.
+Remarcar los verbos: explicar, detectar, diseñar, defender, decidir. La unidad no evalúa memorizar especificaciones, sino tomar decisiones justificadas. El TP 3 recorre las cinco.
 
-## 5 | Adentro del teléfono
+## 5 | ¿Qué es una plataforma?
+tipo: contenido
+kicker: CONCEPTO
+| Capa | Pregunta | Ejemplos |
+| Ejecución | ¿Dónde corre? | Teléfono, consola, PC |
+| Distribución | ¿Cómo llega? | Google Play, App Store, Steam |
+| Servicio en la nube | ¿Dónde se procesa? | GeForce Now |
+| Comunidad | ¿Dónde se mira? | Twitch, YouTube |
+pregunta: ¿Cuál de estas capas cambia más el diseño del juego?
+fuente: Kevuru Games, "What Are the Best Platforms for Games?" (blog comercial, sin fecha visible; consultado 2026-10-05)
+notas:
+[Diapositiva nueva en la versión 2.]
+El artículo de Kevuru Games define las plataformas como "la base de cómo los jugadores se conectan con los juegos", ya sea una consola física, un gabinete arcade o un servicio en la nube que corre todo en línea. Y usa una metáfora útil: la plataforma es el escenario donde el juego "actúa", y hay escenarios más grandes que otros.
+Pero el artículo mezcla bajo la palabra "plataforma" cuatro cosas distintas: hardware (PlayStation, Xbox, Nintendo), tiendas (Steam, Epic Games Store, Google Play, App Store), servicios de cloud gaming (GeForce Now) y sitios donde se mira jugar (Twitch, YouTube Gaming, Facebook Gaming). La tabla las separa en capas.
+Definición de trabajo de esta materia: plataforma = el entorno de ejecución (hardware + sistema operativo) MÁS las reglas de su ecosistema (tienda, certificación, políticas). Por eso en esta unidad hablamos del teléfono y también de Google Play y del App Store.
+Respuesta esperada a la pregunta: la capa de ejecución condiciona más el diseño (input, pantalla, rendimiento); la de distribución condiciona el negocio y las reglas (Clase 3); la de comunidad influye en el diseño solo de forma indirecta (juegos pensados para ser vistos, como Among Us).
+
+## 6 | De los arcades al bolsillo
+tipo: contenido
+kicker: CONTEXTO HISTÓRICO
+- Arcade: la primera plataforma (Pong, 1972)
+- Consola doméstica y PC
+- Portátiles: Game Boy
+- Teléfono: el juego va en el bolsillo
+- Hoy: XR y nube
+imagen: Línea de tiempo: gabinete arcade → consola en la TV → PC → Game Boy → teléfono → visor XR / nube.
+fuente: Kevuru Games (blog, consultado 2026-10-05); ejemplos históricos ampliamente documentados
+notas:
+[Diapositiva nueva en la versión 2.]
+Idea del artículo: cada época tuvo una plataforma que definió cómo se juega. Los arcades fueron las primeras plataformas reales, y además eran espacios sociales.
+Ejemplos que da el artículo, por si alguien pregunta: Pong (1972), Space Invaders (1978), Pac-Man (1980), Donkey Kong (1981, primera aparición de Mario como "Jumpman"), Galaga (1981), Street Fighter II (1991) y Mortal Kombat (1992), cuya polémica contribuyó a la creación de la ESRB (el sistema de clasificación por edades que vamos a ver en la Unidad V).
+Conexión con el diseño: el arcade se diseñaba para cobrar por partida (partidas cortas y difíciles, "insert coin"); la consola, para el sillón y la TV; el teléfono, para el bolsillo y las interrupciones. La plataforma siempre moldeó el diseño: no es un fenómeno nuevo.
+Dato a remarcar: Asteroids, el juego que inspira nuestro proyecto, es justamente un clásico arcade (Atari, 1979). Estamos llevando un diseño de arcade al teléfono.
+No detenerse más de 3 minutos: es contexto, no contenido evaluable.
+
+## 7 | Las tiendas cambiaron quién publica
+tipo: contenido
+kicker: DISTRIBUCIÓN MÓVIL
+- Estudios chicos llegan a millones
+- Éxitos casuales: Candy Crush, Clash of Clans
+- Éxito tardío: Among Us
+- Marcas grandes también: PUBG Mobile
+pregunta: Si cualquiera puede publicar, ¿qué hace que un juego se encuentre?
+fuente: Kevuru Games (blog, consultado 2026-10-05)
+notas:
+[Diapositiva nueva en la versión 2.]
+Idea del artículo: con Google Play y el App Store, "los estudios pequeños e incluso desarrolladores solos" pudieron poner sus juegos frente a millones de personas. Los ejemplos que da:
+- Éxitos casuales que atrajeron jugadores de todo el mundo: Candy Crush y Clash of Clans.
+- Among Us se volvió viral años después de su lanzamiento (salió en 2018 y explotó en 2020).
+- Marcas de consola que funcionan en el teléfono: PUBG Mobile y FIFA Mobile.
+Conclusión del artículo: el juego móvil no es una moda pasajera, es una parte central de la industria.
+Matiz docente (importante): que la tienda esté abierta no significa que no tenga reglas. Para publicar hay que cumplir políticas de pago, de anuncios, de privacidad y de nivel de API (lo vemos en la Clase 3). Y que cualquiera pueda publicar crea otro problema: la visibilidad entre millones de juegos.
+Respuesta esperada a la pregunta: la visibilidad depende de la propia tienda (búsqueda, destacados, calificaciones), de la comunidad (streamers, boca en boca) y de la calidad técnica (Android vitals puede bajar la visibilidad de un juego con muchos cierres inesperados; lo vemos en la Clase 3).
+
+## 8 | Adentro del teléfono
 tipo: contenido
 kicker: LA MÁQUINA
-- CPU, GPU y memoria viven en un mismo chip (SoC)
-- Comparten la energía de la batería y el calor que generan
-- Núcleos heterogéneos y relojes que cambian en tiempo real
-- No hay ventilador: el calor se disipa por la carcasa
+- CPU, GPU y memoria en un chip (SoC)
+- Comparten energía y calor
+- Núcleos y relojes variables
+- Sin ventilador
 imagen: Diagrama de bloques: SoC del teléfono (CPU+GPU+memoria juntos) vs. PC (CPU, GPU dedicada y RAM separadas, con ventiladores).
 fuente: Android Developers — ADPF; Arm GPU Best Practices §2.3
 notas:
-No dar arquitectura de hardware: alcanza con la idea de que todo comparte energía y calor. La documentación de Android (ADPF) menciona explícitamente la diversidad de topologías de núcleos y los relojes dinámicos como complejidades propias del móvil. Pregunta rápida: ¿qué pasa con la GPU si la CPU se calienta? (comparten el presupuesto térmico).
+En un teléfono, CPU, GPU y memoria viven en un mismo chip (SoC, System on a Chip). Comparten la energía de la batería y el calor que generan. El calor se disipa por la carcasa: no hay ventilador.
+La documentación de Android (ADPF) menciona explícitamente la diversidad de topologías de núcleos (núcleos de distinto tamaño y potencia) y los relojes que cambian en tiempo real como complejidades propias del móvil, que no existen en PC ni en consola.
+No dar arquitectura de hardware: alcanza con la idea de que todo comparte energía y calor.
+Pregunta rápida: ¿qué pasa con la GPU si la CPU se calienta? Respuesta: comparten el presupuesto térmico; si uno se calienta, ambos pueden bajar su frecuencia.
 
-## 6 | Por qué dibujar dos veces cuesta más
+## 9 | Dibujar dos veces cuesta más
 tipo: contenido
 kicker: LA MÁQUINA
-- Las GPU móviles dibujan la pantalla por tiles (TBDR)
-- Leer y escribir memoria consume ancho de banda… y batería
-- Overdraw: el mismo píxel pintado varias veces (transparencias, partículas)
-- Por eso una explosión con muchas partículas pesa más en un teléfono
+- GPU por tiles (TBDR)
+- Memoria = ancho de banda = batería
+- Overdraw: el mismo píxel varias veces
+- Partículas y transparencias pesan más
 imagen: Pantalla dividida en tiles; en un tile, varias capas de partículas superpuestas sobre el mismo píxel.
 fuente: Apple — Tailor your apps for Apple GPUs and TBDR; Arm GPU Best Practices §2.3, p. 15
 notas:
-Cita de Arm para leer en voz alta: "Overdraw causes excess memory bandwidth use" y "Excess memory bandwidth use causes excess power use". Llegar solo hasta acá: no explicar el pipeline de la GPU. Conectar con Asteroides: la explosión de la nave usa partículas con transparencia, candidato a medir en la Clase 4.
+Las GPU móviles dibujan la pantalla por porciones (tiles): técnica TBDR, tile-based deferred rendering. Leer y escribir memoria consume ancho de banda, y el ancho de banda consume batería.
+Overdraw: pintar varias veces el mismo píxel, típico de transparencias y partículas. Por eso una explosión con muchas partículas pesa más en un teléfono que en una PC.
+Citas de Arm para leer en voz alta: "Overdraw causes excess memory bandwidth use" y "Excess memory bandwidth use causes excess power use".
+Llegar solo hasta acá: no explicar el pipeline de la GPU. Conectar con Asteroides: la explosión de la nave usa partículas con transparencia, candidata a medir en la Clase 4.
 
-## 7 | Pico vs. sostenido
+## 10 | Pico vs. sostenido
 tipo: contenido
 kicker: LA MÁQUINA · CONCEPTO CLAVE
-- Calor → throttling → la CPU/GPU baja su frecuencia → caen los fps
-- Lo que importa es el fps del minuto 10, no el del minuto 1
-- Unity recomienda usar ~65 % del tiempo de frame: ~22 ms a 30 fps, ~11 ms a 60 fps
-- Motivo oficial: "Most mobile devices do not have active cooling"
-pregunta: ¿Cómo medirían que un juego es "estable" en un teléfono?
+- Calor → throttling → caen los fps
+- Importa el minuto 10, no el 1
+- Usar ~65 % del tiempo de frame
+pregunta: ¿Cómo medirían que un juego es "estable"?
 imagen: Gráfico de fps en el tiempo que cae a los 8 minutos, superpuesto a una curva de temperatura que sube.
-video: WWDC19 sesión 422 (Apple), fragmento 19:40–31:00 — tarea para la casa
+video: WWDC19 sesión 422 (Apple), 19:40–31:00 — tarea
 fuente: Unity e-book Optimize… mobile, XR and web (Unity 6), p. 19; Android Thermal API
 notas:
-Es el concepto más importante de la clase. Respuesta esperada a la pregunta: medir durante un tiempo largo (10+ min), registrar el frame time y no solo el promedio, y hacerlo en un dispositivo de gama baja. Android ofrece getThermalHeadroom e iOS thermalState para que el juego reaccione; Unity 6.3 tiene Adaptive Performance como módulo integrado. Solo mencionarlos.
+Es el concepto más importante de la clase.
+Cadena causal: el chip se calienta → el sistema baja la frecuencia de CPU y GPU para protegerlo (throttling) → caen los fps. Lo que importa es el fps del minuto 10, no el del minuto 1.
+Recomendación de Unity: usar alrededor del 65 % del tiempo de frame disponible, es decir, ~22 ms a 30 fps y ~11 ms a 60 fps. Motivo oficial textual: "Most mobile devices do not have active cooling".
+Respuesta esperada a la pregunta: medir durante un tiempo largo (10 minutos o más), registrar el frame time (no solo el promedio de fps) y hacerlo en un dispositivo de gama baja.
+Para mencionar, sin profundizar: Android ofrece getThermalHeadroom e iOS ofrece thermalState para que el juego reaccione al calor; Unity 6.3 trae Adaptive Performance como módulo integrado.
 
-## 8 | 30 fps no es un error
+## 11 | 30 fps no es un error
 tipo: contenido
 kicker: LA MÁQUINA · BATERÍA
-- En Android e iOS, por defecto Unity renderiza a 30 fps fijos "to conserve battery power"
-- 60 fps duplica el trabajo por segundo: más calor, menos batería
-- Elegir el fps es una decisión de diseño, no un detalle técnico
-- Asteroides no define targetFrameRate: nadie tomó la decisión
+- Unity móvil: 30 fps por defecto
+- 60 fps = el doble de trabajo
+- El fps es una decisión de diseño
 fuente: Unity 6.3 Scripting API — Application.targetFrameRate; Android — Optimize power efficiency
 notas:
-Abrir la página de targetFrameRate y leer la frase. Preguntar: ¿qué juegos necesitan 60 fps y cuáles no? (acción rápida vs. puzzle/estrategia). Android recomienda además igualar la frecuencia de refresco de la pantalla al fps objetivo (frame pacing). En Asteroides esto es el supuesto S12.
+En Android e iOS, por defecto Unity renderiza a 30 fps fijos "to conserve battery power" (texto de la documentación de Application.targetFrameRate: abrir la página y leer la frase).
+60 fps duplica el trabajo por segundo: más calor y menos batería. Elegir el fps es una decisión de diseño, no un detalle técnico.
+En Asteroides no se define targetFrameRate: nadie tomó la decisión (supuesto S12 del caso práctico).
+Preguntar: ¿qué juegos necesitan 60 fps y cuáles no? Respuesta: acción rápida o competitiva sí; puzzle, estrategia o narrativa, generalmente no.
+Android recomienda además igualar la frecuencia de refresco de la pantalla al fps objetivo (frame pacing).
 
-## 9 | El sistema operativo manda
+## 12 | El sistema operativo manda
 tipo: contenido
 kicker: LA MÁQUINA · CICLO DE VIDA
-- Cuando el jugador sale de la app, el juego pasa a segundo plano
-- Si falta memoria, el sistema operativo cierra procesos en segundo plano (Android: Low Memory Killer; iOS: terminación)
-- Corrección frecuente: onTrimMemory no "evita" el cierre (Android lo declara deprecado salvo dos niveles)
-- Conclusión de diseño: el juego puede morir sin aviso → guardar estado
+- Salir de la app = segundo plano
+- Sin memoria, el SO cierra procesos
+- onTrimMemory no lo evita
+- Diseño: guardar estado
 imagen: Diagrama de estados: activa → segundo plano → terminada, con una llamada entrante como disparador.
 fuente: Android — Low memory killers (2026-09-21); Apple — applicationDidReceiveMemoryWarning
 notas:
-Cita de Android para leer: los callbacks de trim "haven't been helpful at preventing low-memory kills". Esto corrige un mito frecuente. El punto de diseño: si el sistema puede matar el proceso, el juego tiene que poder retomarse; y si no puede, al menos no castigar al jugador.
+Cuando el jugador sale de la app (llamada, notificación, cambio de app), el juego pasa a segundo plano. Si falta memoria, el sistema operativo cierra procesos en segundo plano: en Android lo hace el Low Memory Killer; en iOS, el sistema termina la app si no libera memoria.
+Corrección de un mito frecuente: los callbacks onTrimMemory de Android NO evitan el cierre. Android los declara deprecados salvo dos niveles (UI_HIDDEN y BACKGROUND) y dice textualmente que "haven't been helpful at preventing low-memory kills".
+Conclusión de diseño: el juego puede morir sin aviso. Si puede retomarse, hay que guardar estado; si no puede, al menos no castigar al jugador por algo que hizo el sistema.
 
-## 10 | Qué hace Unity con eso
+## 13 | Qué hace Unity con eso
 tipo: contenido
 kicker: LA MÁQUINA · UNITY
-- OnApplicationPause(bool): la app pasa a segundo plano o vuelve
-- OnApplicationFocus(bool): la app pierde o recupera el foco
-- En Android, abrir el teclado en pantalla dispara OnApplicationFocus(false)
-- Asteroides no implementa ninguno de los dos (supuesto S8)
+- OnApplicationPause(bool)
+- OnApplicationFocus(bool)
+- Teclado en Android → pierde el foco
+- Asteroides no los usa (S8)
 fuente: Unity 6.3 Scripting API — MonoBehaviour.OnApplicationPause / OnApplicationFocus
 notas:
-No escribir código todavía: eso se hace en la Clase 3 con el defecto deliberado. Solo mostrar que el motor avisa y que el juego base no escucha. Anticipar: ¿alcanza con escuchar el aviso? No, porque si el sistema mata el proceso, no se llama nada.
+OnApplicationPause(bool) avisa que la app pasa a segundo plano o vuelve. OnApplicationFocus(bool) avisa que la app pierde o recupera el foco. Dato práctico: en Android, abrir el teclado en pantalla dispara OnApplicationFocus(false).
+Asteroides no implementa ninguno de los dos (supuesto S8 del caso práctico).
+No escribir código todavía: eso se hace en la Clase 3 con el defecto deliberado. Solo mostrar que el motor avisa y que el juego base no escucha.
+Anticipar: ¿alcanza con escuchar el aviso? No: si el sistema mata el proceso, no se llama nada.
 
-## 11 | Actividad A4.1 — Diagnóstico de síntomas
+## 14 | Actividad A4.1 — Diagnóstico
 tipo: actividad
 kicker: ACTIVIDAD · 15 MIN · PAREJAS
-| Reporte del jugador | ¿Qué restricción? | ¿Qué evidencia pedirías? | ¿Qué prueba lo detecta antes? |
+| Reporte del jugador | ¿Restricción? | ¿Evidencia? | ¿Qué prueba? |
 | Se cerró al volver de WhatsApp | | | |
 | A los 10 min se traba y quema | | | |
-| El botón de pausa queda bajo la cámara | | | |
-| En la tablet el score es diminuto | | | |
+| Pausa bajo la cámara | | | |
+| Score diminuto en la tablet | | | |
 | Sin batería en media hora | | | |
 | En el emulador anda, en mi teléfono no | | | |
-actividad: Completen la tabla. Una restricción por fila, sin repetir "el teléfono es lento".
+actividad: Una restricción por fila. Prohibido "el teléfono es lento".
 notas:
-Respuestas esperadas (detalle en 05, A4.1): 1 ciclo de vida/LMK → QA manual en dispositivo; 2 térmica → rendimiento sostenido en dispositivo; 3 safe area → Device Simulator + dispositivo; 4 escalado de UI → Device Simulator con varios perfiles; 5 fps/energía → medición en dispositivo; 6 el emulador no representa rendimiento → Profiler en gama baja. Error típico a corregir: proponer un unit test para 2, 3 o 5.
+Consigna completa: para cada reporte, indicar (a) la restricción de plataforma más probable, (b) qué evidencia le pedirían al tester, y (c) qué tipo de prueba lo habría detectado antes.
+Respuestas esperadas (detalle en 05, A4.1):
+1. Ciclo de vida / Low Memory Killer → QA manual en dispositivo.
+2. Térmica → rendimiento sostenido en dispositivo.
+3. Safe area → Device Simulator + dispositivo.
+4. Escalado de UI → Device Simulator con varios perfiles.
+5. fps y energía → medición en dispositivo.
+6. El emulador no representa el rendimiento → Profiler en un teléfono de gama baja.
+Error típico a corregir: proponer un unit test para los casos 2, 3 o 5. Recordar pedir siempre el modelo del dispositivo.
 
-## 12 | Demo: el simulador y sus límites
+## 15 | Demo: el simulador y sus límites
 tipo: demo
 kicker: DEMO EN VIVO
-- Player Settings de Android: Application Category = Game, orientación, API mínima
-- Device Simulator: safe area, rotación y toque de un dedo
-- Lo que NO simula: rendimiento, memoria, capacidades de render, giroscopio
-- Probar Asteroides en un perfil de teléfono en vertical
+- Player Settings de Android
+- Device Simulator: qué simula
+- Y qué NO simula
+- Asteroides en vertical
 imagen: Device Simulator con Asteroides en vertical y los asteroides apareciendo fuera de pantalla.
 fuente: Unity 6.3 Manual — Device Simulator introduction; Android Player settings
 notas:
-Abrir la página oficial del Device Simulator y leer la lista de lo que NO simula antes de usarlo: la herramienta llega con sus límites. Mostrar Application Category = Game (por defecto en Unity 6.3: exime a los juegos del cambio de Android 16 que ignora la orientación en pantallas grandes). Confirmar en vivo el supuesto de que la cámara está centrada en x = 0. No revelar todavía el problema del spawn: lo descubren en A4.2.
+Pasos de la demo:
+1. Player Settings de Android: Application Category = Game (por defecto en Unity 6.3; exime a los juegos del cambio de Android 16 que ignora la orientación en pantallas grandes), orientación y API mínima.
+2. Abrir la página oficial del Device Simulator y leer la lista de lo que NO simula ANTES de usarlo: rendimiento, memoria, capacidades de render y giroscopio. La herramienta llega con sus límites.
+3. Lo que sí simula: safe area, rotación y toque de un dedo.
+4. Poner Asteroides en un perfil de teléfono en vertical. Confirmar en vivo el supuesto de que la cámara está centrada en x = 0.
+No revelar todavía el problema del spawn: lo descubren en A4.2.
 
-## 13 | Actividad A4.2 — ¿Qué supuestos de PC trae el juego?
+## 16 | Actividad A4.2 — Supuestos de PC
 tipo: actividad
-kicker: ACTIVIDAD · 25 MIN · GRUPOS
-- Ship.cs líneas 61–73: el control
-- Ship.cs líneas 46–47 y 99–115: los límites de la nave
-- Spawner.cs líneas 101–106: dónde nacen los asteroides
-- Prefab Game: Canvas (modo de escala) y cámara (ortográfica, tamaño 5)
-actividad: Listen al menos 5 supuestos que dejan de valer en un teléfono: dónde están (archivo:línea), qué pasaría y a qué eje pertenecen (input, pantalla, UI, ciclo de vida, rendimiento).
+kicker: ACTIVIDAD · 20 MIN · GRUPOS
+- Ship.cs 61–73: el control
+- Ship.cs 46–47 y 99–115: los límites
+- Spawner.cs 101–106: el spawn
+- Prefab Game: Canvas y cámara
+actividad: 5 supuestos: dónde (archivo:línea), qué pasaría, qué eje.
 imagen: Fragmento de Ship.cs 61–73 con las tres llamadas a Input.GetKey resaltadas.
 notas:
-La respuesta completa es la tabla S1–S13 de 02-caso-practico. Para aprobar alcanza con S1 (teclado), S3/S4/S5 (límites, cámara, spawn), S6 (Canvas en Constant Pixel Size) y S8 (sin pausa). Pistas si se traban: "¿qué pasa con la cámara si la pantalla es más angosta que alta?".
+Consigna completa: listar al menos 5 supuestos que dejan de valer en un teléfono, indicando dónde están (archivo:línea), qué pasaría en móvil y a qué eje pertenecen (input, pantalla, UI, ciclo de vida, rendimiento).
+La respuesta completa es la tabla S1–S13 de 02-caso-practico. Para aprobar alcanza con S1 (teclado), S3/S4/S5 (límites, cámara, spawn), S6 (Canvas en Constant Pixel Size) y S8 (sin pausa).
+Pista si se traban: "¿qué pasa con la cámara si la pantalla es más angosta que alta?".
 
-## 14 | Lo que encontramos
+## 17 | Lo que encontramos
 tipo: contenido
 kicker: PUESTA EN COMÚN
-- Cámara ortográfica de tamaño 5: el semiancho visible es 5 × aspect
-- A 16:9 se ven ≈ 8,9 unidades a cada lado; en vertical 9:16, ≈ 2,8
-- El Spawner crea asteroides en x ∈ [−8, 8] (coordenadas de mundo)
-- En vertical, la mayoría de los asteroides nace fuera de pantalla
-- No hay error de lógica: hay un supuesto de plataforma
+- Vista: 5 × aspect a cada lado
+- 16:9 → ≈ 8,9 · vertical → ≈ 2,8
+- Spawn en x ∈ [−8, 8]
+- En vertical, nacen fuera de pantalla
 imagen: Dos capturas lado a lado, 16:9 y 9:16, con el rango de spawn [−8, 8] marcado sobre cada una.
 fuente: Código del proyecto (Spawner.cs:101-106; prefab Game, Camera)
 notas:
-Mostrarlo en el Device Simulator. Es el hallazgo que distingue un análisis profundo: ningún archivo tiene un error por sí solo, el problema aparece en la combinación cámara + spawner + orientación. Conectar con testing de integración de la U3: es un defecto de integración con la plataforma.
+La cámara es ortográfica de tamaño 5: el semiancho visible es 5 × aspect. A 16:9 se ven ≈ 8,9 unidades a cada lado; en vertical 9:16, ≈ 2,8.
+El Spawner crea asteroides en x ∈ [−8, 8] (coordenadas de mundo). En vertical, la mayoría de los asteroides nace fuera de pantalla.
+No hay error de lógica: hay un supuesto de plataforma. Ningún archivo tiene un error por sí solo; el problema aparece en la combinación cámara + spawner + orientación.
+Mostrarlo en el Device Simulator. Conectar con el testing de integración de la U3: es un defecto de integración con la plataforma.
 
-## 15 | Qué no resuelve esto · TP 3
+## 18 | ¿Cómo se elige una plataforma?
+tipo: contenido
+kicker: DECISIÓN
+- Audiencia
+- Modelo de monetización
+- Herramientas y soporte
+- Vigencia en el tiempo
+- + Restricciones técnicas (hoy)
+pregunta: Con estos criterios: ¿Asteroides es un juego para móvil?
+fuente: Kevuru Games (blog, consultado 2026-10-05) + criterio de la cátedra
+notas:
+[Diapositiva nueva en la versión 2.]
+El artículo de Kevuru propone cuatro consideraciones para elegir plataforma, y concluye que el desafío no es encontrar la "mejor" plataforma, sino la que encaja con la visión del juego y su público:
+1. Audiencia: saber para quién se construye. Un puzzle casual puede encontrar su público en móvil; un RPG con mucha narrativa puede funcionar mejor en consola o PC.
+2. Modelos de monetización: suscripción, free-to-play con compras integradas o venta premium. Cada plataforma se inclina por estrategias distintas y el modelo de ingresos tiene que coincidir.
+3. Integración y soporte: algunas plataformas ofrecen mejores herramientas, documentación o ayuda directa; una buena integración ahorra meses.
+4. Vigencia (future-proofing): preferir plataformas que sigan evolucionando para que el juego no quede desactualizado en uno o dos años.
+Lo que agrega la cátedra: un quinto criterio, las restricciones técnicas y de diseño de la plataforma (todo lo que vimos hoy: calor, batería, memoria, interrupciones, pantalla). El artículo no lo menciona y es justamente el núcleo de esta materia.
+Respuesta esperada a la pregunta: Asteroides encaja en móvil por audiencia (partidas cortas y casuales) y por sus requisitos técnicos bajos, pero exige rediseñar el control, la pantalla y la pausa (lo que encontramos en A4.2). La monetización se decide en la Clase 3.
+
+## 19 | Leer con lupa
+tipo: actividad
+kicker: LECTURA CRÍTICA · 5 MIN
+- Lo escribe un estudio que vende servicios
+- Google Stadia: cerró el 18/01/2023
+- "Origin": reemplazada por la EA app (2022)
+- Cifras de mercado sin fuente
+actividad: Antes de citar un dato, busquen la fuente primaria.
+fuente: Google — mensaje oficial sobre el cierre de Stadia (2022); EA — anuncio de la EA app (06/10/2022)
+notas:
+[Diapositiva nueva en la versión 2.]
+El artículo que usamos para las slides 5, 6, 7 y 18 es útil para los conceptos, pero tiene problemas que conviene mostrar:
+1. Es el blog de un estudio de desarrollo (Kevuru Games) que termina ofreciendo sus servicios y un formulario de cotización: es una fuente comercial, no una autoridad.
+2. Presenta Google Stadia como un servicio activo. Google anunció el cierre el 29/09/2022 y fue efectivo el 18/01/2023, con reembolsos (verificado en la investigación de la Unidad VII, fuente oficial de Google).
+3. Nombra la tienda "Origin" entre las plataformas de PC. EA anunció el 06/10/2022 que la EA app la reemplaza como su plataforma principal de PC (fuente oficial de EA).
+4. Da cifras de ingresos y usuarios proyectadas desde 2023 (por ejemplo, ingresos del sector y cantidad de usuarios a 2027) sin citar de dónde salen. No las usamos en clase.
+5. Mezcla bajo "plataforma" hardware, tiendas, cloud y sitios de streaming (lo ordenamos en la slide 5).
+Mensaje para los alumnos: el mismo criterio que aplicamos a los tests (¿qué demuestra y qué no?) se aplica a las fuentes. Un blog sirve para ideas; los datos se verifican en la documentación oficial o en papers. Es el mismo criterio que van a usar en el TP 3.
+
+## 20 | Qué no resuelve esto · TP 3
 tipo: cierre
 kicker: CIERRE
-- El simulador encontró el problema de la pantalla, pero no mide calor ni batería
-- Eso lo vamos a medir en sus teléfonos, en la Clase 4
-- TP 3: Dossier de plataforma — Asteroides móvil (consigna en el aula virtual)
-- Tarea: instalar Android Build Support en Unity 6000.3.11f1 y activar la depuración USB en su teléfono
+- El simulador no mide calor ni batería
+- Eso se mide en su teléfono (Clase 4)
+- TP 3: Dossier Asteroides móvil
+- Tarea: Build Support + depuración USB
 fuente: Unity 6.3 Manual — Android environment setup; Android — Configure on-device developer options
 notas:
-Cerrar con el límite de la herramienta, no con la herramienta. Recordar la tarea técnica: sin ella la Clase 4 no se puede hacer. Pasos de la depuración USB: tocar 7 veces "Número de compilación" y activar "Depuración USB" en Opciones de desarrollador.
+Cerrar con el límite de la herramienta, no con la herramienta: el simulador encontró el problema de la pantalla, pero no mide calor ni batería. Eso lo vamos a medir en sus teléfonos, en la Clase 4.
+TP 3: Dossier de plataforma, Asteroides móvil (consigna en el aula virtual).
+Tarea técnica obligatoria (sin ella la Clase 4 no se puede hacer):
+1. Instalar el módulo Android Build Support (con OpenJDK, Android SDK y NDK) en Unity 6000.3.11f1 desde Unity Hub.
+2. En el teléfono: tocar 7 veces "Número de compilación" para habilitar las Opciones de desarrollador y activar "Depuración USB" (en Android 9 o superior: Ajustes > Sistema > Avanzado > Opciones de desarrollador).
 
 # DECK 2 | Diseñar para el pulgar | Unidad IV · Clase 2
 

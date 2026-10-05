@@ -1023,3 +1023,33 @@ Clasificación: **PRIMARIA** (documentación oficial de plataforma, motor, tiend
 | Unity, "Input System Mobile controls" (C-01) | Video oficial | 4 | On-Screen Controls | PRIMARIA | Interm. | Obligatorio |
 | Activision (CoD Mobile), Epic (Fortnite creators), App Store (Alto's), Niantic (Pokémon GO), Kotaku (Vampire Survivors) — datos E-38 a E-41 | Blogs y fichas | 4 | Casos reales | PROFESIONAL / COMPLEMENTARIA | Intro | Ejemplos |
 | Video "Adaptive Performance" de Unity Middle East 2021 (C-12) | Video | 4 | Térmica | COMPLEMENTARIA (**desactualizado**) | — | No usar como referencia de 6.3 |
+
+---
+
+## Recursos agregados en la versión 2 de la Clase 1 (2026-10-05)
+
+**B-62**
+- **Título:** What Are the Best Platforms for Games?
+- **Autor:** Kevuru Games (estudio de desarrollo y outsourcing; Varsovia y EE. UU.) · **Tipo:** artículo de blog **comercial** · **Fecha:** sin fecha visible; menciona cifras "2023–2027"
+- **URL:** https://kevurugames.com/blog/what-are-the-best-platforms-for-games/
+- **Verificación:** descargado y leído completo el 2026-10-05. WebFetch dio 403; se descargó con un navegador estándar.
+- **Tema / concepto:** definición de plataforma ("la base de cómo los jugadores se conectan con los juegos"); historia desde los arcades; las tiendas móviles abrieron la distribución a estudios chicos; cuatro criterios para elegir plataforma (audiencia, monetización, integración y soporte, vigencia).
+- **Nivel:** introductorio · **Confiabilidad:** **baja–media**. Sirve para los conceptos, no para los datos.
+- **Problemas detectados:**
+  - presenta Google Stadia como activa (cerró el 18/01/2023);
+  - nombra "Origin" (EA la reemplazó por la EA app, anuncio del 06/10/2022);
+  - da cifras de mercado sin fuente;
+  - mezcla bajo "plataforma" hardware, tiendas, cloud y sitios de streaming;
+  - termina ofreciendo los servicios del estudio.
+- **Uso en clase:** Clase 1 v2, slides 5, 6, 7 y 18 (conceptos) y slide 19 (ejercicio de lectura crítica). **Complementario.**
+- **Clasificación (tabla final):** FUENTE COMPLEMENTARIA (profesional / comercial).
+
+**B-63**
+- **Título:** The all new EA app for Windows — EA's new optimized PC platform has officially arrived!
+- **Autor:** Electronic Arts · **Tipo:** comunicado oficial · **Fecha:** 06/10/2022
+- **URL:** https://www.ea.com/news/ea-app
+- **Verificación:** fetch OK 2026-10-05. Cita: "The EA app has officially left its open beta phase and will soon replace Origin as our primary PC platform."
+- **Uso:** respaldar la corrección sobre "Origin" en la slide 19 · **Complementario** · FUENTE PRIMARIA.
+- **No verificado:** la fecha de cierre definitivo de Origin (abril de 2025) aparece solo en foros de EA, no en una página oficial abierta. No se cita.
+
+El cierre de Google Stadia (anuncio 29/09/2022, efectivo 18/01/2023) se respalda con la ficha del blog oficial de Google de la investigación de la Unidad VII (`../unidad-07/00-investigacion-preliminar.md`).

@@ -33,19 +33,22 @@ Regla de la cátedra: **ninguna clase empieza por la herramienta**, siempre por 
 
 ---
 
-## Clase 1 — "Un teléfono no es una PC chica" (120 min)
+## Clase 1 — "Un teléfono no es una PC chica" (120 min) · versión 2
 
-| Min | Bloque | Qué pasa |
-|---|---|---|
-| 0–10 | **Apertura (problema)** | Relato: "Asteroides anda perfecto en la PC del aula; en un teléfono, a los 10 minutos se traba, el teléfono quema y, al atender una llamada, la partida se pierde". ¿Cuántos problemas distintos hay? |
-| 10–15 | Puente con el 28/09 | Slides 8 (móvil) y 12 (intención vs. dispositivo) |
-| 15–40 | Teoría 1: la máquina | SoC y TBDR (solo la idea y por qué importa el overdraw); **sostenido vs. pico**; térmica y regla del ~65 %; 30 fps por defecto; batería; memoria y cierre de procesos; ciclo de vida e interrupciones; Android vs. iOS (iOS: solo conceptual, con la razón: Xcode exige macOS) |
-| 40–55 | **A4.1** Diagnóstico de síntomas | Parejas |
-| 55–60 | Puesta en común A4.1 | — |
-| 60–70 | **Demo en vivo 1** | Player Settings de Android (Application Category = Game, orientación, versión mínima de API); Device Simulator y **qué no simula** |
-| 70–95 | **A4.2** ¿Qué supuestos de PC tiene Asteroides? | Grupos con el código |
-| 95–110 | Puesta en común A4.2 | Revelar S4/S5 en el Device Simulator con un perfil vertical |
-| 110–120 | Cierre | Límites del simulador. Consigna del TP 3. Tarea: instalar Android Build Support y activar la depuración USB (necesario para la Clase 4) |
+Deck: `Unidad-4-Clase-1-2026-v2.pptx` (20 slides). Agrega, respecto de la v1, el bloque "¿Qué es una plataforma?" (slides 5–7) y el bloque "Elegir y leer con lupa" (slides 18–19), a partir del artículo de Kevuru Games leído con mirada crítica. Para hacerles lugar se recortaron 5 min de la Teoría 1 y 5 min de A4.2.
+
+| Min | Bloque | Slides | Qué pasa |
+|---|---|---|---|
+| 0–10 | **Apertura (problema)** | 1–2 | Relato: "Asteroides anda perfecto en la PC del aula; en un teléfono, a los 10 minutos se traba, el teléfono quema y, al atender una llamada, la partida se pierde". ¿Cuántos problemas distintos hay? |
+| 10–15 | Puente con el 28/09 + objetivos | 3–4 | Slides 8 (móvil) y 12 (intención vs. dispositivo) del 28/09 |
+| 15–25 | **Qué es una plataforma** (nuevo en v2) | 5–7 | Cuatro capas (ejecución, distribución, nube, comunidad) y definición de trabajo de la materia; de los arcades al bolsillo (3 min, contexto); las tiendas móviles cambiaron quién publica, pero con reglas |
+| 25–45 | Teoría 1: la máquina | 8–13 | SoC y TBDR; **sostenido vs. pico**; regla del ~65 %; 30 fps por defecto; memoria y cierre de procesos; ciclo de vida; Android vs. iOS (iOS conceptual: Xcode exige macOS) |
+| 45–60 | **A4.1** Diagnóstico de síntomas + puesta en común | 14 | Parejas |
+| 60–68 | **Demo en vivo 1** | 15 | Player Settings de Android; Device Simulator y **qué no simula** |
+| 68–88 | **A4.2** ¿Qué supuestos de PC tiene Asteroides? | 16 | Grupos con el código (20 min) |
+| 88–100 | Puesta en común A4.2 | 17 | Revelar S4/S5 en el Device Simulator con un perfil vertical |
+| 100–110 | **Elegir y leer con lupa** (nuevo en v2) | 18–19 | Cinco criterios para elegir plataforma (cuatro del artículo + restricciones técnicas) aplicados a Asteroides; lectura crítica del artículo (Stadia cerrado, Origin reemplazada, cifras sin fuente) |
+| 110–120 | Cierre | 20 | Límites del simulador. Consigna del TP 3. Tarea: instalar Android Build Support y activar la depuración USB (necesario para la Clase 4) |
 
 ## Clase 2 — "Diseñar para el pulgar" (120 min)
 

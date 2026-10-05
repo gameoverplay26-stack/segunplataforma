@@ -9,6 +9,7 @@ Requiere: pip install python-pptx
 Formato del .md: ver el encabezado de 04-diapositivas.md.
 Paleta y estilo heredados de diseno-plataformas/unidad-03/scripts/generar_diapositivas.py.
 """
+import argparse
 import os
 import re
 import sys
@@ -290,24 +291,31 @@ def add_notes(slide, notes):
         slide.notes_slide.notes_text_frame.text = "\n".join(notes)
 
 
-def build(decks):
+def build(decks, only=None, version=None):
     out = []
     for deck in decks:
+        if only and deck["num"] not in only:
+            continue
         prs = Presentation()
         prs.slide_width, prs.slide_height = SLIDE_W, SLIDE_H
         total = len(deck["slides"])
         for s in deck["slides"]:
             maker = build_cover if s.get("tipo") == "portada" else build_content
             add_notes(maker(prs, deck, s, total), s["notes"])
-        path = os.path.join(UNIT_DIR, "Unidad-4-Clase-%d-2026.pptx" % deck["num"])
+        suffix = "-v%d" % version if version and version > 1 else ""
+        path = os.path.join(UNIT_DIR, "Unidad-4-Clase-%d-2026%s.pptx" % (deck["num"], suffix))
         prs.save(path)
         out.append((path, total))
     return out
 
 
 if __name__ == "__main__":
+    ap = argparse.ArgumentParser(description="Genera los decks de la Unidad 4.")
+    ap.add_argument("--decks", type=int, nargs="+", help="numeros de deck a generar (por defecto, todos)")
+    ap.add_argument("--version", type=int, help="agrega el sufijo -vN al nombre del archivo (N > 1)")
+    args = ap.parse_args()
     decks = parse(SOURCE)
     if len(decks) != 4:
         sys.exit("Se esperaban 4 decks y se encontraron %d" % len(decks))
-    for path, total in build(decks):
+    for path, total in build(decks, args.decks, args.version):
         print("OK  %-40s %2d slides" % (os.path.basename(path), total))
