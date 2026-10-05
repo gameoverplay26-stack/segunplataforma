@@ -35,6 +35,8 @@ SLATE = RGBColor(0x1F, 0x29, 0x37)
 MUTED = RGBColor(0x6B, 0x72, 0x80)
 LIGHT_BG = RGBColor(0xF3, 0xF4, 0xF6)
 ROW_ALT = RGBColor(0xE6, 0xF4, 0xF2)
+CONTEXT = RGBColor(0x47, 0x55, 0x69)   # barras de contexto (validado con dataviz vs. TEAL)
+GRID = RGBColor(0xE5, 0xE7, 0xEB)
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 FONT = "Calibri"
 
@@ -47,7 +49,7 @@ SOURCE_Y = Inches(6.70)
 CALLOUT_H = Inches(0.5)
 IMG_W = Inches(4.3)
 
-KEYS = ("tipo", "kicker", "pregunta", "actividad", "imagen", "diagrama", "video", "fuente")
+KEYS = ("tipo", "kicker", "pregunta", "actividad", "imagen", "diagrama", "cronologia", "video", "fuente")
 CALLOUTS = (  # clave, etiqueta, color
     ("pregunta", "PREGUNTA", AMBER),
     ("actividad", "ACTIVIDAD", GREEN),
@@ -265,6 +267,64 @@ def layer_diagram(slide, spec, x, y, w, h):
         run(p, footnote.strip(), 13, RED, italic=True)
 
 
+def timeline_chart(slide, spec, x, y, w, h, end_year=2026):
+    """Cronologia de barras: cada barra va del anio del hito hasta end_year.
+    Sintaxis:  cronologia: Etiqueta: 1972 | *Destacada: 2008 | ... [|| nota]
+    Un '*' inicial destaca la barra (TEAL + rotulo en negrita); el resto va en gris de contexto.
+    """
+    spec, _, footnote = spec.partition("||")
+    rows = []
+    for part in spec.split("|"):
+        label, _, year = part.rpartition(":")
+        hi = label.strip().startswith("*")
+        rows.append((label.strip().lstrip("*").strip(), int(year), hi))
+    start = (min(r[1] for r in rows) // 10) * 10
+    label_w = Inches(2.35)
+    axis_h = Inches(0.35)
+    foot_h = Inches(0.4) if footnote.strip() else 0
+    plot_x, plot_w = x + label_w, w - label_w - Inches(0.1)
+    plot_h = h - axis_h - foot_h
+    def xpos(year):
+        return plot_x + int(plot_w * (year - start) / (end_year - start))
+    # grilla y eje (recesivos)
+    for yr in range(start, end_year + 1, 10):
+        gx = xpos(yr)
+        rect(slide, gx, y, Pt(1), plot_h, GRID)
+        tf = textbox(slide, gx - Inches(0.4), y + plot_h + Inches(0.05), Inches(0.8), Inches(0.3))
+        p = tf.paragraphs[0]
+        p.alignment = PP_ALIGN.CENTER
+        run(p, str(yr), 11, MUTED)
+    row_h = plot_h / len(rows)
+    bar_h = int(row_h - Pt(6))  # separacion entre barras
+    for i, (label, year, hi) in enumerate(rows):
+        ry = y + int(i * row_h) + Pt(3)
+        tf = textbox(slide, x, ry, label_w - Inches(0.15), bar_h, MSO_ANCHOR.MIDDLE)
+        p = tf.paragraphs[0]
+        p.alignment = PP_ALIGN.RIGHT
+        run(p, label, 14, SLATE, bold=hi)
+        bx = xpos(year)
+        bar = rect(slide, bx, ry, xpos(end_year) - bx, bar_h, TEAL if hi else CONTEXT, MSO_SHAPE.ROUNDED_RECTANGLE)
+        bar.adjustments[0] = 0.15
+        if xpos(end_year) - bx >= Inches(0.75):  # el anio entra dentro de la barra
+            btf = bar.text_frame
+            btf.word_wrap = False
+            btf.margin_left = Inches(0.08)
+            btf.vertical_anchor = MSO_ANCHOR.MIDDLE
+            bp = btf.paragraphs[0]
+            bp.alignment = PP_ALIGN.LEFT
+            run(bp, str(year), 13, WHITE, bold=True)
+        else:  # barra angosta: el anio va afuera, a la izquierda, en color de texto
+            ytf = textbox(slide, bx - Inches(0.75), ry, Inches(0.68), bar_h, MSO_ANCHOR.MIDDLE)
+            yp = ytf.paragraphs[0]
+            yp.alignment = PP_ALIGN.RIGHT
+            run(yp, str(year), 13, SLATE, bold=True)
+    if footnote.strip():
+        tf = textbox(slide, x, y + plot_h + axis_h + Inches(0.05), w, foot_h - Inches(0.05), MSO_ANCHOR.MIDDLE)
+        p = tf.paragraphs[0]
+        p.alignment = PP_ALIGN.RIGHT
+        run(p, footnote.strip(), 11, MUTED, italic=True)
+
+
 def callout(slide, label, text, color, y):
     rect(slide, MARGIN, y, Inches(0.12), CALLOUT_H, color)
     bg = rect(slide, MARGIN + Inches(0.12), y, SLIDE_W - 2 * MARGIN - Inches(0.12), CALLOUT_H, LIGHT_BG)
@@ -320,11 +380,14 @@ def build_content(prs, deck, s, total):
             callout(slide, label, s[key], color, bottom)
     body_h = bottom - BODY_TOP - Inches(0.15)
 
+    has_chart = bool(s.get("cronologia"))
     has_diag = bool(s.get("diagrama"))
-    has_img = bool(s.get("imagen")) and not has_diag
-    panel_w = Inches(5.6) if has_diag else IMG_W
-    body_w = SLIDE_W - 2 * MARGIN - (panel_w + Inches(0.3) if (has_img or has_diag) else 0)
-    if has_diag:
+    has_img = bool(s.get("imagen")) and not (has_diag or has_chart)
+    panel_w = Inches(7.4) if has_chart else Inches(5.6) if has_diag else IMG_W
+    body_w = SLIDE_W - 2 * MARGIN - (panel_w + Inches(0.3) if (has_img or has_diag or has_chart) else 0)
+    if has_chart:
+        timeline_chart(slide, s["cronologia"], SLIDE_W - MARGIN - panel_w, BODY_TOP, panel_w, body_h)
+    elif has_diag:
         layer_diagram(slide, s["diagrama"], SLIDE_W - MARGIN - panel_w, BODY_TOP, panel_w, body_h)
     elif has_img:
         image_placeholder(slide, s["imagen"], SLIDE_W - MARGIN - IMG_W, BODY_TOP, IMG_W, body_h)
