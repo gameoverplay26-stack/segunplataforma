@@ -49,7 +49,7 @@ SOURCE_Y = Inches(6.70)
 CALLOUT_H = Inches(0.5)
 IMG_W = Inches(4.3)
 
-KEYS = ("tipo", "kicker", "pregunta", "actividad", "imagen", "diagrama", "cronologia", "hitos", "flujo", "comparacion", "tiles", "codigo", "vista", "video", "fuente")
+KEYS = ("tipo", "kicker", "pregunta", "actividad", "imagen", "diagrama", "cronologia", "hitos", "flujo", "comparacion", "tiles", "codigo", "vista", "safearea", "video", "fuente")
 CALLOUTS = (  # clave, etiqueta, color
     ("pregunta", "PREGUNTA", AMBER),
     ("actividad", "ACTIVIDAD", GREEN),
@@ -416,11 +416,12 @@ def compare_diagram(slide, spec, x, y, w, h):
         head, _, note = part.partition("//")
         title, _, chips = head.partition(":")
         together = title.strip().startswith("+")
-        cols.append((title.strip().lstrip("+").strip(), [c.strip() for c in chips.split(",") if c.strip()], note.strip(), together))
+        small = title.strip().startswith("-")  # '-' = dibujar los chips a la mitad de tamanio
+        cols.append((title.strip().lstrip("+-").strip(), [c.strip() for c in chips.split(",") if c.strip()], note.strip(), together, small))
     gap = Inches(0.3)
     cw = int((w - gap * (len(cols) - 1)) / len(cols))
     colors = [TEAL, NAVY]
-    for ci, (title, chips, note, together) in enumerate(cols):
+    for ci, (title, chips, note, together, small) in enumerate(cols):
         cx = x + ci * (cw + gap)
         color = colors[ci % 2]
         tf = textbox(slide, cx, y, cw, Inches(0.45), MSO_ANCHOR.MIDDLE)
@@ -447,12 +448,15 @@ def compare_diagram(slide, spec, x, y, w, h):
             total = chip_h * len(chips) + inner_gap * (len(chips) - 1)
             cy = top + int((area_h - total) / 2)
         for c in chips:
-            chip = rect(slide, cx + Inches(0.3), cy, cw - Inches(0.6), chip_h, color, MSO_SHAPE.ROUNDED_RECTANGLE)
+            full_w = cw - Inches(0.6)
+            bw, bh = (int(full_w * 0.5), int(chip_h * 0.5)) if small else (full_w, chip_h)
+            chip = rect(slide, cx + Inches(0.3) + int((full_w - bw) / 2), cy + int((chip_h - bh) / 2), bw, bh, color, MSO_SHAPE.ROUNDED_RECTANGLE)
             ctf = chip.text_frame
             ctf.vertical_anchor = MSO_ANCHOR.MIDDLE
+            ctf.margin_left = ctf.margin_right = ctf.margin_top = ctf.margin_bottom = 0
             cp = ctf.paragraphs[0]
             cp.alignment = PP_ALIGN.CENTER
-            run(cp, c, 15, WHITE, bold=True)
+            run(cp, c, 9 if small else 15, WHITE, bold=True)
             cy += chip_h + inner_gap
         if note:
             tf = textbox(slide, cx, top + area_h + Inches(0.1), cw, note_h - Inches(0.1), MSO_ANCHOR.TOP)
@@ -595,6 +599,51 @@ def view_diagram(slide, spec, x, y, w, h):
     tf = textbox(slide, x + Inches(0.1), ly + Inches(0.35), w, Inches(0.3), MSO_ANCHOR.MIDDLE)
     run(tf.paragraphs[0], "Escala real: cámara ortográfica de tamaño %s; spawn en x ∈ [%g, %g]" % (("%g" % size), s0, s1), 11, MUTED, italic=True)
 
+def safearea_diagram(slide, spec, x, y, w, h):
+    """Esquema de telefono en vertical: muesca, barra de gestos y zona segura punteada.
+    Sintaxis: safearea: rotulo de la zona segura"""
+    label = spec.strip()
+    ph = h - Inches(0.1)
+    pw = int(ph * 0.48)
+    px = x + int((w - pw) / 2)
+    py = y + Inches(0.05)
+    body = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, px, py, pw, ph)
+    body.adjustments[0] = 0.1
+    body.fill.solid()
+    body.fill.fore_color.rgb = NAVY
+    body.line.fill.background()
+    body.shadow.inherit = False
+    m = Inches(0.1)
+    scr = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, px + m, py + m, pw - 2 * m, ph - 2 * m)
+    scr.adjustments[0] = 0.08
+    scr.fill.solid()
+    scr.fill.fore_color.rgb = WHITE
+    scr.line.fill.background()
+    scr.shadow.inherit = False
+    notch_w, notch_h = int(pw * 0.3), Inches(0.28)
+    rect(slide, int(px + (pw - notch_w) / 2), py + m, notch_w, notch_h, NAVY, MSO_SHAPE.ROUNDED_RECTANGLE)
+    bar_w = int(pw * 0.4)
+    rect(slide, int(px + (pw - bar_w) / 2), py + ph - m - Inches(0.2), bar_w, Inches(0.07), MUTED, MSO_SHAPE.ROUNDED_RECTANGLE)
+    sx, sy = px + m + Inches(0.12), py + m + notch_h + Inches(0.12)
+    sw, sh = pw - 2 * m - Inches(0.24), ph - 2 * m - notch_h - Inches(0.52)
+    safe = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, sx, sy, sw, sh)
+    safe.fill.solid()
+    safe.fill.fore_color.rgb = RGBColor(0xE6, 0xF4, 0xF2)
+    safe.line.color.rgb = TEAL
+    safe.line.width = Pt(2)
+    safe.line.dash_style = MSO_LINE_DASH_STYLE.DASH
+    safe.shadow.inherit = False
+    tf = safe.text_frame
+    tf.word_wrap = True
+    tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+    p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.CENTER
+    run(p, label, 14, TEAL, bold=True)
+    # rotulos de las zonas reservadas, a los costados
+    for text, ty in (("muesca / cámara", py + m), ("barra de gestos", py + ph - m - Inches(0.35))):
+        tb = textbox(slide, px + pw + Inches(0.12), ty, Inches(1.6), Inches(0.35), MSO_ANCHOR.MIDDLE)
+        run(tb.paragraphs[0], "← " + text, 12, MUTED)
+
 def callout(slide, label, text, color, y):
     rect(slide, MARGIN, y, Inches(0.12), CALLOUT_H, color)
     bg = rect(slide, MARGIN + Inches(0.12), y, SLIDE_W - 2 * MARGIN - Inches(0.12), CALLOUT_H, LIGHT_BG)
@@ -657,7 +706,7 @@ def build_content(prs, deck, s, total):
     panels = (("cronologia", Inches(7.4), timeline_chart), ("vista", Inches(7.4), view_diagram),
               ("codigo", Inches(6.6), code_block), ("comparacion", Inches(6.2), compare_diagram),
               ("tiles", Inches(6.4), tiles_diagram), ("flujo", Inches(5.0), flow_diagram),
-              ("diagrama", Inches(5.6), layer_diagram))
+              ("diagrama", Inches(5.6), layer_diagram), ("safearea", Inches(4.6), safearea_diagram))
     panel = next((pn for pn in panels if s.get(pn[0])), None)
     has_img = bool(s.get("imagen")) and panel is None
     panel_w = panel[1] if panel else IMG_W
