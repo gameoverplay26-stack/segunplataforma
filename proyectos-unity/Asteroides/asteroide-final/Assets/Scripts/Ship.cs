@@ -46,9 +46,20 @@ public class Ship : MonoBehaviour
     private readonly float maxLeft = 40;
     private readonly float maxRight = -40;
 
+    // Intención del jugador, independiente del dispositivo (la escribe ShipInputAdapter).
+    private const float DeadZone = 0.2f;
+    private float moveIntent;
+    private bool fireIntent;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    public void SetIntent(float horizontal, bool fire)
+    {
+        moveIntent = horizontal;
+        fireIntent = fire;
     }
 
     private void Update()
@@ -58,17 +69,17 @@ public class Ship : MonoBehaviour
             return;
         }
 
-        if (Input.GetKey(KeyCode.Space) && canShoot)
+        if (fireIntent && canShoot)
         {
             ShootLaser();
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (moveIntent < -DeadZone)
         {
             MoveLeft();
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (moveIntent > DeadZone)
         {
             MoveRight();
         }

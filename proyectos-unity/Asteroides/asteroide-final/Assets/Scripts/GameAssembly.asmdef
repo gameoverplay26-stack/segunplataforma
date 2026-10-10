@@ -1,3 +1,6 @@
 {
-	"name": "GameAssembly"
+	"name": "GameAssembly",
+	"references": [
+		"Unity.InputSystem"
+	]
 }
