@@ -12,6 +12,7 @@ Paleta y estilo heredados de diseno-plataformas/unidad-03/scripts/generar_diapos
 import argparse
 import os
 import re
+import subprocess
 import sys
 
 from pptx import Presentation
@@ -516,22 +517,37 @@ def tiles_diagram(slide, spec, x, y, w, h):
 
 def code_block(slide, spec, x, y, w, h):
     """Bloque de codigo leido del archivo real. Sintaxis: codigo: ruta/relativa/a/la/unidad.cs:61-73
+    o, para una version anterior guardada en git: codigo: git:REV:ruta/relativa/a/la/unidad.cs:61-73
     Resalta en ambar las lineas que contienen 'Input.'"""
+    rev = None
+    if spec.startswith("git:"):
+        rev, _, spec = spec[4:].partition(":")
     path, _, rng = spec.rpartition(":")
     a, b = [int(v) for v in rng.split("-")]
-    with open(os.path.join(UNIT_DIR, path), encoding="utf-8") as fh:
-        lines = fh.read().splitlines()[a - 1:b]
+    full = os.path.normpath(os.path.join(UNIT_DIR, path))
+    if rev:
+        root = subprocess.check_output(["git", "rev-parse", "--show-toplevel"], cwd=UNIT_DIR, text=True).strip()
+        rel = os.path.relpath(full, root).replace(os.sep, "/")
+        text = subprocess.check_output(["git", "show", "%s:%s" % (rev, rel)], cwd=root).decode("utf-8-sig")
+    else:
+        with open(full, encoding="utf-8-sig") as fh:
+            text = fh.read()
+    lines = text.splitlines()[a - 1:b]
     indent = min((len(l) - len(l.lstrip()) for l in lines if l.strip()), default=0)
     title_h = Inches(0.35)
     tf = textbox(slide, x, y, w, title_h, MSO_ANCHOR.MIDDLE)
-    run(tf.paragraphs[0], os.path.basename(path) + "  ·  líneas %d–%d" % (a, b), 12, MUTED, bold=True)
+    label = os.path.basename(path) + "  ·  líneas %d–%d" % (a, b)
+    if rev:
+        label += "  ·  versión original (commit %s)" % rev
+    run(tf.paragraphs[0], label, 12, MUTED, bold=True)
     box = rect(slide, x, y + title_h + Inches(0.05), w, h - title_h - Inches(0.05), RGBColor(0x0F, 0x17, 0x2A), MSO_SHAPE.ROUNDED_RECTANGLE)
     box.adjustments[0] = 0.04
     tf = box.text_frame
     tf.word_wrap = False
     tf.vertical_anchor = MSO_ANCHOR.MIDDLE
     tf.margin_left = Inches(0.25)
-    size = 15 if len(lines) <= 14 else 12
+    longest = max((len(l) - indent for l in lines), default=0)
+    size = 15 if len(lines) <= 14 and longest <= 50 else 12
     for i, line in enumerate(lines):
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         p.alignment = PP_ALIGN.LEFT

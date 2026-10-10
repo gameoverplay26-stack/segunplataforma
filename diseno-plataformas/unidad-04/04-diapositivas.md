@@ -1,9 +1,11 @@
 # Unidad 4 — Diapositivas definitivas (texto + notas del docente)
 
 Fuente única de los 4 decks de la Unidad 4. Basado en la arquitectura **aprobada** ([`04-diapositivas-arquitectura.md`](./04-diapositivas-arquitectura.md)).
-Para regenerar los `.pptx` después de editar este archivo: `python scripts/build_decks.py` desde `diseno-plataformas/unidad-04/` (requiere `pip install python-pptx`). Opciones: `--decks 1 3` genera solo esos decks; `--version 2` agrega el sufijo `-v2` al nombre del archivo; `--out-dir RUTA` escribe en otra carpeta (útil si el .pptx está abierto). Claves adicionales: `diagrama: Capa: a, b | Capa: c || nota` dibuja capas apiladas con flechas (slide 3 de la Clase 1 v2); `cronologia: Etiqueta: 1972 | *Destacada: 2008 || nota` dibuja una cronología de barras hasta 2026, y el `*` destaca una barra (slide 6); `hitos: 1972 · Nombre · aporte | …` dibuja una línea de tiempo de hitos a todo el ancho (slide 7). También: `flujo: Paso | Paso || nota` (cadena vertical con flechas), `comparacion: +Título: a, b // nota | Título: c, d // nota` (dos columnas; el `+` agrupa los chips en un solo bloque y el `-` los dibuja a la mitad de tamaño), `tiles: 4x7 | rótulo | rótulo de la ampliación` (pantalla dividida en tiles con overdraw), `codigo: ruta/al/archivo.cs:61-73` (lee el código real del repositorio) y `vista: 5 | -8, 8 | 16:9 | 9:16` (pantallas a escala para una cámara ortográfica y un rango de spawn). `safearea: rótulo` dibuja un teléfono con muesca, barra de gestos y zona segura (Clase 2). **Regla:** las slides sin imagen real no llevan recuadro vacío; la sugerencia de imagen queda en las notas.
+Para regenerar los `.pptx` después de editar este archivo: `python scripts/build_decks.py` desde `diseno-plataformas/unidad-04/` (requiere `pip install python-pptx`). Opciones: `--decks 1 3` genera solo esos decks; `--version 2` agrega el sufijo `-v2` al nombre del archivo; `--out-dir RUTA` escribe en otra carpeta (útil si el .pptx está abierto). Claves adicionales: `diagrama: Capa: a, b | Capa: c || nota` dibuja capas apiladas con flechas (slide 3 de la Clase 1 v2); `cronologia: Etiqueta: 1972 | *Destacada: 2008 || nota` dibuja una cronología de barras hasta 2026, y el `*` destaca una barra (slide 6); `hitos: 1972 · Nombre · aporte | …` dibuja una línea de tiempo de hitos a todo el ancho (slide 7). También: `flujo: Paso | Paso || nota` (cadena vertical con flechas), `comparacion: +Título: a, b // nota | Título: c, d // nota` (dos columnas; el `+` agrupa los chips en un solo bloque y el `-` los dibuja a la mitad de tamaño), `tiles: 4x7 | rótulo | rótulo de la ampliación` (pantalla dividida en tiles con overdraw), `codigo: ruta/al/archivo.cs:61-73` (lee el código real del repositorio; con `codigo: git:REV:ruta:61-73` lo lee de un commit, por ejemplo la versión original de Asteroides) y `vista: 5 | -8, 8 | 16:9 | 9:16` (pantallas a escala para una cámara ortográfica y un rango de spawn). `safearea: rótulo` dibuja un teléfono con muesca, barra de gestos y zona segura (Clase 2). **Regla:** las slides sin imagen real no llevan recuadro vacío; la sugerencia de imagen queda en las notas.
 
 **Versiones:** los cuatro decks están en su **versión 2** (2026-10-05): texto breve en las slides, notas completas con glosario, sin menciones a clases futuras y gráficos nativos en lugar de recuadros de imagen. Los `.pptx` v1 se conservan como archivos; su texto fuente está en el historial de git (commit `acb7c4c`). Generar todo: `python scripts/build_decks.py --version 2`. El deck 1 en su versión 2: incorpora conceptos del artículo de Kevuru Games, con texto breve en las slides y notas del docente completas. Se genera con `python scripts/build_decks.py --decks 1 --version 2`. La v1 (`Unidad-4-Clase-1-2026.pptx`) se conserva como archivo; su texto fuente está en el historial de git (commit `acb7c4c`).
+
+**Versión 3 (2026-10-10): porteo real de Asteroides.** Se integra, de forma gradual y desde la slide 16 de la Clase 1 (la clase se cortó en la slide 15), el porteo de entrada que ya está implementado en el repositorio: paquete Input System 1.19.0, `ShipInputAdapter` (dispositivo → intención), `Ship.SetIntent` y controles en pantalla (`OnScreenStick`/`OnScreenButton`). Cada clase respeta el reparto **40 % teoría / 60 % práctica**, contando la apertura, la teoría y las demos como teoría. Cambios: Clase 1 (slide 17 con el código **original** leído de git y notas de la 18); Clase 2 (demo ampliada, slides nuevas 13 y 14, actividad nueva A4.7 en la 16; A4.6 pasa a la Clase 4); Clase 3 (slide nueva 12, "Mismo patrón, dos adaptadores", con la evidencia de los tests); Clase 4 (A4.6, casos QA de controles, transferencia al 2D Platformer y puente al gamepad). Registro técnico: [`../laboratorio-adaptacion/PORTEO-ASTEROIDES.md`](../laboratorio-adaptacion/PORTEO-ASTEROIDES.md). Generar: `python scripts/build_decks.py --version 3`. Las v1 y v2 se conservan como archivos.
 
 **Formato que lee el generador (no cambiar la sintaxis):**
 - `# DECK n | Título | Subtítulo` empieza un deck.
@@ -15,7 +17,7 @@ Para regenerar los `.pptx` después de editar este archivo: `python scripts/buil
 
 ---
 
-# DECK 1 | Un teléfono no es una PC chica | Unidad IV · Clase 1 · v2
+# DECK 1 | Un teléfono no es una PC chica | Unidad IV · Clase 1 · v3
 
 ## 1 | Diseño según Plataforma Móvil
 tipo: portada
@@ -54,7 +56,7 @@ kicker: CONTINUIDAD [RECICLADO 28/09]
 - Interrupciones del sistema
 - Intención ≠ dispositivo
 diagrama: Dispositivo: Teclado, Táctil, Gamepad | Intención: Mover, Disparar | Nave: Movimiento, Disparo, Límites || Hoy Ship.cs lee el teclado directo: falta la capa del medio
-fuente: Clase 28/09/2026 — Clase2-Plataformas.pptx; código del proyecto (Ship.cs 61–73)
+fuente: Clase 28/09/2026 — Clase2-Plataformas.pptx; código del proyecto (Ship.cs 61–73, versión original, commit e766f8c)
 notas:
 Glosario (conceptos cortos para la docente):
 • Zona segura (safe area): parte de la pantalla libre de muescas, bordes curvos y barras del sistema, donde la interfaz se ve completa.
@@ -366,7 +368,7 @@ kicker: ACTIVIDAD · 20 MIN · GRUPOS
 - Spawner.cs 101–106: el spawn
 - Prefab Game: Canvas y cámara
 actividad: 5 supuestos: dónde (archivo:línea), qué pasaría, qué eje.
-codigo: ../../proyectos-unity/Asteroides/asteroide-final/Assets/Scripts/Ship.cs:61-73
+codigo: git:e766f8c:../../proyectos-unity/Asteroides/asteroide-final/Assets/Scripts/Ship.cs:61-73
 notas:
 Glosario (conceptos cortos para la docente):
 • Spawn: aparición de un objeto en el juego; acá, los asteroides.
@@ -376,6 +378,7 @@ Glosario (conceptos cortos para la docente):
 Consigna completa: listar al menos 5 supuestos que dejan de valer en un teléfono, indicando dónde están (archivo:línea), qué pasaría en móvil y a qué eje pertenecen (input, pantalla, UI, ciclo de vida, rendimiento).
 La respuesta completa es la tabla S1–S13 de 02-caso-practico. Para aprobar alcanza con S1 (teclado), S3/S4/S5 (límites, cámara, spawn), S6 (Canvas en Constant Pixel Size) y S8 (sin pausa).
 Pista si se traban: "¿qué pasa con la cámara si la pantalla es más angosta que alta?".
+Importante (versión 3): el código de la slide es la versión **original** de Ship.cs, leída del commit e766f8c. En el repositorio, Ship.cs ya tiene el porteo de entrada (Ship.SetIntent + ShipInputAdapter). Los grupos analizan la versión original: si trabajan con el repositorio clonado, que lo hagan sobre ese commit (git checkout e766f8c -- proyectos-unity/Asteroides/asteroide-final/Assets/Scripts/Ship.cs) o con la copia del TP. No mostrar todavía la solución.
 
 ## 18 | Lo que encontramos
 tipo: contenido
@@ -395,6 +398,7 @@ La cámara es ortográfica de tamaño 5: el semiancho visible es 5 × aspect. A 
 El Spawner crea asteroides en x ∈ [−8, 8] (coordenadas de mundo). En vertical, la mayoría de los asteroides nace fuera de pantalla.
 No hay error de lógica: hay un supuesto de plataforma. Ningún archivo tiene un error por sí solo; el problema aparece en la combinación cámara + spawner + orientación.
 Mostrarlo en el Device Simulator. Conectar con el testing de integración de la U3: es un defecto de integración con la plataforma.
+Cerrar la puesta en común volviendo al supuesto S1 (teclado): en el teléfono, Asteroides deja tocar "Start" pero la nave no se mueve ni dispara, porque Ship.cs lee teclas fijas. La salida es el diagrama de la slide 3: separar el dispositivo de la intención. No mostrar la herramienta todavía; alcanza con dejar planteado el problema. Se resuelve en código más adelante en la unidad.
 
 ## 19 | ¿Cómo se elige una plataforma?
 tipo: contenido
@@ -461,7 +465,7 @@ Tarea técnica obligatoria (sin ella no se puede hacer la práctica en el teléf
 1. Instalar el módulo Android Build Support (con OpenJDK, Android SDK y NDK) en Unity 6000.3.11f1 desde Unity Hub.
 2. En el teléfono: tocar 7 veces "Número de compilación" para habilitar las Opciones de desarrollador y activar "Depuración USB" (en Android 9 o superior: Ajustes > Sistema > Avanzado > Opciones de desarrollador).
 
-# DECK 2 | Diseñar para el pulgar | Unidad IV · Clase 2 · v2
+# DECK 2 | Diseñar para el pulgar | Unidad IV · Clase 2 · v3
 
 ## 1 | Diseñar para el pulgar
 tipo: portada
@@ -653,9 +657,53 @@ Glosario (conceptos cortos para la docente):
 Pasos: el Canvas del prefab Game está en Constant Pixel Size con referencia 800 × 600. Cambiarlo a Scale With Screen Size, elegir una resolución de referencia y comparar en el Device Simulator con dos teléfonos y una tablet. Después, leer Screen.safeArea y ver dónde cae el score.
 Hacerlo en una copia o rama del proyecto. Mostrar el antes y el después. Remarcar el orden: primero apareció el problema (slide 2), ahora la herramienta.
 
-## 13 | Actividad A4.3 — Dos esquemas
+## 13 | Una acción, tres dispositivos
+tipo: demo
+kicker: DEMO EN VIVO · INPUT SYSTEM
+- En el teléfono, la nave no se mueve
+- Teclado, gamepad y dedo: la misma acción
+- Los controles en pantalla simulan un gamepad
+diagrama: Dispositivo: Teclado, Gamepad, Joystick en pantalla | Intención: Mover, Disparar | Nave: MoveLeft, MoveRight, ShootLaser || La nave no sabe qué dispositivo se usó
+fuente: Unity Input System 1.19 — On-screen Controls; código del proyecto (ShipInputAdapter.cs, Ship.cs)
+notas:
+[Diapositiva nueva en la versión 3: porteo real de Asteroides.]
+Glosario (conceptos cortos para la docente):
+• Input System: paquete de Unity que reemplaza al Input Manager clásico; trabaja con acciones en lugar de teclas fijas.
+• Acción: lo que el jugador quiere hacer (mover, disparar), separado del botón que la produce.
+• Binding: asociación entre una acción y un control concreto (flecha izquierda, stick del gamepad).
+• OnScreenStick / OnScreenButton: componentes que dibujan un control en la pantalla táctil y lo hacen pasar por un gamepad virtual.
+• Active Input Handling: opción del proyecto que elige el sistema de entrada (Old, New o Both).
+Primero el problema (regla de la cátedra): en el teléfono, Asteroides deja tocar "Start", pero la nave no se mueve ni dispara, porque Ship.cs leía teclas fijas (supuesto S1). Después la herramienta.
+El diagrama es el mismo de las tres capas: el dispositivo cambia; la intención y la nave no. Los controles en pantalla no son un caso especial: según la documentación de Input System 1.19, un OnScreenStick con el control path <Gamepad>/leftStick crea un gamepad virtual, y el juego lo lee igual que un gamepad físico.
+Pasos de la demo (versión del repositorio, ya portada):
+1. Package Manager: Input System 1.19.0 instalado (viene con Unity 6000.3.11f1).
+2. Project Settings > Player > Active Input Handling = Both. Se usa Both, y no solo New, para no romper el menú, que todavía usa el StandaloneInputModule clásico. Unity pide reiniciar el editor.
+3. Abrir el Device Simulator con un teléfono: aparecen el joystick abajo a la izquierda y el botón de disparo abajo a la derecha (MobileControlsVisibility los muestra solo en plataformas móviles).
+4. Mover la nave con el mouse sobre el joystick. Después, en la PC, mostrar que el teclado sigue funcionando y, si hay un gamepad, que también funciona sin cambiar código.
+Límite a decir en voz alta: el Device Simulator simula el toque de un dedo; mover y disparar a la vez (dos dedos) solo se prueba en el teléfono.
+URL verificada (2026-10-10): https://docs.unity3d.com/Packages/com.unity.inputsystem@1.19/manual/OnScreen.html
+
+## 14 | La intención en código
+tipo: demo
+kicker: DEMO EN VIVO · CÓDIGO REAL
+- Las teclas pasan a ser bindings
+- El gamepad se suma sin tocar la nave
+- La nave recibe SetIntent(mover, disparar)
+codigo: ../../proyectos-unity/Asteroides/asteroide-final/Assets/Scripts/ShipInputAdapter.cs:18-27
+fuente: Código del proyecto (ShipInputAdapter.cs; Ship.cs, método SetIntent)
+notas:
+[Diapositiva nueva en la versión 3.]
+Glosario (conceptos cortos para la docente):
+• Composite 1DAxis: binding que arma un eje de −1 a 1 con dos teclas (negativa y positiva).
+• Adaptador: clase que traduce el dispositivo a la intención; acá, ShipInputAdapter.
+• Zona muerta (dead zone): margen alrededor de 0 en el que el stick se considera quieto (0,2 en Ship.cs).
+Qué mostrar: las flechas y la barra espaciadora siguen ahí, pero ahora como bindings de una acción; el stick y el D-pad del gamepad y el botón A (buttonSouth) se agregan como bindings de las mismas acciones. Cada frame, el adaptador llama a ship.SetIntent(mover, disparar).
+Comparar con la slide de A4.2 (versión original): las tres lecturas de Input.GetKey desaparecieron de Ship.cs. MoveLeft, MoveRight y ShootLaser no cambiaron, y por eso los tests que ya existían siguen sirviendo.
+Decisión de diseño a explicitar: el esquema del repositorio (joystick + botón) es uno de los posibles; en A4.3 cada grupo elige el suyo y lo implementa en A4.7.
+
+## 15 | Actividad A4.3 — Dos esquemas
 tipo: actividad
-kicker: ACTIVIDAD · 25 MIN · GRUPOS
+kicker: ACTIVIDAD · 20 MIN · GRUPOS
 - Dos esquemas de control
 - Boceto con safe area
 - Medidas en pt/dp
@@ -669,24 +717,46 @@ Glosario (conceptos cortos para la docente):
 Consigna completa: diseñar dos esquemas (por ejemplo, joystick virtual + botón vs. arrastrar + autodisparo); boceto sobre una pantalla de teléfono con la safe area marcada (la plantilla de la slide); medidas en pt/dp y orientación elegida; comparación con cinco criterios: oclusión, precisión, una mano, accesibilidad y descubribilidad.
 Buena respuesta: decide la orientación sabiendo su efecto sobre el spawn, respeta 44 pt / 48 dp, no pone controles bajo la muesca, reconoce que el autodisparo cambia el game design (baja la habilidad requerida y cambia el balance) y ofrece una alternativa accesible.
 
-## 14 | Probalo con tu mano · A4.6
+## 16 | Actividad A4.7 — Del boceto al control
 tipo: actividad
-kicker: PLAYTEST DE PAPEL · 15 MIN + A4.6 · 15 MIN
+kicker: ACTIVIDAD · 30 MIN · GRUPOS · EN UNITY
+- Instalar Input System 1.19
+- Implementar su esquema de A4.3
+- Probar en el Device Simulator
+- ¿Mide 48 dp? ¿Tapa la nave?
+actividad: Entreguen una captura y lo que el simulador no pudo probar.
+notas:
+[Actividad nueva en la versión 3.]
+Glosario (conceptos cortos para la docente):
+• Device Simulator: ventana de Unity que muestra el juego con la pantalla de un teléfono; simula el toque de un dedo, pero no el rendimiento.
+• Captura de evidencia: imagen que muestra el resultado con la fecha y el perfil de dispositivo usado.
+Consigna completa (sobre su copia del proyecto, versión original):
+1. Instalar Input System 1.19.0 desde el Package Manager y poner Active Input Handling = Both (reiniciar el editor).
+2. Implementar el esquema que eligieron en A4.3: joystick + botón (OnScreenStick + OnScreenButton) o arrastre + autodisparo (una acción ligada al puntero y disparo continuo). La nave no debe leer el dispositivo: solo recibe la intención.
+3. Probar en el Device Simulator con dos perfiles (un teléfono con muesca y uno sin muesca).
+4. Medir: ¿el control mide al menos 48 dp? ¿Queda fuera de la muesca? ¿El pulgar taparía la zona por donde caen los asteroides?
+5. Escribir qué NO pudieron probar en el simulador (por ejemplo, dos dedos a la vez, comodidad, rendimiento). Esa lista se prueba en el teléfono más adelante en la unidad.
+Referencia para la docente: la solución de joystick + botón está en el repositorio (ShipInputAdapter.cs, MobileControlsVisibility.cs y los controles del prefab UICanvas, creados con Editor/PorteoSetup.cs). No entregarla: sirve para destrabar a un grupo.
+Errores frecuentes: olvidar Active Input Handling (las acciones no reciben nada); si el código está en un ensamblado propio (asmdef), agregar la referencia a Unity.InputSystem; poner el control fuera del Canvas.
+Avance del TP 3: sección 3 (control y HUD) con evidencia.
+
+## 17 | Probalo con tu mano
+tipo: actividad
+kicker: PLAYTEST DE PAPEL · 12 MIN
 - HUD a escala sobre tu teléfono
 - ¿Llegás a todo?
-- A4.6: 60 fps → 35 fps a los 8 min
-pregunta: ¿Cuello de botella, métrica, herramienta? ¿Qué NO sirve?
+- ¿Qué tapa el pulgar?
+pregunta: ¿Coincide con lo que mostró el simulador?
 notas:
 Glosario (conceptos cortos para la docente):
-• Playtest de papel: prueba con personas usando un prototipo dibujado, antes de programar.
-• Cuello de botella: la parte del sistema que limita el rendimiento.
-• Métrica: valor que se mide (por ejemplo, el tiempo de frame).
-Consigna del playtest: dibujar el HUD a escala sobre la silueta del propio teléfono, sostenerlo y comprobar si se llega a todo y qué tapa el pulgar. Es barato y se hace con personas reales: la comodidad no se prueba en el editor.
-A4.6, situación completa: "60 fps al empezar, 35–40 fps a los 8 minutos en un teléfono de gama media; en el editor, 200 fps".
-Respuesta esperada: throttling térmico agravado por el overdraw de las partículas; medir el tiempo de frame a lo largo del tiempo y el estado térmico con el Profiler en el dispositivo; fijar 30 fps o un presupuesto del 65 % y reducir el overdraw. El editor y el Device Simulator no sirven para esto.
+• Playtest de papel: prueba con personas usando un prototipo dibujado, antes de probar en el dispositivo.
+Consigna del playtest: dibujar el HUD que implementaron, a escala, sobre la silueta del propio teléfono; sostenerlo y comprobar si se llega a todo y qué tapa el pulgar. Es barato y se hace con personas reales: la comodidad no se prueba en el editor.
+Comparar con A4.7: el simulador dijo dónde están los controles; la mano dice si se pueden usar.
 Cierre: un buen layout no garantiza comodidad; eso lo dicen las personas. Verificar quién ya tiene la depuración USB funcionando.
+[Versión 3: la actividad A4.6 se mueve a la práctica con el teléfono, donde se puede medir con el Profiler.]
+Reparto de la clase en la versión 3: teoría 48 min (apertura 8, UI táctil 20, gestos y accesibilidad 10, demos 10) = 40 %; práctica 72 min (A4.3 20, A4.7 30, playtest 12, cierre 10) = 60 %.
 
-# DECK 3 | El negocio y la prueba | Unidad IV · Clase 3 · v2
+# DECK 3 | El negocio y la prueba | Unidad IV · Clase 3 · v3
 
 ## 1 | El negocio y la prueba
 tipo: portada
@@ -877,7 +947,30 @@ Glosario (conceptos cortos para la docente):
 Detalle: Google Play exige AAB y, desde el 31/08/2026, apuntar a Android 16 (API 36). Unity 6.3 soporta Android 7.1 (API 25) o superior. Para iOS, Unity genera un proyecto de Xcode, y Xcode solo corre en macOS. En la cátedra no hay Mac: iOS se estudia de forma conceptual.
 Las reglas de tienda cambian todos los años: un juego publicado en 2025 puede necesitar cambios en 2026 sin que nadie toque el diseño. Decir explícitamente el límite del curso con iOS; no esconderlo.
 
-## 12 | Demo: el test de pausa en rojo
+## 12 | Mismo patrón, dos adaptadores
+tipo: contenido
+kicker: TESTING · ARQUITECTURA
+- Entrada: dispositivo → intención → nave
+- Pausa: SO → adaptador → regla
+- Se prueba la regla, no el dispositivo
+comparacion: Entrada (ya portada): ShipInputAdapter, Ship.SetIntent // 3 tests de intención en verde | Pausa (A4.4): Adaptador OnApplicationPause, Regla de pausa // Su test de Edit Mode
+fuente: Código del proyecto (ShipInputAdapter.cs, ShipIntentTests.cs); resultados del Test Runner en batchmode (2026-10-10)
+notas:
+[Diapositiva nueva en la versión 3: porteo real de Asteroides.]
+Glosario (conceptos cortos para la docente):
+• Adaptador: clase que traduce lo que pasa afuera del juego (un dispositivo, un aviso del sistema operativo) en una orden para la lógica del juego.
+• Regla: lógica del juego que se puede probar sin el dispositivo real.
+• Test inestable (flaky): test que a veces pasa y a veces falla sin que cambie el código.
+• SO: sistema operativo (Android, iOS); es quien avisa al juego que pasa a segundo plano.
+Idea: el porteo de la entrada ya usó el mismo patrón que van a aplicar a la pausa en A4.4. ShipInputAdapter lee el teclado, el gamepad o los controles en pantalla y llama a Ship.SetIntent; los tests de ShipIntentTests prueban la nave con intenciones, sin ningún dispositivo, y desactivan el adaptador para aislarla.
+Evidencia real del repositorio (Test Runner en batchmode, Play Mode, 2026-10-10; XML en laboratorio-adaptacion/evidencia):
+1. Antes del porteo: 11 tests, 7 pasan y 4 fallan.
+2. Después del porteo: 14 tests (11 + 3 nuevos). En tres corridas pasaron 10, 11 y 10. Los 3 tests nuevos pasaron siempre.
+3. Tres fallas son siempre las mismas: las "hipótesis de integración" que detectan defectos reales del pool de asteroides (un asteroide se libera dos veces; NewGame no borra los asteroides viejos; un segundo NewGame acelera el spawn).
+4. Una falla cambia de test entre corridas (LaserMovesUp en una, GameOverStopsSpawningAndDisablesShip en otras): el stack trace lleva al mismo defecto del pool (Laser.cs:52 → Spawner.PlayExplosion). Es un test inestable causado por el código del juego, no por el porteo.
+Mensaje: un test en rojo no siempre es culpa del cambio que acabamos de hacer; hay que leer el stack trace antes de concluir. Es el ciclo de la Unidad 3 aplicado a la plataforma.
+
+## 13 | Demo: el test de pausa en rojo
 tipo: demo
 kicker: DEMO EN VIVO
 - Pausa defectuosa: reanuda sola
@@ -893,9 +986,9 @@ Requiere tener en el repositorio la versión de Asteroides con el sistema de pau
 Mostrar el rojo y no corregir: lo corrigen los grupos. Recordar el ciclo de la Unidad 3: rojo, corrección, verde, regresión.
 La pestaña Player del Test Runner (correr los tests en el teléfono) se usa más adelante en la unidad, en la práctica con el dispositivo.
 
-## 13 | Actividad A4.4: la llamada que mata la nave
+## 14 | Actividad A4.4: la llamada que mata la nave
 tipo: actividad
-kicker: ACTIVIDAD · 25 MIN · GRUPOS
+kicker: ACTIVIDAD · 35 MIN · GRUPOS
 - Comportamiento esperado
 - Regla separada del adaptador
 - Test de Edit Mode
@@ -910,8 +1003,10 @@ Glosario (conceptos cortos para la docente):
 Consigna completa: escribir el comportamiento esperado ante una interrupción como criterio verificable; separar la regla (C# puro) del adaptador (MonoBehaviour que recibe OnApplicationPause); escribir el test de Edit Mode de la regla; completar qué NO demuestra el test. El test de Play Mode y la corrección se terminan en el TP 3, y el QA manual se hace más adelante en la unidad, con los teléfonos.
 El diagrama muestra el camino del aviso: el sistema operativo avisa al adaptador, el adaptador llama a la regla y la regla cambia el estado del juego.
 Respuesta esperada de "qué no demuestra": que el sistema operativo llame al callback cuando corresponde; qué pasa si el sistema mata el proceso (no se llama nada); el caso del teclado en pantalla en Android.
+Ejemplo para destrabar (versión 3): ShipIntentTests.cs muestra cómo se aísla la regla del adaptador (el test desactiva ShipInputAdapter y llama directamente a SetIntent). La regla de pausa se prueba igual.
+Reparto de la clase en la versión 3: teoría 48 min (apertura 8, monetización 18, testing 14 incluida la slide del patrón, demo 8) = 40 %; práctica 72 min (A4.5 22, A4.4 35, revisión de los controles de A4.7 10, cierre 5) = 60 %.
 
-# DECK 4 | Asteroides en tu bolsillo | Unidad IV · Clase 4 · v2
+# DECK 4 | Asteroides en tu bolsillo | Unidad IV · Clase 4 · v3
 
 ## 1 | Asteroides en tu bolsillo
 tipo: portada
@@ -920,6 +1015,8 @@ kicker: UNIDAD IV · CLASE 4 DE 4 · PRÁCTICA EN DISPOSITIVO
 - Diseño según Plataformas de Juego · FI – UNJu · 2026
 notas:
 Clase 100 % práctica. Antes de empezar, verificar cables, depuración USB y Android Build Support instalado.
+Versión 3: la build ya es jugable en el teléfono (joystick y botón de disparo del porteo de entrada). Sin ese porteo, en el teléfono solo se podía tocar "Start".
+Reparto en la versión 3: apertura 8, build 20, medición 18, A4.6 8, QA manual 20, matriz 10, defensa 22, transferencia 8, cierre 6.
 
 ## 2 | ¿Qué no sabemos todavía?
 tipo: contenido
@@ -994,9 +1091,26 @@ notas:
 Glosario (conceptos cortos para la docente):
 • fps promedio: cantidad media de imágenes por segundo durante la medición.
 • Tiempo de frame máximo: el cuadro que más tardó; muestra los tirones que el promedio esconde.
-Conclusión esperada: el número del editor no predice el del teléfono. Retomar el caso A4.6 de la Clase 2 (200 fps en el editor).
+Conclusión esperada: el número del editor no predice el del teléfono. Pasar a A4.6 (slide siguiente), que muestra el mismo problema con datos de 10 minutos.
 
-## 7 | Interrumpir a propósito
+## 7 | A4.6 — Anda bien los primeros 5 minutos
+tipo: actividad
+kicker: INDIVIDUAL · 8 MIN · FORMATIVA
+- 60 fps al empezar
+- 35–40 fps a los 8 minutos
+- En el editor: 200 fps
+pregunta: ¿Cuello de botella, métrica, herramienta? ¿Qué NO sirve?
+notas:
+[En la versión 3, A4.6 se hace acá, con el teléfono y el Profiler a mano.]
+Glosario (conceptos cortos para la docente):
+• Cuello de botella: la parte del sistema que limita el rendimiento.
+• Métrica: valor que se mide (por ejemplo, el tiempo de frame).
+• Throttling térmico: el teléfono baja la frecuencia del procesador para no calentarse.
+Situación completa: "60 fps al empezar, 35–40 fps a los 8 minutos en un teléfono de gama media; en el editor, 200 fps".
+Respuesta esperada: throttling térmico agravado por el overdraw de las partículas; medir el tiempo de frame a lo largo del tiempo y el estado térmico con el Profiler en el dispositivo; fijar 30 fps o un presupuesto del 65 % y reducir el overdraw. El editor y el Device Simulator no sirven para esto.
+Contrastar con la medición de 10 minutos que acaban de hacer: ¿su teléfono se comporta igual?
+
+## 8 | Interrumpir a propósito
 tipo: actividad
 kicker: QA MANUAL · 20 MIN
 | Caso | Acción | Esperado | Real |
@@ -1005,15 +1119,18 @@ kicker: QA MANUAL · 20 MIN
 | QA-03 | Bloquear la pantalla | Pausado | |
 | QA-04 | Teclado en pantalla | Documentar | |
 | QA-05 | Cierre forzado | Qué se pierde | |
+| QA-06 | Mover y disparar a la vez | Responden los dos | |
+| QA-07 | Controles bajo el pulgar | ≥ 48 dp, no tapan | |
 fuente: Unity 6.3 — OnApplicationPause / OnApplicationFocus; Android — activity lifecycle
 notas:
 Glosario (conceptos cortos para la docente):
 • QA manual: prueba hecha por una persona, siguiendo pasos definidos.
 • Cierre forzado: terminar la app desde los ajustes del sistema.
 Casos completos: QA-01 llamada o alarma durante la partida (esperado: el juego se pausa y espera un toque); QA-02 botón de inicio y volver (pausado, sin daño a la nave); QA-03 bloquear y desbloquear la pantalla (pausado); QA-04 abrir el teclado en pantalla, si aplica (documentar qué pasa); QA-05 cierre forzado y reabrir (documentar qué se pierde).
+Casos nuevos de la versión 3 (controles portados): QA-06, mover con el joystick y disparar con el botón al mismo tiempo, con dos dedos (el Device Simulator simula un solo dedo, así que este caso solo se prueba acá); QA-07, medir que cada control tenga al menos 48 dp y comprobar que el pulgar no tape la zona por donde caen los asteroides.
 Mismo formato de caso de prueba de la Unidad 2 (esperado vs. real). Si los grupos todavía no corrigieron el defecto, probar la versión con defecto: el resultado real va a contradecir al esperado, y eso es un hallazgo.
 
-## 8 | Lo que el test automático no vio
+## 9 | Lo que el test automático no vio
 tipo: contenido
 kicker: LÍMITES
 - ¿Coinciden tests y QA manual?
@@ -1025,7 +1142,7 @@ Glosario (conceptos cortos para la docente):
 • Test automático: prueba que corre sola y compara el resultado con lo esperado.
 Respuesta esperada: los tests protegen la regla y el adaptador ante regresiones; el QA manual comprueba que el sistema operativo dispare los callbacks y qué pasa cuando se cierra el proceso. Es la frontera entre automatización y hardware real, la misma de la Unidad 3 aplicada a la plataforma.
 
-## 9 | La matriz del curso
+## 10 | La matriz del curso
 tipo: actividad
 kicker: COMPATIBILIDAD · 15 MIN
 | Grupo | Modelo | Android | RAM | Resolución | fps | ¿Spawn visible en vertical? |
@@ -1040,7 +1157,7 @@ Glosario (conceptos cortos para la docente):
 • Muestra de conveniencia: los casos que se tienen a mano, no elegidos para representar al mercado.
 Respuesta esperada: no. Es una muestra de conveniencia; faltan gamas, fabricantes, versiones de Android y tablets. Por eso existen las granjas de dispositivos y Android vitals. Igual es evidencia real y vale más que el editor.
 
-## 10 | Defensa del TP 3
+## 11 | Defensa del TP 3
 tipo: actividad
 kicker: DEFENSA · 3 MIN POR GRUPO · COEVALUACIÓN
 - Una decisión de plataforma
@@ -1057,16 +1174,36 @@ Glosario (conceptos cortos para la docente):
 Formato de la defensa: una decisión de plataforma (contexto, opciones, decisión, consecuencias); la evidencia del teléfono que la respalda o la contradice; lo que quedó sin probar, dicho explícitamente.
 Los criterios de coevaluación son una versión reducida de la rúbrica del TP 3 (ver 05). La entrega final del dossier se sube al aula virtual.
 
-## 11 | En móvil, el límite lo pone el dispositivo
+## 12 | El mismo porteo, otro juego
+tipo: actividad
+kicker: TRANSFERENCIA · 8 MIN · GRUPOS
+- 2D Platformer: ¿qué se reutiliza?
+- Ya tiene MobileMove y MobileJump…
+- … pero no tiene botones en pantalla
+- Saltar exige más precisión que esquivar
+pregunta: ¿Alcanza con copiar el joystick de Asteroides?
+fuente: Auditoría del 2D Platformer (laboratorio-adaptacion/PROJECT-DISCOVERY.md y MOBILE-ADAPTATION.md, 2026-10-10)
+notas:
+[Diapositiva nueva en la versión 3.]
+Glosario (conceptos cortos para la docente):
+• Transferencia: aplicar lo aprendido en un caso a otro distinto.
+• Doble salto: segundo salto en el aire; exige apretar en el momento justo.
+• Coyote time: pequeña tolerancia para saltar apenas después de dejar la plataforma.
+Datos verificados en el código del 2D Platformer: PlayerController ya tiene MobileMove, MobileJump y MobileShoot, y un modo de control (pc/mobile) elegido a mano en la escena; el objeto MobileControls de la escena está vacío (no hay botones); el juego pide salto y doble salto con tiempos precisos.
+Respuesta esperada: el patrón se reutiliza (adaptador → intención → personaje), pero el esquema no se copia: en un juego de plataformas importa más el momento del salto que la posición, así que el botón de salto tiene que ser grande y estar donde descansa el pulgar, y conviene evaluar tolerancias como el coyote time. Lo que es igual: probar en el teléfono, con personas.
+
+## 13 | En móvil, el límite lo pone el dispositivo
 tipo: cierre
 kicker: CIERRE DE UNIDAD · PUENTE A UNIDAD V
 - Energía, calor, pantalla, interrupciones
 - El teléfono muestra lo que el editor no
+- Mismo input, otro control: el gamepad
 - Consolas: el límite lo pone el fabricante
 pregunta: En consola, ¿quién decide si se publica?
 notas:
 Glosario (conceptos cortos para la docente):
 • Certificación: revisión que hace el fabricante de la consola antes de permitir que un juego se publique.
 Síntesis: en móvil el límite lo ponen la energía, el calor, la memoria, la pantalla táctil, las interrupciones y las reglas de tienda. Lo que el editor no muestra, lo muestra el teléfono.
+Puente técnico: las mismas acciones de Input System que usamos para el dedo ya aceptan un gamepad (stick, D-pad y botón A); para jugar en una consola no hay que reescribir la nave. Lo que cambia es todo lo demás.
 Pregunta puente: en consola, el fabricante certifica el juego antes de publicarlo (Microsoft publica sus requisitos; Sony y Nintendo, no). La idea transversal de las Unidades IV a VII: ¿quién pone el límite?
 Imagen sugerida (opcional, sin recuadro en la slide): un teléfono que se transforma en un gamepad frente a una TV.

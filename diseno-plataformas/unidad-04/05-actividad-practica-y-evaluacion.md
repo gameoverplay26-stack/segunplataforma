@@ -15,7 +15,8 @@ Regla de diseño de todas las actividades: el alumno **decide y justifica**. No 
 | A4.3 | Dos esquemas de control táctil para Asteroides | Caso de diseño / comparativo | N3–N4 | 2 | Grupos | 30 min |
 | A4.4 | "La llamada que mata la nave" (defecto deliberado + test + regresión + QA manual en el teléfono) | Caso de testing en Unity y en dispositivo | N2–N4 | 3 (tests) y 4 (teléfono) | Grupos | 25 + 40 min + TP |
 | A4.5 | Tres propuestas de monetización: ¿cuál publicarías? | Caso de evaluación ética y de diseño | N3–N5 | 3 | Grupos + debate | 25 min |
-| A4.6 | "El juego anda bien… los primeros 5 minutos" | Caso de optimización | N3 | 2 | Individual | 15 min |
+| A4.6 | "El juego anda bien… los primeros 5 minutos" | Caso de optimización | N3 | 4 (v3: con el Profiler a mano) | Individual | 8 min |
+| A4.7 | Del boceto al control: implementar el esquema de A4.3 con Input System (v3) | Caso de implementación multiplataforma | N3–N4 | 2 | Grupos | 30 min |
 | TP 3 | Dossier de plataforma: Asteroides móvil (capítulo 1 del integrador) | Integradora | N4–N5 | 1→4 (se avanza en cada clase; defensa al final de la Clase 4) | Grupos | 2 semanas |
 
 ---
@@ -77,6 +78,23 @@ Elegir uno y justificar con fuentes (HIG Designing for games, 48 dp de Android, 
 
 ---
 
+## A4.7 — Del boceto al control (práctica en Unity, Clase 2) · nueva en la versión 3
+
+**Problema.** En el teléfono, Asteroides deja tocar "Start", pero la nave no se mueve ni dispara: `Ship.cs` leía teclas fijas (`Input.GetKey`, supuesto S1).
+**Consigna.** Sobre su copia del proyecto (versión original), implementar el esquema elegido en A4.3:
+1. Instalar **Input System 1.19.0** (Package Manager) y poner *Active Input Handling* = **Both** (reiniciar el editor). Both, y no solo New, porque el menú todavía usa el `StandaloneInputModule` clásico.
+2. Separar el dispositivo de la intención: la nave recibe una intención (mover, disparar) y no sabe qué dispositivo se usó.
+3. Controles en pantalla: `OnScreenStick` (`<Gamepad>/leftStick`) y `OnScreenButton` (`<Gamepad>/buttonSouth`), o arrastre + autodisparo.
+4. Probar en el Device Simulator con dos perfiles (con y sin muesca); medir 48 dp; verificar la safe area y la oclusión.
+5. Listar lo que el simulador **no** pudo probar (dos dedos a la vez, comodidad, rendimiento).
+
+**Entregable (TP 3, sección 3):** captura con el perfil de dispositivo, el fragmento de código del adaptador y la lista de "qué no se probó".
+**Respuesta esperada:** el teclado sigue funcionando en PC; la nave no contiene lecturas de dispositivo; los controles miden 48 dp o más y quedan dentro de la safe area; la lista reconoce que el simulador simula un solo dedo.
+**Errores frecuentes:** no cambiar *Active Input Handling* (las acciones no reciben nada); olvidar la referencia a `Unity.InputSystem` si el código vive en un asmdef; leer el dispositivo dentro de `Ship` (se repite el problema con otra API); poner los controles fuera del Canvas.
+**Referencia de la docente (no se entrega):** solución de joystick + botón en el repositorio: `ShipInputAdapter.cs`, `Ship.SetIntent`, `MobileControlsVisibility.cs`, controles del prefab `UICanvas` creados con `Assets/Editor/PorteoSetup.cs`. Registro: `diseno-plataformas/laboratorio-adaptacion/PORTEO-ASTEROIDES.md`.
+
+---
+
 ## A4.4 — "La llamada que mata la nave" (práctica en Unity, Clase 3 + TP 3)
 
 **Consigna** (escenario completo en [`02` §3](./02-caso-practico-asteroides-movil.md)):
@@ -132,7 +150,7 @@ Cualquier elección vale si se defiende con criterios y fuentes.
 
 ---
 
-## A4.6 — "El juego anda bien… los primeros 5 minutos" (formativa, Clase 2)
+## A4.6 — "El juego anda bien… los primeros 5 minutos" (formativa, Clase 4 desde la v3)
 
 **Consigna.** Escenario: "Asteroides con explosiones de partículas nuevas va a 60 fps al empezar; a los 8 minutos cae a 35–40 fps en un teléfono de gama media. En el editor nunca baja de 200 fps." Identificar: posible cuello de botella, métrica, herramienta y estrategia, y decir qué herramienta **no** sirve y por qué.
 **Respuesta esperada:**

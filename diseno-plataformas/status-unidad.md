@@ -1,7 +1,7 @@
 # Status de unidades — Diseño según Plataformas de Juego (U4–U7)
 
 Archivo de control único. **Se actualiza al final de cada sesión de trabajo.**
-Última actualización: **2026-10-05**.
+Última actualización: **2026-10-10**.
 
 ## Reglas de trabajo vigentes
 
@@ -19,7 +19,7 @@ F1 Auditoría · F2 Investigación · F3 Correcciones · F4 Objetivos · F5 Acti
 
 | Unidad | F1 | F2 | F3 | F4 | F5 | F6 | F7 | F8 | F9 | F10 | Slides definitivas | Estado |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **U4 Móvil** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ (cap. 1) | ✅ | ✅ | ✅ | ✅ | ✅ 4 decks (53 slides) | **Slides generadas; faltan imágenes y el defecto de pausa** |
+| **U4 Móvil** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ (cap. 1) | ✅ | ✅ | ✅ | ✅ | ✅ 4 decks v3 (65 slides) | **v3 con porteo real de Asteroides; Clase 1 dada hasta la slide 15; faltan imágenes, el defecto de pausa y la prueba en un teléfono** |
 | U5 Consolas | 🟡 en `00` | ✅ preliminar | — | — | — | — | — | — | 🟡 | — | — | Investigación guardada, sin procesar |
 | U6 PC | 🟡 en `00` | ✅ preliminar | — | — | — | — | — | — | 🟡 | — | — | Investigación guardada, sin procesar |
 | U7 Emergentes | 🟡 en `00` | 🟡 preliminar* | — | — | — | — | — | — | 🟡 | — | — | Investigación guardada, sin procesar |
@@ -62,7 +62,9 @@ F1 Auditoría · F2 Investigación · F3 Correcciones · F4 Objetivos · F5 Acti
 - [ ] Volver a agregar en Unity Hub los proyectos desde `proyectos-unity/…`.
 
 - [ ] Implementar en `proyectos-unity/Asteroides/asteroide-final/` la versión **con defecto** de la pausa y la solución (regla + adaptador + 2 tests), en una rama propia, validada en batch mode como en U3. Requisito de A4.4 y de la demo de la Clase 3.
-- [ ] Ubicar las páginas equivalentes de Input System **1.20** para Touch y On-Screen (las de 1.20 dieron 404; se citó la 1.17). Contradicción detectada: para U5, la página 1.20 de rebinding respondió HTTP 200, pero no se leyó el contenido.
+- [x] Input System: se usa la **1.19.0**, la versión incluida en Unity 6000.3.11f1. Página de On-screen Controls 1.19 verificada el 2026-10-10 (https://docs.unity3d.com/Packages/com.unity.inputsystem@1.19/manual/OnScreen.html). La 1.20 queda para U5 si hace falta.
+- [ ] Probar el porteo de entrada de Asteroides en el Device Simulator y en un teléfono real (joystick, botón, dos dedos, 48 dp) antes de la Clase 4.
+- [ ] **Cronograma:** la Clase 1 se cortó en la slide 15. Decidir con la titular cómo entran las slides 16–21 (60 min) en el próximo encuentro (ver `unidad-04/03-clase-guion-docente.md`).
 - [ ] Volver a verificar Zagal, Björk & Lewis 2013 (URL con certificado vencido) antes de citarlo.
 - [ ] Definir los fragmentos (min:seg) de los videos C-02 a C-06. Ninguna duración está verificada.
 - [x] URLs de Android environment setup (Unity 6000.3) y developer options (Android) verificadas el 2026-10-05 y cargadas en `03`.
@@ -109,3 +111,4 @@ F1 Auditoría · F2 Investigación · F3 Correcciones · F4 Objetivos · F5 Acti
 | 2026-10-05 | Pedido de la titular: los ejemplos de arcade del artículo, "con gráficos". **Slide 7 nueva** de la Clase 1 v2, "Clásicos del arcade": línea de tiempo de 7 hitos (Pong → Mortal Kombat) en orden cronológico; el primer intento a escala proporcional producía cruces y se reemplazó por espaciado uniforme con leyenda. Clave nueva `hitos:` en el generador. Dato de la ESRB (1994, tras las audiencias de 1993) verificado. La Clase 1 v2 pasa a 21 slides y se corrieron la numeración y las referencias cruzadas de las notas y del guion |
 | 2026-10-05 | Correcciones de la titular a la Clase 1 v2: (1) se quitaron todas las menciones a "Clase 2/3/4" (texto proyectado y notas), reemplazadas por "más adelante en la unidad"; (2) **glosario** de conceptos cortos al inicio de las notas de 20 slides (tile, GPU, CPU, SoC, overdraw, fps, throttling, etc.), sin cambiar el texto proyectado; (3) se quitaron los 9 recuadros de imagen vacíos; la sugerencia queda en las notas. Donde se podía diagramar sin inventar datos se agregaron gráficos nativos: slide 9 comparación teléfono/PC, slide 10 tiles y overdraw, slides 11 y 13 cadenas causales, slide 17 código real de Ship.cs 61–73 (leído del archivo), slide 18 pantallas a escala (16:9 vs. 9:16 con el rango de spawn). Para la slide 11 no se dibujó una curva de fps porque no hay datos medidos. Colores validados con dataviz |
 | 2026-10-05 | **Clases 2, 3 y 4 v2** generadas con las reglas de la titular: viñetas breves; notas completas con glosario (35 slides); ninguna mención a clases futuras (verificado en los .pptx); 15 recuadros de imagen quitados (sugerencias en las notas) y gráficos nativos donde no hace falta inventar datos: densidad de pantalla, safe area (y plantilla de A4.3), orientación a escala con el rango de spawn, gestos, flujo SO → adaptador → regla → estado, y pasos de la build. Renderizador nuevo `safearea` y modificador `-` en `comparacion`. Las v1 se conservan |
+| 2026-10-10 | **Decks v3 + porteo real de Asteroides.** La Clase 1 se dio hasta la slide 15. Por pedido del usuario se integra el porteo de forma gradual en las clases que faltan, con reparto 40 % teoría / 60 % práctica. Implementado en `proyectos-unity/Asteroides/asteroide-final`: Input System 1.19.0, Active Input Handling = Both, `ShipInputAdapter` (dispositivo → intención), `Ship.SetIntent`, controles en pantalla (`OnScreenStick`/`OnScreenButton`) y 3 tests nuevos. Tests en batchmode: línea base 7/11; después del porteo, 10–11/14 (3 hipótesis del pool en rojo constante + 1 inestable del mismo defecto; sin regresiones atribuibles). Slides: Clase 1 (slide 17 con el código original leído de git, `codigo: git:REV:…`), Clase 2 (+2 slides de demo, A4.7 nueva, A4.6 movida), Clase 3 (slide "Mismo patrón, dos adaptadores"), Clase 4 (A4.6, QA-06/07, transferencia al 2D Platformer, puente al gamepad). Registro: `laboratorio-adaptacion/PORTEO-ASTEROIDES.md`. Las v1 y v2 se conservan |
