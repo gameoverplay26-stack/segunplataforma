@@ -1,5 +1,9 @@
 # CLAUDE.md — clases-en-vivo
 
+## 0. Continuidad entre sesiones y máquinas
+
+Al empezar una sesión, y siempre que el usuario diga "continuá" o "seguí", leer primero **`CONTINUAR.md`**. Allí están el estado actual de cada frente, las reglas de trabajo del usuario, las herramientas necesarias y los pendientes. La memoria local de Claude no viaja entre máquinas: lo que deba persistir va a `CONTINUAR.md` o al archivo de estado de cada frente. Al cerrar una sesión de trabajo, actualizar la sección "Dónde quedamos" de `CONTINUAR.md` y el archivo de estado correspondiente.
+
 ## 1. Qué contiene este repositorio
 
 Este repositorio **no es un único proyecto**. Contiene contextos independientes:
