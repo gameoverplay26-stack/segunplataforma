@@ -21,7 +21,7 @@
 
 Ruta: `C:\Developer\unity\2026\clases-en-vivo\proyectos-unity\Asteroides\asteroide-final`
 
-### MOB-AST-01: entrada cableada a teclas
+### MOB-AST-01: entrada cableada a teclas · **IMPLEMENTADO 2026-10-10** (ver `PORTEO-ASTEROIDES.md`; tests EV-027; prueba en un dispositivo: UNKNOWN)
 1. **Problema:** la nave solo responde a `LeftArrow`, `RightArrow` y `Space`; en un celular no hay forma de jugar.
 2. **Evidencia:** `Assets/Scripts/Ship.cs:61-74` (EV-007), `activeInputHandler: 0` (EV-005).
 3. **Cambio:** separar la lectura de entrada de la lógica de la nave. `Ship` ya expone `MoveLeft()`, `MoveRight()` y `ShootLaser()`, que pueden invocarse desde un adaptador de entrada (teclado, táctil o gamepad) sin duplicar el gameplay.
@@ -31,7 +31,7 @@ Ruta: `C:\Developer\unity\2026\clases-en-vivo\proyectos-unity\Asteroides\asteroi
 7. **Aceptación:** en un dispositivo Android, el jugador mueve la nave y dispara sin teclado; en PC, el teclado funciona igual que antes.
 8. **Validación:** suite existente en batchmode con XML de resultados, más una prueba manual en un dispositivo real con checklist.
 
-### MOB-AST-02: esquema de control táctil
+### MOB-AST-02: esquema de control táctil · **IMPLEMENTADO PROVISIONAL** (joystick + botón, opción a; DEC-LAB-007 sigue abierta para la clase)
 1. **Problema:** hay que elegir cómo moverse y disparar a la vez con los dedos.
 2. **Evidencia:** el juego exige mover y disparar en simultáneo, con disparo continuo cada 0,4 s (`Ship.cs:61-64, 88`).
 3. **Cambio (alternativas, decide el usuario en DEC-LAB-007):**

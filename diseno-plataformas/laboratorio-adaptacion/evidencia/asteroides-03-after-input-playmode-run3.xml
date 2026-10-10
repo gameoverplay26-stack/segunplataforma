@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="14" result="Failed(Child)" total="14" passed="10" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-10 22:02:48Z" end-time="2026-10-10 22:02:54Z" duration="5,9342919">
+  <test-suite type="TestSuite" id="1021" name="UnityUnitTestingTutorial" fullname="UnityUnitTestingTutorial" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-10-10 22:02:48Z" end-time="2026-10-10 22:02:54Z" duration="5.934292" total="14" passed="10" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1018" name="Tests.dll" fullname="C:/Developer/unity/2026/clases-en-vivo/proyectos-unity/Asteroides/asteroide-final/Library/ScriptAssemblies/Tests.dll" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-10-10 22:02:48Z" end-time="2026-10-10 22:02:54Z" duration="5.926205" total="14" passed="10" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="44048" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestFixture" id="1001" name="IntegrationHypothesesTests" fullname="IntegrationHypothesesTests" classname="IntegrationHypothesesTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-10 22:02:48Z" end-time="2026-10-10 22:02:53Z" duration="4.366267" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-case id="1005" name="DoubleNewGame_DoesNotChangeSpawnRate" fullname="IntegrationHypothesesTests.DoubleNewGame_DoesNotChangeSpawnRate" methodname="DoubleNewGame_DoesNotChangeSpawnRate" classname="IntegrationHypothesesTests" runstate="Runnable" seed="1334811219" result="Failed" start-time="2026-10-10 22:02:48Z" end-time="2026-10-10 22:02:51Z" duration="2.224817" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[  Con un solo spawner se esperan ~5 asteroides en 2,1 s (uno cada 0,4 s)
+  Expected: less than or equal to 6
+  But was:  10
+]]></message>
+            <stack-trace><![CDATA[at IntegrationHypothesesTests+<DoubleNewGame_DoesNotChangeSpawnRate>d__6.MoveNext () [0x000ce] in C:\Developer\unity\2026\clases-en-vivo\proyectos-unity\Asteroides\asteroide-final\Assets\Tests\IntegrationHypothesesTests.cs:103
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0004e] in .\Library\PackageCache\com.unity.test-framework@0b7a23ab2e1d\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+          </failure>
+          <output><![CDATA[[INT-AST-15] Dos llamadas a NewGame: 10 asteroides en 2,1 s (isGameOver=False)
+]]></output>
+        </test-case>
+        <test-case id="1003" name="NewGame_RemovesLeftoverAsteroids" fullname="IntegrationHypothesesTests.NewGame_RemovesLeftoverAsteroids" methodname="NewGame_RemovesLeftoverAsteroids" classname="IntegrationHypothesesTests" runstate="Runnable" seed="182948692" result="Failed" start-time="2026-10-10 22:02:51Z" end-time="2026-10-10 22:02:51Z" duration="0.010231" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[  NewGame debería eliminar los asteroides previos
+  Expected: True
+  But was:  False
+]]></message>
+            <stack-trace><![CDATA[at IntegrationHypothesesTests+<NewGame_RemovesLeftoverAsteroids>d__4.MoveNext () [0x000f4] in C:\Developer\unity\2026\clases-en-vivo\proyectos-unity\Asteroides\asteroide-final\Assets\Tests\IntegrationHypothesesTests.cs:72
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0004e] in .\Library\PackageCache\com.unity.test-framework@0b7a23ab2e1d\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+          </failure>
+        </test-case>
+        <test-case id="1004" name="SingleNewGame_SpawnCountBaseline" fullname="IntegrationHypothesesTests.SingleNewGame_SpawnCountBaseline" methodname="SingleNewGame_SpawnCountBaseline" classname="IntegrationHypothesesTests" runstate="Runnable" seed="362539454" result="Passed" start-time="2026-10-10 22:02:51Z" end-time="2026-10-10 22:02:53Z" duration="2.104885" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[INT-AST-15] Una llamada a NewGame: 5 asteroides en 2,1 s (isGameOver=False)
+]]></output>
+        </test-case>
+        <test-case id="1002" name="TwoLasersHitSameAsteroid_ScoreIncreasesOnce" fullname="IntegrationHypothesesTests.TwoLasersHitSameAsteroid_ScoreIncreasesOnce" methodname="TwoLasersHitSameAsteroid_ScoreIncreasesOnce" classname="IntegrationHypothesesTests" runstate="Runnable" seed="952616495" result="Failed" start-time="2026-10-10 22:02:53Z" end-time="2026-10-10 22:02:53Z" duration="0.010463" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[Unhandled log message: '[Exception] InvalidOperationException: Trying to release an object that has already been released to the pool.'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+            <stack-trace><![CDATA[UnityEngine.Pool.ObjectPool`1[T].Release (T element) (at <1b6535aa091d41cf8b3ca222ed9ceef0>:0)
+Laser.OnCollisionEnter (UnityEngine.Collision collision) (at Assets/Scripts/Laser.cs:52)
+UnityEngine.Physics:OnSceneContact(PhysicsScene, IntPtr, Int32)
+
+]]></stack-trace>
+          </failure>
+          <output><![CDATA[InvalidOperationException: Trying to release an object that has already been released to the pool.
+UnityEngine.Pool.ObjectPool`1[T].Release (T element) (at <1b6535aa091d41cf8b3ca222ed9ceef0>:0)
+Laser.OnCollisionEnter (UnityEngine.Collision collision) (at Assets/Scripts/Laser.cs:52)
+UnityEngine.Physics:OnSceneContact(PhysicsScene, IntPtr, Int32)
+
+]]></output>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1006" name="ShipIntentTests" fullname="ShipIntentTests" classname="ShipIntentTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-10 22:02:53Z" end-time="2026-10-10 22:02:53Z" duration="0.424911" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1009" name="DeadShip_IgnoresIntent" fullname="ShipIntentTests.DeadShip_IgnoresIntent" methodname="DeadShip_IgnoresIntent" classname="ShipIntentTests" runstate="Runnable" seed="989788188" result="Passed" start-time="2026-10-10 22:02:53Z" end-time="2026-10-10 22:02:53Z" duration="0.208794" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1008" name="FireIntent_ShootsLaser" fullname="ShipIntentTests.FireIntent_ShootsLaser" methodname="FireIntent_ShootsLaser" classname="ShipIntentTests" runstate="Runnable" seed="117739635" result="Passed" start-time="2026-10-10 22:02:53Z" end-time="2026-10-10 22:02:53Z" duration="0.007138" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1007" name="NegativeIntent_MovesLikeMoveLeft" fullname="ShipIntentTests.NegativeIntent_MovesLikeMoveLeft" methodname="NegativeIntent_MovesLikeMoveLeft" classname="ShipIntentTests" runstate="Runnable" seed="1183015641" result="Passed" start-time="2026-10-10 22:02:53Z" end-time="2026-10-10 22:02:53Z" duration="0.207380" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1010" name="TestSuite" fullname="TestSuite" classname="TestSuite" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-10 22:02:53Z" end-time="2026-10-10 22:02:54Z" duration="1.133115" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-case id="1011" name="AsteroidsMoveDown" fullname="TestSuite.AsteroidsMoveDown" methodname="AsteroidsMoveDown" classname="TestSuite" runstate="Runnable" seed="986905228" result="Passed" start-time="2026-10-10 22:02:53Z" end-time="2026-10-10 22:02:53Z" duration="0.104919" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1017" name="DestroyedAsteroidRaisesScore" fullname="TestSuite.DestroyedAsteroidRaisesScore" methodname="DestroyedAsteroidRaisesScore" classname="TestSuite" runstate="Runnable" seed="343617028" result="Passed" start-time="2026-10-10 22:02:53Z" end-time="2026-10-10 22:02:53Z" duration="0.104423" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1012" name="GameOverOccursOnAsteroidCollision" fullname="TestSuite.GameOverOccursOnAsteroidCollision" methodname="GameOverOccursOnAsteroidCollision" classname="TestSuite" runstate="Runnable" seed="1134112920" result="Passed" start-time="2026-10-10 22:02:53Z" end-time="2026-10-10 22:02:53Z" duration="0.103774" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1014" name="GameOverStopsSpawningAndDisablesShip" fullname="TestSuite.GameOverStopsSpawningAndDisablesShip" methodname="GameOverStopsSpawningAndDisablesShip" classname="TestSuite" runstate="Runnable" seed="1918149492" result="Failed" start-time="2026-10-10 22:02:53Z" end-time="2026-10-10 22:02:54Z" duration="0.603825" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[Unhandled log message: '[Exception] MissingReferenceException: The object of type 'UnityEngine.AudioSource' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+            <stack-trace><![CDATA[UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) (at <1b6535aa091d41cf8b3ca222ed9ceef0>:0)
+UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) (at <1b6535aa091d41cf8b3ca222ed9ceef0>:0)
+UnityEngine.AudioSource.get_generatorObject () (at <6f59439821fa447c950de1428e048c9d>:0)
+UnityEngine.AudioSource.get_clip () (at <6f59439821fa447c950de1428e048c9d>:0)
+Spawner.PlayExplosion () (at Assets/Scripts/Spawner.cs:111)
+Spawner.<Awake>b__8_0 (UnityEngine.GameObject destroyed) (at Assets/Scripts/Spawner.cs:53)
+UnityEngine.Pool.ObjectPool`1[T].Release (T element) (at <1b6535aa091d41cf8b3ca222ed9ceef0>:0)
+Laser.OnCollisionEnter (UnityEngine.Collision collision) (at Assets/Scripts/Laser.cs:52)
+UnityEngine.Physics:OnSceneContact(PhysicsScene, IntPtr, Int32)
+
+]]></stack-trace>
+          </failure>
+          <output><![CDATA[MissingReferenceException: The object of type 'UnityEngine.AudioSource' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) (at <1b6535aa091d41cf8b3ca222ed9ceef0>:0)
+UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) (at <1b6535aa091d41cf8b3ca222ed9ceef0>:0)
+UnityEngine.AudioSource.get_generatorObject () (at <6f59439821fa447c950de1428e048c9d>:0)
+UnityEngine.AudioSource.get_clip () (at <6f59439821fa447c950de1428e048c9d>:0)
+Spawner.PlayExplosion () (at Assets/Scripts/Spawner.cs:111)
+Spawner.<Awake>b__8_0 (UnityEngine.GameObject destroyed) (at Assets/Scripts/Spawner.cs:53)
+UnityEngine.Pool.ObjectPool`1[T].Release (T element) (at <1b6535aa091d41cf8b3ca222ed9ceef0>:0)
+Laser.OnCollisionEnter (UnityEngine.Collision collision) (at Assets/Scripts/Laser.cs:52)
+UnityEngine.Physics:OnSceneContact(PhysicsScene, IntPtr, Int32)
+
+]]></output>
+        </test-case>
+        <test-case id="1016" name="LaserDestroysAsteroid" fullname="TestSuite.LaserDestroysAsteroid" methodname="LaserDestroysAsteroid" classname="TestSuite" runstate="Runnable" seed="248175994" result="Passed" start-time="2026-10-10 22:02:54Z" end-time="2026-10-10 22:02:54Z" duration="0.104290" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1015" name="LaserMovesUp" fullname="TestSuite.LaserMovesUp" methodname="LaserMovesUp" classname="TestSuite" runstate="Runnable" seed="1805989005" result="Passed" start-time="2026-10-10 22:02:54Z" end-time="2026-10-10 22:02:54Z" duration="0.103942" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1013" name="NewGameRestartsGame" fullname="TestSuite.NewGameRestartsGame" methodname="NewGameRestartsGame" classname="TestSuite" runstate="Runnable" seed="563927743" result="Passed" start-time="2026-10-10 22:02:54Z" end-time="2026-10-10 22:02:54Z" duration="0.003309" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[NullReferenceException: Object reference not set to an instance of an object
+UnityEditor.TestTools.CodeCoverage.Utils.CoverageUtils.GetFilteringLogParams (UnityEditor.TestTools.CodeCoverage.AssemblyFiltering assemblyFiltering, UnityEditor.TestTools.CodeCoverage.PathFiltering pathFiltering, System.String[] otherParams) (at ./Library/PackageCache/com.unity.testtools.codecoverage@19a841221620/Editor/Utils/CoverageUtils.cs:320)
+UnityEditor.TestTools.CodeCoverage.OpenCover.OpenCoverReporter.OutputVisitedCoverageReport (System.Boolean clearProgressBar, System.Boolean logNoCoverageResultsSavedWarning, UnityEditor.TestTools.TestRunner.Api.ITestAdaptor testData) (at ./Library/PackageCache/com.unity.testtools.codecoverage@19a841221620/Editor/CoverageFormats/OpenCover/OpenCoverReporter.cs:208)
+UnityEditor.TestTools.CodeCoverage.OpenCover.OpenCoverReporter.OnRunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor testResults) (at ./Library/PackageCache/com.unity.testtools.codecoverage@19a841221620/Editor/CoverageFormats/OpenCover/OpenCoverReporter.cs:131)
+UnityEditor.TestTools.CodeCoverage.CoverageReporterListener.RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor result) (at ./Library/PackageCache/com.unity.testtools.codecoverage@19a841221620/Editor/CoverageReporterListener.cs:59)
+UnityEditor.TestTools.TestRunner.Api.CallbacksDelegator+<>c__DisplayClass9_0.<RunFinished>b__0 (UnityEditor.TestTools.TestRunner.Api.ICallbacks callbacks) (at ./Library/PackageCache/com.unity.test-framework@0b7a23ab2e1d/UnityEditor.TestRunner/Api/CallbacksDelegator.cs:55)
+UnityEditor.TestTools.TestRunner.Api.CallbacksDelegator.TryInvokeAllCallbacks (System.Action`1[T] callbackAction) (at ./Library/PackageCache/com.unity.test-framework@0b7a23ab2e1d/UnityEditor.TestRunner/Api/CallbacksDelegator.cs:135)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
+Saving results to: C:/Developer/unity/2026/clases-en-vivo/diseno-plataformas/laboratorio-adaptacion/evidencia/asteroides-03-after-input-playmode-run3.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

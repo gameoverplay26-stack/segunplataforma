@@ -10,9 +10,10 @@ Prefijo `DEC-LAB-` para no colisionar con los `DEC-###` del proyecto SDD "Arena"
 | DEC-LAB-001 | **RESOLVED** | 2026-10-10 | Opción (a): la documentación se guarda en `diseno-plataformas/laboratorio-adaptacion/`, dentro del repositorio. |
 | DEC-LAB-002 | **RESOLVED** | 2026-10-10 | Se modifica el código de P1 solo para pruebas internas de porteo y para preparar las diapositivas de clase sobre el porteo de este juego y de P2. El usuario asume la decisión sobre la restricción de licencia de Kodeco, que se mantiene documentada en EV-004. |
 | DEC-LAB-003 | **RESOLVED** | 2026-10-10 | Opción (a): el estado migrado a Unity 6 es la línea base de P2. Se hace un commit inicial de la línea base y un push antes de cualquier modificación. |
-| DEC-LAB-006 | **RESOLVED** | 2026-10-10 | Opción (a): se autoriza instalar el paquete Input System (`com.unity.inputsystem`). La instalación se hará al iniciar la implementación de la adaptación, sobre la línea base ya versionada. |
+| DEC-LAB-006 | **RESOLVED** | 2026-10-10 | Opción (a): se autoriza instalar el paquete Input System (`com.unity.inputsystem`). **Instalado en P1 el 2026-10-10:** versión 1.19.0, Active Input Handling = Both (ver `PORTEO-ASTEROIDES.md`). P2: pendiente. |
 | DEC-LAB-009 a 012 | **PENDIENTE** | 2026-10-10 | El usuario las deja abiertas explícitamente: copia y perfil de *Unravel*, duración de la clase, grabaciones y desafío del capítulo 10. |
-| DEC-LAB-004, 005, 007, 008, 013, 014 | PENDIENTE | — | — |
+| DEC-LAB-007 | PENDIENTE (con implementación provisional) | 2026-10-10 | En P1 se implementó joystick + botón como **referencia** para la demo. El esquema final lo eligen los grupos en A4.3/A4.7. |
+| DEC-LAB-004, 005, 008, 013, 014 | PENDIENTE | — | — |
 
 | ID | Decisión | Alternativas | Impacto | Recomendación de Claude | Bloquea |
 |---|---|---|---|---|---|

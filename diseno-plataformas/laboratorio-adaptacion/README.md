@@ -26,7 +26,9 @@
 | `UNRAVEL-QUESTIONNAIRE.md` | Cuestionario del jugador, listo para imprimir | PROPUESTO |
 | `UNRAVEL-OBSERVATION-SHEET.md` | Ficha de observación por grupo | PROPUESTO |
 | `UNRAVEL-ASSESSMENT-RUBRIC.md` | Rúbrica de evaluación | PROPUESTO |
-| `DECISIONS.md` | Decisiones pendientes (`DEC-LAB-###`) | Pendiente de aprobación |
+| `DECISIONS.md` | Decisiones (`DEC-LAB-###`) y su registro de resoluciones | Parcialmente resuelto |
+| `PORTEO-ASTEROIDES.md` | Registro de implementación del porteo de entrada de P1 (Input System, controles en pantalla, tests) | VERIFICADO (tests) / UNKNOWN (dispositivo) |
+| `evidencia/` | XML y logs del Test Runner y del setup en batchmode | VERIFICADO |
 | `EVIDENCE-LOG.md` | Evidencias (`EV-###`) y fuentes externas (`SRC-###`) | VERIFICADO |
 
 ## Convención de estados
