@@ -30,7 +30,9 @@ Hilo: **"¿Qué se rompe de un juego cuando lo llevás al bolsillo de alguien?"*
 | 2 (90 min) | ¿Qué supone el código y qué cambia en las manos? | Supuestos de PC, táctil, safe area, accesibilidad | Sección 3 (control y HUD) |
 | 3 (90 min) | ¿Qué pasa en un teléfono de verdad y quién pone las reglas? | Dispositivo real, testing, tienda y monetización | Secciones 4–7 + entrega |
 
-### Clase 2 — "Del supuesto de PC al pulgar" (90 min) · `Unidad-4-Clase-2-2026.pptx` (16 slides)
+**Archivo único (2026-10-13):** todo está en `Unidad-4-2026-completa.pptx` (63 slides, numeración corrida): Clase 1 = 1–15, Clase 2 = 16–31, Clase 3 = 32–54 y **anexo de consulta "Android en Unity 6" = 55–63** (no se expone). Las tablas usan la numeración de cada clase; para el archivo único, sumar 15 en la Clase 2 y 31 en la Clase 3. El paso a paso de Device Simulator, External Tools, Build Profiles y Player Settings va con capturas reales en las slides 18, 30 y 31 y en el anexo.
+
+### Clase 2 — "Del supuesto de PC al pulgar" (90 min) · slides 16–31 del archivo único
 
 | Min | Bloque | Slides | Tipo |
 |---|---|---|---|
@@ -48,7 +50,7 @@ Hilo: **"¿Qué se rompe de un juego cuando lo llevás al bolsillo de alguien?"*
 
 Reparto: teoría 36 min (40 %), práctica 54 min (60 %).
 
-### Clase 3 — "Asteroides en tu bolsillo" (90 min) · `Unidad-4-Clase-3-2026.pptx` (23 slides)
+### Clase 3 — "Asteroides en tu bolsillo" (90 min) · slides 32–54 del archivo único
 
 | Min | Bloque | Slides | Tipo |
 |---|---|---|---|

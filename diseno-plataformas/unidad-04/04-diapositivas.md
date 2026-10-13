@@ -1,11 +1,12 @@
 # Unidad 4 — Diapositivas, versión final (texto + notas del docente)
 
-Fuente única de los 3 decks de la Unidad 4. Generar: `python scripts/build_decks.py` desde `diseno-plataformas/unidad-04/` (requiere `pip install python-pptx` y Pillow). Opciones: `--decks 2 3` genera solo esos decks; `--out-dir RUTA` escribe en otra carpeta (útil si el .pptx está abierto).
+Fuente única de la Unidad 4: un solo archivo, `Unidad-4-2026-completa.pptx` (3 clases + anexo de consulta). Generar: `python scripts/build_decks.py` desde `diseno-plataformas/unidad-04/` (requiere `pip install python-pptx` y Pillow). Opciones: `--por-clase` genera además un `.pptx` por sección; `--decks 2 3` genera solo esas secciones por separado; `--out-dir RUTA` escribe en otra carpeta (útil si el .pptx está abierto).
 
 **Versión final (2026-10-13).** Pedido del usuario: la unidad termina en **dos encuentros de 90 minutos** después de la Clase 1, que se dio hasta la slide 15. Se reorganizó todo el contenido restante con reparto **40 % teoría / 60 % práctica** (36 / 54 min por encuentro), sin perder temas:
 - **Clase 1** (dada): slides 1–15, tal como se dieron.
 - **Clase 2 — Del supuesto de PC al pulgar** (90 min): simulador y límites, A4.2 (supuestos de PC), elegir plataforma, UI táctil (mínimos, densidad, safe area, pulgar, orientación, gestos, accesibilidad), Input System, **A4.7** (une A4.3 y A4.7: boceto + implementación), playtest y vistazo de la build. Tarea: Build Support, depuración USB y primer APK.
 - **Clase 3 — Asteroides en tu bolsillo** (90 min): build con capturas reales, instalación, medición, A4.6, QA manual, matriz, testing en móvil, **A4.8** (test de configuración), monetización como diseño, A4.5, TP 3 y cierre de unidad.
+- **Anexo: Android en Unity 6** (9 slides de consulta, no se exponen): Build Support y External Tools, teléfono y depuración USB, Device Simulator, Build Profiles, Player Settings (identidad, 64 bits, pantalla, ícono), build e instalación y diagnóstico. Las slides de clase remiten a sus pasos. Las viñetas que empiezan con `1. ` se dibujan como pasos numerados.
 - Pasan fuera del encuentro: "Leer con lupa" (lectura), A4.4 (pausa, en el dossier del TP 3) y la defensa del TP 3 (video, **PROPUESTO**).
 
 Las versiones anteriores (v1 a v4, `.pptx` y fuentes) están en `versiones-anteriores/`.
@@ -370,6 +371,7 @@ kicker: DEMO EN VIVO · 4 MIN
 - Device Simulator: qué simula
 - Y qué NO simula
 - Asteroides en vertical
+captura: imagenes/u4-simulator-selector.png | Pestaña Game: Game → Simulator, y la ventana Simulator con un teléfono
 fuente: Unity 6.3 Manual — Device Simulator introduction; Android Player settings
 notas:
 Glosario (conceptos cortos para la docente):
@@ -385,6 +387,7 @@ Pasos de la demo:
 3. Lo que sí simula: safe area, rotación y toque de un dedo.
 4. Poner Asteroides en un perfil de teléfono en vertical. Confirmar en vivo el supuesto de que la cámara está centrada en x = 0.
 No revelar todavía el problema del spawn: lo descubren en A4.2.
+Cómo activarlo (captura real, Unity 6000.3.11f1): 1. abrir Scenes/Game (con una escena Untitled no se ve el juego); 2. en la pestaña Game, el desplegable de la izquierda cambia de Game a Simulator (o Window > General > Device Simulator); 3. elegir el dispositivo, por ejemplo Punch Hole Left (1080×2340); 4. Play y rotar desde la barra del Simulator. Si aparece "Simulator is currently not active" (marcado en la captura), el Game View sigue en modo Game. Paso a paso para los alumnos: anexo, paso 3.
 
 ## 4 | Actividad A4.2 — Supuestos de PC
 tipo: actividad
@@ -591,6 +594,7 @@ Buena respuesta: decide la orientación sabiendo su efecto sobre el spawn, respe
 Referencia para destrabar (no entregar): ShipInputAdapter.cs, MobileControlsVisibility.cs y los controles del prefab UICanvas (creados con Editor/PorteoSetup.cs).
 Errores frecuentes: olvidar Active Input Handling; si el código está en un asmdef, agregar la referencia a Unity.InputSystem; poner el control fuera del Canvas.
 Si no terminan: completan en casa y suben la captura al aula virtual. Avance del TP 3: sección 3 (control y HUD).
+En el simulador el toque se hace con el mouse y es de un solo dedo. El Foldable Device del simulador sirve para ver que la relación de aspecto cambia en el mismo teléfono (plegado y desplegado). Paso a paso: anexo, paso 3.
 
 ## 14 | Probalo con tu mano
 tipo: actividad
@@ -609,11 +613,11 @@ Cierre: un buen layout no garantiza comodidad; eso lo dicen las personas. Verifi
 ## 15 | Vistazo: del editor al teléfono
 tipo: contenido
 kicker: VISTAZO · 3 MIN · TAREA
-- Build Profiles → Android
-- Player Settings: identidad y 64 bits
-- Build genera un .apk
-- Tarea: su primer APK en casa
-captura: imagenes/u4-build-profiles-android.png | Build Profiles en Unity 6000.3.11f1: perfil Android activo
+- 1. File > Build Profiles
+- 2. Android → Switch Platform
+- 3. Botón Player Settings
+- 4. Tarea: su primer APK
+captura: imagenes/u4-build-profiles-android.png + imagenes/u4-switch-platform.png | Build Profiles: perfil Android activo y el botón Switch Platform
 fuente: Unity 6.3 Manual — Build your application for Android; Android Player settings
 notas:
 Glosario (conceptos cortos para la docente):
@@ -631,6 +635,7 @@ Tarea (guía en el aula virtual):
 4. Traer el .apk y anotar cuánto tardó la build y qué carteles aparecieron.
 Por qué en casa: la primera build con IL2CPP tarda varios minutos (Gradle descarga y compila); hecha en casa, la práctica con el teléfono no pierde ese tiempo y los problemas de drivers llegan resueltos.
 Dato verificado (Unity 6.3 Manual, Build your application for Android): Build crea el archivo en la carpeta elegida; Build and Run además lo instala en el Run Device; por defecto Unity genera APK.
+Switch Platform aparece abajo a la derecha mientras Android no sea la plataforma activa. Paso a paso con capturas: anexo, pasos 4 a 7.
 
 ## 16 | Qué no resuelve esto · Tarea
 tipo: cierre
@@ -639,6 +644,7 @@ kicker: CIERRE · 2 MIN
 - TP 3: Dossier Asteroides móvil
 - Tarea: Build Support + USB + APK
 - Lectura: "Leer con lupa"
+captura: imagenes/u4-external-tools.png | Edit > Preferences > External Tools > Android: las 4 casillas tildadas
 fuente: Unity 6.3 Manual — Android environment setup; Android — Configure on-device developer options
 notas:
 Glosario (conceptos cortos para la docente):
@@ -646,7 +652,7 @@ Glosario (conceptos cortos para la docente):
 • Depuración USB: opción de Android que permite a la PC instalar y analizar apps en el teléfono por cable.
 Cerrar con el límite de la herramienta: el simulador encontró el problema de la pantalla, pero no mide calor, batería ni comodidad. Eso se mide en sus teléfonos, más adelante en la unidad.
 Tarea técnica obligatoria (sin ella no se puede hacer la práctica en el teléfono):
-1. Instalar Android Build Support (con OpenJDK, Android SDK y NDK) en Unity 6000.3.11f1 desde Unity Hub.
+1. Instalar Android Build Support (con OpenJDK, Android SDK y NDK) en Unity 6000.3.11f1 desde Unity Hub, y verificar en Edit > Preferences > External Tools > Android que JDK, Android SDK Tools, Android NDK y Gradle estén tildados como "Installed with Unity (recommended)" (captura de la slide; anexo, paso 1).
 2. En el teléfono: tocar 7 veces "Número de compilación" y activar "Depuración USB" (Android 9 o superior: Ajustes > Sistema > Avanzado > Opciones de desarrollador).
 3. Comprobar que la PC ve el teléfono: cable de datos, aceptar "¿Permitir depuración USB?" y Build Profiles > Android > Run Device > Refresh (o adb devices).
 4. Generar el primer APK siguiendo la slide anterior (IL2CPP + ARM64, botón Build) y traerlo instalado o en el teléfono.
@@ -711,6 +717,7 @@ Los valores resaltados son los que hay que cambiar; el resto ya viene bien. El P
 Una sola fuente: cambiar todo en Edit > Project Settings > Player. Si se edita la sección Player Settings dentro del Build Profile, el perfil guarda una copia propia; en el proyecto pasó: Company y Product quedaron en Assets/Settings/Build Profiles/Android™.asset y no en ProjectSettings. Dos lugares para el mismo dato es una fuente de errores difícil de ver.
 Active Input Handling = Both: la documentación de Unity 6.3 dice que no está soportado en Android. Se mantiene porque el menú usa el StandaloneInputModule clásico; al compilar se toca Ignore y queda registrado. Evidencia (2026-10-12): la build en batchmode terminó bien y el aviso solo apareció en el log. La corrección de fondo es reemplazar el módulo del EventSystem (prefab Game) por InputSystemUIInputModule y dejar solo Input System; no se hizo en el repositorio.
 Orientación: la decide cada grupo según su esquema de A4.3 (Resolution and Presentation > Default Orientation).
+Paso a paso con capturas: anexo, pasos 5 y 6 (identidad, 64 bits, orientación, safe area e ícono). Dato real: en Edit > Project Settings > Player el proyecto sigue en DefaultCompany / UnityUnitTestingTutorial; los valores Unju / AsteroideTest solo existen dentro del Build Profile.
 
 ## 5 | Cuando la build se frena
 tipo: actividad
@@ -729,6 +736,7 @@ Cartel 1, "Unsupported Input Handling on Android": es un aviso. Ignore sigue con
 Cartel 2, "No Android devices connected": aparece con Build and Run cuando la PC no ve ningún teléfono. Qué hacer: OK y usar Build; o conectar con un cable de datos, aceptar en el teléfono "¿Permitir depuración USB?" y tocar Refresh en Run Device. Comprobar con adb devices (el teléfono tiene que figurar como "device"; "unauthorized" significa que falta aceptar el diálogo). En Windows puede hacer falta el driver USB del fabricante.
 Tercer caso, sin captura: el APK se copia, pero el teléfono no lo instala o no lo abre. Primera sospecha: se compiló sin ARM64. En el curso todavía no se vio; está documentado por Android para los teléfonos que solo aceptan 64 bits.
 Respuesta a la pregunta: el primero es un aviso (deja seguir); el segundo frena Build and Run, pero no Build.
+Tabla de diagnóstico completa (incluye adb unauthorized, ícono negro y adb logcat): anexo, paso 8.
 
 ## 6 | De la PC al teléfono
 tipo: demo
@@ -746,6 +754,7 @@ Glosario (conceptos cortos para la docente):
 • Build and Run: compilar, instalar y abrir en el dispositivo conectado, en un solo paso.
 Plan B: si la build falla en la máquina del grupo, se instala el APK de la docente (cable y adb install -r, o Drive y aceptar «Instalar apps de fuentes desconocidas»). Se pierde el Profiler; no se pierden el QA manual ni la matriz. Lo que no se pudo medir se declara en el dossier. El APK de depuración no se publica: para Google Play hacen falta firma propia y un .aab.
 Pasos con cable (para medir con el Profiler): en Build Profiles, Android activo; Development Build y Autoconnect Profiler tildados; teléfono conectado con la depuración activada; Build and Run. Según el manual de Unity 6.3, con Development Build y Build and Run Unity prepara el túnel del Profiler antes de abrir la app. Primero lo hace la docente; después cada grupo, con el teléfono de un integrante.
+Paso a paso para los grupos: anexo, pasos 2 (teléfono), 4 (Build Profiles) y 7 (build e instalación).
 
 ## 7 | Medir, no opinar
 tipo: actividad
@@ -1047,3 +1056,147 @@ Síntesis: en móvil el límite lo ponen la energía, el calor, la memoria, la p
 Transferencia (1 min): el 2D Platformer ya tiene MobileMove, MobileJump y MobileShoot, pero su objeto MobileControls está vacío. El patrón adaptador → intención → personaje se reutiliza; el esquema no se copia: en un juego de plataformas importa el momento del salto (botón grande, bajo el pulgar; tolerancias como el coyote time).
 Puente técnico: las mismas acciones de Input System que usamos para el dedo ya aceptan un gamepad; para jugar en una consola no hay que reescribir la nave. Lo que cambia es todo lo demás.
 Pregunta puente: en consola, el fabricante certifica el juego antes de publicarlo (Microsoft publica sus requisitos; Sony y Nintendo, no). La idea transversal de las Unidades IV a VII: ¿quién pone el límite?
+
+# DECK 4 | Anexo: Android en Unity 6 | Unidad IV · Anexo de consulta
+
+## 1 | Anexo: Android en Unity 6
+tipo: portada
+kicker: UNIDAD IV · ANEXO DE CONSULTA · NO SE EXPONE
+- Paso a paso con capturas de Unity 6000.3.11f1
+- Para la tarea y la práctica en el teléfono
+notas:
+Anexo de consulta: no ocupa tiempo de clase. Los alumnos lo usan para la tarea entre encuentros y durante la práctica en el teléfono. Las slides de clase remiten acá.
+Todas las capturas son de Unity 6000.3.11f1 (Windows), tomadas por la docente el 2026-10-12 y el 2026-10-13. Las marcas rojas se agregaron después.
+
+## 2 | Build Support y External Tools
+tipo: contenido
+kicker: ANEXO · PASO 1 · INSTALAR
+- 1. Unity Hub > Installs > Add modules
+- 2. Android Build Support (+ OpenJDK, SDK, NDK)
+- 3. Edit > Preferences > External Tools
+- 4. Android: las 4 casillas tildadas
+captura: imagenes/u4-external-tools.png | Edit > Preferences > External Tools > Android (Unity 6000.3.11f1)
+fuente: Unity 6.3 Manual — Android environment setup
+notas:
+Glosario (conceptos cortos para la docente):
+• JDK: kit de Java que usa la compilación de Android.
+• SDK / NDK: herramientas de Android para compilar y para el código nativo.
+• Gradle: sistema que arma el APK a partir de lo que exporta Unity.
+• Preferences vs. Project Settings: Preferences son ajustes del editor en esta máquina; Project Settings son del proyecto y viajan con él.
+Pasos: en Unity Hub, Installs, menú de la versión 6000.3.11f1 > Add modules > Android Build Support con OpenJDK y Android SDK & NDK Tools. Después, en el editor: Edit > Preferences > External Tools, sección Android, al final de la página. Las cuatro casillas "… Installed with Unity (recommended)" (JDK, Android SDK Tools, Android NDK y Gradle) tienen que estar tildadas, con rutas dentro de la carpeta del editor (…/PlaybackEngines/AndroidPlayer).
+Si una ruta aparece en rojo o vacía, reinstalar el módulo desde Unity Hub. No apuntar a otro JDK o SDK salvo que se sepa por qué.
+
+## 3 | El teléfono listo para probar
+tipo: contenido
+kicker: ANEXO · PASO 2 · TELÉFONO
+- 1. 7 toques en "Número de compilación"
+- 2. Opciones de desarrollador > Depuración USB
+- 3. Cable de datos y aceptar el diálogo
+- 4. adb devices: tiene que decir "device"
+flujo: Número de compilación × 7 | Opciones de desarrollador | Depuración USB | Cable de datos + "¿Permitir depuración USB?" | adb devices → device
+fuente: Android — Configure on-device developer options; Unity 6.3 Manual — Debug on Android devices
+notas:
+Glosario (conceptos cortos para la docente):
+• adb (Android Debug Bridge): herramienta de línea de comandos que conecta la PC con el teléfono.
+Pasos: Ajustes > Acerca del teléfono > tocar 7 veces "Número de compilación"; en Android 9 o superior, las Opciones de desarrollador están en Ajustes > Sistema > Avanzado. Activar "Depuración USB". Conectar con un cable de datos (muchos cables solo cargan) y aceptar en el teléfono "¿Permitir depuración USB?".
+Comprobar: en Unity, Build Profiles > Android > Run Device > Refresh; o en una terminal, adb devices (adb está en la carpeta del editor: Data/PlaybackEngines/AndroidPlayer/SDK/platform-tools). "device" = listo; "unauthorized" = falta aceptar el diálogo; lista vacía = cable, puerto o driver USB del fabricante (el manual de Unity avisa que en Windows puede hacer falta).
+
+## 4 | Device Simulator
+tipo: contenido
+kicker: ANEXO · PASO 3 · SIMULAR
+- 1. Abrir la escena Scenes/Game
+- 2. Game → Simulator
+- 3. Elegir el dispositivo
+- 4. Play y rotar
+captura: imagenes/u4-simulator-plegable.png | Simulator con el Foldable Device (960×2658)
+fuente: Unity 6.3 Manual — Device Simulator introduction
+notas:
+Glosario (conceptos cortos para la docente):
+• Device Simulator: vista de Unity que muestra el juego con la pantalla de un dispositivo real (muesca, safe area, rotación).
+Pasos: abrir Scenes/Game (si la escena es Untitled, no se ve el juego). En la pestaña Game, el desplegable de la izquierda cambia entre Game y Simulator; también se abre como ventana desde Window > General > Device Simulator. Elegir el dispositivo en el desplegable (por ejemplo, Punch Hole Left 1080×2340 o el Foldable Device, que permite ver el mismo teléfono plegado y desplegado). Dar Play y rotar desde la barra del Simulator.
+Si aparece "Simulator is currently not active", el Game View está en modo Game: elegir Simulator en el desplegable.
+Qué NO simula: rendimiento, memoria, capacidades de render ni giroscopio. Simula un solo dedo (con el mouse): mover y disparar a la vez solo se prueba en el teléfono.
+
+## 5 | Build Profiles
+tipo: contenido
+kicker: ANEXO · PASO 4 · PLATAFORMA
+- 1. File > Build Profiles
+- 2. Android → Switch Platform
+- 3. Build App Bundle: destildado
+- 4. Development Build: para el Profiler
+captura: imagenes/u4-build-profiles-android.png + imagenes/u4-switch-platform.png | Build Profiles con el perfil Android activo y el botón Switch Platform
+fuente: Unity 6.3 Manual — Build your application for Android
+notas:
+Glosario (conceptos cortos para la docente):
+• Switch Platform: cambiar la plataforma activa; Unity reimporta los assets y la primera vez tarda.
+• Run Device: el teléfono en el que Build and Run instala la app.
+Pasos: File > Build Profiles; en Platforms elegir Android; si todavía no es la plataforma activa, abajo a la derecha aparece Switch Platform. En Platform Settings: Build App Bundle (Google Play) destildado para obtener un .apk; Development Build y Autoconnect Profiler tildados si se va a medir con el Profiler; Run Device con el teléfono conectado (Refresh si no aparece).
+El botón Player Settings (arriba a la derecha) abre los ajustes del proyecto. Cuidado: la sección Player Settings que aparece dentro del perfil crea una copia propia del perfil; para que haya una sola fuente, editar en Edit > Project Settings > Player.
+
+## 6 | Player Settings: identidad y 64 bits
+tipo: contenido
+kicker: ANEXO · PASO 5 · CONFIGURAR
+- 1. Edit > Project Settings > Player
+- 2. Pestaña Android > Other Settings
+- 3. Scripting Backend: IL2CPP
+- 4. Target Architectures: ARM64
+captura: imagenes/u4-player-settings-android.png | Other Settings antes de cambiar: Mono y ARM64 en gris
+fuente: Unity 6.3 Manual — Android Player settings
+notas:
+Glosario (conceptos cortos para la docente):
+• IL2CPP: backend que compila el C# a código nativo; es el único que habilita ARM64.
+• Package Name: identificador único de la app (com.empresa.juego).
+Pasos: arriba, Company Name y Product Name (el nombre que se ve en el teléfono); en la pestaña de Android (ícono del robot) > Other Settings: Scripting Backend = IL2CPP, tildar ARM64, Minimum API Level = Android 7.1 (API 25). El Package Name se arma con Company y Product mientras "Override Default Package Name" esté destildado.
+Active Input Handling = Both: Unity 6.3 lo declara no soportado en Android; Asteroides lo mantiene por el menú (StandaloneInputModule) y al compilar aparece un aviso que se puede ignorar.
+Comprobación automática: los tests de AndroidBuildConfigTests (A4.8) verifican IL2CPP, ARM64, API mínima y que la build sea .apk.
+
+## 7 | Player Settings: pantalla
+tipo: contenido
+kicker: ANEXO · PASO 6 · PANTALLA
+- 1. Resolution and Presentation
+- 2. Default Orientation: la del esquema
+- 3. Rotación: solo las permitidas
+- 4. Icon: el ícono del juego
+captura: imagenes/u4-resolution-presentation.png | Resolution and Presentation de Asteroides: Auto Rotation con las 4 orientaciones
+fuente: Unity 6.3 Manual — Android Player settings; Unity 6.3 — Screen.safeArea
+notas:
+Glosario (conceptos cortos para la docente):
+• Default Orientation: orientación con la que arranca el juego (fija o Auto Rotation).
+• Render outside safe area: permite dibujar debajo de la muesca y las barras.
+Así viene el proyecto: Default Orientation = Auto Rotation con las cuatro orientaciones permitidas, Hide Navigation Bar y Render outside safe area tildados.
+Qué decidir: la orientación sale del esquema de control de A4.7. Si el juego es horizontal, dejar Landscape Left o Landscape Right (o Auto Rotation solo con esas dos). Recordar el hallazgo de A4.2: en vertical, la mayoría de los asteroides nace fuera de pantalla.
+Render outside safe area: con target API 35 o superior, Android 15 dibuja de borde a borde de todos modos; por eso la UI esencial tiene que leer Screen.safeArea en lugar de confiar en esta casilla.
+Ícono: en la sección Icon (o Default Icon, arriba) asignar una textura del juego. Cuidado con asignar sin querer otra textura desde el selector (en una prueba quedó un cuadro negro): si el ícono se ve negro en el teléfono, revisar este campo.
+
+## 8 | Build e instalación
+tipo: contenido
+kicker: ANEXO · PASO 7 · INSTALAR
+- 1. Build → Builds/AsteroideTest.apk
+- 2. Copiar el .apk al teléfono y abrirlo
+- 3. Aceptar "fuentes desconocidas"
+- 4. Con cable: adb install -r
+captura: imagenes/u4-build-botones.png | Abajo a la derecha de Build Profiles: Build (marcado) y Build And Run
+fuente: Unity 6.3 Manual — Build your application for Android
+notas:
+Glosario (conceptos cortos para la docente):
+• Firma de depuración: firma automática de Unity para probar; no sirve para publicar en Google Play.
+Pasos: botón Build (no Build And Run, que exige un teléfono conectado); carpeta Builds/ dentro del proyecto y fuera de Assets; nombre AsteroideTest.apk. Pasar el archivo al teléfono (cable, Drive o mensajería), abrirlo y aceptar "Instalar apps de fuentes desconocidas" para esa app. Con el teléfono conectado: adb install -r Builds/AsteroideTest.apk.
+Alternativa desde código: Build > Android APK (Assets/Editor/BuildAndroid.cs), también en batchmode con -executeMethod BuildAndroid.Build.
+Tiempo de referencia: Mono + ARMv7, 42 s y 20 MB en la PC de la docente (2026-10-12). Con IL2CPP la primera build tarda bastante más (no medido todavía).
+
+## 9 | Diagnóstico rápido
+tipo: contenido
+kicker: ANEXO · PASO 8 · CUANDO ALGO FALLA
+| Síntoma | Qué hacer |
+| "Unsupported Input Handling on Android" | Ignore y registrarlo |
+| "No Android devices connected" | Usar Build, o cable, diálogo y Refresh |
+| adb dice "unauthorized" | Aceptar el diálogo en el teléfono |
+| No se instala o no abre | IL2CPP + ARM64 |
+| Ícono negro | Revisar Default Icon |
+| Ver errores del juego | adb logcat -s Unity |
+fuente: Unity 6.3 Manual — Android Player settings; Debug on Android devices
+notas:
+Glosario (conceptos cortos para la docente):
+• Logcat: registro de mensajes del sistema Android; con -s Unity se filtran los del juego.
+Detalle: el primer cartel es un aviso (deja seguir); el segundo frena Build and Run, pero no Build. "No se instala" en teléfonos que solo aceptan 64 bits: primera sospecha, falta ARM64 (documentado por Android; en el curso todavía no se vio).
+Logs: con el teléfono conectado, adb logcat -s Unity muestra los mensajes de Debug.Log y los errores del juego. El paquete Android Logcat de Unity es una alternativa con ventana, pero instalarlo cambia el proyecto: no se usa sin autorización.

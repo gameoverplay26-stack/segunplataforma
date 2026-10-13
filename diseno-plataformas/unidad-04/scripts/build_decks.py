@@ -152,7 +152,8 @@ def header(slide, s, total):
 def footer(slide, deck, s, total):
     tf = textbox(slide, MARGIN, FOOTER_Y, SLIDE_W - 2 * MARGIN, Inches(0.3), MSO_ANCHOR.MIDDLE)
     p = tf.paragraphs[0]
-    run(p, "Diseño según Plataformas de Juego · Unidad IV · Clase %d · %s" % (deck["num"], deck["title"]), 10, MUTED)
+    where = "Anexo" if deck["title"].startswith("Anexo") else "Clase %d" % deck["num"]
+    run(p, "Diseño según Plataformas de Juego · Unidad IV · %s · %s" % (where, deck["title"]), 10, MUTED)
     tf2 = textbox(slide, SLIDE_W - MARGIN - Inches(1), FOOTER_Y, Inches(1), Inches(0.3), MSO_ANCHOR.MIDDLE)
     p2 = tf2.paragraphs[0]
     p2.alignment = PP_ALIGN.RIGHT
@@ -169,8 +170,13 @@ def bullets(slide, items, x, y, w, h):
     for i, b in enumerate(items):
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         p.space_after = Pt(8)
-        run(p, "■  ", size - 6, TEAL, bold=True)
-        run(p, b, size)
+        m = re.match(r"(\d+)\. (.*)", b)
+        if m:  # paso numerado
+            run(p, m.group(1) + "  ", size, TEAL, bold=True)
+            run(p, m.group(2), size)
+        else:
+            run(p, "■  ", size - 6, TEAL, bold=True)
+            run(p, b, size)
 
 
 def table(slide, rows, x, y, w, h):
@@ -848,13 +854,13 @@ if __name__ == "__main__":
     ap.add_argument("--decks", type=int, nargs="+", help="numeros de deck a generar (por defecto, todos)")
     ap.add_argument("--version", type=int, help="agrega el sufijo -vN al nombre del archivo (N > 1)")
     ap.add_argument("--out-dir", default=UNIT_DIR, help="carpeta de salida (por defecto, la de la unidad)")
-    ap.add_argument("--unido", action="store_true", help="genera ademas un solo .pptx con todas las clases")
+    ap.add_argument("--por-clase", action="store_true", help="genera ademas un .pptx por seccion")
     args = ap.parse_args()
     decks = parse(SOURCE)
-    if len(decks) != 3:
-        sys.exit("Se esperaban 3 decks y se encontraron %d" % len(decks))
-    for path, total in build(decks, args.decks, args.version, args.out_dir):
-        print("OK  %-40s %2d slides" % (os.path.basename(path), total))
-    if args.unido:
-        path, total = build_unido(decks, args.out_dir)
-        print("OK  %-40s %2d slides" % (os.path.basename(path), total))
+    if len(decks) != 4:
+        sys.exit("Se esperaban 4 secciones (3 clases + anexo) y se encontraron %d" % len(decks))
+    if args.por_clase or args.decks:
+        for path, total in build(decks, args.decks, args.version, args.out_dir):
+            print("OK  %-40s %2d slides" % (os.path.basename(path), total))
+    path, total = build_unido(decks, args.out_dir)
+    print("OK  %-40s %2d slides" % (os.path.basename(path), total))

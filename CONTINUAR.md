@@ -78,8 +78,8 @@ Los IDs de decisión no se mezclan: `D4-xx` (cátedra, en `status-unidad.md`), `
 ... -executeMethod PorteoSetup.Apply -quit -logFile "<ruta>/setup.log"
 
 # Decks de la Unidad 4 (desde diseno-plataformas/unidad-04/)
-python scripts/build_decks.py                        # los 3 decks de la versión final
-python scripts/build_decks.py --decks 2              # uno solo
+python scripts/build_decks.py                        # archivo único (3 clases + anexo)
+python scripts/build_decks.py --por-clase            # además, un .pptx por sección
 ```
 
 ---
@@ -88,7 +88,7 @@ python scripts/build_decks.py --decks 2              # uno solo
 
 **Cátedra, Unidad 4 (Móvil)**
 - La **Clase 1 se dio hasta la slide 15** (A4.1). Quedan **dos encuentros de 90 min** (decisión del 2026-10-13).
-- **Versión final** en `unidad-04/`: `Unidad-4-Clase-1-2026.pptx` (dada, 15 slides), `Unidad-4-Clase-2-2026.pptx` (16) y `Unidad-4-Clase-3-2026.pptx` (23), reparto 40/60. Guion en `unidad-04/03-clase-guion-docente.md`. Versiones v1–v4 en `unidad-04/versiones-anteriores/`.
+- **Versión final** en `unidad-04/`: un solo archivo, `Unidad-4-2026-completa.pptx` (63 slides): Clase 1 = 1–15 (dada), Clase 2 = 16–31, Clase 3 = 32–54, anexo de consulta "Android en Unity 6" = 55–63. Reparto 40/60. Guion en `unidad-04/03-clase-guion-docente.md`. Versiones v1–v4 en `unidad-04/versiones-anteriores/`.
 - Pendientes: prueba de la build IL2CPP + ARM64 en un teléfono real (UNKNOWN); decidir la defensa del TP 3 por video (PROPUESTO); D4-05 y D4-06.
 
 **Laboratorio de adaptación / porteo**
