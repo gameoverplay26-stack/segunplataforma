@@ -61,6 +61,14 @@ Compilación: sin errores (`error CS` = 0 en los logs `asteroides-02b-setup.log`
 - La **cuarta falla es inestable** y cambia de test entre corridas. Antes del porteo afectaba a `LaserMovesUp`; después, a `GameOverStopsSpawningAndDisablesShip`, y en una corrida no apareció. Su stack trace lleva al mismo defecto del pool: `Laser.OnCollisionEnter` (`Laser.cs:52`) → `ObjectPool.Release` → `Spawner.PlayExplosion` sobre un `AudioSource` destruido. **No** proviene del cambio de entrada.
 - **Sin regresiones atribuibles al porteo**, dentro de lo que cubren estos tests.
 
+### 4.1 Build de Android (2026-10-12)
+
+- `Assets/Tests/EditMode/AndroidBuildConfigTests.cs` (+ `EditModeTests.asmdef`, solo Editor): 4 tests de configuración. Con el proyecto en Mono + ARMv7: 2 pasan y 2 fallan (IL2CPP, ARM64). Ver EV-029.
+- `Assets/Editor/BuildAndroid.cs`: genera `Builds/AsteroideTest.apk` con `BuildPipeline.BuildPlayer`. En batchmode: éxito en 42 s, APK de 20 MB. Ver EV-030.
+- Active Input Handling = Both: Unity 6.3 lo declara no soportado en Android; en el editor muestra el cartel "Unsupported Input Handling on Android" (se puede ignorar) y en batchmode solo deja un aviso en el log.
+- Hallazgo: si los Player Settings se editan dentro del Build Profile, quedan en `Assets/Settings/Build Profiles/Android™.asset` y no en `ProjectSettings`. Qué valores lee `PlayerSettings` en ese caso: UNKNOWN.
+- UNKNOWN: build con IL2CPP + ARM64; instalación y juego en un teléfono real.
+
 ## 5. Lo que esta evidencia NO demuestra (UNKNOWN)
 
 - Que los controles táctiles funcionen en el **Device Simulator** o en un **teléfono**: no se ejecutó el juego de forma interactiva. Que `Application.isMobilePlatform` sea verdadero en el Device Simulator es un supuesto que hay que verificar en la demo.

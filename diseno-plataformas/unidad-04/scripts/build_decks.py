@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Genera los 4 decks de la Unidad 4 (Unidad-4-Clase-N-2026.pptx) a partir de
+Genera los 3 decks de la Unidad 4 (Unidad-4-Clase-N-2026.pptx) a partir de
 diseno-plataformas/unidad-04/04-diapositivas.md, que es la unica fuente de contenido.
 
 Uso (desde diseno-plataformas/unidad-04/):  python scripts/build_decks.py
@@ -50,7 +50,7 @@ SOURCE_Y = Inches(6.70)
 CALLOUT_H = Inches(0.5)
 IMG_W = Inches(4.3)
 
-KEYS = ("tipo", "kicker", "pregunta", "actividad", "imagen", "diagrama", "cronologia", "hitos", "flujo", "comparacion", "tiles", "codigo", "vista", "safearea", "video", "fuente")
+KEYS = ("tipo", "kicker", "pregunta", "actividad", "imagen", "diagrama", "cronologia", "hitos", "flujo", "comparacion", "tiles", "codigo", "vista", "safearea", "captura", "ajustes", "panel", "video", "fuente")
 CALLOUTS = (  # clave, etiqueta, color
     ("pregunta", "PREGUNTA", AMBER),
     ("actividad", "ACTIVIDAD", GREEN),
@@ -547,7 +547,8 @@ def code_block(slide, spec, x, y, w, h):
     tf.vertical_anchor = MSO_ANCHOR.MIDDLE
     tf.margin_left = Inches(0.25)
     longest = max((len(l) - indent for l in lines), default=0)
-    size = 15 if len(lines) <= 14 and longest <= 50 else 12
+    fit = int((w - Inches(0.5)) / 12700 / (0.6 * (longest + 5)))  # Consolas: ~0,6 em por caracter
+    size = max(10, min(15 if len(lines) <= 16 else 12, fit))
     for i, line in enumerate(lines):
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         p.alignment = PP_ALIGN.LEFT
@@ -660,6 +661,60 @@ def safearea_diagram(slide, spec, x, y, w, h):
         tb = textbox(slide, px + pw + Inches(0.12), ty, Inches(1.6), Inches(0.35), MSO_ANCHOR.MIDDLE)
         run(tb.paragraphs[0], "← " + text, 12, MUTED)
 
+def screenshot(slide, spec, x, y, w, h):
+    """Captura real de pantalla. Sintaxis: captura: imagenes/a.png + imagenes/b.png | pie
+    Las rutas son relativas a la unidad; varias imagenes separadas por ' + ' se apilan."""
+    from PIL import Image
+    paths, _, caption = spec.partition("|")
+    files = [os.path.join(UNIT_DIR, f.strip()) for f in paths.split("+")]
+    cap_h = Inches(0.4) if caption.strip() else 0
+    gap = Inches(0.15)
+    slot_h = int((h - cap_h - gap * (len(files) - 1)) / len(files))
+    cy = y
+    for f in files:
+        iw, ih = Image.open(f).size
+        scale = min(w / iw, slot_h / ih)
+        pw, ph = int(iw * scale), int(ih * scale)
+        pic = slide.shapes.add_picture(f, x + int((w - pw) / 2), cy + int((slot_h - ph) / 2), pw, ph)
+        pic.line.color.rgb = GRID
+        pic.line.width = Pt(1)
+        cy += slot_h + gap
+    if caption.strip():
+        tf = textbox(slide, x, y + h - cap_h, w, cap_h, MSO_ANCHOR.MIDDLE)
+        p = tf.paragraphs[0]
+        p.alignment = PP_ALIGN.CENTER
+        run(p, caption.strip(), 12, MUTED, italic=True)
+
+
+def settings_panel(slide, spec, x, y, w, h):
+    """Panel tipo Inspector de Unity. Sintaxis: ajustes: Titulo | Campo: valor | Campo: *valor
+    El '*' marca el valor que hay que poner (se resalta)."""
+    parts = [p.strip() for p in spec.split("|")]
+    title, rows = parts[0], [r.partition(":") for r in parts[1:]]
+    head_h = Inches(0.5)
+    row_h = min(Inches(0.55), int((h - head_h) / max(len(rows), 1)))
+    panel = rect(slide, x, y, w, head_h + row_h * len(rows), RGBColor(0x28, 0x28, 0x28))
+    tf = textbox(slide, x + Inches(0.2), y, w - Inches(0.4), head_h, MSO_ANCHOR.MIDDLE)
+    run(tf.paragraphs[0], title, 15, WHITE, bold=True)
+    label_w = int(w * 0.5)
+    for i, (field, _, value) in enumerate(rows):
+        ry = y + head_h + row_h * i
+        rect(slide, x, ry, w, Pt(1), RGBColor(0x3C, 0x3C, 0x3C))
+        tf = textbox(slide, x + Inches(0.2), ry, label_w - Inches(0.2), row_h, MSO_ANCHOR.MIDDLE)
+        run(tf.paragraphs[0], field.strip(), 14, RGBColor(0xD4, 0xD4, 0xD4))
+        value = value.strip()
+        hot = value.startswith("*")
+        vx, vw = x + label_w, w - label_w - Inches(0.2)
+        box = rect(slide, vx, ry + Inches(0.08), vw, row_h - Inches(0.16),
+                   TEAL if hot else RGBColor(0x1E, 0x1E, 0x1E), MSO_SHAPE.ROUNDED_RECTANGLE)
+        tf = box.text_frame
+        tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+        tf.margin_left = Inches(0.12)
+        p = tf.paragraphs[0]
+        p.alignment = PP_ALIGN.LEFT
+        run(p, value.lstrip("*").strip(), 14, WHITE, bold=hot)
+
+
 def callout(slide, label, text, color, y):
     rect(slide, MARGIN, y, Inches(0.12), CALLOUT_H, color)
     bg = rect(slide, MARGIN + Inches(0.12), y, SLIDE_W - 2 * MARGIN - Inches(0.12), CALLOUT_H, LIGHT_BG)
@@ -722,10 +777,13 @@ def build_content(prs, deck, s, total):
     panels = (("cronologia", Inches(7.4), timeline_chart), ("vista", Inches(7.4), view_diagram),
               ("codigo", Inches(6.6), code_block), ("comparacion", Inches(6.2), compare_diagram),
               ("tiles", Inches(6.4), tiles_diagram), ("flujo", Inches(5.0), flow_diagram),
-              ("diagrama", Inches(5.6), layer_diagram), ("safearea", Inches(4.6), safearea_diagram))
+              ("diagrama", Inches(5.6), layer_diagram), ("safearea", Inches(4.6), safearea_diagram),
+              ("captura", Inches(7.6), screenshot), ("ajustes", Inches(6.4), settings_panel))
     panel = next((pn for pn in panels if s.get(pn[0])), None)
     has_img = bool(s.get("imagen")) and panel is None
     panel_w = panel[1] if panel else IMG_W
+    if panel and s.get("panel") == "ancho":  # el grafico ocupa todo el ancho; sin viñetas
+        panel_w = SLIDE_W - 2 * MARGIN
     body_w = SLIDE_W - 2 * MARGIN - (panel_w + Inches(0.3) if (panel or has_img) else 0)
     if panel:
         panel[2](slide, s[panel[0]], SLIDE_W - MARGIN - panel_w, BODY_TOP, panel_w, body_h)
@@ -775,7 +833,7 @@ if __name__ == "__main__":
     ap.add_argument("--out-dir", default=UNIT_DIR, help="carpeta de salida (por defecto, la de la unidad)")
     args = ap.parse_args()
     decks = parse(SOURCE)
-    if len(decks) != 4:
-        sys.exit("Se esperaban 4 decks y se encontraron %d" % len(decks))
+    if len(decks) != 3:
+        sys.exit("Se esperaban 3 decks y se encontraron %d" % len(decks))
     for path, total in build(decks, args.decks, args.version, args.out_dir):
         print("OK  %-40s %2d slides" % (os.path.basename(path), total))

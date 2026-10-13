@@ -4,7 +4,7 @@ Punto de entrada para retomar el trabajo **desde cualquier computadora**. La mem
 
 **Uso:** en la otra máquina, clonar el repo, abrir Claude Code en la raíz y escribir **"continuá"**. Claude lee este archivo (lo indica `CLAUDE.md`) y el archivo de estado del frente que corresponda.
 
-- **Última actualización:** 2026-10-10
+- **Última actualización:** 2026-10-13
 - **Al cerrar cada sesión:** actualizar la sección 4 ("Dónde quedamos") y el archivo de estado del frente trabajado, y luego commit + push. Si no se pushea, la otra máquina no ve el trabajo.
 
 ---
@@ -78,8 +78,8 @@ Los IDs de decisión no se mezclan: `D4-xx` (cátedra, en `status-unidad.md`), `
 ... -executeMethod PorteoSetup.Apply -quit -logFile "<ruta>/setup.log"
 
 # Decks de la Unidad 4 (desde diseno-plataformas/unidad-04/)
-python scripts/build_decks.py --version 3            # los 4 decks
-python scripts/build_decks.py --decks 2 --version 3  # uno solo
+python scripts/build_decks.py                        # los 3 decks de la versión final
+python scripts/build_decks.py --decks 2              # uno solo
 ```
 
 ---
@@ -87,10 +87,9 @@ python scripts/build_decks.py --decks 2 --version 3  # uno solo
 ## 4. Dónde quedamos (2026-10-10)
 
 **Cátedra, Unidad 4 (Móvil)**
-- La **Clase 1 se dio hasta la slide 15** (A4.1). Faltan las slides 16–21 y las Clases 2, 3 y 4.
-- Decks **v3** generados (`unidad-04/Unidad-4-Clase-N-2026-v3.pptx`), con el porteo real de Asteroides integrado y el reparto 40/60. Detalle en `unidad-04/03-clase-guion-docente.md`.
-- **Pendiente de decisión:** cómo entran las slides 16–21 de la Clase 1 (60 min) en el próximo encuentro (ver el guion).
-- Otros pendientes en `status-unidad.md`: imágenes reales, implementar el defecto de pausa (A4.4), probar en un teléfono, D4-05 y D4-06.
+- La **Clase 1 se dio hasta la slide 15** (A4.1). Quedan **dos encuentros de 90 min** (decisión del 2026-10-13).
+- **Versión final** en `unidad-04/`: `Unidad-4-Clase-1-2026.pptx` (dada, 15 slides), `Unidad-4-Clase-2-2026.pptx` (16) y `Unidad-4-Clase-3-2026.pptx` (23), reparto 40/60. Guion en `unidad-04/03-clase-guion-docente.md`. Versiones v1–v4 en `unidad-04/versiones-anteriores/`.
+- Pendientes: prueba de la build IL2CPP + ARM64 en un teléfono real (UNKNOWN); decidir la defensa del TP 3 por video (PROPUESTO); D4-05 y D4-06.
 
 **Laboratorio de adaptación / porteo**
 - **Asteroides:** porteo de entrada **implementado** (Input System 1.19.0, `ShipInputAdapter`, `Ship.SetIntent`, joystick y botón en pantalla, 3 tests). Tests: 10–11 de 14 en verde; las 3 hipótesis del pool fallan siempre por un defecto real, y hay 1 test inestable causado por el mismo defecto. Ver `laboratorio-adaptacion/PORTEO-ASTEROIDES.md`.

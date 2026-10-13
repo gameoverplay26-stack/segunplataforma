@@ -1,23 +1,24 @@
-# Unidad 4 — Diapositivas definitivas (texto + notas del docente)
+# Unidad 4 — Diapositivas, versión final (texto + notas del docente)
 
-Fuente única de los 4 decks de la Unidad 4. Basado en la arquitectura **aprobada** ([`04-diapositivas-arquitectura.md`](./04-diapositivas-arquitectura.md)).
-Para regenerar los `.pptx` después de editar este archivo: `python scripts/build_decks.py` desde `diseno-plataformas/unidad-04/` (requiere `pip install python-pptx`). Opciones: `--decks 1 3` genera solo esos decks; `--version 2` agrega el sufijo `-v2` al nombre del archivo; `--out-dir RUTA` escribe en otra carpeta (útil si el .pptx está abierto). Claves adicionales: `diagrama: Capa: a, b | Capa: c || nota` dibuja capas apiladas con flechas (slide 3 de la Clase 1 v2); `cronologia: Etiqueta: 1972 | *Destacada: 2008 || nota` dibuja una cronología de barras hasta 2026, y el `*` destaca una barra (slide 6); `hitos: 1972 · Nombre · aporte | …` dibuja una línea de tiempo de hitos a todo el ancho (slide 7). También: `flujo: Paso | Paso || nota` (cadena vertical con flechas), `comparacion: +Título: a, b // nota | Título: c, d // nota` (dos columnas; el `+` agrupa los chips en un solo bloque y el `-` los dibuja a la mitad de tamaño), `tiles: 4x7 | rótulo | rótulo de la ampliación` (pantalla dividida en tiles con overdraw), `codigo: ruta/al/archivo.cs:61-73` (lee el código real del repositorio; con `codigo: git:REV:ruta:61-73` lo lee de un commit, por ejemplo la versión original de Asteroides) y `vista: 5 | -8, 8 | 16:9 | 9:16` (pantallas a escala para una cámara ortográfica y un rango de spawn). `safearea: rótulo` dibuja un teléfono con muesca, barra de gestos y zona segura (Clase 2). **Regla:** las slides sin imagen real no llevan recuadro vacío; la sugerencia de imagen queda en las notas.
+Fuente única de los 3 decks de la Unidad 4. Generar: `python scripts/build_decks.py` desde `diseno-plataformas/unidad-04/` (requiere `pip install python-pptx` y Pillow). Opciones: `--decks 2 3` genera solo esos decks; `--out-dir RUTA` escribe en otra carpeta (útil si el .pptx está abierto).
 
-**Versiones:** los cuatro decks están en su **versión 2** (2026-10-05): texto breve en las slides, notas completas con glosario, sin menciones a clases futuras y gráficos nativos en lugar de recuadros de imagen. Los `.pptx` v1 se conservan como archivos; su texto fuente está en el historial de git (commit `acb7c4c`). Generar todo: `python scripts/build_decks.py --version 2`. El deck 1 en su versión 2: incorpora conceptos del artículo de Kevuru Games, con texto breve en las slides y notas del docente completas. Se genera con `python scripts/build_decks.py --decks 1 --version 2`. La v1 (`Unidad-4-Clase-1-2026.pptx`) se conserva como archivo; su texto fuente está en el historial de git (commit `acb7c4c`).
+**Versión final (2026-10-13).** Pedido del usuario: la unidad termina en **dos encuentros de 90 minutos** después de la Clase 1, que se dio hasta la slide 15. Se reorganizó todo el contenido restante con reparto **40 % teoría / 60 % práctica** (36 / 54 min por encuentro), sin perder temas:
+- **Clase 1** (dada): slides 1–15, tal como se dieron.
+- **Clase 2 — Del supuesto de PC al pulgar** (90 min): simulador y límites, A4.2 (supuestos de PC), elegir plataforma, UI táctil (mínimos, densidad, safe area, pulgar, orientación, gestos, accesibilidad), Input System, **A4.7** (une A4.3 y A4.7: boceto + implementación), playtest y vistazo de la build. Tarea: Build Support, depuración USB y primer APK.
+- **Clase 3 — Asteroides en tu bolsillo** (90 min): build con capturas reales, instalación, medición, A4.6, QA manual, matriz, testing en móvil, **A4.8** (test de configuración), monetización como diseño, A4.5, TP 3 y cierre de unidad.
+- Pasan fuera del encuentro: "Leer con lupa" (lectura), A4.4 (pausa, en el dossier del TP 3) y la defensa del TP 3 (video, **PROPUESTO**).
 
-**Versión 3 (2026-10-10): porteo real de Asteroides.** Se integra, de forma gradual y desde la slide 16 de la Clase 1 (la clase se cortó en la slide 15), el porteo de entrada que ya está implementado en el repositorio: paquete Input System 1.19.0, `ShipInputAdapter` (dispositivo → intención), `Ship.SetIntent` y controles en pantalla (`OnScreenStick`/`OnScreenButton`). Cada clase respeta el reparto **40 % teoría / 60 % práctica**, contando la apertura, la teoría y las demos como teoría. Cambios: Clase 1 (slide 17 con el código **original** leído de git y notas de la 18); Clase 2 (demo ampliada, slides nuevas 13 y 14, actividad nueva A4.7 en la 16; A4.6 pasa a la Clase 4); Clase 3 (slide nueva 12, "Mismo patrón, dos adaptadores", con la evidencia de los tests); Clase 4 (A4.6, casos QA de controles, transferencia al 2D Platformer y puente al gamepad). Registro técnico: [`../laboratorio-adaptacion/PORTEO-ASTEROIDES.md`](../laboratorio-adaptacion/PORTEO-ASTEROIDES.md). Generar: `python scripts/build_decks.py --version 3`. Las v1 y v2 se conservan como archivos.
+Las versiones anteriores (v1 a v4, `.pptx` y fuentes) están en `versiones-anteriores/`.
 
 **Formato que lee el generador (no cambiar la sintaxis):**
-- `# DECK n | Título | Subtítulo` empieza un deck.
-- `## n | Título` empieza una slide.
-- Claves de una línea: `tipo:` (portada / contenido / actividad / demo / cierre), `kicker:` (etiqueta superior), `pregunta:`, `actividad:`, `imagen:`, `video:`, `fuente:`.
-- Líneas `- ` = viñetas. Líneas `|` = tabla (la primera fila es el encabezado).
-- `notas:` abre las notas del docente, que siguen hasta la próxima slide.
-- `imagen:` dibuja un recuadro **[IMAGEN SUGERIDA]** con la descripción; la titular la reemplaza por la imagen real.
+- `# DECK n | Título | Subtítulo` empieza un deck. `## n | Título` empieza una slide.
+- Claves de una línea: `tipo:` (portada / contenido / actividad / demo / cierre), `kicker:`, `pregunta:`, `actividad:`, `video:`, `fuente:`, `imagen:` (recuadro de imagen sugerida; no se usa).
+- Gráficos: `diagrama:`, `cronologia:`, `hitos:`, `flujo:`, `comparacion:`, `tiles:`, `codigo:` (lee el código real; `codigo: git:REV:ruta:a-b` lo lee de un commit), `vista:`, `safearea:`, `captura: imagenes/a.png + imagenes/b.png | pie` (capturas reales), `ajustes: Título | Campo: valor | Campo: *valor` (panel tipo Inspector; `*` resalta) y `panel: ancho` (el gráfico ocupa todo el ancho).
+- Líneas `- ` = viñetas. Líneas `|` = tabla (la primera fila es el encabezado). `notas:` abre las notas del docente hasta la próxima slide.
 
 ---
 
-# DECK 1 | Un teléfono no es una PC chica | Unidad IV · Clase 1 · v3
+# DECK 1 | Un teléfono no es una PC chica | Unidad IV · Clase 1 · final (dada hasta la slide 15)
 
 ## 1 | Diseño según Plataforma Móvil
 tipo: portada
@@ -337,9 +338,34 @@ Respuestas esperadas (detalle en 05, A4.1):
 6. El emulador no representa el rendimiento → Profiler en un teléfono de gama baja.
 Error típico a corregir: proponer un unit test para los casos 2, 3 o 5. Recordar pedir siempre el modelo del dispositivo.
 
-## 16 | Demo: el simulador y sus límites
+# DECK 2 | Del supuesto de PC al pulgar | Unidad IV · Clase 2 · final
+
+## 1 | Del supuesto de PC al pulgar
+tipo: portada
+kicker: UNIDAD IV · CLASE 2 DE 3 · 90 MIN
+- Supuestos de PC, UI táctil y controles en Unity
+- Diseño según Plataformas de Juego · FI – UNJu · 2026
+notas:
+Versión final de la unidad: quedan dos encuentros de 90 minutos. Este retoma la Clase 1 desde la slide 16 y suma la UI táctil y la implementación de los controles. El encuentro siguiente es la práctica en el teléfono, la prueba y el negocio.
+Reparto: teoría 36 min (apertura 3, simulador 4, plataforma 3, UI táctil 14, demos de Input System 7, vistazo de la build 3, cierre 2) = 40 %; práctica 54 min (A4.2 12, puesta en común 5, A4.7 30, playtest 7) = 60 %.
+Antes de empezar: proyecto Asteroides abierto en el Device Simulator; copia del proyecto original para los grupos; deck de la Clase 1 a mano por si hay que volver a A4.1.
+
+## 2 | Dónde quedamos
+tipo: contenido
+kicker: APERTURA · 3 MIN
+- A4.1: síntomas en el teléfono
+- Hoy: qué supone el código
+- Y cómo se juega con el pulgar
+pregunta: ¿Por qué la nave no se mueve en el teléfono?
+notas:
+Glosario (conceptos cortos para la docente):
+• Supuesto de plataforma: algo que el código da por cierto porque se pensó para una PC (teclado, pantalla horizontal, mouse).
+Recuperar A4.1 en un minuto: los síntomas (calor, tirones, partida perdida al atender una llamada) tenían causas en la máquina. Hoy pasamos del síntoma a la causa en el código y a las manos del jugador.
+Dejar la pregunta abierta: la respuesta aparece en A4.2 (Ship.cs lee teclas fijas). No dar la herramienta antes del problema.
+
+## 3 | Demo: el simulador y sus límites
 tipo: demo
-kicker: DEMO EN VIVO
+kicker: DEMO EN VIVO · 4 MIN
 - Player Settings de Android
 - Device Simulator: qué simula
 - Y qué NO simula
@@ -360,9 +386,9 @@ Pasos de la demo:
 4. Poner Asteroides en un perfil de teléfono en vertical. Confirmar en vivo el supuesto de que la cámara está centrada en x = 0.
 No revelar todavía el problema del spawn: lo descubren en A4.2.
 
-## 17 | Actividad A4.2 — Supuestos de PC
+## 4 | Actividad A4.2 — Supuestos de PC
 tipo: actividad
-kicker: ACTIVIDAD · 20 MIN · GRUPOS
+kicker: ACTIVIDAD · 12 MIN · GRUPOS
 - Ship.cs 61–73: el control
 - Ship.cs 46–47 y 99–115: los límites
 - Spawner.cs 101–106: el spawn
@@ -380,9 +406,9 @@ La respuesta completa es la tabla S1–S13 de 02-caso-practico. Para aprobar alc
 Pista si se traban: "¿qué pasa con la cámara si la pantalla es más angosta que alta?".
 Importante (versión 3): el código de la slide es la versión **original** de Ship.cs, leída del commit e766f8c. En el repositorio, Ship.cs ya tiene el porteo de entrada (Ship.SetIntent + ShipInputAdapter). Los grupos analizan la versión original: si trabajan con el repositorio clonado, que lo hagan sobre ese commit (git checkout e766f8c -- proyectos-unity/Asteroides/asteroide-final/Assets/Scripts/Ship.cs) o con la copia del TP. No mostrar todavía la solución.
 
-## 18 | Lo que encontramos
+## 5 | Lo que encontramos
 tipo: contenido
-kicker: PUESTA EN COMÚN
+kicker: PUESTA EN COMÚN · 5 MIN
 - Vista: 5 × aspect a cada lado
 - 16:9 → ≈ 8,9 · vertical → ≈ 2,8
 - Spawn en x ∈ [−8, 8]
@@ -400,9 +426,9 @@ No hay error de lógica: hay un supuesto de plataforma. Ningún archivo tiene un
 Mostrarlo en el Device Simulator. Conectar con el testing de integración de la U3: es un defecto de integración con la plataforma.
 Cerrar la puesta en común volviendo al supuesto S1 (teclado): en el teléfono, Asteroides deja tocar "Start" pero la nave no se mueve ni dispara, porque Ship.cs lee teclas fijas. La salida es el diagrama de la slide 3: separar el dispositivo de la intención. No mostrar la herramienta todavía; alcanza con dejar planteado el problema. Se resuelve en código más adelante en la unidad.
 
-## 19 | ¿Cómo se elige una plataforma?
+## 6 | ¿Cómo se elige una plataforma?
 tipo: contenido
-kicker: DECISIÓN
+kicker: DECISIÓN · 3 MIN
 - Audiencia
 - Modelo de monetización
 - Herramientas y soporte
@@ -411,10 +437,10 @@ kicker: DECISIÓN
 pregunta: Con estos criterios: ¿Asteroides es un juego para móvil?
 fuente: Kevuru Games (blog, consultado 2026-10-05) + criterio de la cátedra
 notas:
-[Diapositiva nueva en la versión 2.]
 Glosario (conceptos cortos para la docente):
 • Audiencia: público al que apunta el juego.
 • Vigencia (future-proofing): que la plataforma siga activa y evolucionando con el tiempo.
+Versión final: la slide «Leer con lupa» pasa a lectura del aula virtual (ver el cierre).
 El artículo de Kevuru propone cuatro consideraciones para elegir plataforma, y concluye que el desafío no es encontrar la "mejor" plataforma, sino la que encaja con la visión del juego y su público:
 1. Audiencia: saber para quién se construye. Un puzzle casual puede encontrar su público en móvil; un RPG con mucha narrativa puede funcionar mejor en consola o PC.
 2. Modelos de monetización: suscripción, free-to-play con compras integradas o venta premium. Cada plataforma se inclina por estrategias distintas y el modelo de ingresos tiene que coincidir.
@@ -423,111 +449,27 @@ El artículo de Kevuru propone cuatro consideraciones para elegir plataforma, y 
 Lo que agrega la cátedra: un quinto criterio, las restricciones técnicas y de diseño de la plataforma (todo lo que vimos hoy: calor, batería, memoria, interrupciones, pantalla). El artículo no lo menciona y es justamente el núcleo de esta materia.
 Respuesta esperada a la pregunta: Asteroides encaja en móvil por audiencia (partidas cortas y casuales) y por sus requisitos técnicos bajos, pero exige rediseñar el control, la pantalla y la pausa (lo que encontramos en A4.2). La monetización se decide más adelante en la unidad.
 
-## 20 | Leer con lupa
-tipo: actividad
-kicker: LECTURA CRÍTICA · 5 MIN
-- Lo escribe un estudio que vende servicios
-- Google Stadia: cerró el 18/01/2023
-- "Origin": reemplazada por la EA app (2022)
-- Cifras de mercado sin fuente
-actividad: Antes de citar un dato, busquen la fuente primaria.
-fuente: Google — mensaje oficial sobre el cierre de Stadia (2022); EA — anuncio de la EA app (06/10/2022)
-notas:
-[Diapositiva nueva en la versión 2.]
-Glosario (conceptos cortos para la docente):
-• Fuente primaria: documento original de quien produce el dato (por ejemplo, el comunicado oficial de la empresa).
-• Stadia: servicio de cloud gaming de Google (2019–2023).
-• EA app: lanzador de juegos de PC de Electronic Arts, que reemplazó a Origin.
-El artículo que usamos para las slides 5, 6, 7, 8 y 19 es útil para los conceptos, pero tiene problemas que conviene mostrar:
-1. Es el blog de un estudio de desarrollo (Kevuru Games) que termina ofreciendo sus servicios y un formulario de cotización: es una fuente comercial, no una autoridad.
-2. Presenta Google Stadia como un servicio activo. Google anunció el cierre el 29/09/2022 y fue efectivo el 18/01/2023, con reembolsos (verificado en la investigación de la Unidad VII, fuente oficial de Google).
-3. Nombra la tienda "Origin" entre las plataformas de PC. EA anunció el 06/10/2022 que la EA app la reemplaza como su plataforma principal de PC (fuente oficial de EA).
-4. Da cifras de ingresos y usuarios proyectadas desde 2023 (por ejemplo, ingresos del sector y cantidad de usuarios a 2027) sin citar de dónde salen. No las usamos en clase.
-5. Mezcla bajo "plataforma" hardware, tiendas, cloud y sitios de streaming (lo ordenamos en la slide 5).
-Mensaje para los alumnos: el mismo criterio que aplicamos a los tests (¿qué demuestra y qué no?) se aplica a las fuentes. Un blog sirve para ideas; los datos se verifican en la documentación oficial o en papers. Es el mismo criterio que van a usar en el TP 3.
-
-## 21 | Qué no resuelve esto · TP 3
-tipo: cierre
-kicker: CIERRE
-- El simulador no mide calor ni batería
-- Eso se mide en su teléfono
-- TP 3: Dossier Asteroides móvil
-- Tarea: Build Support + depuración USB
-fuente: Unity 6.3 Manual — Android environment setup; Android — Configure on-device developer options
-notas:
-Glosario (conceptos cortos para la docente):
-• Build Support: módulo de Unity que permite compilar el juego para una plataforma; acá, Android.
-• Depuración USB: opción de Android que permite a la PC instalar y analizar apps en el teléfono por cable.
-• TP: trabajo práctico.
-Cerrar con el límite de la herramienta, no con la herramienta: el simulador encontró el problema de la pantalla, pero no mide calor ni batería. Eso lo vamos a medir en sus teléfonos, más adelante en la unidad.
-TP 3: Dossier de plataforma, Asteroides móvil (consigna en el aula virtual).
-Tarea técnica obligatoria (sin ella no se puede hacer la práctica en el teléfono):
-1. Instalar el módulo Android Build Support (con OpenJDK, Android SDK y NDK) en Unity 6000.3.11f1 desde Unity Hub.
-2. En el teléfono: tocar 7 veces "Número de compilación" para habilitar las Opciones de desarrollador y activar "Depuración USB" (en Android 9 o superior: Ajustes > Sistema > Avanzado > Opciones de desarrollador).
-
-# DECK 2 | Diseñar para el pulgar | Unidad IV · Clase 2 · v3
-
-## 1 | Diseñar para el pulgar
-tipo: portada
-kicker: UNIDAD IV · CLASE 2 DE 4
-- UI táctil, pantallas y accesibilidad
-- Diseño según Plataformas de Juego · FI – UNJu · 2026
-notas:
-Recordar de dónde venimos: la Clase 1 fue la máquina (calor, batería, memoria, sistema operativo). Hoy: las manos y la pantalla.
-Imagen sugerida (opcional, sin recuadro en la slide): mano sosteniendo un teléfono, con el arco de alcance del pulgar dibujado.
-
-## 2 | ¿Cuánto mide un dedo?
+## 7 | ¿Cuánto mide un dedo?
 tipo: contenido
-kicker: APERTURA
-- Score bajo la cámara
-- Botón de inicio diminuto
-- El pulgar tapa la acción
-pregunta: ¿Qué tamaño mínimo debería tener un botón?
-notas:
-Glosario (conceptos cortos para la docente):
-• HUD: información superpuesta al juego (puntaje, vidas, botones).
-• Muesca (notch): recorte de la pantalla donde van la cámara y los sensores.
-Situación completa: en un teléfono con muesca, el score de Asteroides queda debajo de la cámara frontal; el botón de inicio, pensado para un mouse, es diminuto; y el pulgar tapa justo la zona por donde caen los asteroides.
-Dejar que propongan números en píxeles y mostrar que la respuesta en píxeles no sirve (slide 4). Recuperar el supuesto S6 de la Clase 1 (Canvas en Constant Pixel Size).
-Imagen sugerida (opcional, sin recuadro en la slide): captura del HUD de Asteroides en un teléfono con muesca.
-
-## 3 | Hay mínimos oficiales
-tipo: contenido
-kicker: UI TÁCTIL
-| Plataforma | Tamaño mínimo táctil | Fuente |
+kicker: UI TÁCTIL · 4 MIN
+- Diseñar en pt/dp, no en px
+- Canvas Scaler: Scale With Screen Size
+| Plataforma | Mínimo táctil | Fuente |
 | iOS | 44 × 44 pt (mínimo 28 × 28) | Apple HIG |
 | Android | 48 × 48 dp | Android Developers |
-| visionOS (referencia) | 60 × 60 pt | Apple HIG |
-fuente: Apple HIG — Buttons, Accessibility; Android — Make apps more accessible
+fuente: Apple HIG — Buttons, Accessibility; Android — Make apps more accessible; Unity uGUI 2.0 — Canvas Scaler
 notas:
 Glosario (conceptos cortos para la docente):
-• pt (punto): unidad de Apple independiente de la densidad de la pantalla.
-• dp (density-independent pixel): unidad equivalente de Android.
-• Objetivo táctil: área de la pantalla que responde a un toque.
-• HIG (Human Interface Guidelines): guías de diseño oficiales de Apple.
-Son números verificables: convierten "botón cómodo" en un criterio de prueba.
-Detalle: Apple pide 44 × 44 pt por defecto, con un mínimo absoluto de 28 × 28 pt; Android pide al menos 48 × 48 dp, "Larger is even better". Apple sugiere separar los controles ~12 pt si tienen borde visible y ~24 pt si no lo tienen.
-Para juegos en iOS, Apple fija además texto de 17 pt por defecto y 11 pt como mínimo (HIG, Designing for games).
+• px (píxel): punto físico de la pantalla; su tamaño real depende de la densidad.
+• pt / dp: unidades independientes de la densidad (iOS / Android); un botón de 48 dp mide lo mismo en cualquier teléfono.
+• Canvas Scaler: componente de Unity que decide cómo se escala la UI según la pantalla.
+Problema: en un teléfono con muesca, el score de Asteroides queda bajo la cámara y el botón de inicio, pensado para un mouse, es diminuto. Preguntar "¿cuántos píxeles debería medir un botón?" y mostrar que en píxeles no hay respuesta: el mismo botón de 100 px es grande en un teléfono viejo y diminuto en uno de alta densidad.
+Mínimos oficiales: Apple pide 44 × 44 pt por defecto, con un mínimo absoluto de 28 × 28 pt; Android pide al menos 48 × 48 dp ("Larger is even better"). Son números verificables: convierten "botón cómodo" en un criterio de prueba.
+Unity: Asteroides usa Constant Pixel Size (supuesto S6). Scale With Screen Size escala desde una resolución de referencia. Se aplica en A4.7.
 
-## 4 | pt, dp, px
+## 8 | No todo el rectángulo es tuyo
 tipo: contenido
-kicker: UI TÁCTIL · DENSIDAD
-- px: puntos físicos de pantalla
-- pt y dp: independientes de la densidad
-- Unity: el Canvas Scaler decide
-comparacion: Baja densidad: Botón de 100 px // Se ve grande | -Alta densidad: Botón de 100 px // El mismo botón se ve chico (esquema, no a escala exacta)
-fuente: Unity uGUI 2.0 — Canvas Scaler; Designing UI for Multiple Resolutions
-notas:
-Glosario (conceptos cortos para la docente):
-• Densidad de pantalla: cantidad de píxeles por pulgada; cuantos más, más chico se ve cada píxel.
-• px (píxel): punto físico de la pantalla.
-• Canvas Scaler: componente de Unity que decide cómo escala la interfaz según la pantalla.
-Idea: el mismo botón de 100 px es grande en un teléfono viejo y diminuto en uno de alta densidad. Por eso se diseña en unidades independientes de la densidad (pt, dp) y se deja que el motor escale.
-Modos del Canvas Scaler: Constant Pixel Size (el que usa Asteroides), Scale With Screen Size y Constant Physical Size. No hace falta la fórmula de conversión.
-
-## 5 | No todo el rectángulo es tuyo
-tipo: contenido
-kicker: UI TÁCTIL · SAFE AREA
+kicker: UI TÁCTIL · SAFE AREA · 3 MIN
 - Muescas, bordes y barras
 - Screen.safeArea en Unity
 - UI esencial adentro
@@ -544,129 +486,52 @@ En Android 15 con target SDK 35, el contenido va de borde a borde obligatoriamen
 La UI esencial va dentro de la safe area; el fondo puede salir de ella.
 Android permite simular un cutout desde las opciones de desarrollador: útil para la práctica en el teléfono, más adelante en la unidad.
 
-## 6 | Dónde llega el pulgar
+## 9 | Pulgar y orientación
 tipo: contenido
-kicker: ERGONOMÍA [RECICLADO 28/09]
-- Una mano, dos manos, acunado
+kicker: ERGONOMÍA · 3 MIN
 - El agarre cambia todo el tiempo
 - HUD editable: CoD Mobile, Fortnite
-pregunta: ¿Qué zona tapa el pulgar que dispara?
-fuente: Hoober, UXmatters 2013 (profesional); Activision blog CoD Mobile 2019; Epic — Fortnite mobile development
-notas:
-Glosario (conceptos cortos para la docente):
-• Ergonomía: adaptación del diseño al cuerpo de quien lo usa.
-• Agarre: forma de sostener el teléfono (una mano, dos manos, acunado).
-Datos de Hoober (2013, 1.333 personas observadas): 49 % una mano, 36 % acunado, 15 % dos manos; los usuarios cambian de agarre todo el tiempo.
-Advertencia para decir en clase: es una fuente profesional, no académica, y tiene más de una década, con teléfonos más chicos que los actuales. Sirve como disparador, no como norma.
-CoD Mobile y Fortnite permiten mover y redimensionar los controles del HUD: una respuesta de diseño a la diversidad de manos y de teléfonos.
-Imagen sugerida (opcional, sin recuadro en la slide): HUD táctil con las zonas de los pulgares superpuestas.
-
-## 7 | Vertical u horizontal
-tipo: contenido
-kicker: PANTALLA · ORIENTACIÓN
-- Cambia el campo de juego
-- Asteroides arranca en AutoRotation
-- Android 16 exceptúa a los juegos
-vista: 5 | -8, 8 | 16:9 | 9:16
+- Vertical: una mano
+- Horizontal: dos pulgares, más campo
 pregunta: ¿Asteroides es vertical u horizontal?
-fuente: Android 16 behavior changes; Unity 6.3 Android Player settings; código del proyecto
+fuente: Hoober, UXmatters 2013 (profesional); Activision blog CoD Mobile 2019; Android 16 behavior changes
 notas:
 Glosario (conceptos cortos para la docente):
-• AutoRotation: la pantalla gira sola cuando el jugador gira el teléfono.
-• Orientación: vertical (portrait) u horizontal (landscape).
-El gráfico es el mismo hallazgo de la Clase 1, a escala: en vertical, la mayor parte del rango de spawn queda fuera de la pantalla.
-Detalle: Android 16 ignora las restricciones de orientación en pantallas grandes, salvo en juegos; Unity 6.3 marca Application Category = Game por defecto.
-No hay una respuesta correcta única: vertical favorece una mano; horizontal favorece el campo de visión y los dos pulgares. Se evalúa que la decisión considere sus consecuencias (rango de spawn, límites, HUD).
+• Agarre: forma de sostener el teléfono (una mano, acunado, dos manos).
+• HUD: información y controles superpuestos al juego.
+Datos de Hoober (2013, 1.333 personas observadas): 49 % una mano, 36 % acunado, 15 % dos manos; la gente cambia de agarre todo el tiempo. Advertir: fuente profesional, no académica, con más de una década; sirve como disparador, no como norma.
+CoD Mobile y Fortnite permiten mover y redimensionar los controles: una respuesta de diseño a la diversidad de manos y teléfonos.
+Orientación: lo vieron en la puesta en común de A4.2: en vertical, la mayoría de los asteroides nace fuera de pantalla. Android 16 ignora las restricciones de orientación en pantallas grandes, salvo en juegos (Unity 6.3 marca Application Category = Game por defecto). No hay respuesta única: se evalúa que la decisión considere sus consecuencias (spawn, límites, HUD).
 
-## 8 | Gestos
+## 10 | Gestos, controles y accesibilidad
 tipo: contenido
-kicker: INTERACCIÓN
-- No redefinir gestos del sistema
+kicker: INTERACCIÓN · 4 MIN
 - Gesto propio: nunca la única vía
-- No depender de gestos (Android)
-comparacion: Un dedo: Tocar, Deslizar, Arrastrar, Mantener // Gestos estándar | Dos dedos: Pellizcar // Zoom y escala
-fuente: Apple HIG — Gestures; Android — accessibility
-notas:
-Glosario (conceptos cortos para la docente):
-• Gesto: movimiento del dedo sobre la pantalla que el sistema interpreta como una orden.
-• Gestos del sistema: los que usa el sistema operativo (volver, ir al inicio, abrir notificaciones).
-• Descubribilidad: qué tan fácil es que el jugador encuentre una función sin que se la expliquen.
-Detalle: los gestos estándar son tocar, deslizar, arrastrar, mantener y pellizcar. No hay que redefinir los gestos del sistema. Un gesto inventado nunca debe ser la única forma de hacer algo importante (Apple), y las apps no deberían depender de gestos para funciones básicas (Android).
-Relacionarlo con descubribilidad: si un gesto no se ve, el jugador no lo encuentra; por eso los gestos propios se acompañan de una alternativa visible.
-
-## 9 | Sin botón físico
-tipo: contenido
-kicker: INTERACCIÓN · TÁCTIL
 - Joystick virtual: tapa la pantalla
-- Toque directo: el dedo cubre
-- Un dedo: Alto's Adventure
-- Háptica: opcional
-video: Zach Gage — "Controls You Can Feel" (GDC 2012, gratuito). Fragmento a definir
-fuente: Apple HIG — Playing haptics; Android — Haptics design principles; App Store — Alto's Adventure
-notas:
-Glosario (conceptos cortos para la docente):
-• Joystick virtual: control dibujado en pantalla que imita una palanca.
-• Háptica: vibraciones del teléfono usadas como respuesta al jugador.
-Detalle: el joystick virtual es familiar, pero no tiene tope físico y tapa la pantalla; el toque directo o el arrastre son precisos, pero el dedo cubre lo que se toca; Alto's Adventure se juega con un solo toque.
-Háptica: complementaria, consistente y desactivable. Recomendación de Android: entre una vibración molesta y ninguna, elegir ninguna. Que sea opcional también es accesibilidad.
-
-## 10 | Accesibilidad móvil
-tipo: contenido
-kicker: ACCESIBILIDAD
 - Controles grandes y separados
-- Alternativa a cada gesto
 - Háptica y efectos desactivables
-- Sin toques repetidos rápidos
-- Texto legible
-fuente: Game Accessibility Guidelines (nivel básico); Apple HIG — Accessibility, Designing for games
+comparacion: Joystick virtual: Familiar, Sin tope físico // Tapa la pantalla | Toque directo: Preciso, Un dedo // El dedo cubre lo que toca
+fuente: Apple HIG — Gestures, Accessibility; Android — Haptics design principles; Game Accessibility Guidelines
 notas:
 Glosario (conceptos cortos para la docente):
-• Accesibilidad: que el juego pueda jugarlo la mayor cantidad posible de personas, incluidas personas con discapacidad.
-• Discapacidad situacional: limitación temporal del contexto (por ejemplo, jugar con una mano en el colectivo).
-• Button mashing: tocar un botón muchas veces seguidas y rápido.
-Detalle: controles grandes y bien separados; una alternativa a cada gesto; háptica y efectos de pantalla desactivables; evitar la repetición rápida de toques; texto de 17 pt por defecto y 11 pt como mínimo en iOS.
-Accesible no es un extra: amplía quiénes pueden jugar y mejora la experiencia de todos. Estos puntos van al checklist del TP 3.
+• Gesto estándar: tocar, deslizar, arrastrar, mantener, pellizcar.
+• Háptica: vibraciones cortas como respuesta a una acción.
+• Onboarding: la primera sesión, cuando el juego enseña a jugar.
+Gestos: no redefinir los gestos del sistema; un gesto inventado nunca debe ser la única forma de hacer algo importante (Apple), y las apps no deberían depender de gestos (Android).
+Sin botón físico: el joystick virtual es familiar, pero no tiene tope y tapa la pantalla; el toque directo es preciso, pero el dedo cubre lo que toca; Alto's Adventure se juega con un solo toque.
+Accesibilidad (al checklist del TP 3): controles grandes y separados; alternativa a cada gesto; háptica y efectos desactivables (Android: entre una vibración molesta y ninguna, elegir ninguna); sin toques repetidos rápidos; texto de 17 pt por defecto y 11 pt como mínimo en iOS.
+Primera sesión, en una línea: jugar apenas se instala, descarga inicial corta, enseñar jugando y pedir permisos cuando hacen falta.
+Video opcional de tarea: Zach Gage, "Controls You Can Feel" (GDC 2012).
 
-## 11 | La primera sesión
-tipo: contenido
-kicker: ONBOARDING
-- Jugar apenas se instala
-- Descarga inicial corta
-- Enseñar jugando
-- Permisos cuando hacen falta
-fuente: Apple HIG — Designing for games; Apple GameKit — juegos con descargas grandes
-notas:
-Glosario (conceptos cortos para la docente):
-• Onboarding: la primera experiencia del jugador, en la que aprende a jugar.
-• Permiso: autorización que el sistema pide al usuario (cámara, notificaciones).
-Detalle: que se pueda jugar apenas termina la instalación; descarga inicial corta (Apple sugiere 30 minutos o menos); enseñar jugando, no con pantallas de texto; pedir permisos en el momento en que se necesitan.
-Tema importante pero no imprescindible: no profundizar en Play Asset Delivery; solo la idea de que el tamaño de descarga define qué entra en la primera sesión.
-
-## 12 | Demo: escalar la UI
+## 11 | Una acción, tres dispositivos
 tipo: demo
-kicker: DEMO EN VIVO
-- Canvas: Constant Pixel Size
-- Cambiar a Scale With Screen Size
-- Comparar en el Device Simulator
-- Leer Screen.safeArea
-video: Unity — "Input System Mobile controls" (opcional, de tarea)
-fuente: Unity uGUI 2.0 — Canvas Scaler; Unity 6.3 — Screen.safeArea
-notas:
-Glosario (conceptos cortos para la docente):
-• Resolución de referencia: tamaño de pantalla para el que se diseña la UI; el Canvas Scaler escala a partir de ese tamaño.
-Pasos: el Canvas del prefab Game está en Constant Pixel Size con referencia 800 × 600. Cambiarlo a Scale With Screen Size, elegir una resolución de referencia y comparar en el Device Simulator con dos teléfonos y una tablet. Después, leer Screen.safeArea y ver dónde cae el score.
-Hacerlo en una copia o rama del proyecto. Mostrar el antes y el después. Remarcar el orden: primero apareció el problema (slide 2), ahora la herramienta.
-
-## 13 | Una acción, tres dispositivos
-tipo: demo
-kicker: DEMO EN VIVO · INPUT SYSTEM
+kicker: DEMO EN VIVO · INPUT SYSTEM · 4 MIN
 - En el teléfono, la nave no se mueve
 - Teclado, gamepad y dedo: la misma acción
 - Los controles en pantalla simulan un gamepad
 diagrama: Dispositivo: Teclado, Gamepad, Joystick en pantalla | Intención: Mover, Disparar | Nave: MoveLeft, MoveRight, ShootLaser || La nave no sabe qué dispositivo se usó
 fuente: Unity Input System 1.19 — On-screen Controls; código del proyecto (ShipInputAdapter.cs, Ship.cs)
 notas:
-[Diapositiva nueva en la versión 3: porteo real de Asteroides.]
 Glosario (conceptos cortos para la docente):
 • Input System: paquete de Unity que reemplaza al Input Manager clásico; trabaja con acciones en lugar de teclas fijas.
 • Acción: lo que el jugador quiere hacer (mover, disparar), separado del botón que la produce.
@@ -677,72 +542,59 @@ Primero el problema (regla de la cátedra): en el teléfono, Asteroides deja toc
 El diagrama es el mismo de las tres capas: el dispositivo cambia; la intención y la nave no. Los controles en pantalla no son un caso especial: según la documentación de Input System 1.19, un OnScreenStick con el control path <Gamepad>/leftStick crea un gamepad virtual, y el juego lo lee igual que un gamepad físico.
 Pasos de la demo (versión del repositorio, ya portada):
 1. Package Manager: Input System 1.19.0 instalado (viene con Unity 6000.3.11f1).
-2. Project Settings > Player > Active Input Handling = Both. Se usa Both, y no solo New, para no romper el menú, que todavía usa el StandaloneInputModule clásico. Unity pide reiniciar el editor.
+2. Project Settings > Player > Active Input Handling = Both. Se usa Both, y no solo New, para no romper el menú, que todavía usa el StandaloneInputModule clásico. Unity pide reiniciar el editor. Consecuencia (versión 4): según la documentación de Unity 6.3, Both "no está soportado en Android"; al compilar aparece el cartel "Unsupported Input Handling on Android". Es el precio de una dependencia oculta y se retoma más adelante en la unidad, con el teléfono.
 3. Abrir el Device Simulator con un teléfono: aparecen el joystick abajo a la izquierda y el botón de disparo abajo a la derecha (MobileControlsVisibility los muestra solo en plataformas móviles).
 4. Mover la nave con el mouse sobre el joystick. Después, en la PC, mostrar que el teclado sigue funcionando y, si hay un gamepad, que también funciona sin cambiar código.
 Límite a decir en voz alta: el Device Simulator simula el toque de un dedo; mover y disparar a la vez (dos dedos) solo se prueba en el teléfono.
 URL verificada (2026-10-10): https://docs.unity3d.com/Packages/com.unity.inputsystem@1.19/manual/OnScreen.html
 
-## 14 | La intención en código
+## 12 | La intención en código
 tipo: demo
-kicker: DEMO EN VIVO · CÓDIGO REAL
+kicker: DEMO · CÓDIGO REAL · 3 MIN
 - Las teclas pasan a ser bindings
 - El gamepad se suma sin tocar la nave
 - La nave recibe SetIntent(mover, disparar)
 codigo: ../../proyectos-unity/Asteroides/asteroide-final/Assets/Scripts/ShipInputAdapter.cs:18-27
 fuente: Código del proyecto (ShipInputAdapter.cs; Ship.cs, método SetIntent)
 notas:
-[Diapositiva nueva en la versión 3.]
 Glosario (conceptos cortos para la docente):
 • Composite 1DAxis: binding que arma un eje de −1 a 1 con dos teclas (negativa y positiva).
 • Adaptador: clase que traduce el dispositivo a la intención; acá, ShipInputAdapter.
 • Zona muerta (dead zone): margen alrededor de 0 en el que el stick se considera quieto (0,2 en Ship.cs).
 Qué mostrar: las flechas y la barra espaciadora siguen ahí, pero ahora como bindings de una acción; el stick y el D-pad del gamepad y el botón A (buttonSouth) se agregan como bindings de las mismas acciones. Cada frame, el adaptador llama a ship.SetIntent(mover, disparar).
 Comparar con la slide de A4.2 (versión original): las tres lecturas de Input.GetKey desaparecieron de Ship.cs. MoveLeft, MoveRight y ShootLaser no cambiaron, y por eso los tests que ya existían siguen sirviendo.
-Decisión de diseño a explicitar: el esquema del repositorio (joystick + botón) es uno de los posibles; en A4.3 cada grupo elige el suyo y lo implementa en A4.7.
+Decisión de diseño a explicitar: el esquema del repositorio (joystick + botón) es uno de los posibles; en A4.7 cada grupo elige el suyo y lo implementa.
 
-## 15 | Actividad A4.3 — Dos esquemas
+## 13 | Actividad A4.7 — Del boceto al control
 tipo: actividad
-kicker: ACTIVIDAD · 20 MIN · GRUPOS
-- Dos esquemas de control
-- Boceto con safe area
-- Medidas en pt/dp
-- Comparar con 5 criterios
-safearea: Plantilla: dibujen acá su HUD
-actividad: Elijan uno y justifíquenlo con dos fuentes.
-notas:
-Glosario (conceptos cortos para la docente):
-• Esquema de control: forma en que el jugador da órdenes (por ejemplo, joystick virtual + botón, o arrastrar + disparo automático).
-• Autodisparo: la nave dispara sola, sin que el jugador toque un botón.
-Consigna completa: diseñar dos esquemas (por ejemplo, joystick virtual + botón vs. arrastrar + autodisparo); boceto sobre una pantalla de teléfono con la safe area marcada (la plantilla de la slide); medidas en pt/dp y orientación elegida; comparación con cinco criterios: oclusión, precisión, una mano, accesibilidad y descubribilidad.
-Buena respuesta: decide la orientación sabiendo su efecto sobre el spawn, respeta 44 pt / 48 dp, no pone controles bajo la muesca, reconoce que el autodisparo cambia el game design (baja la habilidad requerida y cambia el balance) y ofrece una alternativa accesible.
-
-## 16 | Actividad A4.7 — Del boceto al control
-tipo: actividad
-kicker: ACTIVIDAD · 30 MIN · GRUPOS · EN UNITY
-- Instalar Input System 1.19
-- Implementar su esquema de A4.3
-- Probar en el Device Simulator
+kicker: ACTIVIDAD · 30 MIN · GRUPOS · BOCETO + UNITY
+- Boceto: dos esquemas (8 min)
+- Elegir uno con 5 criterios
+- Implementarlo con Input System
 - ¿Mide 48 dp? ¿Tapa la nave?
-actividad: Entreguen una captura y lo que el simulador no pudo probar.
+safearea: Plantilla: boceten acá su HUD
+actividad: Entreguen boceto, captura del simulador y lo que no pudieron probar.
 notas:
-[Actividad nueva en la versión 3.]
 Glosario (conceptos cortos para la docente):
-• Device Simulator: ventana de Unity que muestra el juego con la pantalla de un teléfono; simula el toque de un dedo, pero no el rendimiento.
-• Captura de evidencia: imagen que muestra el resultado con la fecha y el perfil de dispositivo usado.
-Consigna completa (sobre su copia del proyecto, versión original):
+• Esquema de control: forma en que el jugador da órdenes (joystick virtual + botón, o arrastrar + autodisparo).
+• Autodisparo: la nave dispara sola, sin un botón.
+• Device Simulator: simula el toque de un dedo, pero no el rendimiento.
+Versión final: une A4.3 (bocetos) y A4.7 (implementación) en una sola actividad.
+Parte 1, boceto (8 min): dos esquemas sobre la plantilla con la safe area; medidas en pt/dp y orientación; comparar con cinco criterios (oclusión, precisión, una mano, accesibilidad, descubribilidad) y elegir uno.
+Parte 2, Unity (22 min, sobre su copia del proyecto original):
 1. Instalar Input System 1.19.0 desde el Package Manager y poner Active Input Handling = Both (reiniciar el editor).
-2. Implementar el esquema que eligieron en A4.3: joystick + botón (OnScreenStick + OnScreenButton) o arrastre + autodisparo (una acción ligada al puntero y disparo continuo). La nave no debe leer el dispositivo: solo recibe la intención.
-3. Probar en el Device Simulator con dos perfiles (un teléfono con muesca y uno sin muesca).
-4. Medir: ¿el control mide al menos 48 dp? ¿Queda fuera de la muesca? ¿El pulgar taparía la zona por donde caen los asteroides?
-5. Escribir qué NO pudieron probar en el simulador (por ejemplo, dos dedos a la vez, comodidad, rendimiento). Esa lista se prueba en el teléfono más adelante en la unidad.
-Referencia para la docente: la solución de joystick + botón está en el repositorio (ShipInputAdapter.cs, MobileControlsVisibility.cs y los controles del prefab UICanvas, creados con Editor/PorteoSetup.cs). No entregarla: sirve para destrabar a un grupo.
-Errores frecuentes: olvidar Active Input Handling (las acciones no reciben nada); si el código está en un ensamblado propio (asmdef), agregar la referencia a Unity.InputSystem; poner el control fuera del Canvas.
-Avance del TP 3: sección 3 (control y HUD) con evidencia.
+2. Implementar el esquema elegido: joystick + botón (OnScreenStick + OnScreenButton) o arrastre + autodisparo. La nave no lee el dispositivo: solo recibe la intención.
+3. Canvas en Scale With Screen Size y controles dentro de Screen.safeArea.
+4. Probar en el Device Simulator con un teléfono con muesca y uno sin muesca.
+5. Anotar lo que el simulador NO pudo probar (dos dedos a la vez, comodidad, rendimiento): se prueba en el teléfono, más adelante en la unidad.
+Buena respuesta: decide la orientación sabiendo su efecto sobre el spawn, respeta 44 pt / 48 dp, no pone controles bajo la muesca y reconoce que el autodisparo cambia el game design.
+Referencia para destrabar (no entregar): ShipInputAdapter.cs, MobileControlsVisibility.cs y los controles del prefab UICanvas (creados con Editor/PorteoSetup.cs).
+Errores frecuentes: olvidar Active Input Handling; si el código está en un asmdef, agregar la referencia a Unity.InputSystem; poner el control fuera del Canvas.
+Si no terminan: completan en casa y suben la captura al aula virtual. Avance del TP 3: sección 3 (control y HUD).
 
-## 17 | Probalo con tu mano
+## 14 | Probalo con tu mano
 tipo: actividad
-kicker: PLAYTEST DE PAPEL · 12 MIN
+kicker: PLAYTEST DE PAPEL · 7 MIN
 - HUD a escala sobre tu teléfono
 - ¿Llegás a todo?
 - ¿Qué tapa el pulgar?
@@ -753,274 +605,69 @@ Glosario (conceptos cortos para la docente):
 Consigna del playtest: dibujar el HUD que implementaron, a escala, sobre la silueta del propio teléfono; sostenerlo y comprobar si se llega a todo y qué tapa el pulgar. Es barato y se hace con personas reales: la comodidad no se prueba en el editor.
 Comparar con A4.7: el simulador dijo dónde están los controles; la mano dice si se pueden usar.
 Cierre: un buen layout no garantiza comodidad; eso lo dicen las personas. Verificar quién ya tiene la depuración USB funcionando.
-[Versión 3: la actividad A4.6 se mueve a la práctica con el teléfono, donde se puede medir con el Profiler.]
-Reparto de la clase en la versión 3: teoría 48 min (apertura 8, UI táctil 20, gestos y accesibilidad 10, demos 10) = 40 %; práctica 72 min (A4.3 20, A4.7 30, playtest 12, cierre 10) = 60 %.
 
-# DECK 3 | El negocio y la prueba | Unidad IV · Clase 3 · v3
-
-## 1 | El negocio y la prueba
-tipo: portada
-kicker: UNIDAD IV · CLASE 3 DE 4
-- Monetización como diseño · Testing en móvil
-- Diseño según Plataformas de Juego · FI – UNJu · 2026
-notas:
-Hoy cambiamos de restricción: ya no es el hardware ni la mano, son las reglas de la tienda y cómo probamos lo que diseñamos.
-
-## 2 | USD 520 millones por una pantalla de compra
+## 15 | Vistazo: del editor al teléfono
 tipo: contenido
-kicker: APERTURA
-- FTC vs. Epic Games (2022)
-- USD 275 M + USD 245 M
-- Botones confusos al comprar
-pregunta: ¿Monetizar es negocio o diseño?
-fuente: FTC, comunicado de prensa del 19/12/2022
+kicker: VISTAZO · 3 MIN · TAREA
+- Build Profiles → Android
+- Player Settings: identidad y 64 bits
+- Build genera un .apk
+- Tarea: su primer APK en casa
+captura: imagenes/u4-build-profiles-android.png | Build Profiles en Unity 6000.3.11f1: perfil Android activo
+fuente: Unity 6.3 Manual — Build your application for Android; Android Player settings
 notas:
 Glosario (conceptos cortos para la docente):
-• FTC (Federal Trade Commission): organismo de EE. UU. que protege a los consumidores.
-• COPPA: ley de EE. UU. que protege la privacidad de los menores de 13 años en línea.
-• Dark patterns: diseños de interfaz que empujan al usuario a hacer algo que no quería.
-Caso completo: en 2022 la FTC acusó a Epic Games por Fortnite. Epic pagó USD 275 millones por privacidad de menores (COPPA) y USD 245 millones en reembolsos. El motivo: dark patterns en la compra, con una configuración de botones "counterintuitive, inconsistent, and confusing".
-Respuesta buscada: las dos cosas. Una decisión de interfaz (dónde va un botón, qué confirma una compra) tuvo consecuencias legales. Desde hoy la monetización se analiza como diseño, con reglas y con ética.
-Imagen sugerida (opcional, sin recuadro en la slide): titular del comunicado oficial de la FTC del 19/12/2022.
+• Build Profiles: ventana de Unity 6 (File > Build Profiles) que reemplaza a Build Settings; cada perfil guarda una plataforma y sus opciones.
+• Switch Platform: cambiar la plataforma activa; Unity reimporta los assets y la primera vez tarda.
+• APK: archivo instalable de Android. AAB (App Bundle): formato para publicar en Google Play; no se instala a mano.
+• IL2CPP: backend que convierte el C# a C++ y lo compila a código nativo; es el único que habilita ARM64.
+• ARM64: arquitectura de 64 bits de los procesadores de los teléfonos actuales.
+Por qué acá: acaban de implementar los controles y el paso natural es verlos en el teléfono. Es solo un vistazo del camino; el detalle y los problemas se trabajan más adelante en la unidad, con los teléfonos.
+Mostrar en vivo (3 min), sin compilar: File > Build Profiles; elegir Android y Switch Platform. Recorrer las marcas rojas de la captura: el perfil activo, Build App Bundle (destildado = sale un .apk) y Development Build (lo necesita el Profiler).
+Tarea (guía en el aula virtual):
+1. Switch Platform a Android en su copia del proyecto.
+2. Edit > Project Settings > Player > Android > Other Settings: Scripting Backend = IL2CPP y tildar ARM64. Hacerlo en Project Settings y no en la sección Player Settings del Build Profile: si se edita ahí, el perfil guarda una copia propia (en nuestro proyecto pasó: Company y Product quedaron en Assets/Settings/Build Profiles y no en ProjectSettings).
+3. Botón Build (no Build And Run), carpeta Builds/ fuera de Assets, nombre AsteroideTest.apk. Si aparece "Unsupported Input Handling on Android", tocar Ignore y anotarlo.
+4. Traer el .apk y anotar cuánto tardó la build y qué carteles aparecieron.
+Por qué en casa: la primera build con IL2CPP tarda varios minutos (Gradle descarga y compila); hecha en casa, la práctica con el teléfono no pierde ese tiempo y los problemas de drivers llegan resueltos.
+Dato verificado (Unity 6.3 Manual, Build your application for Android): Build crea el archivo en la carpeta elegida; Build and Run además lo instala en el Run Device; por defecto Unity genera APK.
 
-## 3 | Cuatro modelos
-tipo: contenido
-kicker: MONETIZACIÓN
-| Modelo | Quién paga | Qué cambia en el diseño |
-| Premium | Al comprar | Sin interrupciones |
-| Freemium + IAP | Algunos jugadores | Tienda y progresión |
-| Anuncios | El anunciante | Cuándo interrumpir |
-| Híbrido | Combinación | Todo lo anterior |
-fuente: App Store — Alto’s Adventure (ficha consultada 2026-10-04)
+## 16 | Qué no resuelve esto · Tarea
+tipo: cierre
+kicker: CIERRE · 2 MIN
+- El simulador no mide calor ni manos
+- TP 3: Dossier Asteroides móvil
+- Tarea: Build Support + USB + APK
+- Lectura: "Leer con lupa"
+fuente: Unity 6.3 Manual — Android environment setup; Android — Configure on-device developer options
 notas:
 Glosario (conceptos cortos para la docente):
-• Premium: el juego se paga una vez, al comprarlo.
-• Freemium: el juego es gratis y se cobra por contenido o ventajas dentro de él.
-• IAP (in-app purchase): compra dentro de la aplicación.
-• Híbrido: combinación de modelos (por ejemplo, anuncios + compra para quitarlos).
-Detalle por modelo:
-- Premium: el jugador paga una vez, al comprar; no hay interrupciones, pero el alcance es menor. Ejemplo: Alto's Adventure, pago único, sin anuncios ni IAP.
-- Freemium + IAP: pagan algunos jugadores, dentro del juego; la progresión y la tienda interna se piensan para vender.
-- Con anuncios: paga el anunciante y el jugador "paga" con tiempo; hay que decidir en qué momento interrumpir.
-- Híbrido: combina los anteriores.
-Agregar el modelo premium es una corrección al programa, que solo nombra freemium e híbridos. Ninguno es "el bueno": cada uno cambia el juego de distinta manera.
+• Build Support: módulo de Unity que permite compilar para una plataforma; acá, Android.
+• Depuración USB: opción de Android que permite a la PC instalar y analizar apps en el teléfono por cable.
+Cerrar con el límite de la herramienta: el simulador encontró el problema de la pantalla, pero no mide calor, batería ni comodidad. Eso se mide en sus teléfonos, más adelante en la unidad.
+Tarea técnica obligatoria (sin ella no se puede hacer la práctica en el teléfono):
+1. Instalar Android Build Support (con OpenJDK, Android SDK y NDK) en Unity 6000.3.11f1 desde Unity Hub.
+2. En el teléfono: tocar 7 veces "Número de compilación" y activar "Depuración USB" (Android 9 o superior: Ajustes > Sistema > Avanzado > Opciones de desarrollador).
+3. Comprobar que la PC ve el teléfono: cable de datos, aceptar "¿Permitir depuración USB?" y Build Profiles > Android > Run Device > Refresh (o adb devices).
+4. Generar el primer APK siguiendo la slide anterior (IL2CPP + ARM64, botón Build) y traerlo instalado o en el teléfono.
+Lectura (aula virtual): "Leer con lupa", el artículo de Kevuru Games con las observaciones de la cátedra (Stadia cerrado, Origin reemplazada, cifras sin fuente).
+TP 3: Dossier de plataforma, Asteroides móvil (consigna en el aula virtual).
 
-## 4 | Tres formatos de anuncio
-tipo: contenido
-kicker: MONETIZACIÓN · ADS
-| Formato | Cómo funciona | Regla clave |
-| Rewarded | El jugador elige verlo | Con recompensa, opt-in |
-| Interstitial | Pantalla completa | Solo en transiciones |
-| Banner | Franja fija | Ocupa UI y safe area |
-fuente: Google AdMob — Rewarded ads; Interstitial ad guidance
-notas:
-Glosario (conceptos cortos para la docente):
-• Rewarded: anuncio que el jugador elige ver a cambio de una recompensa.
-• Interstitial: anuncio de pantalla completa entre momentos del juego.
-• Banner: franja publicitaria fija en la pantalla.
-• Opt-in: el usuario elige activamente participar.
-Cita de AdMob sobre rewarded: "served after a user explicitly chooses to view". El interstitial va solo en transiciones naturales del juego.
-Remarcar la diferencia de consentimiento: el rewarded lo pide el jugador, el interstitial se lo imponen. Eso cambia la experiencia y, como vemos en la slide siguiente, también las reglas.
-Imagen sugerida (opcional, sin recuadro en la slide): tres mockups de pantalla de Asteroides, uno por formato.
-
-## 5 | Lo que AdMob prohíbe
-tipo: contenido
-kicker: MONETIZACIÓN · REGLAS EXTERNAS
-- Al abrir o salir de la app
-- Después de cada acción
-- Uno detrás de otro
-- Inesperados durante el juego
-pregunta: ¿Un anuncio en cada Game Over cumple?
-fuente: Google AdMob — Disallowed interstitial implementations
-notas:
-Glosario (conceptos cortos para la docente):
-• AdMob: plataforma de anuncios de Google para apps.
-• Política: regla obligatoria que impone la plataforma o la tienda.
-Las cuatro prohibiciones completas para interstitials: al abrir o al salir de la app; después de cada acción del usuario (como máximo, uno cada dos acciones); inmediatamente después de otro interstitial; de forma inesperada mientras el usuario está jugando.
-Discutir la pregunta: si cada partida es corta y cada Game Over muestra un anuncio, se acerca a "después de cada acción". No hay respuesta automática: hay que leer la política y justificar.
-Dato de herramienta: Unity recomienda migrar de Unity Ads directo a LevelPlay (mediación) desde abril de 2026; no se integra en esta materia.
-
-## 6 | La tienda pone las reglas
-tipo: contenido
-kicker: MONETIZACIÓN · REGLAS EXTERNAS
-- Apple 3.1.1: IAP obligatorio
-- Probabilidades visibles al comprar
-- Google Play Billing obligatorio
-- Niños: sin publicidad personalizada
-fuente: Apple App Review Guidelines 3.1.1 y 1.3; Google Play — Payments policy y Families policy
-notas:
-Glosario (conceptos cortos para la docente):
-• Loot box: caja con premios al azar que se compra sin saber qué contiene.
-• Google Play Billing: sistema de pagos obligatorio de Google Play.
-• SDK: biblioteca de un tercero que se integra al juego (por ejemplo, para mostrar anuncios).
-Detalle:
-- Apple 3.1.1: para desbloquear contenido digital se debe usar la compra integrada (IAP).
-- Apple y Google: las cajas con premios al azar deben mostrar las probabilidades antes de comprar.
-- Google Play Billing es obligatorio, con excepciones por país.
-- Apps para niños: sin publicidad personalizada ni SDKs no certificados.
-IAP no es una estrategia libre: la tienda la impone y la regula. Por eso el diseño de la tienda interna empieza leyendo estas políticas.
-
-## 7 | Monetizar cambia el juego
-tipo: contenido
-kicker: MONETIZACIÓN = GAME DESIGN
-- "Continuar" cambia el Game Over
-- Dificultad para vender: cambia el balance
-- Anuncios: cambian el ritmo
-- Vampire Survivors: nunca interrumpir
-pregunta: Con "continuar", ¿qué rebalancearían?
-fuente: Kotaku (2023), citando a poncle
-notas:
-Glosario (conceptos cortos para la docente):
-• Balance: equilibrio entre la dificultad y las herramientas del jugador.
-• Ritmo: alternancia entre momentos intensos y de descanso en la partida.
-Detalle: "continuar con un anuncio" cambia el significado del Game Over; subir la dificultad para vender vidas cambia el balance; las pausas para anuncios cambian el ritmo de la sesión.
-Caso: en Vampire Survivors para móvil, la monetización está "designed to never interrupt your game, always be optional" (Kotaku, 2023, citando a poncle).
-Respuesta posible a la pregunta: la cantidad de vidas, la velocidad de los asteroides y la duración de la partida; además, cómo se calcula el puntaje si alguien continúa. Es el puente entre economía y game design.
-
-## 8 | El lado oscuro
-tipo: contenido
-kicker: ÉTICA
-- Dark patterns (Zagal et al., 2013)
-- Loot boxes: correlación, no causa
-- 35 técnicas predatorias (2022)
-- Bélgica las prohibió (2018)
-video: "Dark Patterns: How Good UX Can Be Bad UX", Anisa Sanusi, GDC 2017 (gratuito). Fragmento a definir
-fuente: PLOS ONE 2018; Journal of Business Ethics 2022; UK Gambling Commission
-notas:
-Glosario (conceptos cortos para la docente):
-• Correlación: dos cosas aparecen juntas, pero eso no prueba que una cause la otra.
-• Monetización predatoria: técnicas que aprovechan vulnerabilidades del jugador para que gaste.
-Detalle:
-- Dark patterns: diseños que juegan en contra del interés del jugador (Zagal, Björk y Lewis, 2013).
-- Loot boxes: asociadas con el juego problemático (Zendle y Cairns, 2018, PLOS ONE, n = 7.422). Es una correlación, no una causa demostrada.
-- 35 técnicas de monetización percibidas como predatorias (Petrovskaya y Zendle, 2022, Journal of Business Ethics).
-- Regulación: Bélgica prohibió mecánicas de loot box en 2018 (según la UK Gambling Commission).
-Cuidar la precisión: no decir que las loot boxes "causan" adicción. Zagal et al. se cita sin enlace hasta verificar una copia legal (pendiente en el status).
-
-## 9 | Actividad A4.5: ¿cuál publicarían?
-tipo: actividad
-kicker: ACTIVIDAD · 25 MIN · GRUPOS + DEBATE
-| Propuesta | Modelo |
-| P1 | Premium, US$ 2,99, sin anuncios ni compras |
-| P2 | Gratis + rewarded "continuar" + IAP "quitar anuncios" |
-| P3 | Interstitial al abrir y en cada Game Over + cofres al azar sin probabilidades |
-actividad: ¿Cumple políticas? ¿Qué cambia? ¿Riesgos éticos? Elijan una.
-notas:
-Glosario (conceptos cortos para la docente):
-• Cofre al azar: equivalente a una loot box.
-Propuestas completas: P1 premium a US$ 2,99, sin anuncios ni compras. P2 gratis, rewarded "continuar con 1 vida" (una vez por partida) + IAP "quitar anuncios". P3 gratis, interstitial al abrir y en cada Game Over + cofres pagos al azar sin probabilidades + dificultad aumentada para empujar a comprar.
-Respuesta esperada: P3 viola políticas (interstitial al abrir; probabilidades no informadas) y manipula la dificultad. P2 cumple, pero cambia el balance. P1 es viable, con menor alcance. Vale cualquier elección defendida con criterios y fuentes.
-
-## 10 | ¿Qué prueba cada herramienta?
-tipo: contenido
-kicker: TESTING EN MÓVIL
-| Nivel | Prueba | No prueba |
-| 1. Device Simulator | Layout, safe area | Rendimiento, memoria |
-| 2. Emulador | Lógica y flujos | Rendimiento real, térmica |
-| 3. Teléfono + Profiler | Rendimiento real | Otros modelos |
-| 4. Tests en el Player | Tests en el dispositivo | Lo no escrito como test |
-| 5. Granjas en la nube | Muchos modelos | Ergonomía |
-| 6. Android vitals | Fallas reales publicadas | Nada antes de publicar |
-fuente: Unity 6.3 — Device Simulator, Run tests in a Player, Profiling on target; Firebase Game Loop; AWS Device Farm; Android vitals
-notas:
-Glosario (conceptos cortos para la docente):
-• Profiler: herramienta de Unity que mide en qué se gasta el tiempo de cada frame.
-• Granja de dispositivos: servicio con muchos teléfonos reales para correr pruebas a distancia (Firebase Test Lab, AWS Device Farm).
-• Android vitals: métricas de calidad que Google Play mide sobre las apps publicadas.
-• ANR (Application Not Responding): la app deja de responder.
-Es la escalera que conecta con la Unidad 3: cada nivel tiene un "qué no prueba". El Device Simulator no prueba rendimiento, memoria ni render; el emulador no prueba térmica ni la GPU del teléfono.
-Android vitals mide fallas como la tasa de cierres inesperados (umbral general 1,09 %) y de ANR (0,47 %); la memoria pasa a afectar la visibilidad en la tienda desde febrero de 2027.
-
-## 11 | La plataforma se mueve
-tipo: contenido
-kicker: DISTRIBUCIÓN
-- Google Play: AAB y API 36
-- Unity 6.3: Android 7.1+
-- iOS requiere macOS
-- En la cátedra: iOS conceptual
-fuente: Android — target API level requirement; Unity 6.3 — Android/iOS requirements y build process
-notas:
-Glosario (conceptos cortos para la docente):
-• AAB (Android App Bundle): formato de publicación que exige Google Play.
-• Target API: versión de Android para la que se declara compilado el juego.
-• Xcode: entorno de Apple para compilar apps de iOS; solo corre en macOS.
-Detalle: Google Play exige AAB y, desde el 31/08/2026, apuntar a Android 16 (API 36). Unity 6.3 soporta Android 7.1 (API 25) o superior. Para iOS, Unity genera un proyecto de Xcode, y Xcode solo corre en macOS. En la cátedra no hay Mac: iOS se estudia de forma conceptual.
-Las reglas de tienda cambian todos los años: un juego publicado en 2025 puede necesitar cambios en 2026 sin que nadie toque el diseño. Decir explícitamente el límite del curso con iOS; no esconderlo.
-
-## 12 | Mismo patrón, dos adaptadores
-tipo: contenido
-kicker: TESTING · ARQUITECTURA
-- Entrada: dispositivo → intención → nave
-- Pausa: SO → adaptador → regla
-- Se prueba la regla, no el dispositivo
-comparacion: Entrada (ya portada): ShipInputAdapter, Ship.SetIntent // 3 tests de intención en verde | Pausa (A4.4): Adaptador OnApplicationPause, Regla de pausa // Su test de Edit Mode
-fuente: Código del proyecto (ShipInputAdapter.cs, ShipIntentTests.cs); resultados del Test Runner en batchmode (2026-10-10)
-notas:
-[Diapositiva nueva en la versión 3: porteo real de Asteroides.]
-Glosario (conceptos cortos para la docente):
-• Adaptador: clase que traduce lo que pasa afuera del juego (un dispositivo, un aviso del sistema operativo) en una orden para la lógica del juego.
-• Regla: lógica del juego que se puede probar sin el dispositivo real.
-• Test inestable (flaky): test que a veces pasa y a veces falla sin que cambie el código.
-• SO: sistema operativo (Android, iOS); es quien avisa al juego que pasa a segundo plano.
-Idea: el porteo de la entrada ya usó el mismo patrón que van a aplicar a la pausa en A4.4. ShipInputAdapter lee el teclado, el gamepad o los controles en pantalla y llama a Ship.SetIntent; los tests de ShipIntentTests prueban la nave con intenciones, sin ningún dispositivo, y desactivan el adaptador para aislarla.
-Evidencia real del repositorio (Test Runner en batchmode, Play Mode, 2026-10-10; XML en laboratorio-adaptacion/evidencia):
-1. Antes del porteo: 11 tests, 7 pasan y 4 fallan.
-2. Después del porteo: 14 tests (11 + 3 nuevos). En tres corridas pasaron 10, 11 y 10. Los 3 tests nuevos pasaron siempre.
-3. Tres fallas son siempre las mismas: las "hipótesis de integración" que detectan defectos reales del pool de asteroides (un asteroide se libera dos veces; NewGame no borra los asteroides viejos; un segundo NewGame acelera el spawn).
-4. Una falla cambia de test entre corridas (LaserMovesUp en una, GameOverStopsSpawningAndDisablesShip en otras): el stack trace lleva al mismo defecto del pool (Laser.cs:52 → Spawner.PlayExplosion). Es un test inestable causado por el código del juego, no por el porteo.
-Mensaje: un test en rojo no siempre es culpa del cambio que acabamos de hacer; hay que leer el stack trace antes de concluir. Es el ciclo de la Unidad 3 aplicado a la plataforma.
-
-## 13 | Demo: el test de pausa en rojo
-tipo: demo
-kicker: DEMO EN VIVO
-- Pausa defectuosa: reanuda sola
-- Test de Edit Mode: rojo
-- Test de Play Mode: rojo
-fuente: Unity 6.3 — Unity Test Framework (Edit/Play mode)
-notas:
-Glosario (conceptos cortos para la docente):
-• Edit Mode: tests que corren sin ejecutar el juego.
-• Play Mode: tests que corren con el juego en marcha.
-• Test en rojo: test que falla; es lo esperado cuando el código tiene el defecto.
-Requiere tener en el repositorio la versión de Asteroides con el sistema de pausa defectuoso (tarea del status): al volver, el juego reanuda solo.
-Mostrar el rojo y no corregir: lo corrigen los grupos. Recordar el ciclo de la Unidad 3: rojo, corrección, verde, regresión.
-La pestaña Player del Test Runner (correr los tests en el teléfono) se usa más adelante en la unidad, en la práctica con el dispositivo.
-
-## 14 | Actividad A4.4: la llamada que mata la nave
-tipo: actividad
-kicker: ACTIVIDAD · 35 MIN · GRUPOS
-- Comportamiento esperado
-- Regla separada del adaptador
-- Test de Edit Mode
-- ¿Qué NO demuestra?
-flujo: Sistema operativo | Adaptador (MonoBehaviour) | Regla de pausa (C# puro) | Estado del juego
-actividad: El resto del ciclo se completa en el TP 3.
-notas:
-Glosario (conceptos cortos para la docente):
-• Adaptador: clase que traduce los avisos del motor (OnApplicationPause) en órdenes para la lógica del juego.
-• Regla: lógica pura en C#, sin dependencias de Unity, que decide si el juego está en pausa; se puede probar sin abrir el juego.
-• Regresión: un defecto ya corregido que vuelve a aparecer.
-Consigna completa: escribir el comportamiento esperado ante una interrupción como criterio verificable; separar la regla (C# puro) del adaptador (MonoBehaviour que recibe OnApplicationPause); escribir el test de Edit Mode de la regla; completar qué NO demuestra el test. El test de Play Mode y la corrección se terminan en el TP 3, y el QA manual se hace más adelante en la unidad, con los teléfonos.
-El diagrama muestra el camino del aviso: el sistema operativo avisa al adaptador, el adaptador llama a la regla y la regla cambia el estado del juego.
-Respuesta esperada de "qué no demuestra": que el sistema operativo llame al callback cuando corresponde; qué pasa si el sistema mata el proceso (no se llama nada); el caso del teclado en pantalla en Android.
-Ejemplo para destrabar (versión 3): ShipIntentTests.cs muestra cómo se aísla la regla del adaptador (el test desactiva ShipInputAdapter y llama directamente a SetIntent). La regla de pausa se prueba igual.
-Reparto de la clase en la versión 3: teoría 48 min (apertura 8, monetización 18, testing 14 incluida la slide del patrón, demo 8) = 40 %; práctica 72 min (A4.5 22, A4.4 35, revisión de los controles de A4.7 10, cierre 5) = 60 %.
-
-# DECK 4 | Asteroides en tu bolsillo | Unidad IV · Clase 4 · v3
+# DECK 3 | Asteroides en tu bolsillo | Unidad IV · Clase 3 · final
 
 ## 1 | Asteroides en tu bolsillo
 tipo: portada
-kicker: UNIDAD IV · CLASE 4 DE 4 · PRÁCTICA EN DISPOSITIVO
-- Build, medición y QA manual en sus teléfonos
+kicker: UNIDAD IV · CLASE 3 DE 3 · 90 MIN · PRÁCTICA EN DISPOSITIVO
+- Build, medición, prueba y negocio en sus teléfonos
 - Diseño según Plataformas de Juego · FI – UNJu · 2026
 notas:
-Clase 100 % práctica. Antes de empezar, verificar cables, depuración USB y Android Build Support instalado.
-Versión 3: la build ya es jugable en el teléfono (joystick y botón de disparo del porteo de entrada). Sin ese porteo, en el teléfono solo se podía tocar "Start".
-Reparto en la versión 3: apertura 8, build 20, medición 18, A4.6 8, QA manual 20, matriz 10, defensa 22, transferencia 8, cierre 6.
+Último encuentro de la unidad. Antes de empezar: cables, depuración USB y Android Build Support verificados; APK de la docente (IL2CPP + ARM64) en un pendrive y en Drive para el plan B.
+Reparto: teoría 36 min (apertura 3, repaso de la build 6, testing 9, monetización 13, TP 3 1, cierre 4) = 40 %; práctica 54 min (build e instalación 12, medición 8, A4.6 3, QA manual 10, matriz 4, A4.8 10, A4.5 7) = 60 %.
+Orden pensado para el tiempo: la build va primero porque es lo que más puede fallar; mientras un grupo espera, otro ya mide.
 
 ## 2 | ¿Qué no sabemos todavía?
 tipo: contenido
-kicker: APERTURA
+kicker: APERTURA · 3 MIN
 - Todo fue en el editor
 - "Qué no demuestra" sigue abierto
 - Hoy: el teléfono real
@@ -1032,40 +679,79 @@ Situación: todo lo que probamos hasta ahora fue en el editor; la columna "qué 
 Que anoten su predicción: sirve para contrastarla al final de la clase.
 Imagen sugerida (opcional, sin recuadro en la slide): editor de Unity y teléfono, con un signo de pregunta entre ambos.
 
-## 3 | De la PC al teléfono
+## 3 | Antes de compilar: así viene
+tipo: actividad
+kicker: REPASO DE LA BUILD · 2 MIN
+panel: ancho
+captura: imagenes/u4-player-settings-android.png | Player Settings > Other Settings de Asteroides en Unity 6000.3.11f1, antes de cambiar nada
+pregunta: ¿Qué de esto impide instalar en un teléfono de 64 bits?
+notas:
+Glosario (conceptos cortos para la docente):
+• Scripting Backend: cómo compila Unity el código C#: Mono (código intermedio) o IL2CPP (código nativo).
+• Package Name: identificador único de la app en el teléfono y en Google Play (com.empresa.juego).
+• Target Architectures: tipos de procesador para los que se compila (ARMv7 de 32 bits, ARM64 de 64 bits).
+Es la captura real del proyecto (Unity 6000.3.11f1, 2026-10-12), con cuatro marcas rojas: Package Name, Scripting Backend = Mono, Active Input Handling = Both y ARM64 en gris.
+Respuesta esperada: ARM64 está en gris porque el backend es Mono; según la documentación de Unity 6.3, ARM64 "se habilita solo cuando Scripting Backend es IL2CPP". Sin ARM64, la app no corre en los teléfonos que solo aceptan 64 bits (según Android, los Pixel 7 fueron los primeros con soporte solo para apps de 64 bits; Google Play exige la versión de 64 bits).
+Que la lean en sus máquinas: abrir Edit > Project Settings > Player > Android > Other Settings y comparar con la captura.
+
+## 4 | Así tiene que quedar
+tipo: contenido
+kicker: BUILD · 2 MIN
+- Una sola fuente: Project Settings
+- El Build Profile puede pisarla
+- Both: aviso, no error
+ajustes: Player Settings · Android | Company Name: *Unju | Product Name: *AsteroideTest | Package Name: com.Unju.AsteroideTest | Minimum API Level: API 25 (Android 7.1) | Scripting Backend: *IL2CPP | Target Architectures: *ARM64 | Build App Bundle: No: sale un .apk | Development Build: *Sí, para el Profiler
+fuente: Unity 6.3 Manual — Android Player settings; Build your application for Android
+notas:
+Glosario (conceptos cortos para la docente):
+• Build Profile: perfil de compilación de Unity 6; puede tener sus propios Player Settings, que pisan los del proyecto.
+• Fuente de verdad: el único lugar donde se decide un valor.
+Dos caminos: Build crea solo el archivo; Build and Run además lo instala en el Run Device (manual de Unity 6.3). Sin teléfono, siempre Build, en la carpeta Builds/ fuera de Assets. La plataforma se mueve: Google Play exige AAB y, desde el 31/08/2026, apuntar a API 36; Unity 6.3 soporta Android 7.1 (API 25) o superior. iOS: Unity genera un proyecto de Xcode, que solo corre en macOS; en la cátedra, iOS es conceptual.
+Los valores resaltados son los que hay que cambiar; el resto ya viene bien. El Package Name se arma solo con Company y Product (com.Unju.AsteroideTest) mientras "Override Default Package Name" esté destildado.
+Una sola fuente: cambiar todo en Edit > Project Settings > Player. Si se edita la sección Player Settings dentro del Build Profile, el perfil guarda una copia propia; en el proyecto pasó: Company y Product quedaron en Assets/Settings/Build Profiles/Android™.asset y no en ProjectSettings. Dos lugares para el mismo dato es una fuente de errores difícil de ver.
+Active Input Handling = Both: la documentación de Unity 6.3 dice que no está soportado en Android. Se mantiene porque el menú usa el StandaloneInputModule clásico; al compilar se toca Ignore y queda registrado. Evidencia (2026-10-12): la build en batchmode terminó bien y el aviso solo apareció en el log. La corrección de fondo es reemplazar el módulo del EventSystem (prefab Game) por InputSystemUIInputModule y dejar solo Input System; no se hizo en el repositorio.
+Orientación: la decide cada grupo según su esquema de A4.3 (Resolution and Presentation > Default Orientation).
+
+## 5 | Cuando la build se frena
+tipo: actividad
+kicker: DIAGNÓSTICO · CARTELES REALES · 2 MIN
+- Input: Ignore y anotar
+- Sin teléfono: usar Build
+- No instala: ¿y ARM64?
+captura: imagenes/u4-dialogo-input-handling.png + imagenes/u4-dialogo-sin-dispositivo.png | Los dos carteles, tal como aparecieron en Unity 6000.3.11f1
+pregunta: ¿Cuál es un error y cuál es un aviso?
+notas:
+Glosario (conceptos cortos para la docente):
+• Aviso (warning): Unity informa un riesgo, pero deja seguir.
+• Error: Unity no puede terminar la tarea.
+• adb (Android Debug Bridge): herramienta de línea de comandos que conecta la PC con el teléfono.
+Cartel 1, "Unsupported Input Handling on Android": es un aviso. Ignore sigue con la build; Cancel Build la corta. Causa: Active Input Handling = Both (ver la slide anterior).
+Cartel 2, "No Android devices connected": aparece con Build and Run cuando la PC no ve ningún teléfono. Qué hacer: OK y usar Build; o conectar con un cable de datos, aceptar en el teléfono "¿Permitir depuración USB?" y tocar Refresh en Run Device. Comprobar con adb devices (el teléfono tiene que figurar como "device"; "unauthorized" significa que falta aceptar el diálogo). En Windows puede hacer falta el driver USB del fabricante.
+Tercer caso, sin captura: el APK se copia, pero el teléfono no lo instala o no lo abre. Primera sospecha: se compiló sin ARM64. En el curso todavía no se vio; está documentado por Android para los teléfonos que solo aceptan 64 bits.
+Respuesta a la pregunta: el primero es un aviso (deja seguir); el segundo frena Build and Run, pero no Build.
+
+## 6 | De la PC al teléfono
 tipo: demo
-kicker: DEMO EN VIVO + GRUPOS · 20 MIN
-- Primero la docente
-- Después cada grupo
-flujo: Development Build + Autoconnect Profiler | Cable USB y depuración activada | Build and Run | El juego abre en el teléfono
+kicker: BUILD E INSTALACIÓN · 12 MIN · GRUPOS
+- ¿Trajeron el APK? Instalar
+- ¿No? Seguir los pasos
+- Con cable: Build and Run
+flujo: Build Profiles: Android activo | Player Settings: IL2CPP + ARM64 | Teléfono con depuración USB | Build and Run (o Build → .apk) | El juego abre en el teléfono
 fuente: Unity 6.3 — Build your application for Android; Collect performance data on a target platform
 notas:
 Glosario (conceptos cortos para la docente):
 • Build: versión compilada del juego, lista para instalar.
 • Development Build: build con información de depuración que permite conectar el Profiler.
 • Autoconnect Profiler: opción para que el Profiler se conecte solo al iniciar el juego.
-• Build and Run: compilar e instalar en el dispositivo conectado en un solo paso.
-Pasos: en Build Profiles, elegir Android y marcar Development Build y Autoconnect Profiler; conectar el teléfono por USB con la depuración activada; Build and Run; el juego se instala y se abre en el teléfono. Primero lo hace la docente; después cada grupo, con el teléfono de un integrante.
-La primera build tarda: prever ese tiempo. Si un teléfono no aparece, revisar el cable (de datos, no solo de carga) y aceptar el diálogo de depuración en el teléfono.
+• Build and Run: compilar, instalar y abrir en el dispositivo conectado, en un solo paso.
+Plan B: si la build falla en la máquina del grupo, se instala el APK de la docente (cable y adb install -r, o Drive y aceptar «Instalar apps de fuentes desconocidas»). Se pierde el Profiler; no se pierden el QA manual ni la matriz. Lo que no se pudo medir se declara en el dossier. El APK de depuración no se publica: para Google Play hacen falta firma propia y un .aab.
+Pasos con cable (para medir con el Profiler): en Build Profiles, Android activo; Development Build y Autoconnect Profiler tildados; teléfono conectado con la depuración activada; Build and Run. Según el manual de Unity 6.3, con Development Build y Build and Run Unity prepara el túnel del Profiler antes de abrir la app. Primero lo hace la docente; después cada grupo, con el teléfono de un integrante.
 
-## 4 | Plan B
-tipo: contenido
-kicker: GESTIÓN DE RIESGO
-- Falla la build: APK de la docente
-- Se pierde: el Profiler
-- No se pierde: QA y matriz
-- Lo no medido se declara
-notas:
-Glosario (conceptos cortos para la docente):
-• APK: archivo instalable de una app de Android.
-Detalle: si la build falla en la máquina del grupo, se instala el APK de la docente. Se pierde el Profiler conectado; no se pierden el QA manual de interrupciones ni la matriz de compatibilidad. Lo que no se pudo medir se declara en el dossier.
-Normalizar el plan B: en la industria también fallan las builds. Lo importante es documentar qué quedó sin medir.
-
-## 5 | Medir, no opinar
+## 7 | Medir, no opinar
 tipo: actividad
-kicker: MEDICIÓN · 20 MIN
+kicker: MEDICIÓN · 8 MIN
 - H1: ¿picos de GC al disparar?
-- H2: ¿fps estable 10 minutos?
+- H2: ¿fps estable 5 minutos?
 - Anotar modelo y versión
 actividad: Capturen el Profiler y anoten los valores.
 fuente: Unity 6.3 — Profiling on a target device; e-book Unity 6, p. 11
@@ -1074,18 +760,19 @@ Glosario (conceptos cortos para la docente):
 • GC (garbage collector): proceso que libera memoria que ya no se usa; si trabaja mucho, produce tirones.
 • GC Alloc: memoria reservada en cada frame que después tendrá que liberar el GC.
 • Hipótesis: suposición que se comprueba midiendo.
+Versión final: la partida de medición dura 5 minutos; en el TP 3 pueden extenderla a 10.
 Hipótesis completas: H1, ¿cada disparo (Instantiate del láser) genera picos de GC? Métrica: GC Alloc por frame. H2, ¿el juego sostiene el fps durante 10 minutos? Métrica: tiempo de frame a lo largo del tiempo. Registrar modelo de teléfono, versión de Android y temperatura percibida.
 Advertencia honesta: Asteroides es liviano y lo más probable es que ande bien en casi cualquier teléfono. Si la medición no muestra problemas, la respuesta correcta es decirlo con los datos. El objetivo es aprender a formular y medir hipótesis.
 Imagen sugerida (opcional, sin recuadro en la slide): Profiler conectado a un teléfono con un pico de GC marcado.
 
-## 6 | Editor vs. teléfono
+## 8 | Editor vs. teléfono
 tipo: actividad
 kicker: COMPARAR
 | Medición | Editor (PC) | Teléfono |
 | fps promedio | | |
 | Tiempo de frame máximo | | |
 | GC Alloc por disparo | | |
-| fps a los 10 minutos | | |
+| fps a los 5 minutos | | |
 actividad: Completen con sus mediciones.
 notas:
 Glosario (conceptos cortos para la docente):
@@ -1093,9 +780,9 @@ Glosario (conceptos cortos para la docente):
 • Tiempo de frame máximo: el cuadro que más tardó; muestra los tirones que el promedio esconde.
 Conclusión esperada: el número del editor no predice el del teléfono. Pasar a A4.6 (slide siguiente), que muestra el mismo problema con datos de 10 minutos.
 
-## 7 | A4.6 — Anda bien los primeros 5 minutos
+## 9 | A4.6 — Anda bien los primeros 5 minutos
 tipo: actividad
-kicker: INDIVIDUAL · 8 MIN · FORMATIVA
+kicker: INDIVIDUAL · 3 MIN · ORAL
 - 60 fps al empezar
 - 35–40 fps a los 8 minutos
 - En el editor: 200 fps
@@ -1110,9 +797,9 @@ Situación completa: "60 fps al empezar, 35–40 fps a los 8 minutos en un telé
 Respuesta esperada: throttling térmico agravado por el overdraw de las partículas; medir el tiempo de frame a lo largo del tiempo y el estado térmico con el Profiler en el dispositivo; fijar 30 fps o un presupuesto del 65 % y reducir el overdraw. El editor y el Device Simulator no sirven para esto.
 Contrastar con la medición de 10 minutos que acaban de hacer: ¿su teléfono se comporta igual?
 
-## 8 | Interrumpir a propósito
+## 10 | Interrumpir a propósito
 tipo: actividad
-kicker: QA MANUAL · 20 MIN
+kicker: QA MANUAL · 10 MIN
 | Caso | Acción | Esperado | Real |
 | QA-01 | Llamada o alarma | Pausa y espera un toque | |
 | QA-02 | Inicio y volver | Pausado, sin daño | |
@@ -1130,21 +817,9 @@ Casos completos: QA-01 llamada o alarma durante la partida (esperado: el juego s
 Casos nuevos de la versión 3 (controles portados): QA-06, mover con el joystick y disparar con el botón al mismo tiempo, con dos dedos (el Device Simulator simula un solo dedo, así que este caso solo se prueba acá); QA-07, medir que cada control tenga al menos 48 dp y comprobar que el pulgar no tape la zona por donde caen los asteroides.
 Mismo formato de caso de prueba de la Unidad 2 (esperado vs. real). Si los grupos todavía no corrigieron el defecto, probar la versión con defecto: el resultado real va a contradecir al esperado, y eso es un hallazgo.
 
-## 9 | Lo que el test automático no vio
-tipo: contenido
-kicker: LÍMITES
-- ¿Coinciden tests y QA manual?
-- ¿Qué apareció solo en el teléfono?
-- ¿Qué no se puede automatizar?
-pregunta: ¿Qué protege el test y qué solo el QA manual?
-notas:
-Glosario (conceptos cortos para la docente):
-• Test automático: prueba que corre sola y compara el resultado con lo esperado.
-Respuesta esperada: los tests protegen la regla y el adaptador ante regresiones; el QA manual comprueba que el sistema operativo dispare los callbacks y qué pasa cuando se cierra el proceso. Es la frontera entre automatización y hardware real, la misma de la Unidad 3 aplicada a la plataforma.
-
-## 10 | La matriz del curso
+## 11 | La matriz del curso
 tipo: actividad
-kicker: COMPATIBILIDAD · 15 MIN
+kicker: COMPATIBILIDAD · 4 MIN
 | Grupo | Modelo | Android | RAM | Resolución | fps | ¿Spawn visible en vertical? |
 | 1 | | | | | | |
 | 2 | | | | | | |
@@ -1157,12 +832,193 @@ Glosario (conceptos cortos para la docente):
 • Muestra de conveniencia: los casos que se tienen a mano, no elegidos para representar al mercado.
 Respuesta esperada: no. Es una muestra de conveniencia; faltan gamas, fabricantes, versiones de Android y tablets. Por eso existen las granjas de dispositivos y Android vitals. Igual es evidencia real y vale más que el editor.
 
-## 11 | Defensa del TP 3
+## 12 | ¿Qué prueba cada herramienta?
+tipo: contenido
+kicker: TESTING EN MÓVIL · 3 MIN
+| Nivel | Prueba | No prueba |
+| 1. Device Simulator | Layout, safe area | Rendimiento, memoria |
+| 2. Emulador | Lógica y flujos | Rendimiento real, térmica |
+| 3. Teléfono + Profiler | Rendimiento real | Otros modelos |
+| 4. Tests en el Player | Tests en el dispositivo | Lo no escrito como test |
+| 5. Granjas en la nube | Muchos modelos | Ergonomía |
+| 6. Android vitals | Fallas reales publicadas | Nada antes de publicar |
+fuente: Unity 6.3 — Device Simulator, Run tests in a Player, Profiling on target; Firebase Game Loop; AWS Device Farm; Android vitals
+notas:
+Glosario (conceptos cortos para la docente):
+• Profiler: herramienta de Unity que mide en qué se gasta el tiempo de cada frame.
+• Granja de dispositivos: servicio con muchos teléfonos reales para correr pruebas a distancia (Firebase Test Lab, AWS Device Farm).
+• Android vitals: métricas de calidad que Google Play mide sobre las apps publicadas.
+• ANR (Application Not Responding): la app deja de responder.
+Es la escalera que conecta con la Unidad 3: cada nivel tiene un "qué no prueba". El Device Simulator no prueba rendimiento, memoria ni render; el emulador no prueba térmica ni la GPU del teléfono.
+Android vitals mide fallas como la tasa de cierres inesperados (umbral general 1,09 %) y de ANR (0,47 %); la memoria pasa a afectar la visibilidad en la tienda desde febrero de 2027.
+
+## 13 | Lo que el test automático no vio
+tipo: contenido
+kicker: LÍMITES · 2 MIN
+- ¿Coinciden tests y QA manual?
+- ¿Qué apareció solo en el teléfono?
+- ¿Qué no se puede automatizar?
+pregunta: ¿Qué protege el test y qué solo el QA manual?
+notas:
+Glosario (conceptos cortos para la docente):
+• Test automático: prueba que corre sola y compara el resultado con lo esperado.
+Respuesta esperada: los tests protegen la regla y el adaptador ante regresiones; el QA manual comprueba que el sistema operativo dispare los callbacks y qué pasa cuando se cierra el proceso. Es la frontera entre automatización y hardware real, la misma de la Unidad 3 aplicada a la plataforma.
+
+## 14 | Mismo patrón, dos adaptadores
+tipo: contenido
+kicker: TESTING · ARQUITECTURA · 2 MIN
+- Entrada: dispositivo → intención → nave
+- Pausa: SO → adaptador → regla
+- Se prueba la regla, no el dispositivo
+comparacion: Entrada (ya portada): ShipInputAdapter, Ship.SetIntent // 3 tests de intención en verde | Pausa (A4.4): Adaptador OnApplicationPause, Regla de pausa // Su test de Edit Mode
+fuente: Código del proyecto (ShipInputAdapter.cs, ShipIntentTests.cs); resultados del Test Runner en batchmode (2026-10-10)
+notas:
+Glosario (conceptos cortos para la docente):
+• Adaptador: clase que traduce lo que pasa afuera del juego (un dispositivo, un aviso del sistema operativo) en una orden para la lógica del juego.
+• Regla: lógica del juego que se puede probar sin el dispositivo real.
+• Test inestable (flaky): test que a veces pasa y a veces falla sin que cambie el código.
+• SO: sistema operativo (Android, iOS); es quien avisa al juego que pasa a segundo plano.
+Versión final: la pausa (A4.4) se resuelve en el dossier del TP 3, con este mismo patrón.
+Idea: el porteo de la entrada ya usó el mismo patrón que van a aplicar a la pausa en A4.4. ShipInputAdapter lee el teclado, el gamepad o los controles en pantalla y llama a Ship.SetIntent; los tests de ShipIntentTests prueban la nave con intenciones, sin ningún dispositivo, y desactivan el adaptador para aislarla.
+Evidencia real del repositorio (Test Runner en batchmode, Play Mode, 2026-10-10; XML en laboratorio-adaptacion/evidencia):
+1. Antes del porteo: 11 tests, 7 pasan y 4 fallan.
+2. Después del porteo: 14 tests (11 + 3 nuevos). En tres corridas pasaron 10, 11 y 10. Los 3 tests nuevos pasaron siempre.
+3. Tres fallas son siempre las mismas: las "hipótesis de integración" que detectan defectos reales del pool de asteroides (un asteroide se libera dos veces; NewGame no borra los asteroides viejos; un segundo NewGame acelera el spawn).
+4. Una falla cambia de test entre corridas (LaserMovesUp en una, GameOverStopsSpawningAndDisablesShip en otras): el stack trace lleva al mismo defecto del pool (Laser.cs:52 → Spawner.PlayExplosion). Es un test inestable causado por el código del juego, no por el porteo.
+Mensaje: un test en rojo no siempre es culpa del cambio que acabamos de hacer; hay que leer el stack trace antes de concluir. Es el ciclo de la Unidad 3 aplicado a la plataforma.
+
+## 15 | La configuración también se prueba
+tipo: demo
+kicker: CÓDIGO REAL · TEST DE EDIT MODE · 2 MIN
+panel: ancho
+codigo: ../../proyectos-unity/Asteroides/asteroide-final/Assets/Tests/EditMode/AndroidBuildConfigTests.cs:12-26
+fuente: Unity 6.3 — PlayerSettings.GetScriptingBackend; PlayerSettings.Android.targetArchitectures; Android Player settings
+notas:
+Glosario (conceptos cortos para la docente):
+• Test de Edit Mode: test que corre en el editor sin dar Play; sirve para lógica pura y para leer la configuración del proyecto.
+• PlayerSettings: API de C# que lee y escribe los Player Settings.
+• NamedBuildTarget: identificador de la plataforma en la API (acá, Android).
+• Bandera (flag): valor que junta varias opciones; con & se pregunta si una está prendida.
+Problema primero: el APK se instala en un teléfono y en otro no. Nadie tocó el código del juego: el proyecto estaba en Mono y solo ARMv7. ¿Se puede proteger la configuración con un test?
+Qué mostrar: dos de los cuatro tests de AndroidBuildConfigTests.cs. Los otros dos verifican que la API mínima sea 25 o más y que la build sea .apk y no .aab.
+Evidencia real (2026-10-12, Unity 6000.3.11f1, batchmode): con el proyecto en Mono + ARMv7, 2 tests en verde (API mínima, APK) y 2 en rojo (IL2CPP, ARM64). Archivo: laboratorio-adaptacion/evidencia/asteroides-05-android-config-editmode-red.xml.
+Datos de la documentación de Unity 6.3 (Android Player settings): ARM64 "se habilita solo cuando Scripting Backend es IL2CPP"; Active Input Handling = Both "no está soportado en Android".
+Límites: el test lee los Player Settings del proyecto; si un Build Profile tiene Player Settings propios, no está comprobado qué valores ve el test (UNKNOWN). Y una configuración correcta no demuestra que la app abra en el teléfono ni que los controles respondan.
+
+## 16 | Actividad A4.8: el test que cuida la build
 tipo: actividad
-kicker: DEFENSA · 3 MIN POR GRUPO · COEVALUACIÓN
+kicker: ACTIVIDAD · 10 MIN · GRUPOS · EN UNITY
+- Crear el test de Edit Mode
+- Verlo en rojo a propósito
+- Arreglar la configuración
+- ¿Qué NO demuestra?
+actividad: Entreguen la captura del Test Runner en rojo y en verde.
+notas:
+Glosario (conceptos cortos para la docente):
+• Test Runner: ventana de Unity (Window > General > Test Runner) que ejecuta los tests y muestra verde o rojo.
+• Assembly definition (asmdef): archivo que agrupa scripts; los tests de editor van en uno que solo incluye la plataforma Editor.
+• Rojo a propósito: romper una condición para comprobar que el test es capaz de fallar.
+Consigna completa (sobre su copia del proyecto):
+1. Crear Assets/Tests/EditMode con un asmdef de tests que solo incluya la plataforma Editor (referencia: EditModeTests.asmdef del repositorio).
+2. Escribir dos tests: Scripting Backend = IL2CPP y ARM64 tildado, con la estructura de la slide anterior.
+3. Correrlos en el Test Runner, pestaña EditMode. Si hicieron la tarea de la build, deberían dar verde.
+4. Romper a propósito: pasar a Mono, correr de nuevo y ver el rojo. Restaurar IL2CPP y ver el verde. Un test que nunca vieron fallar no prueba nada.
+5. Escribir qué NO demuestra: que el teléfono acepte la app, que los controles respondan, el rendimiento.
+Extensión para el grupo que termina: BuildAndroid.cs (Assets/Editor) genera el APK desde código con BuildPipeline.BuildPlayer, sin abrir la ventana. Se corre en batchmode y deja un log como evidencia; es el primer paso hacia la integración continua. Evidencia (2026-10-12): build correcta en 42 s, APK de 20 MB (laboratorio-adaptacion/evidencia/asteroides-06-build-android-apk.log).
+Errores frecuentes: un asmdef de tests que incluye todas las plataformas (el código de UnityEditor no compila para el player); olvidar using UnityEditor.Build (NamedBuildTarget); correr los tests en la pestaña PlayMode.
+
+## 17 | USD 520 millones por una pantalla de compra
+tipo: contenido
+kicker: MONETIZACIÓN · APERTURA · 2 MIN
+- FTC vs. Epic Games (2022)
+- USD 275 M + USD 245 M
+- Botones confusos al comprar
+pregunta: ¿Monetizar es negocio o diseño?
+fuente: FTC, comunicado de prensa del 19/12/2022
+notas:
+Glosario (conceptos cortos para la docente):
+• FTC (Federal Trade Commission): organismo de EE. UU. que protege a los consumidores.
+• COPPA: ley de EE. UU. que protege la privacidad de los menores de 13 años en línea.
+• Dark patterns: diseños de interfaz que empujan al usuario a hacer algo que no quería.
+Caso completo: en 2022 la FTC acusó a Epic Games por Fortnite. Epic pagó USD 275 millones por privacidad de menores (COPPA) y USD 245 millones en reembolsos. El motivo: dark patterns en la compra, con una configuración de botones "counterintuitive, inconsistent, and confusing".
+Respuesta buscada: las dos cosas. Una decisión de interfaz (dónde va un botón, qué confirma una compra) tuvo consecuencias legales. Desde hoy la monetización se analiza como diseño, con reglas y con ética.
+Imagen sugerida (opcional, sin recuadro en la slide): titular del comunicado oficial de la FTC del 19/12/2022.
+
+## 18 | Modelos y formatos
+tipo: contenido
+kicker: MONETIZACIÓN · 3 MIN
+| Modelo | Quién paga | Qué cambia en el diseño |
+| Premium | Al comprar | Sin interrupciones |
+| Freemium + IAP | Algunos jugadores | Tienda y progresión |
+| Anuncios | El anunciante | Cuándo interrumpir |
+| Híbrido | Combinación | Todo lo anterior |
+fuente: App Store — Alto's Adventure (ficha consultada 2026-10-04); Google AdMob — Rewarded ads; Interstitial ad guidance
+notas:
+Glosario (conceptos cortos para la docente):
+• IAP: compra dentro de la app.
+• Rewarded: anuncio que el jugador elige ver a cambio de una recompensa.
+• Interstitial: anuncio de pantalla completa, en las transiciones.
+Modelos: premium (paga una vez; ejemplo, Alto's Adventure sin anuncios ni IAP); freemium + IAP (pagan algunos; la progresión y la tienda se piensan para vender); anuncios (paga el anunciante y el jugador "paga" con tiempo); híbrido. Agregar el premium corrige el programa, que solo nombra freemium e híbridos.
+Formatos de anuncio: rewarded, "served after a user explicitly chooses to view" (AdMob); interstitial, solo en transiciones naturales; banner, franja fija que ocupa UI y safe area. La diferencia clave es el consentimiento: el rewarded lo pide el jugador, el interstitial se lo imponen.
+
+## 19 | Las reglas las pone la tienda
+tipo: contenido
+kicker: MONETIZACIÓN · REGLAS EXTERNAS · 4 MIN
+- AdMob: nunca al abrir ni en cada acción
+- Apple 3.1.1: IAP obligatorio
+- Probabilidades visibles al comprar
+- Niños: sin publicidad personalizada
+pregunta: ¿Un anuncio en cada Game Over cumple?
+fuente: Google AdMob — Disallowed interstitial implementations; Apple App Review Guidelines 3.1.1 y 1.3; Google Play — Payments y Families policy
+notas:
+Glosario (conceptos cortos para la docente):
+• Política de tienda: reglas que una app debe cumplir para publicarse.
+• Loot box (caja con premios al azar): compra cuyo contenido se sortea.
+AdMob prohíbe interstitials al abrir o al salir de la app, después de cada acción del usuario (como máximo, uno cada dos acciones), inmediatamente después de otro interstitial y de forma inesperada durante el juego.
+Apple 3.1.1: el contenido digital se desbloquea con IAP. Apple y Google: las cajas al azar muestran las probabilidades antes de comprar. Google Play Billing es obligatorio, con excepciones por país. Apps para niños: sin publicidad personalizada ni SDKs no certificados.
+Pregunta: si cada partida es corta y cada Game Over muestra un anuncio, se acerca a "después de cada acción". No hay respuesta automática: hay que leer la política y justificar.
+Dato de herramienta: Unity recomienda migrar de Unity Ads directo a LevelPlay (mediación) desde abril de 2026; no se integra en esta materia.
+
+## 20 | Monetizar cambia el juego
+tipo: contenido
+kicker: MONETIZACIÓN = GAME DESIGN · ÉTICA · 4 MIN
+- "Continuar" cambia el Game Over
+- Dificultad para vender: cambia el balance
+- Vampire Survivors: nunca interrumpir
+- Dark patterns y loot boxes
+pregunta: Con "continuar", ¿qué rebalancearían?
+fuente: Kotaku (2023), citando a poncle; PLOS ONE 2018; Journal of Business Ethics 2022; UK Gambling Commission
+notas:
+Glosario (conceptos cortos para la docente):
+• Dark pattern: diseño que juega en contra del interés del jugador.
+• Balance: relación entre dificultad, recursos y habilidad.
+Detalle: "continuar con un anuncio" cambia el significado del Game Over; subir la dificultad para vender vidas cambia el balance; las pausas para anuncios cambian el ritmo. En Vampire Survivors para móvil, la monetización está "designed to never interrupt your game, always be optional" (Kotaku, 2023, citando a poncle).
+Ética: dark patterns (Zagal, Björk y Lewis, 2013; citar sin enlace hasta verificar una copia legal); loot boxes asociadas con el juego problemático (Zendle y Cairns, 2018, PLOS ONE, n = 7.422): correlación, no causa; 35 técnicas percibidas como predatorias (Petrovskaya y Zendle, 2022); Bélgica prohibió mecánicas de loot box en 2018 (UK Gambling Commission). No decir que las loot boxes "causan" adicción.
+Respuesta posible a la pregunta: cantidad de vidas, velocidad de los asteroides, duración de la partida y cómo se calcula el puntaje si alguien continúa.
+Video opcional de tarea: Anisa Sanusi, "Dark Patterns: How Good UX Can Be Bad UX" (GDC 2017).
+
+## 21 | Actividad A4.5: ¿cuál publicarían?
+tipo: actividad
+kicker: ACTIVIDAD · 7 MIN · GRUPOS + VOTO
+| Propuesta | Modelo |
+| P1 | Premium, US$ 2,99, sin anuncios ni compras |
+| P2 | Gratis + rewarded "continuar" + IAP "quitar anuncios" |
+| P3 | Interstitial al abrir y en cada Game Over + cofres al azar sin probabilidades |
+actividad: ¿Cumple políticas? ¿Qué cambia? ¿Riesgos éticos? Elijan una.
+notas:
+Glosario (conceptos cortos para la docente):
+• Cofre al azar: equivalente a una loot box.
+Versión final: cada grupo vota y justifica en una frase; el debate largo va al foro del aula virtual.
+Propuestas completas: P1 premium a US$ 2,99, sin anuncios ni compras. P2 gratis, rewarded "continuar con 1 vida" (una vez por partida) + IAP "quitar anuncios". P3 gratis, interstitial al abrir y en cada Game Over + cofres pagos al azar sin probabilidades + dificultad aumentada para empujar a comprar.
+Respuesta esperada: P3 viola políticas (interstitial al abrir; probabilidades no informadas) y manipula la dificultad. P2 cumple, pero cambia el balance. P1 es viable, con menor alcance. Vale cualquier elección defendida con criterios y fuentes.
+
+## 22 | TP 3: entrega y defensa
+tipo: actividad
+kicker: TP 3 · 1 MIN · CONSIGNA
 - Una decisión de plataforma
 - La evidencia del teléfono
 - Lo que quedó sin probar
+- A4.4 (la pausa) va en el dossier
 | Criterio de coevaluación | Sí / En parte / No |
 | La decisión está justificada | |
 | Hay evidencia del dispositivo | |
@@ -1171,39 +1027,23 @@ notas:
 Glosario (conceptos cortos para la docente):
 • Coevaluación: los grupos se evalúan entre sí con criterios compartidos.
 • Decisión de plataforma (PDR): registro de contexto, opciones, decisión y consecuencias.
-Formato de la defensa: una decisión de plataforma (contexto, opciones, decisión, consecuencias); la evidencia del teléfono que la respalda o la contradice; lo que quedó sin probar, dicho explícitamente.
-Los criterios de coevaluación son una versión reducida de la rúbrica del TP 3 (ver 05). La entrega final del dossier se sube al aula virtual.
+Versión final (PROPUESTO, lo decide la titular): sin tiempo para la defensa en vivo, cada grupo sube un video de 3 minutos al aula virtual y coevalúa el de otro grupo con estos criterios.
+Contenido de la defensa: una decisión de plataforma (contexto, opciones, decisión, consecuencias); la evidencia del teléfono que la respalda o la contradice; lo que quedó sin probar, dicho explícitamente.
+A4.4, "La llamada que mata la nave", pasa al dossier: comportamiento esperado ante una interrupción; regla de pausa separada del adaptador (OnApplicationPause); test de Edit Mode de la regla; qué NO demuestra el test. El ejemplo para destrabar es ShipIntentTests.cs (aislar la regla del adaptador).
 
-## 12 | El mismo porteo, otro juego
-tipo: actividad
-kicker: TRANSFERENCIA · 8 MIN · GRUPOS
-- 2D Platformer: ¿qué se reutiliza?
-- Ya tiene MobileMove y MobileJump…
-- … pero no tiene botones en pantalla
-- Saltar exige más precisión que esquivar
-pregunta: ¿Alcanza con copiar el joystick de Asteroides?
-fuente: Auditoría del 2D Platformer (laboratorio-adaptacion/PROJECT-DISCOVERY.md y MOBILE-ADAPTATION.md, 2026-10-10)
-notas:
-[Diapositiva nueva en la versión 3.]
-Glosario (conceptos cortos para la docente):
-• Transferencia: aplicar lo aprendido en un caso a otro distinto.
-• Doble salto: segundo salto en el aire; exige apretar en el momento justo.
-• Coyote time: pequeña tolerancia para saltar apenas después de dejar la plataforma.
-Datos verificados en el código del 2D Platformer: PlayerController ya tiene MobileMove, MobileJump y MobileShoot, y un modo de control (pc/mobile) elegido a mano en la escena; el objeto MobileControls de la escena está vacío (no hay botones); el juego pide salto y doble salto con tiempos precisos.
-Respuesta esperada: el patrón se reutiliza (adaptador → intención → personaje), pero el esquema no se copia: en un juego de plataformas importa más el momento del salto que la posición, así que el botón de salto tiene que ser grande y estar donde descansa el pulgar, y conviene evaluar tolerancias como el coyote time. Lo que es igual: probar en el teléfono, con personas.
-
-## 13 | En móvil, el límite lo pone el dispositivo
+## 23 | En móvil, el límite lo pone el dispositivo
 tipo: cierre
-kicker: CIERRE DE UNIDAD · PUENTE A UNIDAD V
-- Energía, calor, pantalla, interrupciones
+kicker: CIERRE DE UNIDAD · 4 MIN · PUENTE A UNIDAD V
 - El teléfono muestra lo que el editor no
+- Mismo patrón, otro juego: el Platformer
 - Mismo input, otro control: el gamepad
 - Consolas: el límite lo pone el fabricante
 pregunta: En consola, ¿quién decide si se publica?
 notas:
 Glosario (conceptos cortos para la docente):
 • Certificación: revisión que hace el fabricante de la consola antes de permitir que un juego se publique.
+• Transferencia: aplicar lo aprendido en un caso a otro distinto.
 Síntesis: en móvil el límite lo ponen la energía, el calor, la memoria, la pantalla táctil, las interrupciones y las reglas de tienda. Lo que el editor no muestra, lo muestra el teléfono.
-Puente técnico: las mismas acciones de Input System que usamos para el dedo ya aceptan un gamepad (stick, D-pad y botón A); para jugar en una consola no hay que reescribir la nave. Lo que cambia es todo lo demás.
+Transferencia (1 min): el 2D Platformer ya tiene MobileMove, MobileJump y MobileShoot, pero su objeto MobileControls está vacío. El patrón adaptador → intención → personaje se reutiliza; el esquema no se copia: en un juego de plataformas importa el momento del salto (botón grande, bajo el pulgar; tolerancias como el coyote time).
+Puente técnico: las mismas acciones de Input System que usamos para el dedo ya aceptan un gamepad; para jugar en una consola no hay que reescribir la nave. Lo que cambia es todo lo demás.
 Pregunta puente: en consola, el fabricante certifica el juego antes de publicarlo (Microsoft publica sus requisitos; Sony y Nintendo, no). La idea transversal de las Unidades IV a VII: ¿quién pone el límite?
-Imagen sugerida (opcional, sin recuadro en la slide): un teléfono que se transforma en un gamepad frente a una TV.
