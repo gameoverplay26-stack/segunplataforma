@@ -826,14 +826,35 @@ def build(decks, only=None, version=None, out_dir=UNIT_DIR):
     return out
 
 
+def build_unido(decks, out_dir=UNIT_DIR):
+    """Un solo .pptx con todas las clases, numeracion continua; el pie conserva la clase."""
+    prs = Presentation()
+    prs.slide_width, prs.slide_height = SLIDE_W, SLIDE_H
+    total = sum(len(d["slides"]) for d in decks)
+    n = 0
+    for deck in decks:
+        for s in deck["slides"]:
+            n += 1
+            s = dict(s, num=n)
+            maker = build_cover if s.get("tipo") == "portada" else build_content
+            add_notes(maker(prs, deck, s, total), s["notes"])
+    path = os.path.join(out_dir, "Unidad-4-2026-completa.pptx")
+    prs.save(path)
+    return path, total
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description="Genera los decks de la Unidad 4.")
     ap.add_argument("--decks", type=int, nargs="+", help="numeros de deck a generar (por defecto, todos)")
     ap.add_argument("--version", type=int, help="agrega el sufijo -vN al nombre del archivo (N > 1)")
     ap.add_argument("--out-dir", default=UNIT_DIR, help="carpeta de salida (por defecto, la de la unidad)")
+    ap.add_argument("--unido", action="store_true", help="genera ademas un solo .pptx con todas las clases")
     args = ap.parse_args()
     decks = parse(SOURCE)
     if len(decks) != 3:
         sys.exit("Se esperaban 3 decks y se encontraron %d" % len(decks))
     for path, total in build(decks, args.decks, args.version, args.out_dir):
+        print("OK  %-40s %2d slides" % (os.path.basename(path), total))
+    if args.unido:
+        path, total = build_unido(decks, args.out_dir)
         print("OK  %-40s %2d slides" % (os.path.basename(path), total))
