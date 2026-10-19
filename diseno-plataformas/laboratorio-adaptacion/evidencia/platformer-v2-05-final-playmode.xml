@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Failed(Child)" total="10" passed="8" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-19 15:52:29Z" end-time="2026-10-19 15:52:35Z" duration="6,1719738">
+  <test-suite type="TestSuite" id="1024" name="2D platformer v2" fullname="2D platformer v2" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-10-19 15:52:29Z" end-time="2026-10-19 15:52:35Z" duration="6.171974" total="10" passed="8" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1014" name="PlayModeTests.dll" fullname="P:/2D-Platformer-Unity-v2/Library/ScriptAssemblies/PlayModeTests.dll" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-19 15:52:29Z" end-time="2026-10-19 15:52:35Z" duration="6.161389" total="10" passed="8" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="29008" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestFixture" id="1001" name="InputAdapterTests" fullname="InputAdapterTests" classname="InputAdapterTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 15:52:29Z" end-time="2026-10-19 15:52:31Z" duration="1.692260" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1003" name="GamepadSouth_Jumps" fullname="InputAdapterTests.GamepadSouth_Jumps" methodname="GamepadSouth_Jumps" classname="InputAdapterTests" runstate="Runnable" seed="718318745" result="Passed" start-time="2026-10-19 15:52:29Z" end-time="2026-10-19 15:52:30Z" duration="1.085248" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Font Asset [LiberationSans SDF - Fallback] Units Per EM set to 2048. Please commit the newly serialized value.
+]]></output>
+        </test-case>
+        <test-case id="1002" name="KeyboardRightArrow_MovesPlayerRight" fullname="InputAdapterTests.KeyboardRightArrow_MovesPlayerRight" methodname="KeyboardRightArrow_MovesPlayerRight" classname="InputAdapterTests" runstate="Runnable" seed="1585812649" result="Passed" start-time="2026-10-19 15:52:30Z" end-time="2026-10-19 15:52:31Z" duration="0.591421" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1004" name="OnScreenControlsTests" fullname="OnScreenControlsTests" classname="OnScreenControlsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 15:52:31Z" end-time="2026-10-19 15:52:31Z" duration="0.987914" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1006" name="OnScreenJumpButton_Jumps" fullname="OnScreenControlsTests.OnScreenJumpButton_Jumps" methodname="OnScreenJumpButton_Jumps" classname="OnScreenControlsTests" runstate="Runnable" seed="1840227551" result="Passed" start-time="2026-10-19 15:52:31Z" end-time="2026-10-19 15:52:31Z" duration="0.328469" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1005" name="OnScreenRightButton_MovesWhileHeld_StopsOnRelease" fullname="OnScreenControlsTests.OnScreenRightButton_MovesWhileHeld_StopsOnRelease" methodname="OnScreenRightButton_MovesWhileHeld_StopsOnRelease" classname="OnScreenControlsTests" runstate="Runnable" seed="1622881398" result="Passed" start-time="2026-10-19 15:52:31Z" end-time="2026-10-19 15:52:31Z" duration="0.645938" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1007" name="PlayerIntentTests" fullname="PlayerIntentTests" classname="PlayerIntentTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-19 15:52:32Z" end-time="2026-10-19 15:52:35Z" duration="3.478840" total="6" passed="4" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-case id="1012" name="GroundRay_InMidAir_HitsNothing" fullname="PlayerIntentTests.GroundRay_InMidAir_HitsNothing" methodname="GroundRay_InMidAir_HitsNothing" classname="PlayerIntentTests" runstate="Runnable" seed="1120638827" result="Failed" start-time="2026-10-19 15:52:32Z" end-time="2026-10-19 15:52:32Z" duration="0.298920" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[  El rayo golpea 'Player' (capa Default), ¿es el propio jugador? True
+  Expected: null
+  But was:  <Player (UnityEngine.CapsuleCollider2D)>
+]]></message>
+            <stack-trace><![CDATA[at PlayerIntentTests+<GroundRay_InMidAir_HitsNothing>d__8.MoveNext () [0x000d1] in P:\2D-Platformer-Unity-v2\Assets\Tests\PlayMode\PlayerIntentTests.cs:77
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0004e] in .\Library\PackageCache\com.unity.test-framework@0b7a23ab2e1d\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+          </failure>
+        </test-case>
+        <test-case id="1011" name="JumpIntent_WhenGrounded_GivesUpwardVelocity" fullname="PlayerIntentTests.JumpIntent_WhenGrounded_GivesUpwardVelocity" methodname="JumpIntent_WhenGrounded_GivesUpwardVelocity" classname="PlayerIntentTests" runstate="Runnable" seed="1128622114" result="Passed" start-time="2026-10-19 15:52:32Z" end-time="2026-10-19 15:52:32Z" duration="0.313771" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1009" name="MoveIntentLeft_FacesLeft" fullname="PlayerIntentTests.MoveIntentLeft_FacesLeft" methodname="MoveIntentLeft_FacesLeft" classname="PlayerIntentTests" runstate="Runnable" seed="1684563834" result="Passed" start-time="2026-10-19 15:52:32Z" end-time="2026-10-19 15:52:33Z" duration="0.414550" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1008" name="MoveIntentRight_MovesPlayerRightAndFacesRight" fullname="PlayerIntentTests.MoveIntentRight_MovesPlayerRightAndFacesRight" methodname="MoveIntentRight_MovesPlayerRightAndFacesRight" classname="PlayerIntentTests" runstate="Runnable" seed="126144711" result="Passed" start-time="2026-10-19 15:52:33Z" end-time="2026-10-19 15:52:33Z" duration="0.584864" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1013" name="SecondJumpIntent_InAir_DoubleJumpsOnlyOnce" fullname="PlayerIntentTests.SecondJumpIntent_InAir_DoubleJumpsOnlyOnce" methodname="SecondJumpIntent_InAir_DoubleJumpsOnlyOnce" classname="PlayerIntentTests" runstate="Runnable" seed="123477094" result="Failed" start-time="2026-10-19 15:52:33Z" end-time="2026-10-19 15:52:34Z" duration="1.320605" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[  Sigue en el suelo: y=-2,11935, vy=-19,23998
+  Expected: False
+  But was:  True
+]]></message>
+            <stack-trace><![CDATA[at PlayerIntentTests+<SecondJumpIntent_InAir_DoubleJumpsOnlyOnce>d__9.MoveNext () [0x000e7] in P:\2D-Platformer-Unity-v2\Assets\Tests\PlayMode\PlayerIntentTests.cs:90
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0004e] in .\Library\PackageCache\com.unity.test-framework@0b7a23ab2e1d\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+          </failure>
+        </test-case>
+        <test-case id="1010" name="ZeroIntent_StopsHorizontalVelocity" fullname="PlayerIntentTests.ZeroIntent_StopsHorizontalVelocity" methodname="ZeroIntent_StopsHorizontalVelocity" classname="PlayerIntentTests" runstate="Runnable" seed="1027492956" result="Passed" start-time="2026-10-19 15:52:34Z" end-time="2026-10-19 15:52:35Z" duration="0.532455" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/Hilarion/AppData/LocalLow/DefaultCompany/2D platformer v2\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

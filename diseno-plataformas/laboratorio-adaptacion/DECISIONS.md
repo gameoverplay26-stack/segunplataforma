@@ -10,10 +10,12 @@ Prefijo `DEC-LAB-` para no colisionar con los `DEC-###` del proyecto SDD "Arena"
 | DEC-LAB-001 | **RESOLVED** | 2026-10-10 | Opción (a): la documentación se guarda en `diseno-plataformas/laboratorio-adaptacion/`, dentro del repositorio. |
 | DEC-LAB-002 | **RESOLVED** | 2026-10-10 | Se modifica el código de P1 solo para pruebas internas de porteo y para preparar las diapositivas de clase sobre el porteo de este juego y de P2. El usuario asume la decisión sobre la restricción de licencia de Kodeco, que se mantiene documentada en EV-004. |
 | DEC-LAB-003 | **RESOLVED** | 2026-10-10 | Opción (a): el estado migrado a Unity 6 es la línea base de P2. Se hace un commit inicial de la línea base y un push antes de cualquier modificación. |
-| DEC-LAB-006 | **RESOLVED** | 2026-10-10 | Opción (a): se autoriza instalar el paquete Input System (`com.unity.inputsystem`). **Instalado en P1 el 2026-10-10:** versión 1.19.0, Active Input Handling = Both (ver `PORTEO-ASTEROIDES.md`). P2: pendiente. |
+| DEC-LAB-006 | **RESOLVED** | 2026-10-10 | Opción (a): se autoriza instalar el paquete Input System (`com.unity.inputsystem`). **Instalado en P1 el 2026-10-10:** versión 1.19.0, Active Input Handling = Both (ver `PORTEO-ASTEROIDES.md`). **P2: instalado el 2026-10-19 en la copia `2D-Platformer-Unity-v2`** (1.19.0, Active Input Handling = New; ver `PORTEO-PLATFORMER.md`). El original no se modificó. |
 | DEC-LAB-009 a 012 | **PENDIENTE** | 2026-10-10 | El usuario las deja abiertas explícitamente: copia y perfil de *Unravel*, duración de la clase, grabaciones y desafío del capítulo 10. |
 | DEC-LAB-007 | PENDIENTE (con implementación provisional) | 2026-10-10 | En P1 se implementó joystick + botón como **referencia** para la demo. El esquema final lo eligen los grupos en A4.3/A4.7. |
 | DEC-LAB-004, 005, 008, 013, 014 | PENDIENTE | — | — |
+| DEC-LAB-015 | **RESOLVED** | 2026-10-19 | Corregir el salto infinito (R-PLT-09) en P2 v2: el detector de suelo ignora al jugador y a los triggers, y `groundLayer` incluye la capa `ground`. Se aplica a los dos niveles. |
+| DEC-LAB-016 | **RESOLVED** | 2026-10-19 | Vidas en P2 v2: 3 vidas (los 3 corazones del HUD). Cada muerte resta una y reinicia el nivel actual. Con 0 vidas, panel GAME OVER con "Retry" (nivel 1, 3 vidas) y "Menu". |
 
 | ID | Decisión | Alternativas | Impacto | Recomendación de Claude | Bloquea |
 |---|---|---|---|---|---|

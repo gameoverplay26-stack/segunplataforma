@@ -4,7 +4,7 @@ Punto de entrada para retomar el trabajo **desde cualquier computadora**. La mem
 
 **Uso:** en la otra máquina, clonar el repo, abrir Claude Code en la raíz y escribir **"continuá"**. Claude lee este archivo (lo indica `CLAUDE.md`) y el archivo de estado del frente que corresponda.
 
-- **Última actualización:** 2026-10-13
+- **Última actualización:** 2026-10-19
 - **Al cerrar cada sesión:** actualizar la sección 4 ("Dónde quedamos") y el archivo de estado del frente trabajado, y luego commit + push. Si no se pushea, la otra máquina no ve el trabajo.
 
 ---
@@ -50,6 +50,11 @@ Los IDs de decisión no se mezclan: `D4-xx` (cátedra, en `status-unidad.md`), `
 17. Commit, push, tag y cambios de rama **solo** cuando el usuario lo pide. Hoy se trabaja en `main`, por pedido del usuario.
 18. Antes de commitear, revisar `git status`: hay archivos que **no** se suben sin preguntar (sección 5).
 
+**Builds (pedido del 2026-10-19)**
+19. Cada vez que se generan builds de un proyecto Unity porteado, se generan **las dos**: APK de Android **y** instalador de PC (Setup.exe con Inno Setup 6). En el Platformer v2: `Tools\generar_builds.ps1`, con Unity cerrado.
+20. Los proyectos Unity se abren y compilan desde una **ruta corta**. En la máquina con el repo en `Documents\2026\...` hay un junction: `C:\Developer\unity\Platformer-v2` → `proyectos-unity\2D-Platformer-Unity-v2`. Abrirlo en Unity Hub desde esa ruta. Desde la ruta larga, la importación falla (ENV-01).
+21. Responder siempre en español.
+
 ---
 
 ## 3. Herramientas que debe tener la otra máquina
@@ -59,6 +64,7 @@ Los IDs de decisión no se mezclan: `D4-xx` (cátedra, en `status-unidad.md`), `
 | Git + acceso a `https://github.com/gameoverplay26-stack/segunplataforma.git` | — | Sincronizar |
 | **Ruta del clon recomendada:** `C:\Developer\unity\2026\clases-en-vivo` | — | Los documentos de auditoría citan rutas absolutas con esa base |
 | Unity Hub + **Unity 6000.3.11f1** | Módulos: **Android Build Support** (OpenJDK, SDK, NDK) y Windows Build Support | Abrir los proyectos, correr tests y builds. **No cambiar de versión de Unity** |
+| Inno Setup 6 (`winget install JRSoftware.InnoSetup`, por usuario) | — | Instalador de PC de los proyectos porteados |
 | Python 3 (probado con 3.12) + `pip install python-pptx==1.0.2` | — | Generar los `.pptx` |
 | Microsoft PowerPoint (opcional) | — | Exportar slides a PNG para revisarlas (COM desde PowerShell) |
 | Claude Code | — | Los agents y skills del repo (`.claude/agents`, `.claude/skills`) y `.claude/settings.json` viajan con git; `.claude/settings.local.json` es personal y no viaja |
@@ -94,7 +100,9 @@ python scripts/build_decks.py --por-clase            # además, un .pptx por sec
 **Laboratorio de adaptación / porteo**
 - **Asteroides:** porteo de entrada **implementado** (Input System 1.19.0, `ShipInputAdapter`, `Ship.SetIntent`, joystick y botón en pantalla, 3 tests). Tests: 10–11 de 14 en verde; las 3 hipótesis del pool fallan siempre por un defecto real, y hay 1 test inestable causado por el mismo defecto. Ver `laboratorio-adaptacion/PORTEO-ASTEROIDES.md`.
 - **UNKNOWN:** comportamiento en el Device Simulator y en un teléfono real (no se ejecutó de forma interactiva).
-- **Siguiente paso técnico propuesto:** probar en el Device Simulator y en un teléfono; luego el **2D Platformer** con el mismo patrón (Input System autorizado por DEC-LAB-006; ver `MOBILE-ADAPTATION.md` MOB-PLT-01…08).
+- **Siguiente paso técnico propuesto:** probar en el Device Simulator y en un teléfono.
+- **2D Platformer v2 (2026-10-19):** copia en `proyectos-unity/2D-Platformer-Unity-v2/` porteada a móvil (Input System, botones ◀ ▶ SALTAR en pantalla, orientación horizontal, safe area). Edit Mode 6/6, Play Mode 8/10 y **APK generado**. Las 2 fallas son un defecto del original: salto infinito (R-PLT-09). **Después (mismo día): salto corregido (DEC-LAB-015), sonido (moneda, salto, muerte), 3 vidas con Game Over (DEC-LAB-016) y nivel 2 con más huecos y enemigos; tests 15/15 + 17/17.** Falta probarlo jugando (sonido, nivel 2 completo). El original no se tocó. **Sin commit.** Ver `laboratorio-adaptacion/PORTEO-PLATFORMER.md`.
+- **Rutas largas:** en la máquina con el repo en `Documents\2026\Videojuegos\…`  Unity falla al importar (límite de 260 caracteres). Usar `subst P: "<repo>\proyectos-unity"` o clonar en la ruta corta (ENV-01).
 - Pendientes: DEC-LAB-004, 005, 007, 008, 013, 014; laboratorio de *Unravel* **en pausa por pedido del usuario** (DEC-LAB-009 a 012).
 - DEC-LAB-002: el usuario decidió modificar Asteroides pese a la licencia de Kodeco (solo para pruebas y clase). **No volver a plantearlo como bloqueo.**
 

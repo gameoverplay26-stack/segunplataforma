@@ -6,14 +6,14 @@ Fuente única de la Unidad 4: un solo archivo, `Unidad-4-2026-completa.pptx` (3 
 - **Clase 1** (dada): slides 1–15, tal como se dieron.
 - **Clase 2 — Del supuesto de PC al pulgar** (90 min): simulador y límites, A4.2 (supuestos de PC), elegir plataforma, UI táctil (mínimos, densidad, safe area, pulgar, orientación, gestos, accesibilidad), Input System, **A4.7** (une A4.3 y A4.7: boceto + implementación), playtest y vistazo de la build. Tarea: Build Support, depuración USB y primer APK.
 - **Clase 3 — Asteroides en tu bolsillo** (90 min): build con capturas reales, instalación, medición, A4.6, QA manual, matriz, testing en móvil, **A4.8** (test de configuración), monetización como diseño, A4.5, TP 3 y cierre de unidad.
-- **Anexo: Android en Unity 6** (9 slides de consulta, no se exponen): Build Support y External Tools, teléfono y depuración USB, Device Simulator, Build Profiles, Player Settings (identidad, 64 bits, pantalla, ícono), build e instalación y diagnóstico. Las slides de clase remiten a sus pasos. Las viñetas que empiezan con `1. ` se dibujan como pasos numerados.
+- **Anexo: Android en Unity 6** (11 slides de consulta, no se exponen): Build Support y External Tools, teléfono y depuración USB, Device Simulator, Build Profiles, Player Settings (identidad, 64 bits, pantalla, ícono), build e instalación, diagnóstico y, desde el 2026-10-19, dos slides de antes y después del 2D Platformer (PC y Android). Las slides de clase remiten a sus pasos. Las viñetas que empiezan con `1. ` se dibujan como pasos numerados.
 - Pasan fuera del encuentro: "Leer con lupa" (lectura), A4.4 (pausa, en el dossier del TP 3) y la defensa del TP 3 (video, **PROPUESTO**).
 
 Las versiones anteriores (v1 a v4, `.pptx` y fuentes) están en `versiones-anteriores/`.
 
 **Formato que lee el generador (no cambiar la sintaxis):**
 - `# DECK n | Título | Subtítulo` empieza un deck. `## n | Título` empieza una slide.
-- Claves de una línea: `tipo:` (portada / contenido / actividad / demo / cierre), `kicker:`, `pregunta:`, `actividad:`, `video:`, `fuente:`, `imagen:` (recuadro de imagen sugerida; no se usa).
+- Claves de una línea: `tipo:` (portada / contenido / actividad / demo / cierre), `kicker:`, `pregunta:`, `actividad:`, `video:` (admite enlaces clicables `[etiqueta](url)`: en la slide se ve solo la etiqueta), `fuente:`, `imagen:` (recuadro de imagen sugerida; no se usa).
 - Gráficos: `diagrama:`, `cronologia:`, `hitos:`, `flujo:`, `comparacion:`, `tiles:`, `codigo:` (lee el código real; `codigo: git:REV:ruta:a-b` lo lee de un commit), `vista:`, `safearea:`, `captura: imagenes/a.png + imagenes/b.png | pie` (capturas reales), `ajustes: Título | Campo: valor | Campo: *valor` (panel tipo Inspector; `*` resalta) y `panel: ancho` (el gráfico ocupa todo el ancho).
 - Líneas `- ` = viñetas. Líneas `|` = tabla (la primera fila es el encabezado). `notas:` abre las notas del docente hasta la próxima slide.
 
@@ -131,6 +131,7 @@ kicker: CONTEXTO HISTÓRICO
 - Hoy: XR y nube
 cronologia: Arcade · Pong: 1972 | Consola · Atari 2600: 1977 | PC · IBM PC: 1981 | Portátil · Game Boy: 1989 | *Teléfono · App Store: 2008 | XR · Oculus Rift: 2016 | Nube · GeForce Now: 2020 || Cada barra: desde el hito que abre la época hasta 2026
 fuente: Kevuru Games (blog); Apple Newsroom (App Store, 10/07/2008); lanzamientos de Oculus Rift (28/03/2016) y GeForce Now (04/02/2020)
+video: Consulta: [Juegos de celular, historia (21 min)](https://www.youtube.com/watch?v=kEwd_CnXvaM) · [Antes de las App Stores (9 min)](https://www.youtube.com/watch?v=omq5avbt8kw)
 notas:
 [Diapositiva nueva en la versión 2.]
 Glosario (conceptos cortos para la docente):
@@ -145,6 +146,9 @@ Cómo leer la cronología (pedido de la titular): cada barra arranca en el hito 
 Hitos usados: Pong (1972, arcade); Atari 2600 (1977, popularizó la consola doméstica con cartuchos); IBM PC (1981); Game Boy (1989); App Store (10/07/2008, verificado en Apple Newsroom); Oculus Rift (28/03/2016, primer visor de VR de consumo masivo); GeForce Now (04/02/2020, lanzamiento comercial del cloud gaming de NVIDIA). Son hitos de referencia, no "inventos" de cada época: por ejemplo, la primera consola doméstica fue la Magnavox Odyssey (1972) y en PC se jugaba antes de 1981.
 Pregunta posible: ¿qué tiene de distinto la época del teléfono respecto de las anteriores? Respuesta esperada: el jugador no compra el dispositivo para jugar, porque ya lo lleva en el bolsillo por otros motivos; por eso el juego compite con llamadas, mensajes y notificaciones (lo que vemos hoy en las slides 13 y 14).
 No detenerse más de 3 minutos: es contexto, no contenido evaluable.
+Videos de consulta, en español (agregados el 2026-10-19; existencia, título, canal y fecha verificados con YouTube el 2026-10-19; el contenido no se revisó completo):
+- lucasmelor, "La historia COMPLETA de los Juegos de Celular" (21 min, 24/02/2025): https://www.youtube.com/watch?v=kEwd_CnXvaM. Canal de divulgación, no académico; incluye un segmento patrocinado.
+- Aranimations ES y Cerebro Sin hueso, "Antes de las App Stores: Así Era el Increíble Gaming en Celulares Java" (9 min, 12/09/2026): https://www.youtube.com/watch?v=omq5avbt8kw. Muestra la etapa previa a 2008 (Snake, J2ME, Gameloft): el teléfono ya era plataforma de juego antes del App Store, que es el hito que usa la cronología.
 
 ## 7 | Clásicos del arcade
 tipo: contenido
@@ -152,6 +156,7 @@ kicker: CONTEXTO HISTÓRICO
 hitos: 1972 · Pong · tenis en pantalla | 1978 · Space Invaders · nace el shooter | 1980 · Pac-Man · fenómeno cultural | 1981 · Donkey Kong · debuta Mario | 1981 · Galaga · riesgo y recompensa | 1991 · Street Fighter II · comunidad de pelea | 1992 · Mortal Kombat · lleva a la ESRB
 pregunta: ¿Qué diseño impone una máquina que cobra por partida?
 fuente: Kevuru Games (blog); ESRB: Game Developer, "A Brief History of the ESRB"
+video: Consulta: [Academia Play, Historia de los videojuegos 1972–1983 (7 min)](https://www.youtube.com/watch?v=KRRfb-pSZy8)
 notas:
 [Diapositiva nueva en la versión 2, pedida por la titular: los ejemplos del artículo, con gráfico.]
 Glosario (conceptos cortos para la docente):
@@ -168,6 +173,7 @@ Los ejemplos que da el artículo de Kevuru Games, con lo que aportó cada uno:
 Las fechas son las de lanzamiento original en arcade, según el artículo. Coinciden con las fuentes de referencia habituales, pero no se verificaron una por una en esta sesión.
 Respuesta esperada a la pregunta: una máquina que cobra por ficha impone partidas cortas, dificultad creciente y un "Game Over" que invita a pagar de nuevo. Conexión con móvil: ese mismo patrón reaparece en el "continuar" con un anuncio o con una compra (lo analizamos más adelante en la unidad, al ver monetización). Y Asteroids, el juego que inspira nuestro proyecto, también es un clásico arcade de esa época (Atari, 1979).
 Recorrer el gráfico de izquierda a derecha y no detenerse más de 3 minutos.
+Video de consulta, en español (agregado el 2026-10-19; existencia, título, canal y fecha verificados con YouTube el 2026-10-19; el contenido no se revisó completo): Academia Play, "Historia de los Videojuegos (1972-1983) Parte I" (7 min, 10/07/2019): https://www.youtube.com/watch?v=KRRfb-pSZy8. Según su descripción, recorre Pong, Space Invaders, Pac-Man y Donkey Kong hasta la crisis de 1983: los mismos hitos del gráfico.
 
 ## 8 | Las tiendas cambiaron quién publica
 tipo: contenido
@@ -942,8 +948,10 @@ kicker: MONETIZACIÓN · APERTURA · 2 MIN
 - FTC vs. Epic Games (2022)
 - USD 275 M + USD 245 M
 - Botones confusos al comprar
+- Países Bajos: € 1,125 M (2024)
 pregunta: ¿Monetizar es negocio o diseño?
-fuente: FTC, comunicado de prensa del 19/12/2022
+video: [La Tercera](https://www.facebook.com/watch/?v=2465461220269942) · [El Deber](https://www.facebook.com/watch/?v=541682641335363) · [El Sol de México](https://www.facebook.com/reel/657601210708360) · [DW Español (12 min)](https://www.youtube.com/watch?v=cavSjjSDdo0)
+fuente: FTC, comunicado de prensa del 19/12/2022; ACM (Países Bajos), 14/01/2026
 notas:
 Glosario (conceptos cortos para la docente):
 • FTC (Federal Trade Commission): organismo de EE. UU. que protege a los consumidores.
@@ -952,6 +960,16 @@ Glosario (conceptos cortos para la docente):
 Caso completo: en 2022 la FTC acusó a Epic Games por Fortnite. Epic pagó USD 275 millones por privacidad de menores (COPPA) y USD 245 millones en reembolsos. El motivo: dark patterns en la compra, con una configuración de botones "counterintuitive, inconsistent, and confusing".
 Respuesta buscada: las dos cosas. Una decisión de interfaz (dónde va un botón, qué confirma una compra) tuvo consecuencias legales. Desde hoy la monetización se analiza como diseño, con reglas y con ética.
 Imagen sugerida (opcional, sin recuadro en la slide): titular del comunicado oficial de la FTC del 19/12/2022.
+• ACM (Autoriteit Consument & Markt): autoridad de consumo y competencia de los Países Bajos.
+• Item Shop: la tienda de objetos dentro de Fortnite.
+No es un caso aislado: en 2024 la ACM multó a Epic con 1.125.000 euros en total, más una orden obligatoria de cambiar la tienda, por prácticas comerciales desleales dirigidas a niños en el Item Shop de Fortnite (mensajes del tipo "consíguelo ya" y temporizadores de cuenta regresiva engañosos). Epic recurrió y el 14/01/2026 el Tribunal de Distrito de Róterdam le dio la razón a la ACM: "Epic directly exhorted children to make purchases in the Fortnite Item Shop" (ACM, "Ruling of the District Court of Rotterdam: Epic's objection declared unfounded", 14/01/2026, https://www.acm.nl/en/node/28730). Epic no discutió la infracción de los temporizadores.
+Para remarcar: dos países, dos organismos y la misma conclusión: la pantalla de compra es diseño, y el diseño tiene consecuencias legales. El temporizador que apura es una decisión de interfaz, igual que el botón confuso.
+Videos cortos de noticias, en español (pedido de la titular, 2026-10-19), para abrir el tema:
+- La Tercera (Chile), "Millonaria multa: no fue una 'victoria magistral' para Epic Games", caso FTC: https://www.facebook.com/watch/?v=2465461220269942
+- El Deber (Bolivia), "Multa millonaria a Fortnite por violar la privacidad de menores y manipulación", caso FTC: https://www.facebook.com/watch/?v=541682641335363
+- El Sol de México, multa de Países Bajos por prácticas desleales con menores: https://www.facebook.com/reel/657601210708360
+- DW Español, "Fortnite pagará USD 520 millones por violar privacidad de menores" (12 min, 19/12/2022): https://www.youtube.com/watch?v=cavSjjSDdo0
+Verificación (2026-10-19): título y medio de los tres videos de Facebook leídos de los metadatos públicos de cada enlace; el reel de El Sol de México no muestra título, solo la descripción. Facebook puede pedir iniciar sesión para reproducirlos: probarlos antes de la clase. El video de DW se verificó en YouTube (título, canal, fecha y duración). No se miraron completos.
 
 ## 18 | Modelos y formatos
 tipo: contenido
@@ -1176,6 +1194,7 @@ kicker: ANEXO · PASO 7 · INSTALAR
 - 3. Aceptar "fuentes desconocidas"
 - 4. Con cable: adb install -r
 captura: imagenes/u4-build-botones.png | Abajo a la derecha de Build Profiles: Build (marcado) y Build And Run
+video: Ejemplos de PC a Android: [Jadsa Games, Unity 6 (18 min)](https://www.youtube.com/watch?v=BuaJrjBDxK8) · [LuisCanary, .exe y .apk (13 min)](https://www.youtube.com/watch?v=nlgC6N_xfpM)
 fuente: Unity 6.3 Manual — Build your application for Android
 notas:
 Glosario (conceptos cortos para la docente):
@@ -1183,6 +1202,11 @@ Glosario (conceptos cortos para la docente):
 Pasos: botón Build (no Build And Run, que exige un teléfono conectado); carpeta Builds/ dentro del proyecto y fuera de Assets; nombre AsteroideTest.apk. Pasar el archivo al teléfono (cable, Drive o mensajería), abrirlo y aceptar "Instalar apps de fuentes desconocidas" para esa app. Con el teléfono conectado: adb install -r Builds/AsteroideTest.apk.
 Alternativa desde código: Build > Android APK (Assets/Editor/BuildAndroid.cs), también en batchmode con -executeMethod BuildAndroid.Build.
 Tiempo de referencia: Mono + ARMv7, 42 s y 20 MB en la PC de la docente (2026-10-12). Con IL2CPP la primera build tarda bastante más (no medido todavía).
+Videos de ejemplo, en español (agregados el 2026-10-19; título, canal, fecha y descripción verificados con YouTube el 2026-10-19; no se miraron completos ni se compararon paso por paso con este anexo):
+- Jadsa Games, "De PC a Android: Guía Completa para Portear y Publicar tu Juego con Unity 6" (18 min, 26/11/2025): https://www.youtube.com/watch?v=BuaJrjBDxK8. Es el que más se parece a la unidad: toma un juego de PC, agrega botones táctiles, ajusta la relación de aspecto y genera el APK y el .aab. Llega hasta la publicación en Google Play, que en esta materia no se hace.
+- LuisCanary, "Generar EJECUTABLE de tu Videojuego en UNITY | Sacar .EXE y .APK (PC y Android)" (13 min, 26/02/2026): https://www.youtube.com/watch?v=nlgC6N_xfpM. Muestra la misma build para PC y para Android, útil para comparar los dos destinos. La descripción no dice la versión de Unity: si los menús no coinciden, seguir este anexo (Unity 6000.3.11f1).
+- Complemento, del mismo canal que el primero: Jadsa Games, "Crear un Bundle .AAB para Android en Unity 6" (8 min): https://www.youtube.com/watch?v=COrg93Kz4o0.
+Diferencia a remarcar: los videos que publican en Google Play generan .aab (Build App Bundle tildado). Para probar en el teléfono, esta unidad usa .apk (casilla destildada, paso 4).
 
 ## 9 | Diagnóstico rápido
 tipo: contenido
@@ -1200,3 +1224,49 @@ Glosario (conceptos cortos para la docente):
 • Logcat: registro de mensajes del sistema Android; con -s Unity se filtran los del juego.
 Detalle: el primer cartel es un aviso (deja seguir); el segundo frena Build and Run, pero no Build. "No se instala" en teléfonos que solo aceptan 64 bits: primera sospecha, falta ARM64 (documentado por Android; en el curso todavía no se vio).
 Logs: con el teléfono conectado, adb logcat -s Unity muestra los mensajes de Debug.Log y los errores del juego. El paquete Android Logcat de Unity es una alternativa con ventana, pero instalarlo cambia el proyecto: no se usa sin autorización.
+
+## 10 | Antes y después: controles
+tipo: contenido
+kicker: ANEXO · CASO 2D PLATFORMER · PC Y ANDROID
+| Versión | Controles | Mover | Saltar | En pantalla | Orientación |
+| PC · antes | Teclado y joystick (legacy) | ← → / A D, con suavizado | Espacio | Nada | Ventana |
+| PC · después | Teclado y gamepad | ← → / A D, stick, cruceta | Espacio o botón A | Nada (oculto) | Ventana |
+| Android · antes | Ninguno | No se puede | No se puede | Contenedor vacío | Las 4 |
+| Android · después | Táctil = gamepad virtual | Botones ◀ ▶ | Botón SALTAR | ◀ ▶ SALTAR + safe area | Solo horizontal |
+pregunta: ¿Qué cambió para quien juega en PC?
+fuente: proyectos-unity/2D-Platformer-Unity-v2; laboratorio-adaptacion/PORTEO-PLATFORMER.md (evidencia del 19/10/2026)
+notas:
+Glosario (conceptos cortos para la docente):
+• Input Manager (legacy): sistema de entrada clásico de Unity; los ejes y botones se configuran en Project Settings > Input Manager.
+• Gamepad virtual: los botones en pantalla (OnScreenButton) se hacen pasar por un gamepad; el juego no distingue el dedo de un control físico.
+• Safe area: parte de la pantalla libre de muesca y barra de gestos.
+• Suavizado: el eje "Horizontal" del Input Manager acelera y frena en unos 0,3 s en lugar de saltar de 0 a 1.
+Qué muestra: el mismo juego (2D Platformer, el segundo caso del laboratorio) antes y después del porteo, en las dos plataformas. La versión 2 es una copia; el original no se tocó.
+PC antes: teclado (flechas o A/D, salto con Espacio) y un joystick genérico configurado en el Input Manager (el salto del joystick era "joystick button 3", que en un control de Xbox es Y, no A). PC después: las mismas teclas, más gamepad (stick, cruceta y botón A para saltar).
+Android antes: el juego tenía un campo "controlmode" y un contenedor MobileControls, pero el contenedor estaba vacío; en el teléfono se podía tocar el menú, pero el personaje no se movía. Android después: botones ◀ ▶ y SALTAR, visibles solo en móvil; mantener ◀ mueve de forma continua y soltar detiene. Orientación: solo horizontal, porque es un juego de desplazamiento lateral.
+Respuesta esperada a la pregunta: casi nada, y eso es lo buscado. Dos diferencias reales: ahora responde a un gamepad moderno, y el movimiento con teclado ya no tiene suavizado (respuesta inmediata). Es un cambio de sensación: hay que contarlo, no esconderlo.
+Qué NO resuelve esto: el esquema táctil (botones o stick) es provisional y lo eligen los grupos; no hay coyote time ni buffer de salto; no se probó todavía en un teléfono real.
+
+## 11 | Antes y después: proyecto
+tipo: contenido
+kicker: ANEXO · CASO 2D PLATFORMER · LO QUE NO SE VE
+| Aspecto | Antes (original) | Después (versión 2) |
+| Sistema de entrada | Input Manager | Input System 1.19 (solo "New") |
+| Quién lee el input | PlayerController | Adaptador → SetIntent |
+| Módulo de UI | StandaloneInputModule | InputSystemUIInputModule |
+| Error "isGrounded" | 2447 por sesión | 0 |
+| Build Android | Falla (URP en modo compatibilidad) | APK de 35,9 MB |
+| Tests automáticos | Ninguno | 16: pasan 14, fallan 2 |
+pregunta: ¿Por qué fallan 2 tests si el porteo está bien?
+fuente: laboratorio-adaptacion/PORTEO-PLATFORMER.md; logs y XML en laboratorio-adaptacion/evidencia/platformer-v2-*
+notas:
+Glosario (conceptos cortos para la docente):
+• Input System: paquete de entrada moderno de Unity; unifica teclado, gamepad y táctil.
+• SetIntent: método del jugador que recibe la intención (mover, saltar) sin saber de qué dispositivo vino.
+• Módulo de UI: componente del EventSystem que traduce clics y toques a eventos de botones.
+• URP en modo compatibilidad: modo viejo del render de Unity; Unity 6.3 no compila builds con él activado.
+Fila por fila: el input pasó del Input Manager al Input System, configurado solo en "New" porque Unity 6.3 no admite "Both" en Android. El PlayerController ya no lee teclas: un adaptador lee el dispositivo y le pasa la intención. Los menús cambiaron de módulo de UI para funcionar sin el sistema viejo.
+Errores y build: el error "isGrounded" se repetía en cada frame (2447 veces en una sesión) y ahora aparece 0 veces. La build de Android del proyecto migrado fallaba por el render en modo compatibilidad; corregido eso, generó un APK de 35,9 MB (Mono, ARMv7, 9 min 25 s la primera vez).
+Tests: 6 de configuración (Edit Mode) y 10 de juego (Play Mode); pasan 14.
+Respuesta esperada a la pregunta: los 2 tests que fallan encontraron un defecto del juego original, no del porteo. El rayo que detecta el suelo choca con el propio jugador, así que el juego siempre cree que está en el suelo y permite saltar sin límite. Un test en rojo también es evidencia útil. Corregirlo cambia la dificultad del nivel, y esa decisión es de diseño, no técnica.
+Estado: todo esto está VERIFICADO con logs y XML del 19/10/2026. La instalación en un teléfono real es UNKNOWN.

@@ -731,7 +731,16 @@ def callout(slide, label, text, color, y):
     p = tf.paragraphs[0]
     p.alignment = PP_ALIGN.LEFT
     run(p, label + "  ", 13, color, bold=True)
-    run(p, text, 14 if len(text) < 120 else 12)
+    # [etiqueta](url) se dibuja como enlace clicable que muestra solo la etiqueta
+    parts = re.split(r"\[([^\]]+)\]\((https?://[^)\s]+)\)", text)
+    size = 14 if len("".join(parts[0::3] + parts[1::3])) < 120 else 12
+    for i in range(0, len(parts), 3):
+        if parts[i]:
+            run(p, parts[i], size)
+        if i + 2 < len(parts):
+            r = run(p, parts[i + 1], size, color, bold=True)
+            r.font.underline = True
+            r.hyperlink.address = parts[i + 2]
 
 
 # --- Layouts ----------------------------------------------------------------
