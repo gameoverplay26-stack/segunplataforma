@@ -9,6 +9,8 @@ Fuente única de la Unidad 4: un solo archivo, `Unidad-4-2026-completa.pptx` (3 
 - **Anexo: Android en Unity 6** (11 slides de consulta, no se exponen): Build Support y External Tools, teléfono y depuración USB, Device Simulator, Build Profiles, Player Settings (identidad, 64 bits, pantalla, ícono), build e instalación, diagnóstico y, desde el 2026-10-19, dos slides de antes y después del 2D Platformer (PC y Android). Las slides de clase remiten a sus pasos. Las viñetas que empiezan con `1. ` se dibujan como pasos numerados.
 - Pasan fuera del encuentro: "Leer con lupa" (lectura), A4.4 (pausa, en el dossier del TP 3) y la defensa del TP 3 (video, **PROPUESTO**).
 
+**Continuación (2026-10-19).** Con todo el deck ya dado, se agregó la **Clase 4, "Del caso real al código"** (13 slides, 90 min, teoría 36 / práctica 54): de la safe area a la publicidad (UX y seguridad), el caso FTC vs. Epic leído como falla de input, el porteo PC → Android en código real (input y pantalla), orientación en los dos juegos, A4.9 y un ítem nuevo del TP 3. También se pasó a esta fuente el **anexo "Los plataformeros más vendidos"**, que se había armado directamente en el .pptx: el generador agrega `tarjetas:`, `subtabla:`, `codigo2:` y el destacado `movil:`. Archivo generado: `Unidad-4-2026-completa-v3.pptx` (`python scripts/build_decks.py --version 3`).
+
 Las versiones anteriores (v1 a v4, `.pptx` y fuentes) están en `versiones-anteriores/`.
 
 **Formato que lee el generador (no cambiar la sintaxis):**
@@ -58,7 +60,7 @@ kicker: CONTINUIDAD [RECICLADO 28/09]
 - Interrupciones del sistema
 - Intención ≠ dispositivo
 diagrama: Dispositivo: Teclado, Táctil, Gamepad | Intención: Mover, Disparar | Nave: Movimiento, Disparo, Límites || Hoy Ship.cs lee el teclado directo: falta la capa del medio
-fuente: Clase 28/09/2026 — Clase2-Plataformas.pptx; código del proyecto (Ship.cs 61–73, versión original, commit e766f8c)
+fuente: Clase 28/09/2026 — Clase2-Plataformas.pptx; código del proyecto (Ship.cs 61–73, versión original)
 notas:
 Glosario (conceptos cortos para la docente):
 • Zona segura (safe area): parte de la pantalla libre de muescas, bordes curvos y barras del sistema, donde la interfaz se ve completa.
@@ -403,7 +405,7 @@ kicker: ACTIVIDAD · 12 MIN · GRUPOS
 - Spawner.cs 101–106: el spawn
 - Prefab Game: Canvas y cámara
 actividad: 5 supuestos: dónde (archivo:línea), qué pasaría, qué eje.
-codigo: git:e766f8c:../../proyectos-unity/Asteroides/asteroide-final/Assets/Scripts/Ship.cs:61-73
+codigo: git:e766f8c:../../proyectos-unity/Asteroides/asteroide-final/Assets/Scripts/Ship.cs:61-63,66-68,71-73 ## 61: si se aprieta la barra espaciadora y se puede, la nave dispara ; 66: si se aprieta la flecha izquierda, la nave va a la izquierda ; 71: si se aprieta la flecha derecha, va a la derecha
 notas:
 Glosario (conceptos cortos para la docente):
 • Spawn: aparición de un objeto en el juego; acá, los asteroides.
@@ -413,7 +415,7 @@ Glosario (conceptos cortos para la docente):
 Consigna completa: listar al menos 5 supuestos que dejan de valer en un teléfono, indicando dónde están (archivo:línea), qué pasaría en móvil y a qué eje pertenecen (input, pantalla, UI, ciclo de vida, rendimiento).
 La respuesta completa es la tabla S1–S13 de 02-caso-practico. Para aprobar alcanza con S1 (teclado), S3/S4/S5 (límites, cámara, spawn), S6 (Canvas en Constant Pixel Size) y S8 (sin pausa).
 Pista si se traban: "¿qué pasa con la cámara si la pantalla es más angosta que alta?".
-Importante (versión 3): el código de la slide es la versión **original** de Ship.cs, leída del commit e766f8c. En el repositorio, Ship.cs ya tiene el porteo de entrada (Ship.SetIntent + ShipInputAdapter). Los grupos analizan la versión original: si trabajan con el repositorio clonado, que lo hagan sobre ese commit (git checkout e766f8c -- proyectos-unity/Asteroides/asteroide-final/Assets/Scripts/Ship.cs) o con la copia del TP. No mostrar todavía la solución.
+Importante (versión 3): el código de la slide es la versión **original** de Ship.cs, leída de la versión original guardada en el repositorio. En el repositorio, Ship.cs ya tiene el porteo de entrada (Ship.SetIntent + ShipInputAdapter). Los grupos analizan la versión original: si trabajan con el repositorio clonado, que lo hagan sobre ese commit (git checkout e766f8c -- proyectos-unity/Asteroides/asteroide-final/Assets/Scripts/Ship.cs) o con la copia del TP. No mostrar todavía la solución.
 
 ## 5 | Lo que encontramos
 tipo: contenido
@@ -563,7 +565,7 @@ kicker: DEMO · CÓDIGO REAL · 3 MIN
 - Las teclas pasan a ser bindings
 - El gamepad se suma sin tocar la nave
 - La nave recibe SetIntent(mover, disparar)
-codigo: ../../proyectos-unity/Asteroides/asteroide-final/Assets/Scripts/ShipInputAdapter.cs:18-27
+codigo: ../../proyectos-unity/Asteroides/asteroide-final/Assets/Scripts/ShipInputAdapter.cs:18-27 ## 18–21: "Mover" se hace con las flechas del teclado ; 22–23: …o con el stick y la cruz del joystick ; 25–27: "Disparar" es la barra espaciadora o el botón A ; Los botones en pantalla se hacen pasar por ese joystick
 fuente: Código del proyecto (ShipInputAdapter.cs; Ship.cs, método SetIntent)
 notas:
 Glosario (conceptos cortos para la docente):
@@ -906,7 +908,7 @@ Mensaje: un test en rojo no siempre es culpa del cambio que acabamos de hacer; h
 tipo: demo
 kicker: CÓDIGO REAL · TEST DE EDIT MODE · 2 MIN
 panel: ancho
-codigo: ../../proyectos-unity/Asteroides/asteroide-final/Assets/Tests/EditMode/AndroidBuildConfigTests.cs:12-26
+codigo: ../../proyectos-unity/Asteroides/asteroide-final/Assets/Tests/EditMode/AndroidBuildConfigTests.cs:13-17,21-25 ## 13–17: revisa que el juego se compile con IL2CPP ; 21–25: revisa que la build incluya teléfonos de 64 bits ; Si alguien cambia esa configuración, el test se pone en rojo y avisa
 fuente: Unity 6.3 — PlayerSettings.GetScriptingBackend; PlayerSettings.Android.targetArchitectures; Android Player settings
 notas:
 Glosario (conceptos cortos para la docente):
@@ -1075,7 +1077,242 @@ Transferencia (1 min): el 2D Platformer ya tiene MobileMove, MobileJump y Mobile
 Puente técnico: las mismas acciones de Input System que usamos para el dedo ya aceptan un gamepad; para jugar en una consola no hay que reescribir la nave. Lo que cambia es todo lo demás.
 Pregunta puente: en consola, el fabricante certifica el juego antes de publicarlo (Microsoft publica sus requisitos; Sony y Nintendo, no). La idea transversal de las Unidades IV a VII: ¿quién pone el límite?
 
-# DECK 4 | Anexo: Android en Unity 6 | Unidad IV · Anexo de consulta
+# DECK 4 | Del caso real al código | Unidad IV · Clase 4 · continuación
+
+## 1 | Del caso real al código
+tipo: portada
+kicker: UNIDAD IV · CLASE 4 · CONTINUACIÓN · 90 MIN
+- Publicidad, seguridad e input
+- Porteo PC → Android: antes y después
+notas:
+Glosario (conceptos cortos para la docente):
+• Porteo: llevar un juego de una plataforma a otra adaptando input, pantalla, rendimiento y distribución.
+[Encuentro nuevo, agregado el 2026-10-19 a pedido de la titular: continuación después de dar todo el deck.]
+Hilo del encuentro: la clase pasada cerró con la safe area ("no todo el rectángulo es tuyo"). Hoy seguimos la pregunta: ¿quién más ocupa la pantalla y el dedo del jugador? Primero el anunciante (UX y seguridad), después un caso real donde el input le costó a una empresa una sanción, y al final la respuesta técnica: el porteo PC → Android en código real.
+Reparto (40/60): teoría 36 min (apertura 3, publicidad 8, caso real 5, puente 2, código 11, orientación 5, cierre 2); práctica 54 min (A4.9 30, puesta en común 8, TP 3 en clase 16).
+Materiales: APK del 2D Platformer v2 (Builds/Platformer-v2.apk) y su instalador de PC (Builds/Instaladores/Platformer-v2-Setup.exe), subidos al aula virtual antes de la clase; Device Simulator como plan B. El APK es de 32 bits (ARMv7): algunos teléfonos que solo aceptan 64 bits no lo instalan. Probarlo antes con un teléfono del curso.
+
+## 2 | La pantalla tiene dueños
+tipo: contenido
+kicker: APERTURA · DESDE LA SAFE AREA · 3 MIN
+- Muesca y gestos: el sistema
+- Controles: el pulgar
+- Banner: el anunciante
+- ¿Qué queda para jugar?
+safearea: ¿Y si además hay un banner?
+pregunta: Si suman un banner, ¿qué tapan primero?
+notas:
+Glosario (conceptos cortos para la docente):
+• Safe area: parte de la pantalla libre de muesca, esquinas redondeadas y barra de gestos.
+• Banner: anuncio en una franja fija de la pantalla, siempre visible.
+• Área jugable: lo que queda para el juego después de restar sistema, controles y anuncios.
+Puente con la clase pasada: la safe area la pone el sistema; los controles, el diseño; el banner, el negocio. Los tres compiten por el mismo rectángulo, y en un juego horizontal el banner tiene dos lugares posibles: abajo (donde están ◀ ▶ y SALTAR) o arriba (donde están los corazones y las monedas).
+Disparador: pedir que alguien levante el teléfono en horizontal y señale dónde pondría el banner en el 2D Platformer. Respuesta esperada: no hay lugar "gratis"; cualquier franja tapa HUD, controles o nivel.
+No detenerse más de 3 minutos: es la pregunta que abre el encuentro.
+
+## 3 | Un anuncio también es input
+tipo: contenido
+kicker: PUBLICIDAD · UX · 4 MIN
+| Formato | Qué le quita al jugador |
+| Banner | Pantalla, cerca del pulgar |
+| Interstitial inesperado | El toque: cae en el anuncio |
+| Rewarded | Tiempo, pero lo elige |
+| Sin anuncios | Nada: se cobra antes |
+pregunta: Si el toque cae en el anuncio, ¿de quién es el error?
+fuente: Google Play — "Understanding Google Play's Better Ads Experiences policy" (consultada el 19/10/2026)
+notas:
+Glosario (conceptos cortos para la docente):
+• Interstitial: anuncio de pantalla completa entre dos momentos del juego.
+• Rewarded: anuncio que el jugador elige ver a cambio de una recompensa.
+• Better Ads Experiences: política de Google Play contra los anuncios de pantalla completa inesperados.
+Idea central: en móvil, la pantalla es también el control. Un anuncio no solo ocupa espacio: compite por el mismo dedo. Si el interstitial aparece justo cuando el jugador toca SALTAR, el salto se convierte en un clic al anuncio.
+Lo que dice Google Play (leído el 19/10/2026): la política busca "prevent unexpected full screen interstitials, typically when the user has chosen to do something else"; da como ejemplo de ubicación inesperada "ads that appear at the beginning of a game level"; propone como lugar adecuado "the break after the score screen in a gaming app"; los banners se aceptan si "do not interfere with normal app use or game play"; y con los rewarded "there is no concern with unexpectedness", porque el jugador eligió verlos.
+Conexión: en la tercera clase vimos las reglas de AdMob (nunca al abrir ni después de cada acción). Hoy es la otra cara: el costo en UX.
+Respuesta esperada a la pregunta: del diseño. Si el anuncio aparece donde el jugador ya estaba por tocar, el "clic" no es una decisión del jugador.
+Qué NO resuelve esto: cumplir la política no garantiza una buena experiencia; un banner permitido igual puede quedar pegado a un botón.
+
+## 4 | El SDK que no escribiste
+tipo: contenido
+kicker: PUBLICIDAD · SEGURIDAD · 4 MIN
+- Goldoson (2023): 60 apps
+- 100 millones de descargas
+- Clics ocultos a anuncios
+- Una librería de terceros
+pregunta: ¿Quién responde por el código que importaron?
+fuente: BleepingComputer, "Android malware infiltrates 60 Google Play apps with 100M installs" (15/04/2023), sobre el informe de McAfee Labs
+notas:
+Glosario (conceptos cortos para la docente):
+• SDK: paquete de código de terceros que se agrega al juego (anuncios, analíticas, login).
+• Adware: software que muestra o cliquea anuncios sin que el usuario lo decida.
+• WebView: navegador embebido dentro de una app.
+Caso (verificado el 19/10/2026 en BleepingComputer, 15/04/2023): "Goldoson" llegó a Google Play a través de 60 apps legítimas con 100 millones de descargas en total. Estaba en "a third-party library used by all sixty apps that the developers unknowingly added to their apps"; podía "perform ad fraud by clicking ads in the background without the user's consent", inyectando código en "a customized, hidden WebView". Google dijo que las apps "violated Google Play policies". El informe original es de McAfee Labs ("Goldoson: Privacy-invasive and Clicker Android Adware found in popular apps in South Korea"); el 19/10/2026 la página no abrió, así que los datos se citan a través de BleepingComputer.
+Para remarcar: los desarrolladores no escribieron ese código, pero era su app. Al publicar, responde quien publica.
+Qué hacer en un proyecto: usar SDKs oficiales y actualizados, revisar qué permisos agrega cada paquete, completar con honestidad la sección de seguridad de datos de la tienda e integrar lo mínimo indispensable.
+Qué NO decir: "los anuncios son malware". La mayoría de los SDKs de anuncios son legítimos; el riesgo es cualquier código ajeno sin revisar (anuncios, analíticas o plugins). El 2D Platformer v2 no integra ningún SDK de anuncios.
+
+## 5 | Caso real: el botón que cobraba
+tipo: contenido
+kicker: CASO REAL · INPUT · 5 MIN
+- Despertar el juego: cobro
+- Pantalla de carga: cobro
+- Botón vecino: cobro
+- Un toque, sin confirmar
+pregunta: ¿Falló el código o el diseño del input?
+fuente: FTC, "Fortnite Video Game Maker Epic Games to Pay More Than Half a Billion Dollars over FTC Allegations of Privacy Violations and Unwanted Charges" (19/12/2022)
+notas:
+Glosario (conceptos cortos para la docente):
+• Input gating: bloquear la entrada mientras el juego está en un estado en el que un toque no debería hacer nada (cargando, pausado, despertando).
+• Confirmación: segundo paso antes de una acción irreversible (pagar, borrar).
+• Target: zona tocable de un botón; incluye el margen de separación con sus vecinos.
+Es el mismo caso de la apertura de monetización de la tercera clase, ahora visto desde el input. Según la FTC, "Fortnite's counterintuitive, inconsistent, and confusing button configuration led players to incur unwanted charges based on the press of a single button": se podía pagar "while attempting to wake the game from sleep mode", "while the game was in a loading screen" o "by pressing an adjacent button while attempting simply to preview an item". La FTC lo resume así: "These tactics led to hundreds of millions of dollars in unauthorized charges for consumers." (Son alegaciones de la FTC que terminaron en un acuerdo de pago.)
+Cómo leerlo con lo que ya saben: tres fallas de input con tres respuestas de diseño. Estado: el toque que despierta el juego o cae en una carga no tendría que hacer nada (input gating). Espacio: botones vecinos demasiado juntos (la slide "¿Cuánto mide un dedo?"). Confirmación: una acción que cuesta dinero no se ejecuta con un solo toque.
+Respuesta esperada a la pregunta: el código hizo exactamente lo que el diseño le pidió. La falla fue de diseño del input, y la sanción fue legal.
+Disparador: "¿Alguna vez compraron, borraron o saltaron algo sin querer en el teléfono? ¿En qué estado estaba la app?"
+
+## 6 | Del caso al porteo: tres preguntas
+tipo: contenido
+kicker: PUENTE · 2 MIN
+- Cada toque se diseña
+- El porteo responde las tres
+flujo: ¿Qué toca el jugador? · dispositivo | ¿Cuándo vale el toque? · estado | ¿Dónde está en pantalla? · espacio || Las slides siguientes, en código real
+notas:
+Glosario (conceptos cortos para la docente):
+• Dispositivo: de dónde viene la entrada (teclado, gamepad, pantalla táctil).
+• Estado: en qué momento del juego llega (jugando, cargando, en pausa).
+• Espacio: dónde está el control y qué ocupa en pantalla (tamaño, safe area, orientación).
+Transición: el caso de la FTC deja tres preguntas, y el porteo PC → Android las tiene que responder. Las dos slides siguientes muestran en código real la primera (dispositivo) y la tercera (espacio). La segunda (estado) ya la trabajaron con las interrupciones y la pausa (A4.4).
+
+## 7 | Antes y después: el input
+tipo: contenido
+kicker: CÓDIGO REAL · PC → ANDROID · 2D PLATFORMER · 6 MIN
+codigo2: ANTES · PC: lee el teclado = git:e766f8c:../../proyectos-unity/2D-Platformer-Unity-main/Assets/Scripts/PlayerController.cs:67-68,73,77-79 ## 67: si el personaje está parado en el suelo… ; 73: …lee las flechas o A/D del teclado para moverse ; 77: si se aprieta Espacio, salta || DESPUÉS · PC Y ANDROID: acciones = ../../proyectos-unity/2D-Platformer-Unity-v2/Assets/Scripts/PlayerInputAdapter.cs:18-21,25-26,28-30@Gamepad ## 18–21: "Mover" se hace con las flechas del teclado (y con A/D) ; 25–26: …o con el stick y la cruz del joystick ; 28–30: "Saltar" es Espacio o el botón A, y ◀ ▶ SALTAR en pantalla imitan ese joystick
+panel: ancho
+pregunta: ¿En qué línea de la derecha está el dedo?
+notas:
+Glosario (conceptos cortos para la docente):
+• Input.GetAxis / GetButtonDown: lectura directa del Input Manager clásico (teclas configuradas como ejes y botones).
+• InputAction: acción con nombre ("Move", "Jump") a la que se le asocian varios dispositivos (bindings).
+• Binding: regla que conecta una acción con un control concreto ("<Keyboard>/space", "<Gamepad>/buttonSouth").
+• Control en pantalla (OnScreenButton / OnScreenStick): botón o joystick virtual que se hace pasar por un gamepad.
+• Virtual joystick: stick dibujado en la pantalla que se arrastra con el pulgar.
+• Touch phase: etapa de un toque (Began, Moved, Stationary, Ended, Canceled).
+Antes (izquierda, código original del juego): el PlayerController lee el teclado dentro de su propio Update. En el teléfono no hay teclado: el menú se puede tocar, pero el personaje no se mueve.
+Después (derecha, versión 2): el adaptador declara dos acciones con sus bindings. Las líneas resaltadas son del gamepad, y los botones en pantalla ◀ ▶ SALTAR simulan justamente "<Gamepad>/dpad" y "<Gamepad>/buttonSouth". Cada frame, el adaptador llama a PlayerController.SetIntent(dirección, salto): el jugador recibe una intención, no una tecla. Es el mismo patrón que vieron en Asteroides ("La intención en código"), ahora en el segundo juego.
+Respuesta esperada a la pregunta: en ninguna. El dedo entra como un gamepad virtual; por eso el mismo código sirve para teclado, gamepad y pantalla.
+Alternativa (no usada en el proyecto), para gestos como deslizar: leer los toques directamente con EnhancedTouch. Se habilita con EnhancedTouchSupport.Enable() y se recorre Touch.activeTouches; cada toque tiene una phase (Began al apoyar, Moved al deslizar, Ended al levantar). Sirve para gestos; para botones conviene el control en pantalla, porque ya resuelve presionar y soltar.
+Qué NO resuelve esto: el botón virtual no tiene relieve ni recorrido; el pulgar no sabe si lo está tocando. Por eso el tamaño, la separación y la ubicación siguen siendo decisiones de diseño.
+
+## 8 | Antes y después: la pantalla
+tipo: contenido
+kicker: CÓDIGO REAL · RESOLUCIÓN Y ORIENTACIÓN · 5 MIN
+codigo2: ANTES · PC: cualquier orientación = git:e766f8c:../../proyectos-unity/2D-Platformer-Unity-main/ProjectSettings/ProjectSettings.asset:62-65@Portrait ## 62: el juego puede girar a vertical (1 = sí, 0 = no) ; 63: también a vertical dado vuelta ; 64–65: y a horizontal, hacia los dos lados ; En la versión 2, las líneas 62 y 63 pasan a 0 || DESPUÉS · ANDROID: se adapta a la safe area = ../../proyectos-unity/2D-Platformer-Unity-v2/Assets/Scripts/SafeAreaFitter.cs:33-35,43-44@safe ## 33: le pregunta al teléfono qué zona no tapa la muesca ni la barra ; 34–35: mide el ancho y el alto de la pantalla ; 43–44: achica el área de los botones a esa zona libre
+panel: ancho
+pregunta: ¿Por qué el juego de PC nunca necesitó estas líneas?
+notas:
+Glosario (conceptos cortos para la docente):
+• Viewport: parte de la pantalla donde la cámara dibuja.
+• Aspect ratio: relación entre ancho y alto de la pantalla (16:9, 19,5:9, 4:3).
+• Canvas Scaler: componente de la UI de Unity que escala la interfaz a partir de una resolución de referencia (acá, 1920 × 1080).
+• Aspect ratio pinning (o letterboxing): fijar una relación de aspecto y rellenar el resto con bandas.
+• Screen.safeArea: rectángulo, en píxeles, libre de muesca y barra de gestos.
+Antes (izquierda, configuración original): el juego aceptaba las cuatro orientaciones, retrato incluido, para un juego de desplazamiento lateral. En PC nadie lo notaba: el monitor no rota y no tiene muesca.
+Después (derecha, versión 2): SafeAreaFitter lee la safe area de la pantalla y ajusta el contenedor de los controles para que ningún botón quede bajo la muesca o la barra de gestos. Usa UnityEngine.Device.Screen, que también responde al Device Simulator. Además, la orientación quedó fija en horizontal (solo Landscape Left/Right) y el Canvas Scaler mantiene 1920 × 1080 con match 0,5.
+Respuesta esperada a la pregunta: porque en PC la pantalla era un supuesto fijo (un monitor horizontal, sin muesca, con mouse). En móvil, la pantalla cambia según el teléfono, la orientación y el sistema.
+Qué NO resuelve esto: la safe area protege los controles, no el nivel; si los botones tapan los pozos, hay que mover la cámara (pendiente en la v2: margen inferior de cámara).
+
+## 9 | Un juego, dos orientaciones
+tipo: contenido
+kicker: ORIENTACIÓN · ASTEROIDES VS. PLATFORMER · 5 MIN
+| | Asteroides (arcade) | 2D Platformer (niveles) |
+| Orientación | Horizontal o vertical | Solo horizontal |
+| Qué se rompe | Escala: muy chico o enorme | Se ve poco nivel |
+| Por qué | Cámara fija en altura | Hay que anticipar pozos |
+| Ajuste | Cámara y spawn por aspecto | Bloqueo y margen de cámara |
+| Estado | Decisión pendiente | Bloqueo implementado |
+pregunta: ¿La orientación la decide el género o la plataforma?
+notas:
+Glosario (conceptos cortos para la docente):
+• Orthographic size: en una cámara 2D, la mitad de la altura visible en unidades del mundo; el ancho visible sale de multiplicarla por el aspect ratio.
+• Bloqueo de orientación: desactivar en Player Settings las orientaciones que el juego no admite.
+Asteroides: la cámara tiene orthographic size 5 (10 unidades de alto) y los asteroides aparecen en x ∈ [−8, 8]. En 16:9 horizontal se ven ±8,9 unidades de ancho; en 9:16 vertical, solo ±2,8: los asteroides nacen fuera de la pantalla y los sprites ocupan mucho más del ancho. Es el gráfico de la slide "Lo que encontramos" de la segunda clase. Se puede jugar en las dos orientaciones, pero hay que ajustar cámara y spawn según el aspecto. La orientación final de Asteroides sigue como decisión pendiente (DEC-LAB-005).
+2D Platformer: el jugador tiene que ver lo que viene a la derecha (pozos, enemigos). En vertical vería muy poco nivel; por eso se bloqueó en horizontal. Queda pendiente el margen inferior de la cámara para que los botones no tapen el borde de las plataformas.
+Respuesta esperada a la pregunta: el género propone (un arcade vertical admite las dos; un plataformero de avance lateral pide horizontal) y la plataforma obliga a decidirlo y a probarlo en pantallas reales.
+
+## 10 | Actividad A4.9: auditar un porteo
+tipo: actividad
+kicker: ACTIVIDAD · 30 MIN · GRUPOS · PC Y TELÉFONO
+- 1. Jugar el nivel 1 en PC
+- 2. Instalar el APK y jugarlo
+- 3. Completar la planilla
+- 4. Ubicar un banner
+| Aspecto | Qué medir |
+| Controles | ¿Responden? ¿Mover y saltar a la vez? |
+| Doble salto | Aciertos en 5 intentos |
+| Orientación | Rotar el teléfono: ¿qué pasa? |
+| Safe area | ¿Algún botón queda tapado? |
+| Banner | ¿Qué taparía y dónde? |
+actividad: Midan, no opinen: cada fila con una foto, una medida o un tiempo.
+notas:
+Glosario (conceptos cortos para la docente):
+• Auditoría de porteo: revisión ordenada de qué cambió, qué mejoró y qué empeoró al pasar de plataforma.
+Consigna completa (grupos de 3–4, con al menos un teléfono Android):
+1. Jugar el nivel 1 en PC con el instalador (Platformer-v2-Setup.exe) o con la build de Windows. 5 min.
+2. Instalar el APK en un teléfono y jugar el mismo nivel. Plan B: Device Simulator en Unity. 10 min.
+3. Planilla (columnas Aspecto | PC | Android | Evidencia), 10 min: controles (¿responden?, ¿se puede mantener ◀ y saltar a la vez?); doble salto (¿sale cuando quieren?); orientación (rotar el teléfono: ¿qué pasa?); safe area (en un teléfono con muesca, ¿algún botón queda tapado?); HUD (¿se leen los corazones y las monedas?).
+4. Ubicar un banner (5 min): marcar en una captura dónde iría un banner y qué taparía. Y responder: si apareciera un interstitial al empezar el nivel 2, ¿qué toque del jugador se perdería?
+Errores frecuentes y corrección: "en PC anda, entonces en Android también": el input y la pantalla son otros; "el banner va donde haya lugar": en un juego horizontal no hay lugar libre.
+Qué NO demuestra esta actividad: una sola sesión de juego no mide rendimiento ni batería; eso se mide con el Profiler.
+
+## 11 | Lo que encontramos
+tipo: contenido
+kicker: PUESTA EN COMÚN · 8 MIN
+- Un hallazgo por grupo
+- Con evidencia, no opinión
+- ¿Dónde empeoró más?
+- ¿Dónde iría el banner?
+pregunta: ¿Qué arreglarían primero y por qué?
+notas:
+Glosario (conceptos cortos para la docente):
+• Evidencia: foto, medida o tiempo que alguien más puede revisar.
+Cada grupo dice un hallazgo en una frase, con su evidencia. La docente los agrupa en tres columnas en el pizarrón: dispositivo (input), estado (cuándo vale el toque) y espacio (pantalla). Son las tres preguntas del puente.
+Respuestas posibles: los botones táctiles tapan parte de la pantalla; el doble salto cuesta más en táctil que con teclado, porque no hay respuesta física del botón (por eso existen el coyote time y el buffer de salto, que siguen como decisión pendiente); en vertical la pantalla no rota, y está bien.
+Pregunta de cierre del bloque: ¿qué arreglarían primero? Buena respuesta: lo que más afecta al jugar y es más barato de cambiar, justificado con su evidencia.
+
+## 12 | TP 3: publicidad e input
+tipo: contenido
+kicker: TP 3 · NUEVO ÍTEM · 16 MIN EN CLASE
+- Anuncios: pros y contras
+- Táctil vs. teclado
+- Evidencia de A4.9
+- Una decisión justificada
+actividad: Arranquen ahora en grupo; se entrega con el dossier del TP 3.
+notas:
+Glosario (conceptos cortos para la docente):
+• Ítem del dossier: sección del TP 3 con consigna y criterio de evaluación propios.
+Consigna del ítem 9 del TP 3, "Publicidad e input" (1 a 2 páginas):
+a) Monetización con anuncios: elegir un formato (banner, interstitial o rewarded) para su juego y escribir dos ventajas y dos riesgos: de UX (área jugable, toques accidentales, interrupciones) y de seguridad (SDK de terceros). Citar al menos una política de tienda (Google Play Better Ads Experiences o AdMob).
+b) Táctil vs. teclado: con la evidencia de A4.9, comparar una acción del juego (mover o saltar) en PC y en el teléfono: qué cambia en precisión, tiempo de respuesta y ocupación de pantalla.
+c) Decisión: ¿lo publicarían con anuncios, sin anuncios o premium? Una decisión justificada con lo anterior y con el caso de la FTC como contraejemplo.
+Criterio de evaluación propuesto: entra en "Monetización" (más efecto sobre el diseño y ética) y en "Diseño de control y HUD". El peso en la rúbrica lo define la titular (PROPUESTO).
+
+## 13 | Qué no resuelve esto
+tipo: contenido
+kicker: CIERRE · 2 MIN
+- Política cumplida ≠ buena UX
+- Botón virtual ≠ botón físico
+- Sin teléfono no hay certeza
+- Todo SDK es código ajeno
+notas:
+Glosario (conceptos cortos para la docente):
+• Error conceptual: idea que parece correcta y lleva a decisiones equivocadas.
+Errores frecuentes y su corrección:
+• "Si cumple la política de Google Play, el anuncio está bien": la política fija un piso; la UX se prueba jugando.
+• "Un botón en pantalla es igual a uno físico": no tiene relieve ni recorrido; necesita tamaño, separación y una respuesta visual.
+• "Lo probé en el Device Simulator": el simulador no tiene dedos reales, multitouch ni muesca física.
+• "Los anuncios son malware": no; el riesgo es cualquier SDK de terceros que no se revisa.
+Cierre: el porteo no es "compilar para Android": es volver a responder qué toca el jugador, cuándo vale y dónde está.
+
+# DECK 5 | Anexo: Android en Unity 6 | Unidad IV · Anexo de consulta
 
 ## 1 | Anexo: Android en Unity 6
 tipo: portada
@@ -1270,3 +1507,121 @@ Errores y build: el error "isGrounded" se repetía en cada frame (2447 veces en 
 Tests: 6 de configuración (Edit Mode) y 10 de juego (Play Mode); pasan 14.
 Respuesta esperada a la pregunta: los 2 tests que fallan encontraron un defecto del juego original, no del porteo. El rayo que detecta el suelo choca con el propio jugador, así que el juego siempre cree que está en el suelo y permite saltar sin límite. Un test en rojo también es evidencia útil. Corregirlo cambia la dificultad del nivel, y esa decisión es de diseño, no técnica.
 Estado: todo esto está VERIFICADO con logs y XML del 19/10/2026. La instalación en un teléfono real es UNKNOWN.
+
+# DECK 6 | Anexo: Los plataformeros más vendidos | Unidad IV · Anexo de consulta
+
+## 1 | Anexo: Los plataformeros más vendidos
+tipo: portada
+kicker: UNIDAD IV · ANEXO DE CONSULTA · DATOS DE MERCADO
+- Franquicias y juegos según VGSales Wiki, con imagen de cada título
+notas:
+Glosario (conceptos cortos para la docente):
+• VGSales Wiki: wiki colaborativa de ventas de videojuegos; publica estimaciones, no cifras auditadas.
+Anexo de consulta, no se expone: datos de mercado del género del caso guía 2 (2D Platformer). Se armó directamente en el .pptx el 2026-10-19 y se pasó a esta fuente el mismo día.
+
+## 2 | Franquicias de plataformas más vendidas (1 de 2)
+tipo: contenido
+kicker: ANEXO · PLATAFORMEROS · FRANQUICIAS 1–12
+tarjetas: imagenes/mercado/f01.png ; 1 ; Mario (plataformas) ; 491,1 M de unidades ; 1981 · Arcade · Nintendo | imagenes/mercado/f02.png ; 2 ; Sonic (plataformas) ; 195,8 M de unidades ; 1991 · Mega Drive · Sega | imagenes/mercado/f03.png ; 3 ; Donkey Kong (plataformas) ; 104,4 M de unidades ; 1981 · Arcade · Nintendo | imagenes/mercado/f04.png ; 4 ; Crash Bandicoot ; 65,0 M de unidades ; 1996 · PS1 · Activision | imagenes/mercado/f05.png ; 5 ; Kirby ; 62,0 M de unidades ; 1992 · Game Boy · Nintendo | imagenes/mercado/f06.png ; 6 ; Mega Man ; 43,0 M de unidades ; 1987 · NES · Capcom | imagenes/mercado/f07.png ; 7 ; Ratchet & Clank ; 40,7 M de unidades ; 2002 · PS2 · Sony | imagenes/mercado/f08.png ; 8 ; Tomb Raider (plataformas) ; 40,5 M de unidades ; 1996 · Saturn · Embracer | imagenes/mercado/f09.png ; 9 ; Rayman ; 30,0 M de unidades ; 1995 · PS1 · Ubisoft | imagenes/mercado/f10.png ; 10 ; Spyro ; 30,0 M de unidades ; 1998 · PS1 · Activision | imagenes/mercado/f11.png ; 11 ; Yoshi ; 29,5 M de unidades ; 1995 · SNES · Nintendo | imagenes/mercado/f12.png ; 12 ; Castlevania ; 24,0 M de unidades ; 1986 · Famicom Disk · Konami
+panel: ancho
+fuente: VGSales Wiki, «Best-selling platformers» (ventas estimadas, consulta 19/10/2026); imágenes: Wikipedia, uso educativo
+notas:
+Glosario (conceptos cortos para la docente):
+• Unidades vendidas: estimación de copias (físicas y digitales) que publica la fuente; no son cifras oficiales de las editoras.
+Datos e imágenes tal como estaban en el .pptx del 2026-10-19 (fuente al pie). Las imágenes son de Wikipedia, con uso educativo.
+
+## 3 | Franquicias de plataformas más vendidas (2 de 2)
+tipo: contenido
+kicker: ANEXO · PLATAFORMEROS · FRANQUICIAS 13–24
+tarjetas: imagenes/mercado/f13.png ; 13 ; Metroid ; 22,8 M de unidades ; 1986 · Famicom Disk · Nintendo | imagenes/mercado/f14.png ; 14 ; Prince of Persia ; 21,0 M de unidades ; 1989 · Apple II · Ubisoft | imagenes/mercado/f15.jpg ; 15 ; SpongeBob (plataformas) ; 17,0 M de unidades ; 2001 · GBC · Nickelodeon | imagenes/mercado/f16.jpg ; 16 ; Gex ; 15,0 M de unidades ; 1995 · 3DO · Square Enix | imagenes/mercado/f17.png ; 17 ; Jak & Daxter ; 15,0 M de unidades ; 2001 · PS2 · Sony | imagenes/mercado/f18.png ; 18 ; Wario Land ; 13,4 M de unidades ; 1994 · Game Boy · Nintendo | imagenes/mercado/f19.png ; 19 ; LittleBigPlanet ; 11,5 M de unidades ; 2008 · PS3 · Sony | imagenes/mercado/f20.jpg ; 20 ; Pitfall ; 10,0 M de unidades ; 1982 · Atari 2600 · Activision | imagenes/mercado/f21.jpg ; 21 ; Adventure Island ; 10,0 M de unidades ; 1986 · NES, MSX · Hudson Soft | imagenes/mercado/f22.png ; 22 ; Oddworld ; 7,0 M de unidades ; 1997 · PS1 · Oddworld Inhabitants | imagenes/mercado/f23.png ; 23 ; Sly Cooper ; 5,4 M de unidades ; 2002 · PS2 · Sony | imagenes/mercado/f24.png ; 24 ; Banjo-Kazooie ; 5,1 M de unidades ; 1998 · N64 · Microsoft
+panel: ancho
+fuente: VGSales Wiki, «Best-selling platformers» (ventas estimadas, consulta 19/10/2026); imágenes: Wikipedia, uso educativo
+notas:
+Glosario (conceptos cortos para la docente):
+• Unidades vendidas: estimación de copias (físicas y digitales) que publica la fuente; no son cifras oficiales de las editoras.
+Datos e imágenes tal como estaban en el .pptx del 2026-10-19 (fuente al pie). Las imágenes son de Wikipedia, con uso educativo.
+
+## 4 | Juegos de plataformas más vendidos (1 de 5)
+tipo: contenido
+kicker: ANEXO · PLATAFORMEROS · JUEGOS 1–10
+tarjetas: imagenes/mercado/j01.png ; 1 ; Super Mario Bros. ; 65,9 M de unidades ; 1985 · Multiplataforma · Nintendo | imagenes/mercado/j02.jpg ; 2 ; Human: Fall Flat ; 55,0 M de unidades ; 2016 · Multiplataforma · No Brakes | imagenes/mercado/j03.jpg ; 3 ; Sonic the Hedgehog ; 51,8 M de unidades ; 1991 · Multiplataforma · Sega | imagenes/mercado/j04.png ; 4 ; Super Mario Bros. 3 ; 40,8 M de unidades ; 1988 · Multiplataforma · Nintendo | imagenes/mercado/j05.png ; 5 ; Super Mario Bros. 2 ; 37,5 M de unidades ; 1986 · Multiplataforma · Nintendo | imagenes/mercado/j06.png ; 6 ; Super Mario World ; 34,2 M de unidades ; 1990 · Multiplataforma · Nintendo | imagenes/mercado/j07.png ; 7 ; Super Mario 64 ; 32,3 M de unidades ; 1996 · Multiplataforma · Nintendo | imagenes/mercado/j08.jpg ; 8 ; New Super Mario Bros. ; 30,8 M de unidades ; 2006 · DS · Nintendo | imagenes/mercado/j09.jpg ; 9 ; Super Mario Odyssey ; 30,5 M de unidades ; 2017 · Switch · Nintendo | imagenes/mercado/j10.png ; 10 ; New Super Mario Bros. Wii ; 30,3 M de unidades ; 2009 · Wii · Nintendo
+panel: ancho
+fuente: VGSales Wiki, «Best-selling platformers» (ventas estimadas, consulta 19/10/2026); imágenes: Wikipedia, uso educativo
+notas:
+Glosario (conceptos cortos para la docente):
+• Unidades vendidas: estimación de copias (físicas y digitales) que publica la fuente; no son cifras oficiales de las editoras.
+Datos e imágenes tal como estaban en el .pptx del 2026-10-19 (fuente al pie). Las imágenes son de Wikipedia, con uso educativo.
+
+## 5 | Juegos de plataformas más vendidos (2 de 5)
+tipo: contenido
+kicker: ANEXO · PLATAFORMEROS · JUEGOS 11–20
+tarjetas: imagenes/mercado/j11.jpg ; 11 ; Sonic the Hedgehog 2 ; 25,4 M de unidades ; 1992 · Multiplataforma · Sega | imagenes/mercado/j12.png ; 12 ; New Super Mario Bros. U ; 24,2 M de unidades ; 2012 · Wii U, Switch · Nintendo | imagenes/mercado/j13.jpg ; 13 ; Sonic Dash ; 22,6 M de unidades ; 2013 · iOS · Sega | imagenes/mercado/j14.jpg ; 14 ; Donkey Kong ; 22,6 M de unidades ; 1981 · Multiplataforma · Nintendo | imagenes/mercado/j15.jpg ; 15 ; Super Mario Galaxy ; 21,9 M de unidades ; 2007 · Wii, Switch · Nintendo | imagenes/mercado/j16.jpg ; 16 ; Crash Bandicoot N. Sane Trilogy ; 20,0 M de unidades ; 2017 · Multiplataforma · Activision | imagenes/mercado/j17.png ; 17 ; It Takes Two ; 20,0 M de unidades ; 2021 · Multiplataforma · EA | imagenes/mercado/j18.jpg ; 18 ; Super Mario 3D World ; 19,1 M de unidades ; 2013 · Wii U, Switch · Nintendo | imagenes/mercado/j19.png ; 19 ; Super Mario Land ; 18,4 M de unidades ; 1989 · GB, 3DS · Nintendo | imagenes/mercado/j20.jpg ; 20 ; Sonic 3 & Knuckles ; 17,0 M de unidades ; 1994 · Multiplataforma · Sega
+panel: ancho
+fuente: VGSales Wiki, «Best-selling platformers» (ventas estimadas, consulta 19/10/2026); imágenes: Wikipedia, uso educativo
+notas:
+Glosario (conceptos cortos para la docente):
+• Unidades vendidas: estimación de copias (físicas y digitales) que publica la fuente; no son cifras oficiales de las editoras.
+Datos e imágenes tal como estaban en el .pptx del 2026-10-19 (fuente al pie). Las imágenes son de Wikipedia, con uso educativo.
+
+## 6 | Juegos de plataformas más vendidos (3 de 5)
+tipo: contenido
+kicker: ANEXO · PLATAFORMEROS · JUEGOS 21–30
+tarjetas: imagenes/mercado/j21.png ; 21 ; Super Mario Bros. Wonder ; 16,0 M de unidades ; 2023 · Switch · Nintendo | imagenes/mercado/j22.png ; 22 ; Super Mario Sunshine ; 15,4 M de unidades ; 2002 · GC, Switch · Nintendo | imagenes/mercado/j23.jpg ; 23 ; Prince of Persia: The Sands of Time ; 14,0 M de unidades ; 2003 · Multiplataforma · Ubisoft | imagenes/mercado/j24.png ; 24 ; New Super Mario Bros. 2 ; 13,4 M de unidades ; 2012 · 3DS · Nintendo | imagenes/mercado/j25.png ; 25 ; Donkey Kong Country ; 13,3 M de unidades ; 1994 · Multiplataforma · Nintendo | imagenes/mercado/j26.jpg ; 26 ; Super Mario 3D Land ; 12,9 M de unidades ; 2011 · 3DS · Nintendo | imagenes/mercado/j27.jpg ; 27 ; Super Mario All-Stars ; 12,8 M de unidades ; 1993 · SNES, Wii · Nintendo | imagenes/mercado/j28.jpg ; 28 ; Super Mario Land 2 ; 11,2 M de unidades ; 1992 · Game Boy · Nintendo | imagenes/mercado/j29.png ; 29 ; Fall Guys: Ultimate Knockout ; 11,0 M de unidades ; 2020 · Multiplataforma · Epic Games | imagenes/mercado/j30.jpg ; 30 ; Donkey Kong Country Returns ; 10,7 M de unidades ; 2010 · Multiplataforma · Nintendo
+panel: ancho
+fuente: VGSales Wiki, «Best-selling platformers» (ventas estimadas, consulta 19/10/2026); imágenes: Wikipedia, uso educativo
+notas:
+Glosario (conceptos cortos para la docente):
+• Unidades vendidas: estimación de copias (físicas y digitales) que publica la fuente; no son cifras oficiales de las editoras.
+Datos e imágenes tal como estaban en el .pptx del 2026-10-19 (fuente al pie). Las imágenes son de Wikipedia, con uso educativo.
+
+## 7 | Juegos de plataformas más vendidos (4 de 5)
+tipo: contenido
+kicker: ANEXO · PLATAFORMEROS · JUEGOS 31–41
+tarjetas: imagenes/mercado/j31.png ; 31 ; Spyro Reignited Trilogy ; 10,0 M de unidades ; 2018 · Multiplataforma · Activision | imagenes/mercado/j32.png ; 32 ; Sonic Adventure ; 9,5 M de unidades ; 1998 · Multiplataforma · Sega | imagenes/mercado/j33.jpg ; 33 ; Super Mario 3D All-Stars ; 9,1 M de unidades ; 2020 · Switch · Nintendo | imagenes/mercado/j34.png ; 34 ; Sonic Jump ; 8,8 M de unidades ; 2005 · Móvil · Sega | imagenes/mercado/j35.jpg ; 35 ; Super Mario Maker 2 ; 8,4 M de unidades ; 2019 · Switch · Nintendo | imagenes/mercado/j36.png ; 36 ; Sonic Adventure 2 ; 8,3 M de unidades ; 2001 · Multiplataforma · Sega | imagenes/mercado/j37.png ; 38 ; Mega Man X ; 7,9 M de unidades ; 1993 · Multiplataforma · Capcom | imagenes/mercado/j38.jpg ; 39 ; Sonic CD ; 7,9 M de unidades ; 1993 · Multiplataforma · Sega | imagenes/mercado/j39.jpg ; 40 ; Super Mario Maker ; 7,8 M de unidades ; 2015 · Wii U, 3DS · Nintendo | imagenes/mercado/j40.jpg ; 41 ; Crash Bandicoot 2: Cortex Strikes Back ; 7,6 M de unidades ; 1997 · PS1 · Sony
+panel: ancho
+fuente: VGSales Wiki, «Best-selling platformers» (ventas estimadas, consulta 19/10/2026); imágenes: Wikipedia, uso educativo. El puesto 37 no figura en la fuente
+notas:
+Glosario (conceptos cortos para la docente):
+• Unidades vendidas: estimación de copias (físicas y digitales) que publica la fuente; no son cifras oficiales de las editoras.
+Datos e imágenes tal como estaban en el .pptx del 2026-10-19 (fuente al pie). Las imágenes son de Wikipedia, con uso educativo.
+
+## 8 | Juegos de plataformas más vendidos (5 de 5)
+tipo: contenido
+kicker: ANEXO · PLATAFORMEROS · JUEGOS 42–50
+tarjetas: imagenes/mercado/j41.jpg ; 42 ; Kirby and the Forgotten Land ; 7,5 M de unidades ; 2022 · Switch, Switch 2 · Nintendo | imagenes/mercado/j42.jpg ; 43 ; Sonic Generations ; 7,5 M de unidades ; 2011 · Multiplataforma · Sega | imagenes/mercado/j43.jpg ; 44 ; Super Mario Galaxy 2 ; 7,5 M de unidades ; 2010 · Wii, Switch · Nintendo | imagenes/mercado/j44.jpg ; 45 ; Crash Bandicoot: Warped ; 7,1 M de unidades ; 1998 · PS1 · Sony | imagenes/mercado/j45.jpg ; 46 ; Ratchet & Clank ; 7,1 M de unidades ; 2016 · PS4 · Sony | imagenes/mercado/j46.png ; 47 ; Tomb Raider ; 7,0 M de unidades ; 1996 · Multiplataforma · Eidos | imagenes/mercado/j47.png ; 48 ; Tomb Raider II ; 7,0 M de unidades ; 1997 · Multiplataforma · Eidos | imagenes/mercado/j48.jpg ; 49 ; Yoshi's Island ; 7,0 M de unidades ; 1995 · SNES, GBA · Nintendo | imagenes/mercado/j49.jpg ; 50 ; Donkey Kong Country: Tropical Freeze ; 6,6 M de unidades ; 2014 · Wii U, Switch · Nintendo
+panel: ancho
+fuente: VGSales Wiki, «Best-selling platformers» (ventas estimadas, consulta 19/10/2026); imágenes: Wikipedia, uso educativo
+notas:
+Glosario (conceptos cortos para la docente):
+• Unidades vendidas: estimación de copias (físicas y digitales) que publica la fuente; no son cifras oficiales de las editoras.
+Datos e imágenes tal como estaban en el .pptx del 2026-10-19 (fuente al pie). Las imágenes son de Wikipedia, con uso educativo.
+
+## 9 | Comparativa: franquicias y juegos
+tipo: contenido
+kicker: ANEXO · PLATAFORMEROS · ESTADÍSTICA
+subtabla: 1 · Franquicias (top 24) por propietario
+| Propietario | Cant. | Ventas (M) | % del total | Prom. (M) |
+| Nintendo | 6 | 723,0 | 55,2 % | 120,5 |
+| Sega | 1 | 195,8 | 15,0 % | 195,8 |
+| Activision | 3 | 105,0 | 8,0 % | 35,0 |
+| Sony | 4 | 72,6 | 5,5 % | 18,1 |
+| Ubisoft | 2 | 51,0 | 3,9 % | 25,5 |
+| Capcom | 1 | 43,0 | 3,3 % | 43,0 |
+| Otros (7) | 7 | 118,6 | 9,1 % | 16,9 |
+| Total | 24 | 1.309,0 | 100 % | 54,5 |
+subtabla: 2 · Juegos (top 49) por editor
+| Editor | Cant. | Ventas (M) | % del total | Prom. (M) |
+| Nintendo | 28 | 568,1 | 63,1 % | 20,3 |
+| Sega | 9 | 158,8 | 17,6 % | 17,6 |
+| No Brakes | 1 | 55,0 | 6,1 % | 55,0 |
+| Activision | 2 | 30,0 | 3,3 % | 15,0 |
+| Sony | 3 | 21,8 | 2,4 % | 7,3 |
+| Eidos | 2 | 14,0 | 1,6 % | 7,0 |
+| Otros (4) | 4 | 52,9 | 5,9 % | 13,2 |
+| Total | 49 | 900,6 | 100 % | 18,4 |
+movil: Solo 2 de los 49 juegos nacieron en móvil (Sonic Dash y Sonic Jump). ¿Qué los hace jugables con el pulgar?
+fuente: VGSales Wiki, «Best-selling platformers» (ventas estimadas, consulta 19/10/2026); imágenes: Wikipedia, uso educativo
+notas:
+Glosario (conceptos cortos para la docente):
+• Propietario / editor: empresa dueña de la franquicia / que publicó el juego, según la fuente.
+Porcentajes y promedios calculados sobre los datos de las slides anteriores (tal como estaban en el .pptx del 2026-10-19).

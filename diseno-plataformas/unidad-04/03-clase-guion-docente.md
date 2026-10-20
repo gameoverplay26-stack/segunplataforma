@@ -70,6 +70,41 @@ Reparto: teoría 36 min (40 %), práctica 54 min (60 %).
 
 Reparto: teoría 36 min (40 %), práctica 54 min (60 %).
 
+### Clase 4 — "Del caso real al código" (90 min) · slides 55–67 del archivo único (v3) · continuación agregada el 2026-10-19
+
+Contexto: el deck completo ya se dio y este encuentro continúa desde la safe area. Hilo narrativo: **¿quién más ocupa la pantalla y el dedo del jugador?** → el anunciante (UX y seguridad) → un caso real en el que el input terminó en sanción → la respuesta técnica: el porteo PC → Android en código real.
+
+| Min | Bloque | Slides | Tipo |
+|---|---|---|---|
+| 0–3 | Apertura: "la pantalla tiene dueños" (desde la safe area) | 1–2 | Teoría 3 |
+| 3–7 | Un anuncio también es input (Google Play, Better Ads Experiences) | 3 | Teoría 4 |
+| 7–11 | Seguridad: el SDK que no escribiste (Goldoson, 2023) | 4 | Teoría 4 |
+| 11–16 | Caso real: FTC vs. Epic leído como falla de input | 5 | Teoría 5 |
+| 16–18 | Puente: dispositivo, estado y espacio | 6 | Teoría 2 |
+| 18–24 | Antes y después: el input (código real del 2D Platformer) | 7 | Teoría 6 |
+| 24–29 | Antes y después: la pantalla (orientación y safe area) | 8 | Teoría 5 |
+| 29–34 | Un juego, dos orientaciones: Asteroides vs. Platformer | 9 | Teoría 5 |
+| 34–64 | **A4.9** Auditar un porteo (PC + teléfono) | 10 | Práctica 30 |
+| 64–72 | Puesta en común con evidencia | 11 | Práctica 8 |
+| 72–88 | **TP 3, ítem 9** "Publicidad e input": se arranca en clase | 12 | Práctica 16 |
+| 88–90 | Qué no resuelve esto | 13 | Teoría 2 |
+
+Reparto: teoría 36 min (40 %), práctica 54 min (60 %).
+
+**Paso a paso (transiciones):**
+1. **Desde la safe area (slide 2).** "La clase pasada vimos que no todo el rectángulo es tuyo. Hoy sumamos un dueño más." Pedir que alguien sostenga el teléfono en horizontal y señale dónde iría un banner en el Platformer: no hay lugar libre.
+2. **De la pantalla al dedo (slide 3).** El anuncio no solo ocupa espacio: compite por el mismo toque. Leer la política de Google Play como piso, no como garantía de buena UX.
+3. **Del dedo a la confianza (slide 4).** Si el anuncio viene en un SDK ajeno, el riesgo también es de seguridad. Cuidado con la conclusión: el riesgo es el código sin revisar, no "la publicidad".
+4. **Del anuncio al botón (slide 5).** "Ya vimos este caso como monetización; hoy lo leemos como input." Las tres fallas (despertar, pantalla de carga, botón vecino) son de estado, de espacio y de confirmación.
+5. **Del caso a la técnica (slide 6).** Las tres preguntas ordenan el porteo. Las slides 7 y 8 responden dispositivo y espacio con código real; el estado ya lo trabajaron con la pausa (A4.4).
+6. **Código (slides 7–9).** Antes/después con código real: original (commit `e766f8c`) vs. versión 2. Preguntar "¿en qué línea está el dedo?" antes de explicar. Cerrar con la tabla de orientación de los dos juegos.
+7. **Práctica (slides 10–12).** A4.9 con el APK y el instalador de PC; puesta en común en tres columnas (dispositivo, estado, espacio); el TP arranca en clase.
+8. **Cierre (slide 13).** Cuatro errores conceptuales con su corrección.
+
+**Antes de la clase (docente):** subir al aula virtual `Platformer-v2.apk` y `Platformer-v2-Setup.exe` (en `proyectos-unity/2D-Platformer-Unity-v2/Builds/`, se generan con `Tools/generar_builds.ps1`); probar la instalación en por lo menos un teléfono del curso (el APK es ARMv7, 32 bits) y ejecutar el instalador en una PC del aula (todavía no se probó); tener el Device Simulator listo como plan B.
+
+**Fuentes verificadas el 2026-10-19:** FTC, comunicado del 19/12/2022 (citas del caso de input); Google Play, "Understanding Google Play's Better Ads Experiences policy"; BleepingComputer, 15/04/2023 (Goldoson). El informe original de McAfee Labs no abrió (timeout): se cita a través de BleepingComputer.
+
 ### Qué pasa fuera de los encuentros
 
 | Qué | Dónde | Estado |

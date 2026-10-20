@@ -97,6 +97,8 @@ python scripts/build_decks.py --por-clase            # además, un .pptx por sec
 - **Versión final** en `unidad-04/`: un solo archivo, `Unidad-4-2026-completa.pptx` (63 slides): Clase 1 = 1–15 (dada), Clase 2 = 16–31, Clase 3 = 32–54, anexo de consulta "Android en Unity 6" = 55–63. Reparto 40/60. Guion en `unidad-04/03-clase-guion-docente.md`. Versiones v1–v4 en `unidad-04/versiones-anteriores/`.
 - Pendientes: prueba de la build IL2CPP + ARM64 en un teléfono real (UNKNOWN); decidir la defensa del TP 3 por video (PROPUESTO); D4-05 y D4-06.
 
+- **Continuación (2026-10-19):** el deck completo ya se dio. Se agregó la **Clase 4 "Del caso real al código"** (slides 55–67): publicidad (UX y seguridad), FTC vs. Epic como falla de input, antes/después de código real PC → Android, orientación, A4.9 e ítem 9 del TP 3. Archivo vigente: `unidad-04/Unidad-4-2026-completa-v3.pptx` (87 slides, generado entero por el script; el anexo de mercado ya está en la fuente).
+
 **Laboratorio de adaptación / porteo**
 - **Asteroides:** porteo de entrada **implementado** (Input System 1.19.0, `ShipInputAdapter`, `Ship.SetIntent`, joystick y botón en pantalla, 3 tests). Tests: 10–11 de 14 en verde; las 3 hipótesis del pool fallan siempre por un defecto real, y hay 1 test inestable causado por el mismo defecto. Ver `laboratorio-adaptacion/PORTEO-ASTEROIDES.md`.
 - **UNKNOWN:** comportamiento en el Device Simulator y en un teléfono real (no se ejecutó de forma interactiva).

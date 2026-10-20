@@ -17,6 +17,7 @@ Regla de diseño de todas las actividades: el alumno **decide y justifica**. No 
 | A4.5 | Tres propuestas de monetización: ¿cuál publicarías? | Caso de evaluación ética y de diseño | N3–N5 | 3 | Grupos + debate | 25 min |
 | A4.6 | "El juego anda bien… los primeros 5 minutos" | Caso de optimización | N3 | 4 (v3: con el Profiler a mano) | Individual | 8 min |
 | A4.7 | Del boceto al control: implementar el esquema de A4.3 con Input System (v3) | Caso de implementación multiplataforma | N3–N4 | 2 | Grupos | 30 min |
+| A4.9 | Auditar un porteo: el 2D Platformer en PC y en el teléfono (nueva, 2026-10-19) | Caso de evaluación de porteo | N3–N4 | 4 (continuación) | Grupos de 3–4 | 30 min |
 | TP 3 | Dossier de plataforma: Asteroides móvil (capítulo 1 del integrador) | Integradora | N4–N5 | 1→4 (se avanza en cada clase; defensa al final de la Clase 4) | Grupos | 2 semanas |
 
 ---
@@ -164,6 +165,29 @@ Cualquier elección vale si se defiende con criterios y fuentes.
 
 ---
 
+## A4.9 — Auditar un porteo (práctica, Clase 4) · nueva, 2026-10-19
+
+**Problema.** El 2D Platformer ya se porteó a Android (versión 2). ¿Qué mejoró y qué empeoró para quien juega?
+**Material.** `Platformer-v2-Setup.exe` (PC) y `Platformer-v2.apk` (Android), en el aula virtual. Plan B: Device Simulator.
+**Consigna (grupos de 3–4, 30 min).**
+1. Jugar el nivel 1 en PC (5 min).
+2. Instalar el APK y jugar el mismo nivel en un teléfono (10 min).
+3. Completar la planilla, con una foto, una medida o un tiempo por fila (10 min):
+
+| Aspecto | Qué medir | PC | Android | Evidencia |
+|---|---|---|---|---|
+| Controles | ¿Responden? ¿Se puede mover y saltar a la vez? | | | |
+| Doble salto | Aciertos en 5 intentos | | | |
+| Orientación | Rotar el teléfono: ¿qué pasa? | — | | |
+| Safe area | ¿Algún botón queda tapado (teléfono con muesca)? | — | | |
+| HUD | ¿Se leen los corazones y las monedas? | | | |
+
+4. Ubicar un banner en una captura y decir qué taparía. Si apareciera un interstitial al empezar el nivel 2, ¿qué toque del jugador se perdería? (5 min)
+
+**Qué NO demuestra.** Una sesión de juego no mide rendimiento ni batería (eso se hace con el Profiler); tampoco reemplaza una prueba con usuarios.
+
+---
+
 ## TP N° 3 — Dossier de plataforma: Asteroides móvil (integradora)
 
 Es el **capítulo 1 del proyecto integrador U4–U7**. El diseño completo del integrador está pendiente; ver `status-unidad.md`. La idea es que cada unidad agregue un capítulo sobre el **mismo juego**, de modo que el alumno compare sus propias decisiones entre plataformas.
@@ -177,6 +201,7 @@ Es el **capítulo 1 del proyecto integrador U4–U7**. El diseño completo del i
 6. **Monetización:** modelo elegido y defendido (A4.5).
 7. **Estrategia de pruebas:** tabla riesgo → tipo de prueba → automatizable sí/no → requiere dispositivo sí/no → **qué no demuestra**.
 8. **3 decisiones de plataforma (PDR)** con el formato: contexto · opciones · decisión · consecuencias.
+9. **Publicidad e input** (agregado el 2026-10-19; 1 a 2 páginas): a) elegir un formato de anuncio (banner, interstitial o rewarded) y escribir dos ventajas y dos riesgos, de UX (área jugable, toques accidentales, interrupciones) y de seguridad (SDK de terceros), citando al menos una política de tienda; b) con la evidencia de A4.9, comparar una acción (mover o saltar) en teclado y en táctil: precisión, tiempo de respuesta y ocupación de pantalla; c) decidir si lo publicarían con anuncios, sin anuncios o premium, con el caso FTC vs. Epic como contraejemplo. **PROPUESTO:** se evalúa dentro de "Monetización" y "Diseño de control y HUD"; si tiene peso propio en la rúbrica, lo define la titular.
 
 **Obligatorio** (decisión D4-03): build de desarrollo de Android instalada en el teléfono de un integrante, con video de 1 minuto jugando y captura del Profiler. Si la build falla por motivos técnicos, se usa el plan B (APK del docente) y se documenta qué no se pudo medir.
 **iOS:** solo conceptual (no hay Mac, D4-02). Si el dossier menciona iOS, tiene que decir que no se probó.

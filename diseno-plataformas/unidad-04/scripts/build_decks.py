@@ -50,8 +50,9 @@ SOURCE_Y = Inches(6.70)
 CALLOUT_H = Inches(0.5)
 IMG_W = Inches(4.3)
 
-KEYS = ("tipo", "kicker", "pregunta", "actividad", "imagen", "diagrama", "cronologia", "hitos", "flujo", "comparacion", "tiles", "codigo", "vista", "safearea", "captura", "ajustes", "panel", "video", "fuente")
+KEYS = ("tipo", "kicker", "pregunta", "actividad", "imagen", "diagrama", "cronologia", "hitos", "flujo", "comparacion", "tiles", "codigo2", "codigo", "vista", "safearea", "captura", "ajustes", "tarjetas", "panel", "video", "movil", "fuente")
 CALLOUTS = (  # clave, etiqueta, color
+    ("movil", "PARA MÓVIL", TEAL),
     ("pregunta", "PREGUNTA", AMBER),
     ("actividad", "ACTIVIDAD", GREEN),
     ("video", "VIDEO", RED),
@@ -89,14 +90,17 @@ def parse(path):
                 in_notes = True
                 continue
             km = re.match(r"^(%s): (.*)$" % "|".join(KEYS), line)
-            if km:
+            sm = re.match(r"^subtabla: (.*)$", line)
+            if sm:  # varias tablas con título, lado a lado
+                slide.setdefault("subtablas", []).append({"titulo": sm.group(1).strip(), "rows": []})
+            elif km:
                 slide[km.group(1)] = km.group(2).strip()
             elif line.startswith("- "):
                 slide["bullets"].append(line[2:].strip())
             elif line.startswith("|"):
                 cells = [c.strip() for c in line.strip().strip("|").split("|")]
                 if not all(re.fullmatch(r":?-{2,}:?", c) for c in cells if c):
-                    slide["table"].append(cells)
+                    (slide["subtablas"][-1]["rows"] if slide.get("subtablas") else slide["table"]).append(cells)
     return decks
 
 
@@ -130,6 +134,12 @@ def run(paragraph, text, size, color=SLATE, bold=False, italic=False):
     return r
 
 
+def kicker_text(kicker):
+    """Kicker visible sin la duración: los minutos quedan en la fuente, las notas y el guion."""
+    parts = [p.strip() for p in kicker.split("·")]
+    return " · ".join(p for p in parts if not re.match(r"^\d+\s*MIN\b", p, re.IGNORECASE))
+
+
 def header(slide, s, total):
     rect(slide, 0, 0, SLIDE_W, HEADER_H, NAVY)
     rect(slide, 0, HEADER_H, SLIDE_W, Pt(3), TEAL)
@@ -142,7 +152,7 @@ def header(slide, s, total):
     run(p, str(s["num"]), 16, WHITE, bold=True)
     tf = textbox(slide, Inches(1.1), Inches(0.12), SLIDE_W - Inches(1.6), Inches(0.85), MSO_ANCHOR.MIDDLE)
     if s.get("kicker"):
-        run(tf.paragraphs[0], s["kicker"].upper(), 11, RGBColor(0x99, 0xF6, 0xE4), bold=True)
+        run(tf.paragraphs[0], kicker_text(s["kicker"]).upper(), 11, RGBColor(0x99, 0xF6, 0xE4), bold=True)
         p = tf.add_paragraph()
     else:
         p = tf.paragraphs[0]
@@ -521,15 +531,15 @@ def tiles_diagram(slide, spec, x, y, w, h):
         run(tf.paragraphs[0], zoom_label, 15, SLATE)
 
 
-def code_block(slide, spec, x, y, w, h):
-    """Bloque de codigo leido del archivo real. Sintaxis: codigo: ruta/relativa/a/la/unidad.cs:61-73
-    o, para una version anterior guardada en git: codigo: git:REV:ruta/relativa/a/la/unidad.cs:61-73
-    Resalta en ambar las lineas que contienen 'Input.'"""
+def load_code(spec):
+    """Lee las líneas pedidas (archivo actual o 'git:REV:ruta'). Devuelve
+    (ruta, rev, rangos, líneas numeradas con None para '⋯', líneas, sangría común)."""
     rev = None
     if spec.startswith("git:"):
         rev, _, spec = spec[4:].partition(":")
     path, _, rng = spec.rpartition(":")
-    a, b = [int(v) for v in rng.split("-")]
+    # Uno o varios rangos ("61-63,66-68"): entre rangos se dibuja una línea "⋯".
+    ranges = [[int(v) for v in r.split("-")] if "-" in r else [int(r), int(r)] for r in rng.split(",")]
     full = os.path.normpath(os.path.join(UNIT_DIR, path))
     if rev:
         root = subprocess.check_output(["git", "rev-parse", "--show-toplevel"], cwd=UNIT_DIR, text=True).strip()
@@ -538,13 +548,45 @@ def code_block(slide, spec, x, y, w, h):
     else:
         with open(full, encoding="utf-8-sig") as fh:
             text = fh.read()
-    lines = text.splitlines()[a - 1:b]
+    all_lines = text.splitlines()
+    numbered = []  # (número de línea o None para "⋯", texto)
+    for i, (ra, rb) in enumerate(ranges):
+        if i:
+            numbered.append((None, "⋯"))
+        numbered += [(n, all_lines[n - 1]) for n in range(ra, rb + 1)]
+    lines = [t for n, t in numbered if n is not None]
     indent = min((len(l) - len(l.lstrip()) for l in lines if l.strip()), default=0)
+    return path, rev, ranges, numbered, lines, indent
+
+
+def code_width_need(spec):
+    """Largo (en caracteres) de la línea más larga de un bloque, para repartir el ancho."""
+    spec = spec.partition("##")[0].partition("@")[0].strip()
+    _, _, _, _, lines, indent = load_code(spec)
+    return max((len(l) - indent for l in lines), default=20) + 6
+
+
+def code_block(slide, spec, x, y, w, h):
+    """Bloque de codigo leido del archivo real. Sintaxis: codigo: ruta/relativa/a/la/unidad.cs:61-73
+    o, para una version anterior guardada en git: codigo: git:REV:ruta/relativa/a/la/unidad.cs:61-73
+    Resalta en ambar las lineas que contienen 'Input.', o el texto indicado al final con '@texto'.
+    Lo que sigue a '##' es la explicación en palabras simples: 'línea: qué hace ; línea: qué hace'."""
+    rev = None
+    spec, _, explain = spec.partition("##")
+    items = [i.strip().partition(":") for i in explain.split(";") if i.strip()]
+    if items:
+        exp_h = Inches(0.5) + Inches(0.3) * len(items)
+        explain_box(slide, items, x, y + h - exp_h, w, exp_h)
+        h -= exp_h + Inches(0.12)
+    spec, _, hot_text = spec.partition("@")
+    hot_text = hot_text.strip() or "Input."
+    path, rev, ranges, numbered, lines, indent = load_code(spec)
+    a, b = ranges[0][0], ranges[-1][1]
     title_h = Inches(0.35)
     tf = textbox(slide, x, y, w, title_h, MSO_ANCHOR.MIDDLE)
-    label = os.path.basename(path) + "  ·  líneas %d–%d" % (a, b)
+    label = os.path.basename(path) + "  ·  líneas %d–%d" % (a, b) + ("  ·  extracto" if len(ranges) > 1 else "")
     if rev:
-        label += "  ·  versión original (commit %s)" % rev
+        label += "  ·  versión original"
     run(tf.paragraphs[0], label, 12, MUTED, bold=True)
     box = rect(slide, x, y + title_h + Inches(0.05), w, h - title_h - Inches(0.05), RGBColor(0x0F, 0x17, 0x2A), MSO_SHAPE.ROUNDED_RECTANGLE)
     box.adjustments[0] = 0.04
@@ -553,16 +595,110 @@ def code_block(slide, spec, x, y, w, h):
     tf.vertical_anchor = MSO_ANCHOR.MIDDLE
     tf.margin_left = Inches(0.25)
     longest = max((len(l) - indent for l in lines), default=0)
-    fit = int((w - Inches(0.5)) / 12700 / (0.6 * (longest + 5)))  # Consolas: ~0,6 em por caracter
-    size = max(10, min(15 if len(lines) <= 16 else 12, fit))
-    for i, line in enumerate(lines):
+    fit = int((w - Inches(0.45)) / 12700 / (0.56 * (longest + 5)))  # Consolas: ~0,55 em por caracter
+    box_pt = (h - title_h - Inches(0.05)) / 12700
+    fit_h = int((box_pt - 24) / (1.2 * len(numbered)))  # que todas las líneas entren en el alto
+    size = max(9, min(15 if len(numbered) <= 16 else 12, fit, fit_h))
+    for i, (num, line) in enumerate(numbered):
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         p.alignment = PP_ALIGN.LEFT
-        r = run(p, "%3d  " % (a + i), size, RGBColor(0x64, 0x74, 0x8B))
+        r = run(p, "%3s  " % (num if num is not None else ""), size, RGBColor(0x64, 0x74, 0x8B))
         r.font.name = "Consolas"
-        hot = "Input." in line
+        if num is None:
+            r2 = run(p, line, size, RGBColor(0x64, 0x74, 0x8B))
+            r2.font.name = "Consolas"
+            continue
+        hot = hot_text in line
         r2 = run(p, line[indent:] if line.strip() else " ", size, AMBER if hot else RGBColor(0xE2, 0xE8, 0xF0), bold=hot)
         r2.font.name = "Consolas"
+
+
+def explain_box(slide, items, x, y, w, h):
+    """Recuadro 'En palabras simples' con una línea por parte del código."""
+    box = rect(slide, x, y, w, h, LIGHT_BG, MSO_SHAPE.ROUNDED_RECTANGLE)
+    box.adjustments[0] = 0.06
+    tf = textbox(slide, x + Inches(0.18), y + Inches(0.1), w - Inches(0.36), h - Inches(0.2))
+    run(tf.paragraphs[0], "EN PALABRAS SIMPLES", 11, TEAL, bold=True)
+    for ref, _, text in items:
+        p = tf.add_paragraph()
+        p.space_before = Pt(3)
+        if text:
+            run(p, "Línea %s  " % ref.strip(), 13, TEAL, bold=True)
+            run(p, text.strip(), 13, SLATE)
+        else:
+            run(p, ref.strip(), 13, SLATE)
+
+
+def code_columns(slide, spec, x, y, w, h):
+    """Dos bloques de código lado a lado: antes / después.
+    Sintaxis: codigo2: ETIQUETA IZQ = spec || ETIQUETA DER = spec
+    (cada spec como en 'codigo:', con '@texto' opcional para elegir qué líneas se resaltan)."""
+    parts = [p.strip() for p in spec.split("||")]
+    gap = Inches(0.35)
+    avail = w - gap * (len(parts) - 1)
+    need = [code_width_need(part.partition("=")[2]) for part in parts]
+    shares = [max(0.35, n / sum(need)) for n in need]
+    widths = [int(avail * sh / sum(shares)) for sh in shares]
+    chip_h = Inches(0.42)
+    colors = [AMBER, TEAL]
+    cx = x
+    for i, part in enumerate(parts):
+        label, _, cspec = part.partition("=")
+        cw = widths[i]
+        chip = rect(slide, cx, y, cw, chip_h, colors[i % 2], MSO_SHAPE.ROUNDED_RECTANGLE)
+        tf = chip.text_frame
+        tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+        tf.margin_left = Inches(0.15)
+        p = tf.paragraphs[0]
+        p.alignment = PP_ALIGN.LEFT
+        run(p, label.strip(), 15, WHITE, bold=True)
+        code_block(slide, cspec.strip(), cx, y + chip_h + Inches(0.08), cw, h - chip_h - Inches(0.08))
+        cx += cw + gap
+
+
+def cards_grid(slide, spec, x, y, w, h):
+    """Grilla de tarjetas con imagen (ranking).
+    Sintaxis: tarjetas: imagen ; puesto ; título ; cifra ; detalle | ...  (rutas relativas a la unidad)"""
+    from PIL import Image
+    items = [[t.strip() for t in part.split(";")] for part in spec.split("|") if part.strip()]
+    cols = 6 if len(items) > 10 else 5
+    rows = -(-len(items) // cols)
+    cell_w, cell_h = int(w / cols), int(h / rows)
+    text_h = Inches(0.95)
+    pad = Inches(0.08)
+    for i, (img, rank, title, figure, detail) in enumerate(items):
+        cx = x + (i % cols) * cell_w
+        cy = y + (i // cols) * cell_h
+        box_w, box_h = cell_w - 2 * pad, cell_h - text_h - pad
+        iw, ih = Image.open(os.path.join(UNIT_DIR, img)).size
+        scale = min(box_w / iw, box_h / ih)
+        pw, ph = int(iw * scale), int(ih * scale)
+        slide.shapes.add_picture(os.path.join(UNIT_DIR, img), cx + pad + int((box_w - pw) / 2), cy + int((box_h - ph) / 2), pw, ph)
+        badge = rect(slide, cx + cell_w - pad - Inches(0.36), cy + box_h - Inches(0.36), Inches(0.36), Inches(0.36), TEAL, MSO_SHAPE.OVAL)
+        btf = badge.text_frame
+        btf.margin_left = btf.margin_right = btf.margin_top = btf.margin_bottom = 0
+        btf.vertical_anchor = MSO_ANCHOR.MIDDLE
+        bp = btf.paragraphs[0]
+        bp.alignment = PP_ALIGN.CENTER
+        run(bp, rank, 11, WHITE, bold=True)
+        tf = textbox(slide, cx + pad, cy + box_h + Inches(0.04), cell_w - 2 * pad, text_h)
+        run(tf.paragraphs[0], title, 12, SLATE, bold=True)
+        p = tf.add_paragraph()
+        run(p, figure, 12, TEAL, bold=True)
+        p = tf.add_paragraph()
+        run(p, detail, 10, MUTED)
+
+
+def subtables(slide, tables, x, y, w, h):
+    """Varias tablas con título, lado a lado (líneas 'subtabla: Título' + filas '|')."""
+    gap = Inches(0.35)
+    tw = int((w - gap * (len(tables) - 1)) / len(tables))
+    title_h = Inches(0.4)
+    for i, t in enumerate(tables):
+        tx = x + i * (tw + gap)
+        tf = textbox(slide, tx, y, tw, title_h, MSO_ANCHOR.MIDDLE)
+        run(tf.paragraphs[0], t["titulo"], 15, NAVY, bold=True)
+        table(slide, t["rows"], tx, y + title_h, tw, h - title_h)
 
 
 def view_diagram(slide, spec, x, y, w, h):
@@ -752,7 +888,7 @@ def build_cover(prs, deck, s, total):
     has_img = bool(s.get("imagen"))
     w = SLIDE_W - 2 * MARGIN - (IMG_W + Inches(0.3) if has_img else 0)
     tf = textbox(slide, MARGIN, Inches(1.4), w, Inches(3.6), MSO_ANCHOR.BOTTOM)
-    run(tf.paragraphs[0], s.get("kicker", "").upper(), 14, RGBColor(0x99, 0xF6, 0xE4), bold=True)
+    run(tf.paragraphs[0], kicker_text(s.get("kicker", "")).upper(), 14, RGBColor(0x99, 0xF6, 0xE4), bold=True)
     p = tf.add_paragraph()
     run(p, s["title"], 40, WHITE, bold=True)
     for b in s["bullets"]:
@@ -789,7 +925,11 @@ def build_content(prs, deck, s, total):
         milestones_chart(slide, s["hitos"], MARGIN, BODY_TOP, SLIDE_W - 2 * MARGIN, body_h)
         return slide
     # paneles graficos a la derecha (clave, ancho, funcion); el primero presente gana
+    if s.get("subtablas"):  # ocupa todo el ancho del cuerpo
+        subtables(slide, s["subtablas"], MARGIN, BODY_TOP, SLIDE_W - 2 * MARGIN, body_h)
+        return slide
     panels = (("cronologia", Inches(7.4), timeline_chart), ("vista", Inches(7.4), view_diagram),
+              ("codigo2", Inches(12.2), code_columns), ("tarjetas", Inches(12.2), cards_grid),
               ("codigo", Inches(6.6), code_block), ("comparacion", Inches(6.2), compare_diagram),
               ("tiles", Inches(6.4), tiles_diagram), ("flujo", Inches(5.0), flow_diagram),
               ("diagrama", Inches(5.6), layer_diagram), ("safearea", Inches(4.6), safearea_diagram),
@@ -841,8 +981,9 @@ def build(decks, only=None, version=None, out_dir=UNIT_DIR):
     return out
 
 
-def build_unido(decks, out_dir=UNIT_DIR):
-    """Un solo .pptx con todas las clases, numeracion continua; el pie conserva la clase."""
+def build_unido(decks, out_dir=UNIT_DIR, version=None):
+    """Un solo .pptx con todas las clases, numeracion continua; el pie conserva la clase.
+    Con version N > 1 se guarda como Unidad-4-2026-completa-vN.pptx (no pisa la anterior)."""
     prs = Presentation()
     prs.slide_width, prs.slide_height = SLIDE_W, SLIDE_H
     total = sum(len(d["slides"]) for d in decks)
@@ -853,7 +994,8 @@ def build_unido(decks, out_dir=UNIT_DIR):
             s = dict(s, num=n)
             maker = build_cover if s.get("tipo") == "portada" else build_content
             add_notes(maker(prs, deck, s, total), s["notes"])
-    path = os.path.join(out_dir, "Unidad-4-2026-completa.pptx")
+    suffix = "-v%d" % version if version and version > 1 else ""
+    path = os.path.join(out_dir, "Unidad-4-2026-completa%s.pptx" % suffix)
     prs.save(path)
     return path, total
 
@@ -861,15 +1003,15 @@ def build_unido(decks, out_dir=UNIT_DIR):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description="Genera los decks de la Unidad 4.")
     ap.add_argument("--decks", type=int, nargs="+", help="numeros de deck a generar (por defecto, todos)")
-    ap.add_argument("--version", type=int, help="agrega el sufijo -vN al nombre del archivo (N > 1)")
+    ap.add_argument("--version", type=int, help="agrega el sufijo -vN al nombre de los archivos, incluido el completo (N > 1)")
     ap.add_argument("--out-dir", default=UNIT_DIR, help="carpeta de salida (por defecto, la de la unidad)")
     ap.add_argument("--por-clase", action="store_true", help="genera ademas un .pptx por seccion")
     args = ap.parse_args()
     decks = parse(SOURCE)
-    if len(decks) != 4:
-        sys.exit("Se esperaban 4 secciones (3 clases + anexo) y se encontraron %d" % len(decks))
+    if len(decks) < 4:
+        sys.exit("Se esperaban al menos 4 secciones (clases + anexos) y se encontraron %d" % len(decks))
     if args.por_clase or args.decks:
         for path, total in build(decks, args.decks, args.version, args.out_dir):
             print("OK  %-40s %2d slides" % (os.path.basename(path), total))
-    path, total = build_unido(decks, args.out_dir)
+    path, total = build_unido(decks, args.out_dir, args.version)
     print("OK  %-40s %2d slides" % (os.path.basename(path), total))

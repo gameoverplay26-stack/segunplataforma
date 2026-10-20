@@ -1,7 +1,7 @@
 # Status de unidades — Diseño según Plataformas de Juego (U4–U7)
 
 Archivo de control único. **Se actualiza al final de cada sesión de trabajo.**
-Última actualización: **2026-10-10**.
+Última actualización: **2026-10-19**.
 
 ## Reglas de trabajo vigentes
 
@@ -44,6 +44,13 @@ F1 Auditoría · F2 Investigación · F3 Correcciones · F4 Objetivos · F5 Acti
 | `diseno-plataformas/unidad-06/00-investigacion-preliminar.md` | Auditoría (16 ítems), 69 fichas, 14 videos, análisis de virtualización y contenedores | Insumo crudo |
 | `diseno-plataformas/unidad-07/00-investigacion-preliminar.md` | Auditoría, 45 fichas, videos, tabla de tendencias | Insumo crudo (revisar sección C) |
 | `diseno-plataformas/transversal/auditoria-bibliografia-y-fuentes-academicas.md` | Auditoría de los 10 libros del programa, libros reales, 21 papers, 12 videos | Insumo crudo |
+
+## Novedad 2026-10-19: continuación de la U4
+
+- El deck completo ya se dio. Se agregó la **Clase 4, "Del caso real al código"** (13 slides, 90 min, teoría 36 / práctica 54): publicidad (UX y seguridad), FTC vs. Epic como falla de input, antes/después de código real PC → Android (input y pantalla), orientación en Asteroides y el Platformer, **A4.9** y el **ítem 9 del TP 3** (PROPUESTO para la rúbrica).
+- El anexo "Los plataformeros más vendidos" (armado a mano en el .pptx) pasó a la fuente `04-diapositivas.md`; las imágenes están en `unidad-04/imagenes/mercado/`. El generador suma `tarjetas:`, `subtabla:`, `codigo2:` y `movil:`, admite más de 4 secciones y versiona el archivo completo (`--version N`).
+- Archivo vigente: `unidad-04/Unidad-4-2026-completa-v3.pptx` (87 slides). La v2 (74) y la versión sin sufijo quedan como estaban.
+- Pendiente (titular): probar el APK y el instalador de PC del Platformer v2 antes de la clase; decidir el peso del ítem 9 en la rúbrica.
 
 ## Decisiones pendientes del usuario (U4)
 
