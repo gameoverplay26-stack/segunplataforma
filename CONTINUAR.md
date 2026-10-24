@@ -4,7 +4,7 @@ Punto de entrada para retomar el trabajo **desde cualquier computadora**. La mem
 
 **Uso:** en la otra máquina, clonar el repo, abrir Claude Code en la raíz y escribir **"continuá"**. Claude lee este archivo (lo indica `CLAUDE.md`) y el archivo de estado del frente que corresponda.
 
-- **Última actualización:** 2026-10-19
+- **Última actualización:** 2026-10-24
 - **Al cerrar cada sesión:** actualizar la sección 4 ("Dónde quedamos") y el archivo de estado del frente trabajado, y luego commit + push. Si no se pushea, la otra máquina no ve el trabajo.
 
 ---
@@ -65,7 +65,7 @@ Los IDs de decisión no se mezclan: `D4-xx` (cátedra, en `status-unidad.md`), `
 | **Ruta del clon recomendada:** `C:\Developer\unity\2026\clases-en-vivo` | — | Los documentos de auditoría citan rutas absolutas con esa base |
 | Unity Hub + **Unity 6000.3.11f1** | Módulos: **Android Build Support** (OpenJDK, SDK, NDK) y Windows Build Support | Abrir los proyectos, correr tests y builds. **No cambiar de versión de Unity** |
 | Inno Setup 6 (`winget install JRSoftware.InnoSetup`, por usuario) | — | Instalador de PC de los proyectos porteados |
-| Python 3 (probado con 3.12) + `pip install python-pptx==1.0.2` | — | Generar los `.pptx` |
+| Python 3 (probado con 3.12) + `pip install python-pptx==1.0.2 matplotlib` | — | Generar los `.pptx` y los gráficos de la U5 |
 | Microsoft PowerPoint (opcional) | — | Exportar slides a PNG para revisarlas (COM desde PowerShell) |
 | Claude Code | — | Los agents y skills del repo (`.claude/agents`, `.claude/skills`) y `.claude/settings.json` viajan con git; `.claude/settings.local.json` es personal y no viaja |
 
@@ -107,6 +107,11 @@ python scripts/build_decks.py --por-clase            # además, un .pptx por sec
 - **Rutas largas:** en la máquina con el repo en `Documents\2026\Videojuegos\…`  Unity falla al importar (límite de 260 caracteres). Usar `subst P: "<repo>\proyectos-unity"` o clonar en la ruta corta (ENV-01).
 - Pendientes: DEC-LAB-004, 005, 007, 008, 013, 014; laboratorio de *Unravel* **en pausa por pedido del usuario** (DEC-LAB-009 a 012).
 - DEC-LAB-002: el usuario decidió modificar Asteroides pese a la licencia de Kodeco (solo para pruebas y clase). **No volver a plantearlo como bloqueo.**
+
+- **Match 3 UI Testing v2 (2026-10-24):** copia migrada a 6000.3.11f1 del tutorial de Kodeco (original 2019.4.21f1 intacto en `proyectos-unity/unity-ui-testing-tutorial-main/`). Junction `C:\Developer\unity\Match3-v2`. 5 tests Play Mode nuevos en verde, APK (IL2CPP ARM64) e instalador `Match3-UI-Testing-Setup.exe` generados con `Tools\generar_builds.ps1`. Falta probarlo en un teléfono. **Sin commit.** Ver `proyectos-unity/Match3-UI-Testing-v2/README.md`.
+
+**Cátedra, Unidad 5 (Consolas)**
+- 2026-10-24: `unidad-05/01-desarrollo-tema-consolas.md` (PROPUESTO): consolas actuales, historia, ranking, histograma, ciclo de vida, regiones, precios 2026 y decisiones de diseño. Gráficos: `python scripts/graficos_consolas.py` (requiere `matplotlib`). Slides de la Clase 1 + anexo: `unidad-05/Unidad-5-2026-completa.pptx` (24 slides), fuente `04-diapositivas.md`, generar con `python scripts/graficos_consolas.py --slides` y `python scripts/build_decks.py` (`--version N` para no pisar). Falta: el resto de la unidad (certificación, mandos, multijugador, optimización).
 
 **SDD Arena:** ver `docs/SDD-STATUS.md` (no se trabajó en esta sesión).
 
