@@ -1,7 +1,7 @@
 # Technical Specification — Asteroid Survival
 
 > **Fase SDD:** Technical Specification, fase 7. **Estado:** DRAFT, pendiente de decisiones abiertas (§12) y de aprobación del usuario.
-> **Entradas normativas:** GDD aprobado (`docs/02-gdd/GDD.md`, tag `etapa-02-gdd-complete`, REQ-001…REQ-040) y las decisiones `DEC-046`…`DEC-059` de `docs/SDD-STATUS.md`.
+> **Entradas normativas:** GDD aprobado (`docs/02-gdd/GDD.md`, tag `etapa-02-gdd-complete`, REQ-001…REQ-040) y las decisiones `DEC-046`…`DEC-061` de `docs/SDD-STATUS.md`.
 > **Qué es:** los requisitos técnicos verificables (`TECH-###`) que el proyecto `Arena-SDD/` tiene que cumplir: motor, paquetes, plataformas, área de juego, valores de balance, input, colisiones, tiempo, aleatoriedad, audio, assets y testing.
 > **Qué no es:** no es Architecture Specification. No define clases, interfaces, eventos ni la forma del código; eso queda para la fase siguiente (ARCH-###). Tampoco crea el proyecto Unity ni instala paquetes: eso ocurre en Implementation.
 > **Convención:** cada TECH cita su origen entre corchetes y su forma de verificación. Lo marcado **PROPUESTO** se aprueba con el checkpoint de esta fase; lo marcado **PENDIENTE** espera una decisión del usuario (§12).
@@ -56,7 +56,7 @@ Verificación: el log de build de cada destino.
 Verificación: Player Settings de cada destino; MANUAL en el teléfono.
 
 **TECH-009 — Área de juego fija con franjas.** El área es un rectángulo de **tamaño fijo en unidades de mundo**, con **alto de 10 unidades**, mostrado por una cámara ortográfica. Si la pantalla tiene otra proporción, el área no se deforma ni se estira: se agregan **franjas** (letterbox o pillarbox) y la interfaz queda dentro del área. Los bordes de §9 del GDD (bloqueo de la nave, eliminación de asteroides y proyectiles) son los bordes de ese rectángulo, no los de la pantalla. [DEC-059] [DEC-047] [DEC-012]
-**PENDIENTE (INC-11):** la proporción del área: **una única** para todas las plataformas, o **una por orientación** (horizontal en PC y WebGL, vertical en Android).
+**Proporción por orientación (DEC-060):** **16:9** en Windows y WebGL (17,8 × 10 unidades) y **9:16** en Android (5,6 × 10 unidades). El alto es el mismo en los dos, así que los valores de TECH-010 y TECH-011 no cambian; cambia el ancho para moverse y para el rango de aparición (TECH-018). Es la única diferencia admitida por REQ-034.
 Verificación: UNIT (los bordes del área no dependen de la resolución) + MANUAL en cada destino y en dos proporciones de pantalla.
 
 **TECH-010 — Valores ligados al alto del área.** Las velocidades y los tamaños se definen como **fracciones del alto del área** (*H* = 10 unidades). Así, el tiempo de caída y el tamaño relativo de los objetos no dependen del dispositivo. [DEC-052] [DEC-058]
@@ -123,7 +123,7 @@ Verificación: UNIT (dos generadores con la misma semilla dan la misma secuencia
 **TECH-019 — Interfaz.** **uGUI** con TextMeshPro, dentro del área de juego (TECH-009) [DEC-057]. Pantallas: previa con la acción de iniciar (REQ-001), cuenta regresiva (REQ-002), HUD de vida, tiempo y score (REQ-028…030), pantalla final con resultado y score (REQ-009) y reinicio (REQ-031).
 Verificación: MANUAL + INT.
 
-**TECH-020 — Audio.** Un efecto por evento de la lista de `ASSETS-LICENCIAS.md` §3 (PROPUESTO): disparo, asteroide destruido, nave dañada, Game Over, partida completada, cada segundo de la cuenta regresiva, e iniciar o reiniciar. Archivos OGG; audio 2D (sin posición en el espacio); sin música. [DEC-055] [REQ-033]
+**TECH-020 — Audio.** Un efecto por evento de la lista de `ASSETS-LICENCIAS.md` §3 (aprobada, DEC-061): disparo, asteroide destruido, nave dañada, Game Over, partida completada, cada segundo de la cuenta regresiva, e iniciar o reiniciar. Archivos OGG; audio 2D (sin posición en el espacio); sin música. [DEC-055] [REQ-033]
 Verificación: INT (el evento pide reproducir el efecto correcto) + MANUAL (se escucha).
 
 **TECH-021 — Assets de terceros.** Solo los archivos elegidos de los packs CC0 de `ASSETS-LICENCIAS.md`, cada uno con el `License.txt` de su pack, y con el ZIP verificado por su SHA-256 antes de importar. [DEC-054] [DEC-013]
@@ -160,18 +160,12 @@ Verificación: el XML y el log archivados en `docs/08-verification/`.
 | REQ-021 | TECH-009, TECH-018 |
 | REQ-022 | TECH-010, TECH-011 |
 | REQ-033 | TECH-020, TECH-021 |
-| REQ-034 | TECH-008, TECH-009, TECH-013, TECH-014 (afectado por INC-11) |
+| REQ-034 | TECH-008, TECH-009, TECH-013, TECH-014 |
 | REQ-040 | TECH-011, TECH-016, TECH-017 |
 | REQ-032, REQ-035 | — (fuera del MVP) |
 
 TECH sin REQ propio, de soporte del proceso: TECH-001…TECH-007 (motor, proyecto, paquetes, plataformas, rendimiento, builds), TECH-022 y TECH-023 (testing).
 
-## 12. Pendientes para aprobar esta fase
+## 12. Decisiones de cierre
 
-| ID | Pendiente | Afecta |
-|---|---|---|
-| INC-11 | Proporción del área con franjas: única para todas las plataformas, o una por orientación (con REQ-034 corregido) | TECH-008, TECH-009, REQ-034 |
-| DEC-055 | Aprobar la lista de sonidos de TECH-020 | TECH-020 |
-| — | Aprobar lo marcado PROPUESTO en TECH-005 y TECH-006 | — |
-
-Resueltos el 2026-10-26: gamepad (DEC-056, sin gamepad), render e interfaz (DEC-057, URP + uGUI), balance (DEC-058) y franjas en lugar de estirar (DEC-059).
+No quedan pendientes. Resueltos el 2026-10-26: gamepad (DEC-056, sin gamepad), render e interfaz (DEC-057, URP + uGUI), balance (DEC-058), franjas (DEC-059), proporción del área por orientación (DEC-060, cierra INC-11 y corrige REQ-034) y sonidos (DEC-061). Lo marcado PROPUESTO en TECH-005 y TECH-006 (Android IL2CPP + ARM64 con API mínima 25, WebGL por defecto, metas de fps) queda aprobado con el cierre de la fase.

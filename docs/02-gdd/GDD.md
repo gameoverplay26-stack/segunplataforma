@@ -158,7 +158,7 @@ Pantalla previa ──(acción de inicio)──► Cuenta regresiva (3 s) ──
 
 ## 11. Intención multiplataforma (PC / Mobile)
 
-**Principio:** mismo gameplay en PC y Mobile, independiente del dispositivo de entrada. [Discovery § Estrategia multiplataforma] [CD §10] → REQ-034
+**Principio:** mismo gameplay en PC y Mobile, independiente del dispositivo de entrada. La única diferencia admitida es la proporción del área de juego según la orientación (DEC-060). [Discovery § Estrategia multiplataforma] [CD §10] → REQ-034
 
 **Intenciones de gameplay** (las únicas que las reglas necesitan):
 
@@ -281,7 +281,7 @@ Pantalla previa ──(acción de inicio)──► Cuenta regresiva (3 s) ──
 
 | REQ | P | Requisito | Criterio de aceptación | Verif. | Origen |
 |---|---|---|---|---|---|
-| REQ-034 | M | Mismo gameplay en PC y Mobile | Dadas las mismas intenciones (moverse, disparar, iniciar, reiniciar), entonces las reglas de §4–§10 producen el mismo resultado en ambas plataformas; ninguna regla depende del dispositivo | INT (lógica común con intenciones simuladas) + MANUAL por plataforma | Discovery, CD §10, DEC-005 |
+| REQ-034 | M | Mismo gameplay en PC y Mobile | Dadas las mismas intenciones (moverse, disparar, iniciar, reiniciar), entonces las reglas de §4–§10 son las mismas en todas las plataformas; **la proporción del área depende de la orientación del dispositivo** (16:9 horizontal en PC, 9:16 vertical en móvil, con el mismo alto), y ninguna otra regla depende del dispositivo *(corregido el 2026-10-26 por DEC-060, INC-11)* | INT (lógica común con intenciones simuladas) + MANUAL por plataforma | Discovery, CD §10, DEC-005, DEC-060 |
 | REQ-035 | M | Exclusiones del MVP | Ninguno de los elementos OUT OF SCOPE de §12 está presente en el MVP | DOC (test N/A: verifica ausencia de funcionalidad) | CD §7, DEC-002, 003, 006, 009, 010, 011, 012, 013, 029 |
 
 ### 13.8 Requisitos agregados por los puntos abiertos resueltos (DEC-036 a DEC-039)

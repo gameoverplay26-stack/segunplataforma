@@ -24,7 +24,7 @@ Todos son de **Kenney (www.kenney.nl)** y su `License.txt` dice **Creative Commo
 
 **Space Shooter Redux**, el pack de naves más conocido de Kenney, ya **no tiene página en kenney.nl** (la URL devuelve 404 el 2026-10-25). Hay una copia en OpenGameArt con licencia CC0 (https://opengameart.org/content/space-shooter-redux), pero no se la toma como fuente porque no se pudo confirmar contra el sitio del autor.
 
-## 3. Propuesta de uso (PROPUESTO, se aprueba con el checkpoint de la fase 7)
+## 3. Uso aprobado (sonidos: DEC-061; gráficos: aprobados con el cierre de la fase 7)
 
 ### Gráficos (Space Shooter Extension)
 

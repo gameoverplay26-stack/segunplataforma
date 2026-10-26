@@ -42,7 +42,7 @@ Matriz única de trazabilidad del proyecto SDD. La convención está en `.claude
 | REQ-031 | Reinicio directo a la cuenta regresiva (SHOULD) | DEC-031, DEC-040 | — | INT + MANUAL | TECH-013, TECH-019 | — | — | — | — | — | GDD aprobado |
 | REQ-032 | Dificultad progresiva (COULD) | DEC-031 | — | N/A (COULD no planificado) | N/A (fuera del MVP) | — | — | — | — | — | GDD aprobado |
 | REQ-033 | Feedback audiovisual (COULD; audio incorporado al alcance) | DEC-031, DEC-055 | — | INT + MANUAL (audio) | TECH-020, TECH-021 | — | — | — | — | — | GDD aprobado |
-| REQ-034 | Mismo gameplay PC/Mobile; intenciones comunes | DEC-005 (DEFERRED), DEC-010, DEC-022 | M1 | INT + MANUAL | TECH-008, TECH-009, TECH-013, TECH-014 | — | — | — | — | — | GDD aprobado |
+| REQ-034 | Mismo gameplay PC/Mobile; intenciones comunes; área según orientación | DEC-005, DEC-010, DEC-022, DEC-060 | M1 | INT + MANUAL | TECH-008, TECH-009, TECH-013, TECH-014 | — | — | — | — | — | GDD aprobado |
 | REQ-035 | Exclusiones del MVP (OUT OF SCOPE) | DEC-002, 003, 006, 009, 010, 011, 012, 013, 029, 043 | — | DOC (N/A: ausencia de funcionalidad) | N/A (fuera del MVP) | — | — | — | — | — | GDD aprobado |
 | REQ-036 | La vida se limita a 0 (incluidos contactos simultáneos) | DEC-036, DEC-020, DEC-021 | M11 | UNIT | TECH-016 | — | — | — | — | — | GDD aprobado |
 | REQ-037 | Proyectil recto a velocidad constante | DEC-037, DEC-010 | M5 | UNIT | TECH-010, TECH-011, TECH-016 | — | — | — | — | — | GDD aprobado |
