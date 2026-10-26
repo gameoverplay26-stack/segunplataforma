@@ -1,6 +1,6 @@
 # Technical Specification — Asteroid Survival
 
-> **Fase SDD:** Technical Specification, fase 7. **Estado:** DRAFT, pendiente de decisiones abiertas (§12) y de aprobación del usuario.
+> **Fase SDD:** Technical Specification, fase 7. **Estado:** APROBADA el 2026-10-26 (tag `etapa-03-technical-specification-complete`). Cambiarla requiere autorización explícita y un registro en el Historial de `docs/SDD-STATUS.md`.
 > **Entradas normativas:** GDD aprobado (`docs/02-gdd/GDD.md`, tag `etapa-02-gdd-complete`, REQ-001…REQ-040) y las decisiones `DEC-046`…`DEC-061` de `docs/SDD-STATUS.md`.
 > **Qué es:** los requisitos técnicos verificables (`TECH-###`) que el proyecto `Arena-SDD/` tiene que cumplir: motor, paquetes, plataformas, área de juego, valores de balance, input, colisiones, tiempo, aleatoriedad, audio, assets y testing.
 > **Qué no es:** no es Architecture Specification. No define clases, interfaces, eventos ni la forma del código; eso queda para la fase siguiente (ARCH-###). Tampoco crea el proyecto Unity ni instala paquetes: eso ocurre en Implementation.
