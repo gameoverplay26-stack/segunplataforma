@@ -31,6 +31,36 @@
 
 ---
 
+## 0 bis. En otra PC: preparar todo y generar los paquetes
+
+Los paquetes **no viajan por git** (`Builds/` y `Certificados/` están excluidos): en otra PC se generan de nuevo. Si esa PC solo va a **instalar** en la consola, alcanza con copiar las cuatro carpetas `…_Master_Test` con un pendrive y seguir desde el paso 1.
+
+1. **Traer el repo** (`git pull`, o `git clone https://github.com/gameoverplay26-stack/segunplataforma.git C:\Developer\unity\2026\clases-en-vivo`).
+2. **Verificar los requisitos** con Unity cerrado:
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File proyectos-unity\Tools-Xbox\verificar_requisitos_xbox.ps1
+   ```
+   Muestra una tabla OK / FALTA con lo mismo que se instaló en la PC de la cátedra el 2026-10-26, y cómo resolver cada falta:
+
+   | Requisito | Qué se comprueba |
+   |---|---|
+   | Unity 6000.3.11f1 | `Unity.exe` en la ruta de Unity Hub (otra ruta: `-Unity "D:\…\Unity.exe"`) |
+   | Módulo UWP de Unity | `Data\PlaybackEngines\MetroSupport` (Unity Hub → Add modules → *Universal Windows Platform Build Support*) |
+   | Visual Studio 2022 | Cualquier edición; Community alcanza |
+   | Carga de trabajo UWP | `Microsoft.VisualStudio.Workload.Universal` |
+   | C++ para UWP | `Microsoft.VisualStudio.ComponentGroup.UWP.VC` y `Microsoft.VisualStudio.Component.VC.Tools.x86.x64` (IL2CPP genera C++) |
+   | MSBuild | El de Visual Studio 2022 |
+   | Windows SDK | 10.0.19041 o posterior en `Windows Kits\10\Include` (en la cátedra: 10.0.26100). **Ojo:** en la cátedra, la carga de trabajo se instaló *sin* el SDK y hubo que agregarlo aparte |
+   | Proyectos | Los cuatro, con `Assets/Editor/BuildXbox.cs` |
+   | Rutas largas (ENV-01) | En la cátedra hay rutas de **280 caracteres** dentro de `Library` y funciona porque Windows tiene `LongPathsEnabled = 1`. Sin eso, la ruta del repo tiene que ser muy corta |
+   | Certificados | `New-SelfSignedCertificate` disponible |
+3. **Instalar lo que falte de Visual Studio** (pide permisos de administrador y descarga varios GB):
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File proyectos-unity\Tools-Xbox\verificar_requisitos_xbox.ps1 -Instalar
+   ```
+   Unity, el módulo UWP y las rutas largas se resuelven a mano, con la solución que indica la tabla. Para rutas largas, como administrador: `reg add HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1 /f` y reiniciar.
+4. **Generar** (paso 5 de esta guía): `generar_builds_xbox.ps1` vuelve a correr la verificación y no compila si falta algo. La primera vez tarda bastante, porque Unity importa cada proyecto (`Library` no viaja por git).
+
 ## 1. Crear la cuenta de desarrollador (una sola vez, gratis)
 
 1. Entrar a **https://storedeveloper.microsoft.com** y elegir **Get started for free → Individual developer**. Es el único camino sin costo de registro; otros caminos muestran el flujo viejo, que cobraba.

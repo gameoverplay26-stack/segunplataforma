@@ -66,7 +66,8 @@ Los IDs de decisión no se mezclan: `D4-xx` (cátedra, en `status-unidad.md`), `
 | Unity Hub + **Unity 6000.3.11f1** | Módulos: **Android Build Support** (OpenJDK, SDK, NDK) y Windows Build Support | Abrir los proyectos, correr tests y builds. **No cambiar de versión de Unity** |
 | Inno Setup 6 (`winget install JRSoftware.InnoSetup`, por usuario) | — | Instalador de PC de los proyectos porteados |
 | Python 3 (probado con 3.12) + `pip install python-pptx==1.0.2 matplotlib` | — | Generar los `.pptx` y los gráficos de la U5 |
-| Visual Studio 2022 + carga de trabajo UWP + herramientas C++ de UWP + Windows SDK 10.0.19041 o posterior | Instalados el 2026-10-26 en la máquina de la cátedra | Paquetes UWP para la demo en Xbox (`Tools-Xbox/generar_builds_xbox.ps1`) |
+| Visual Studio 2022 + carga de trabajo UWP + herramientas C++ de UWP + Windows SDK 10.0.19041 o posterior | Instalados el 2026-10-26 en la máquina de la cátedra. **En otra PC:** `powershell -ExecutionPolicy Bypass -File proyectos-unity\Tools-Xbox\verificar_requisitos_xbox.ps1` (tabla OK/FALTA; `-Instalar` agrega lo de Visual Studio). Guía: sección "0 bis" de `GUIA-XBOX-DOCENTE.md` | Paquetes UWP para la demo en Xbox (`Tools-Xbox/generar_builds_xbox.ps1`) |
+| Rutas largas de Windows (`LongPathsEnabled = 1`) | Activadas en la máquina de la cátedra: hay rutas de 280 caracteres dentro de `Library`. Sin esto aparece ENV-01 aunque el repo esté en una ruta corta | Abrir y compilar los proyectos Unity |
 | Microsoft PowerPoint (opcional) | — | Exportar slides a PNG para revisarlas (COM desde PowerShell) |
 | Claude Code | — | Los agents y skills del repo (`.claude/agents`, `.claude/skills`) y `.claude/settings.json` viajan con git; `.claude/settings.local.json` es personal y no viaja |
 

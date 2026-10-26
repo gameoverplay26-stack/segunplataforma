@@ -20,6 +20,9 @@ $Base = Split-Path $PSScriptRoot -Parent
 $Password = "unity-demo"   # mismo valor que BuildXbox.CertificatePassword
 $Publisher = "CN=Catedra Diseno segun Plataforma"
 
+& (Join-Path $PSScriptRoot "verificar_requisitos_xbox.ps1") -Unity $Unity
+if ($LASTEXITCODE -ne 0) { throw "Faltan requisitos (ver la tabla de arriba). Se instalan con verificar_requisitos_xbox.ps1 -Instalar" }
+
 $msbuild = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * `
     -requires Microsoft.Component.MSBuild -find "MSBuild\**\Bin\MSBuild.exe" | Select-Object -First 1
 if (-not $msbuild) { throw "No se encontró MSBuild. Instalar Visual Studio 2022 con la carga de trabajo de UWP." }

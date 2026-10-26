@@ -86,11 +86,14 @@ Cada carpeta trae el `.cer`, `Dependencies/x64/Microsoft.VCLibs.x64.14.00.appx` 
 
 **Lo que esto prueba:** que los cuatro paquetes **se generan** y declaran la familia Xbox. **No** prueba que corran en la consola: eso es UNKNOWN hasta la prueba del §7.
 
+**Hallazgo sobre rutas (ENV-01), medido el 2026-10-26:** en la PC de la cátedra hay rutas de 280 caracteres (`2D-Platformer-Unity-v2\Library\PackageCache\com.unity.collections…`) y de 300 (`asteroide-final\Library\Bee\Android\…`, de la build de Android). Funcionan porque `LongPathsEnabled = 1`. La ruta más larga fuera de `Builds/` mide 226 caracteres desde `proyectos-unity`. Por eso, en una PC sin rutas largas, falla aunque el repo esté en una ruta "corta".
+
 ## 6. Archivos nuevos o tocados
 
 | Archivo | Cambio |
 |---|---|
-| `proyectos-unity/Tools-Xbox/generar_builds_xbox.ps1` | Nuevo: certificado de prueba, Unity batchmode, msbuild Master x64 sideload |
+| `proyectos-unity/Tools-Xbox/generar_builds_xbox.ps1` | Nuevo: certificado de prueba, Unity batchmode, msbuild Master x64 sideload. Primero corre la verificación de requisitos |
+| `proyectos-unity/Tools-Xbox/verificar_requisitos_xbox.ps1` | Nuevo: tabla OK/FALTA de Unity + módulo UWP, Visual Studio 2022 y componentes, MSBuild, Windows SDK, proyectos, rutas largas y certificados; `-Instalar` agrega lo que falte de Visual Studio. Probado en la PC de la cátedra: todo OK (código 0); con una ruta de Unity inexistente, 2 FALTA (código 1) |
 | `*/Assets/Editor/BuildXbox.cs` (4 proyectos) | Nuevo: build UWP x64, familias Xbox + Desktop, identidad de paquete y certificado |
 | `ProjectSettings.asset` de `asteroide-final` y `2D-Platformer-Unity-v2` | La build UWP escribió solo campos `metro*` (familias Desktop y Xbox, `metroPackageName`, certificado `Certificados/xbox-prueba.pfx`) y la entrada de batching de *Windows Store Apps*. `productName`, Android y Standalone quedaron intactos (verificado con `git diff`). Los demás archivos que figuran modificados en el Platformer v2 solo cambian los finales de línea |
 | `Asteroides-Xbox/`, `2D-Platformer-Xbox/` | Copias nuevas + capa de consola + tests (`ConsoleRulesTests` en Edit Mode, `ConsoleLayerTests` en Play Mode) |
