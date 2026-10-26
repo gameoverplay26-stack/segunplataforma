@@ -1,7 +1,7 @@
 # GDD — Asteroid Survival
 
-> **Fase SDD:** Game Design Specification (GDD), fase 6. **Estado:** DRAFT, con validación documental y pendiente de aprobación del usuario.
-> **Entradas normativas:** `docs/00-discovery/PROJECT-DISCOVERY.md` (tag `etapa-00-discovery-complete`), `docs/01-concept/CONCEPT-DEFINITION.md` (tag `etapa-01-concept-complete`) y las decisiones `DEC-001`…`DEC-041` de `docs/SDD-STATUS.md`.
+> **Fase SDD:** Game Design Specification (GDD), fase 6. **Estado:** APROBADO por el usuario el 2026-10-25 (tag `etapa-02-gdd-complete`). Cambiarlo requiere autorización explícita y un registro en el Historial de `docs/SDD-STATUS.md`.
+> **Entradas normativas:** `docs/00-discovery/PROJECT-DISCOVERY.md` (tag `etapa-00-discovery-complete`), `docs/01-concept/CONCEPT-DEFINITION.md` (tag `etapa-01-concept-complete`) y las decisiones `DEC-001`…`DEC-045` de `docs/SDD-STATUS.md`.
 > **Qué es este documento:** las reglas de gameplay del MVP y los requisitos funcionales verificables (`REQ-###`) que se derivan de ellas.
 > **Qué no es:** no es Technical Specification (no define implementación, componentes Unity, física, input ni valores técnicos) ni arquitectura (no define clases, interfaces ni eventos).
 > **Convención:** cada regla cita su origen entre corchetes (`[DEC-0NN]`, `[CD §n]`, `[CD Mn]`, `[Discovery]`). Lo que ninguna fuente define aparece en §15 como punto abierto, **no** como regla.
@@ -120,8 +120,9 @@ Pantalla previa ──(acción de inicio)──► Cuenta regresiva (3 s) ──
 ## 7. Asteroides
 
 - **Un único tipo**, de comportamiento homogéneo y **sin fragmentación**. [DEC-003]
-- **Aparición:** durante la partida activa, **fuera del área visible**, junto a sus bordes, entrando hacia el interior. **La aparición no es una salida.** [DEC-024] [CD §4] → REQ-021, REQ-024. La frecuencia de aparición y el máximo simultáneo son TECH-DEFERRED.
-- **Movimiento:** trayectoria **recta a velocidad constante**. Sin IA ni persecución. [DEC-025] → REQ-022. La velocidad es TECH-DEFERRED.
+- **Aparición:** durante la partida activa, **fuera del área visible**, **junto al borde superior, en cualquier posición horizontal** de ese borde, entrando hacia el interior. **La aparición no es una salida.** [DEC-024] [DEC-042] [CD §4] → REQ-021, REQ-024.
+- **Uno por vez:** en el área hay **un solo asteroide a la vez**. El siguiente aparece recién cuando el anterior ya no está, porque fue destruido o salió del área. [DEC-044] → REQ-040. El tiempo entre un asteroide y el siguiente es TECH-DEFERRED.
+- **Movimiento:** trayectoria **recta, vertical hacia abajo, a velocidad constante**: el asteroide cae desde el borde superior. Sin IA ni persecución. [DEC-025] [DEC-045] → REQ-022. La velocidad es TECH-DEFERRED.
 - **Destrucción:** **un impacto** de proyectil destruye el asteroide. [DEC-026] [CD M8] → REQ-023
 - **Contacto con la nave:** daña a la nave (§8) y **sigue su trayectoria**. No se destruye, no se retira y no puntúa. [DEC-021] [DEC-002] → REQ-015
 - **Salida del área:** se elimina al abandonar el área. **No es destrucción** y **no puntúa**. [DEC-012] [DEC-027] → REQ-024, REQ-027
@@ -138,7 +139,7 @@ Pantalla previa ──(acción de inicio)──► Cuenta regresiva (3 s) ──
 
 **Consecuencia de las reglas vigentes (no es una regla nueva):** con vida 5, daño 1 y un daño por asteroide, la nave soporta 4 contactos, y el 5.º contacto de un asteroide distinto produce el Game Over. [DEC-021] [DEC-035]
 
-**Contactos simultáneos:** cada asteroide aplica su daño de 1 y la vida se **limita a 0** (nunca queda negativa) → Game Over. [DEC-036] → REQ-036
+**Contactos simultáneos:** cada asteroide aplica su daño de 1 y la vida se **limita a 0** (nunca queda negativa) → Game Over. [DEC-036] → REQ-036. Con un solo asteroide a la vez [DEC-044], este caso no se da en el MVP; la regla se mantiene para cuando se admitan varios.
 
 ## 9. Área de juego
 
@@ -190,7 +191,7 @@ Pantalla previa ──(acción de inicio)──► Cuenta regresiva (3 s) ──
 - power-ups y progresión (COULD futuro, no son requisito) [DEC-006];
 - escudos [CD §7];
 - respawn [DEC-009];
-- bosses y niveles [CD §7];
+- bosses y niveles [CD §7]; el MVP es un único nivel y agregar más niveles con distinta dificultad es evolución futura [DEC-043];
 - multiplayer, backend y matchmaking; monetización y tienda; contenido masivo [Discovery § Alcance preliminar];
 - embestida ofensiva [DEC-002];
 - evasión dedicada (*dash*) [CD §3];
@@ -252,8 +253,8 @@ Pantalla previa ──(acción de inicio)──► Cuenta regresiva (3 s) ──
 
 | REQ | P | Requisito | Criterio de aceptación | Verif. | Origen |
 |---|---|---|---|---|---|
-| REQ-021 | M | Aparición fuera del área, entrando al interior | Dada la partida activa, cuando aparece un asteroide, entonces lo hace fuera del área visible junto a un borde, con dirección hacia el interior; todos los asteroides son del mismo tipo | UNIT (determinismo: TD-3) | DEC-024, DEC-003, CD M6 |
-| REQ-022 | M | Trayectoria recta a velocidad constante | Dado un asteroide en movimiento, entonces su dirección y su velocidad no cambian mientras exista, incluso después de contactar a la nave | UNIT | DEC-025, DEC-021 |
+| REQ-021 | M | Aparición por el borde superior, entrando al interior | Dada la partida activa, cuando aparece un asteroide, entonces lo hace fuera del área visible junto al **borde superior**, en una posición horizontal dentro del ancho de ese borde, con dirección **vertical hacia abajo**; nunca aparece junto a los bordes izquierdo, derecho ni inferior; todos los asteroides son del mismo tipo | UNIT (determinismo: TD-3) | DEC-024, DEC-042, DEC-045, DEC-003, CD M6 |
+| REQ-022 | M | Caída vertical recta a velocidad constante | Dado un asteroide en movimiento, entonces su dirección es vertical hacia abajo, y su dirección y su velocidad no cambian mientras exista, incluso después de contactar a la nave | UNIT | DEC-025, DEC-045, DEC-021 |
 | REQ-023 | M | Un impacto destruye, sin fragmentación | Dado un asteroide, cuando un proyectil lo impacta, entonces el asteroide se destruye y no genera fragmentos | UNIT + INT | DEC-026, DEC-003, CD M8 |
 | REQ-024 | M | Aparición ≠ salida; eliminación al salir | Dado un asteroide recién aparecido fuera del área que entra, entonces no se elimina por "salida"; dado un asteroide que abandona el área, entonces se elimina | UNIT | DEC-024, DEC-012 |
 | REQ-025 | M | Los asteroides no interactúan entre sí | Dados dos asteroides que se superponen, entonces ninguno cambia su trayectoria ni se destruye | INT | DEC-030 |
@@ -291,6 +292,7 @@ Pantalla previa ──(acción de inicio)──► Cuenta regresiva (3 s) ──
 | REQ-037 | M | Proyectil recto a velocidad constante | Dado un proyectil disparado con dirección *o*, entonces mantiene la dirección *o* y una velocidad constante hasta impactar o salir del área | UNIT | DEC-037, DEC-010 |
 | REQ-038 | M | Los proyectiles no afectan a la nave | Dado un proyectil que coincide con la nave, entonces la vida de la nave no cambia y el proyectil no se consume por ella | UNIT + INT | DEC-038 |
 | REQ-039 | M | Al terminar, asteroides y proyectiles desaparecen | Dado el final de la partida (*Completado* o *Game Over*), entonces no queda ningún asteroide ni proyectil en el área, y el score no cambia por esa desaparición | UNIT + INT | DEC-039, DEC-027 |
+| REQ-040 | M | Un solo asteroide a la vez | Dada la partida activa, mientras haya un asteroide en el área o entrando, entonces no aparece otro; cuando ese asteroide se destruye o sale del área, entonces puede aparecer el siguiente | UNIT + INT | DEC-044, DEC-042 |
 
 ### 13.9 Escenarios de integración (candidatos para Test Strategy)
 
@@ -336,9 +338,13 @@ La matriz completa por REQ está en **`docs/TRACEABILITY.md`**. Resumen DEC → 
 | DEC-039 | REQ-039 |
 | DEC-040 | REQ-002, REQ-031 |
 | DEC-041 | REQ-002 |
+| DEC-042 | REQ-021, REQ-024 |
+| DEC-043 | REQ-035 |
+| DEC-044 | REQ-040 |
+| DEC-045 | REQ-021, REQ-022 |
 | DEC-005 (DEFERRED) | REQ-034 (solo intención; el mapeo queda en Technical Specification) |
 
-Cobertura de los MUST del Concept Definition: M1 → REQ-011, 034 · M2 → REQ-011, 012 · M3 → REQ-011 (emergente; se valida por MANUAL) · M4 → REQ-016, 017, 018 · M5 → REQ-019, 020 · M6 → REQ-021, 022 · M7 → REQ-014, 023 · M8 → REQ-023 · M9 → REQ-026, 027 · M10 → REQ-004, 005 · M11 → REQ-006, 007 · M12 → REQ-009.
+Cobertura de los MUST del Concept Definition: M1 → REQ-011, 034 · M2 → REQ-011, 012 · M3 → REQ-011 (emergente; se valida por MANUAL) · M4 → REQ-016, 017, 018 · M5 → REQ-019, 020 · M6 → REQ-021, 022, 040 · M7 → REQ-014, 023 · M8 → REQ-023 · M9 → REQ-026, 027 · M10 → REQ-004, 005 · M11 → REQ-006, 007 · M12 → REQ-009.
 
 ## 15. Puntos abiertos y diferidos
 
@@ -352,20 +358,22 @@ Cobertura de los MUST del Concept Definition: M1 → REQ-011, 034 · M2 → REQ-
 | OP-04 | Al terminar, asteroides y proyectiles desaparecen → DEC-039 (REQ-039) |
 | OP-05 | El reinicio pasa directo a la cuenta regresiva → DEC-040 (REQ-031) |
 | OP-06 | Cuenta regresiva de 3 s → DEC-041 (REQ-002) |
+| OP-07 (parte 1) | Los asteroides aparecen solo por el borde superior, en cualquier posición horizontal → DEC-042 (REQ-021); modifica DEC-024 |
+| OP-07 (parte 2) | Un asteroide por vez → DEC-044 (REQ-040); caída vertical hacia abajo → DEC-045 (REQ-021, REQ-022) |
+| OP-08 | MVP de un solo nivel; más niveles con distinta dificultad son evolución futura, fuera del MVP → DEC-043 (REQ-035) |
 
-### Puntos abiertos pendientes (necesitan confirmación del usuario para aprobar el GDD)
+### Puntos abiertos pendientes
 
 | ID | Punto | Impacto |
 |---|---|---|
-| OP-07 | Patrón de aparición: el usuario mencionó "bajar asteroides uno detrás de otro, a una misma velocidad". ¿Significa que aparecen **solo desde arriba**, lo que modificaría DEC-024 (junto a cualquier borde)? ¿Implica **un solo asteroide a la vez**, lo que fijaría el máximo simultáneo (hoy TECH-DEFERRED)? Que todos tengan la misma velocidad ya es coherente con DEC-003 y DEC-025. | REQ-021, REQ-022, TD-2 |
-| OP-08 | "Nivel 1 / luego": ¿se confirma que significa *MVP / evolución futura* (dificultad progresiva, COULD) y **no** una reintroducción de niveles, que están OUT OF SCOPE? | §12, REQ-032, REQ-035 |
+| — | Ninguno. Los puntos OP-01 a OP-08 están resueltos (2026-10-25). | — |
 
 ### Diferidos a Technical / Architecture Specification (TECH-DEFERRED)
 
 | ID | Punto |
 |---|---|
 | TD-1 | Cómo se prueba el final por tiempo sin esperar minutos reales (REQ-004, REQ-005) |
-| TD-2 | Velocidades (nave, proyectil, asteroides), valor de la cadencia, frecuencia de aparición, máximo de asteroides simultáneos |
+| TD-2 | Velocidades (nave, proyectil, asteroides), valor de la cadencia, tiempo entre un asteroide y el siguiente (el máximo simultáneo quedó fijado en 1 por DEC-044) |
 | TD-3 | Determinismo de la aparición en pruebas (REQ-021) |
 | TD-4 | Tamaño del área, relación de aspecto, cámara, resolución |
 | TD-5 | Mapeo de intenciones a dispositivos y estrategia de input (DEC-005) |
