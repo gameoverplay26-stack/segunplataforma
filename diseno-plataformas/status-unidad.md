@@ -1,7 +1,7 @@
 # Status de unidades — Diseño según Plataformas de Juego (U4–U7)
 
 Archivo de control único. **Se actualiza al final de cada sesión de trabajo.**
-Última actualización: **2026-10-24**.
+Última actualización: **2026-10-25**.
 
 ## Reglas de trabajo vigentes
 
@@ -61,7 +61,7 @@ F1 Auditoría · F2 Investigación · F3 Correcciones · F4 Objetivos · F5 Acti
 | D4-02 | ¿Hay Mac disponible para iOS? | — | ✅ **RESUELTA: no hay Mac → iOS conceptual** |
 | D4-03 | ¿Los alumnos tienen Android? | — | ✅ **RESUELTA: sí → build, Profiler y QA manual obligatorios (Clase 4 y TP 3)** |
 | D4-04 | Cantidad de encuentros | — | ✅ **RESUELTA: 4 clases teórico-prácticas** (sin clase de taller; TP 3 avanzado en cada clase, defensa al final de la Clase 4) |
-| D4-05 | Equivalencia de la rúbrica del TP 3 con la nota (7 para promocionar) | — | Que la defina la titular |
+| D4-05 | Equivalencia de la rúbrica del TP 3 con la nota (7 para promocionar) | — | Que la defina la titular. ⏸ Atada al TP 3, en pausa (2026-10-25) |
 | D4-06 | Corregir en el programa la tabla UT/TP corrida y la bibliografía no verificada | Corregir / dejar | Corregir: lo decide la titular. **Dato nuevo (2026-10-05):** el material previo `unidad-03/material-previo/TP Nº 3--.docx` se titula "TP Nº 3 – Pruebas unitarias con Unity". En ciclos anteriores, TP 3 = U3, como dice la tabla del programa; el cronograma 2025 dice TP 3 = U4. La numeración de TPs del ciclo 2026 queda por confirmar con la titular |
 
 ## Tareas técnicas pendientes (U4)
@@ -71,17 +71,17 @@ F1 Auditoría · F2 Investigación · F3 Correcciones · F4 Objetivos · F5 Acti
 
 - [ ] Implementar en `proyectos-unity/Asteroides/asteroide-final/` la versión **con defecto** de la pausa y la solución (regla + adaptador + 2 tests), en una rama propia, validada en batch mode como en U3. Requisito de A4.4 y de la demo de la Clase 3.
 - [x] Input System: se usa la **1.19.0**, la versión incluida en Unity 6000.3.11f1. Página de On-screen Controls 1.19 verificada el 2026-10-10 (https://docs.unity3d.com/Packages/com.unity.inputsystem@1.19/manual/OnScreen.html). La 1.20 queda para U5 si hace falta.
-- [ ] Probar el porteo de entrada de Asteroides en el Device Simulator y en un teléfono real (joystick, botón, dos dedos, 48 dp) antes de la Clase 4.
-- [ ] Build con **IL2CPP + ARM64**, instalarla en un teléfono y medir cuánto tarda la primera build (dato para la tarea de la Clase 2). Volver a correr `AndroidBuildConfigTests` y registrar el verde.
+- [x] Probar el porteo de entrada de Asteroides en el Device Simulator y en un teléfono real (joystick, botón, dos dedos, 48 dp) antes de la Clase 4. ✅ **Hecho (informe del usuario, 2026-10-25): builds probadas en celulares reales.** Sin log ni capturas en el repo.
+- [x] Build con **IL2CPP + ARM64**, instalarla en un teléfono y medir cuánto tarda la primera build (dato para la tarea de la Clase 2). Volver a correr `AndroidBuildConfigTests` y registrar el verde. ✅ **Hecho (informe del usuario, 2026-10-25): builds probadas en celulares reales.** Sin log ni capturas en el repo. Quedan sin registrar: el tiempo de la primera build y el verde de `AndroidBuildConfigTests`.
 - [ ] Decidir (titular): la revisión de A4.7 pasa a tarea en la v4 de la Clase 3; y si se corrige Active Input Handling = Both en el proyecto (cambiar el `StandaloneInputModule` del prefab Game por `InputSystemUIInputModule`).
-- [ ] Decidir qué hacer con `proyectos-unity/Asteroides/asteroide-final/Assets/Settings/` (Build Profile de Android creado por la docente, sin versionar).
+- [x] Decidir qué hacer con `proyectos-unity/Asteroides/asteroide-final/Assets/Settings/` (Build Profile de Android creado por la docente, sin versionar). ✅ Versionado en el commit `cd33c42` (2026-10-25).
 - [x] **Cronograma:** resuelto el 2026-10-13: la unidad termina en dos encuentros de 90 min (versión final de las slides).
-- [ ] Decidir (titular): defensa del TP 3 por video + coevaluación en el aula virtual (PROPUESTO); A4.4 pasa al dossier del TP 3.
+- [ ] Decidir (titular): defensa del TP 3 por video + coevaluación en el aula virtual (PROPUESTO); A4.4 pasa al dossier del TP 3. ⏸ **En pausa por decisión del usuario (2026-10-25).**
 - [ ] Volver a verificar Zagal, Björk & Lewis 2013 (URL con certificado vencido) antes de citarlo.
 - [ ] Definir los fragmentos (min:seg) de los videos C-02 a C-06. Ninguna duración está verificada.
 - [x] URLs de Android environment setup (Unity 6000.3) y developer options (Android) verificadas el 2026-10-05 y cargadas en `03`.
 - [ ] Armar el formulario de relevamiento de teléfonos del curso (modelo, Android, RAM, resolución) para la matriz de compatibilidad de la Clase 4.
-- [ ] Probar en un teléfono Android real la build de desarrollo de Asteroides + el Profiler conectado (ensayo del docente antes de la Clase 4), y preparar el APK del plan B.
+- [x] Probar en un teléfono Android real la build de desarrollo de Asteroides + el Profiler conectado (ensayo del docente antes de la Clase 4), y preparar el APK del plan B. ✅ **Hecho (informe del usuario, 2026-10-25): builds probadas en celulares reales.** Sin log ni capturas en el repo. Profiler conectado: UNKNOWN.
 - [x] Slides definitivas + notas del docente escritas (`04-diapositivas.md`) y 4 `.pptx` generados con `scripts/build_decks.py` (revisados visualmente con export a PNG, 2026-10-05).
 - [ ] **Titular:** reemplazar los recuadros [IMAGEN SUGERIDA] por imágenes reales (hay 25 recuadros en total).
 
@@ -130,3 +130,4 @@ F1 Auditoría · F2 Investigación · F3 Correcciones · F4 Objetivos · F5 Acti
 | 2026-10-19 | **Videos en las slides (pedido del usuario).** Slide 48 (caso Epic/FTC): los 3 videos de Facebook que pasó el usuario (La Tercera, El Deber, El Sol de México) y DW Español; se agregó el caso de Países Bajos (ACM, 1.125.000 euros en 2024, confirmado por el tribunal de Róterdam el 14/01/2026, verificado en acm.nl) como viñeta y en notas. Slides de historia 6 y 7: videos de consulta en español (lucasmelor, Aranimations ES, Academia Play). Slide 62 del anexo: ejemplos de build de PC a Android en español (Jadsa Games con Unity 6, LuisCanary). Todos verificados por título, canal y fecha; **contenido no revisado completo (UNKNOWN)**. Facebook puede pedir sesión para reproducir. El generador ahora admite enlaces clicables `[etiqueta](url)` en `video:`. Nota: el pedido decía "página 58", pero los videos tratan la multa a Epic, que es la slide 48; la 58 (Device Simulator) no se tocó. Las slides 6–7 son de la Clase 1, ya dada: solo se agregó el recuadro de video, sin rehacerlas |
 | 2026-10-24 | Pedido del usuario: desarrollar el tema de consolas con consolas, histogramas, datos históricos y actuales. `unidad-05/01-desarrollo-tema-consolas.md` con datos verificados (Nintendo IR al 30-jun-2026, SIE Business Data, PlayStation Blog, Xbox Wire, Steam Store) y 6 gráficos generados por script (paleta dataviz). Microsoft no publica unidades de Xbox: queda fuera de los gráficos. No se hicieron slides (regla 13) |
 | 2026-10-24 | Pedido del usuario: slides del tema con el formato de la U4. Fuente `unidad-05/04-diapositivas.md`; generador `unidad-05/scripts/build_decks.py` (reutiliza el de la U4; destacado `consola:`, pie "Unidad V"). `Unidad-5-2026-completa.pptx`: Clase 1 "La consola tiene dueño" (20 slides, 90 min, teoría 36 / práctica 54) + anexo de datos (4). Gráficos para slides con `graficos_consolas.py --slides`. Revisadas exportando a PNG con PowerPoint; 24/24 notas empiezan con glosario |
+| 2026-10-25 | **Informe del usuario:** las builds de la U4 se probaron en celulares reales; se marcan hechas las tareas de prueba en teléfono (sin evidencia archivada en el repo). El TP 3 queda en pausa, y con él la defensa por video y D4-05. El Build Profile de Android de Asteroides se versionó (`cd33c42`) |

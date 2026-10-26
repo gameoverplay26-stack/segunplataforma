@@ -95,7 +95,7 @@ python scripts/build_decks.py --por-clase            # además, un .pptx por sec
 **Cátedra, Unidad 4 (Móvil)**
 - La **Clase 1 se dio hasta la slide 15** (A4.1). Quedan **dos encuentros de 90 min** (decisión del 2026-10-13).
 - **Versión final** en `unidad-04/`: un solo archivo, `Unidad-4-2026-completa.pptx` (63 slides): Clase 1 = 1–15 (dada), Clase 2 = 16–31, Clase 3 = 32–54, anexo de consulta "Android en Unity 6" = 55–63. Reparto 40/60. Guion en `unidad-04/03-clase-guion-docente.md`. Versiones v1–v4 en `unidad-04/versiones-anteriores/`.
-- Pendientes: prueba de la build IL2CPP + ARM64 en un teléfono real (UNKNOWN); decidir la defensa del TP 3 por video (PROPUESTO); D4-05 y D4-06.
+- **2026-10-25 (informe del usuario):** las builds se probaron en celulares reales (sin evidencia archivada en el repo). **TP 3 en pausa** (defensa por video y D4-05 incluidas). Pendiente: D4-06 (programa: tabla UT/TP y bibliografía), que decide la titular.
 
 - **Continuación (2026-10-19):** el deck completo ya se dio. Se agregó la **Clase 4 "Del caso real al código"** (slides 55–67): publicidad (UX y seguridad), FTC vs. Epic como falla de input, antes/después de código real PC → Android, orientación, A4.9 e ítem 9 del TP 3. Archivo vigente: `unidad-04/Unidad-4-2026-completa-v3.pptx` (87 slides, generado entero por el script; el anexo de mercado ya está en la fuente).
 
