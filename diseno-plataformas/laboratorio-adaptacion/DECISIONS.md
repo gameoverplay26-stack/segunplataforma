@@ -13,7 +13,9 @@ Prefijo `DEC-LAB-` para no colisionar con los `DEC-###` del proyecto SDD "Arena"
 | DEC-LAB-006 | **RESOLVED** | 2026-10-10 | Opción (a): se autoriza instalar el paquete Input System (`com.unity.inputsystem`). **Instalado en P1 el 2026-10-10:** versión 1.19.0, Active Input Handling = Both (ver `PORTEO-ASTEROIDES.md`). **P2: instalado el 2026-10-19 en la copia `2D-Platformer-Unity-v2`** (1.19.0, Active Input Handling = New; ver `PORTEO-PLATFORMER.md`). El original no se modificó. |
 | DEC-LAB-009 a 012 | **PENDIENTE** | 2026-10-10 | El usuario las deja abiertas explícitamente: copia y perfil de *Unravel*, duración de la clase, grabaciones y desafío del capítulo 10. |
 | DEC-LAB-007 | PENDIENTE (con implementación provisional) | 2026-10-10 | En P1 se implementó joystick + botón como **referencia** para la demo. El esquema final lo eligen los grupos en A4.3/A4.7. |
-| DEC-LAB-004, 005, 008, 013, 014 | PENDIENTE | — | — |
+| DEC-LAB-008 | **RESOLVED** | 2026-10-26 | Ni (a) ni (b) tal como estaban: demo **real** en la Xbox Series X de la docente (modelo japonés, 1 TB) en **Developer Mode**, con paquetes UWP instalados por red local (sin tienda ni nube, sin ID@Xbox ni GDK). Se muestran **dos versiones** de cada juego: la actual **sin cambios de gameplay** y una **adaptada a consola** (copias `Asteroides-Xbox/` y `2D-Platformer-Xbox/`). Guía para la docente y guía para alumnos. Registro: `PORTEO-XBOX.md`. |
+| DEC-LAB-017 | **RESOLVED** | 2026-10-26 | Se autoriza instalar en Visual Studio 2022 Pro la carga de trabajo de UWP, las herramientas C++ de UWP y el Windows SDK, y todo lo necesario para la demo en Xbox ("autorizo a lo que necesites"). |
+| DEC-LAB-004, 005, 013, 014 | PENDIENTE | — | — |
 | DEC-LAB-015 | **RESOLVED** | 2026-10-19 | Corregir el salto infinito (R-PLT-09) en P2 v2: el detector de suelo ignora al jugador y a los triggers, y `groundLayer` incluye la capa `ground`. Se aplica a los dos niveles. |
 | DEC-LAB-016 | **RESOLVED** | 2026-10-19 | Vidas en P2 v2: 3 vidas (los 3 corazones del HUD). Cada muerte resta una y reinicia el nivel actual. Con 0 vidas, panel GAME OVER con "Retry" (nivel 1, 3 vidas) y "Menu". |
 

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="25" result="Passed" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:49:03Z" duration="3,5666005">
+  <test-suite type="TestSuite" id="1000" name="2D platformer v2" fullname="2D platformer v2" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:49:03Z" duration="3.566601" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1034" name="EditModeTests.dll" fullname="C:/Developer/unity/2026/clases-en-vivo/proyectos-unity/2D-Platformer-Xbox/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:49:03Z" duration="3.553178" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30504" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1002" name="ConsoleRulesTests" fullname="ConsoleRulesTests" classname="ConsoleRulesTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.050023" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1013" name="ControllerLost_PausesAndReplacesTheReason_OnlyMenuResumes" fullname="ConsoleRulesTests.ControllerLost_PausesAndReplacesTheReason_OnlyMenuResumes" methodname="ControllerLost_PausesAndReplacesTheReason_OnlyMenuResumes" classname="ConsoleRulesTests" runstate="Runnable" seed="1945788154" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.018204" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-suite type="ParameterizedMethod" id="1009" name="DeviceChange_PausesOnlyWhenAGamepadIsLost" fullname="ConsoleRulesTests.DeviceChange_PausesOnlyWhenAGamepadIsLost" classname="ConsoleRulesTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.005748" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1004" name="DeviceChange_PausesOnlyWhenAGamepadIsLost(True,Removed,True)" fullname="ConsoleRulesTests.DeviceChange_PausesOnlyWhenAGamepadIsLost(True,Removed,True)" methodname="DeviceChange_PausesOnlyWhenAGamepadIsLost" classname="ConsoleRulesTests" runstate="Runnable" seed="2075269659" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.001196" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1005" name="DeviceChange_PausesOnlyWhenAGamepadIsLost(True,Disconnected,True)" fullname="ConsoleRulesTests.DeviceChange_PausesOnlyWhenAGamepadIsLost(True,Disconnected,True)" methodname="DeviceChange_PausesOnlyWhenAGamepadIsLost" classname="ConsoleRulesTests" runstate="Runnable" seed="1079756614" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.000253" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1006" name="DeviceChange_PausesOnlyWhenAGamepadIsLost(True,Added,False)" fullname="ConsoleRulesTests.DeviceChange_PausesOnlyWhenAGamepadIsLost(True,Added,False)" methodname="DeviceChange_PausesOnlyWhenAGamepadIsLost" classname="ConsoleRulesTests" runstate="Runnable" seed="1941722480" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.000176" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1007" name="DeviceChange_PausesOnlyWhenAGamepadIsLost(True,Reconnected,False)" fullname="ConsoleRulesTests.DeviceChange_PausesOnlyWhenAGamepadIsLost(True,Reconnected,False)" methodname="DeviceChange_PausesOnlyWhenAGamepadIsLost" classname="ConsoleRulesTests" runstate="Runnable" seed="2071098119" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.000152" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1008" name="DeviceChange_PausesOnlyWhenAGamepadIsLost(False,Removed,False)" fullname="ConsoleRulesTests.DeviceChange_PausesOnlyWhenAGamepadIsLost(False,Removed,False)" methodname="DeviceChange_PausesOnlyWhenAGamepadIsLost" classname="ConsoleRulesTests" runstate="Runnable" seed="2010396767" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.000138" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-case id="1012" name="Menu_PausesOnlyDuringGameplay_AndResumes" fullname="ConsoleRulesTests.Menu_PausesOnlyDuringGameplay_AndResumes" methodname="Menu_PausesOnlyDuringGameplay_AndResumes" classname="ConsoleRulesTests" runstate="Runnable" seed="1300615510" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.000366" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1011" name="MinFontSize_Reaches26pxAt1080" fullname="ConsoleRulesTests.MinFontSize_Reaches26pxAt1080" methodname="MinFontSize_Reaches26pxAt1080" classname="ConsoleRulesTests" runstate="Runnable" seed="97215554" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.003919" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1003" name="QuitMethod_IsDetected" fullname="ConsoleRulesTests.QuitMethod_IsDetected" methodname="QuitMethod_IsDetected" classname="ConsoleRulesTests" runstate="Runnable" seed="1867095827" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.000384" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1010" name="ScaleWithScreenSize_MatchesReferenceAndDoubles" fullname="ConsoleRulesTests.ScaleWithScreenSize_MatchesReferenceAndDoubles" methodname="ScaleWithScreenSize_MatchesReferenceAndDoubles" classname="ConsoleRulesTests" runstate="Runnable" seed="782107410" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.001226" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1014" name="GameSessionTests" fullname="GameSessionTests" classname="GameSessionTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.006180" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1016" name="LoseLife_SubtractsOne" fullname="GameSessionTests.LoseLife_SubtractsOne" methodname="LoseLife_SubtractsOne" classname="GameSessionTests" runstate="Runnable" seed="1974555136" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.002644" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1017" name="LosingAllLives_IsGameOver_AndNeverNegative" fullname="GameSessionTests.LosingAllLives_IsGameOver_AndNeverNegative" methodname="LosingAllLives_IsGameOver_AndNeverNegative" classname="GameSessionTests" runstate="Runnable" seed="1851437734" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.000679" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1018" name="NewGame_AfterGameOver_RestoresLives" fullname="GameSessionTests.NewGame_AfterGameOver_RestoresLives" methodname="NewGame_AfterGameOver_RestoresLives" classname="GameSessionTests" runstate="Runnable" seed="753957788" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.000333" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1015" name="NewGame_StartsWithThreeLives" fullname="GameSessionTests.NewGame_StartsWithThreeLives" methodname="NewGame_StartsWithThreeLives" classname="GameSessionTests" runstate="Runnable" seed="1222617793" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.000240" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1019" name="Level2LayoutTests" fullname="Level2LayoutTests" classname="Level2LayoutTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:49:01Z" duration="2.411694" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1020" name="BuildSettings_HaveMenuLevelAndLevel2" fullname="Level2LayoutTests.BuildSettings_HaveMenuLevelAndLevel2" methodname="BuildSettings_HaveMenuLevelAndLevel2" classname="Level2LayoutTests" runstate="Runnable" seed="475963846" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:48:59Z" duration="0.002077" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1021" name="Level2_HasMoreAndWiderPitsThanLevel1_ButJumpable" fullname="Level2LayoutTests.Level2_HasMoreAndWiderPitsThanLevel1_ButJumpable" methodname="Level2_HasMoreAndWiderPitsThanLevel1_ButJumpable" classname="Level2LayoutTests" runstate="Runnable" seed="1080828129" result="Passed" start-time="2026-10-26 15:48:59Z" end-time="2026-10-26 15:49:00Z" duration="1.258027" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1022" name="Level2_HasThreePatrollingEnemiesTaggedKillzone" fullname="Level2LayoutTests.Level2_HasThreePatrollingEnemiesTaggedKillzone" methodname="Level2_HasThreePatrollingEnemiesTaggedKillzone" classname="Level2LayoutTests" runstate="Runnable" seed="2001372367" result="Passed" start-time="2026-10-26 15:49:00Z" end-time="2026-10-26 15:49:01Z" duration="0.462936" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-suite type="ParameterizedMethod" id="1025" name="Levels_HaveAudioWithClips_AndLivesHud" fullname="Level2LayoutTests.Levels_HaveAudioWithClips_AndLivesHud" classname="Level2LayoutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 15:49:01Z" end-time="2026-10-26 15:49:01Z" duration="0.686853" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1023" name="Levels_HaveAudioWithClips_AndLivesHud(&quot;Assets/Scenes/Level.unity&quot;)" fullname="Level2LayoutTests.Levels_HaveAudioWithClips_AndLivesHud(&quot;Assets/Scenes/Level.unity&quot;)" methodname="Levels_HaveAudioWithClips_AndLivesHud" classname="Level2LayoutTests" runstate="Runnable" seed="1829497210" result="Passed" start-time="2026-10-26 15:49:01Z" end-time="2026-10-26 15:49:01Z" duration="0.288346" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1024" name="Levels_HaveAudioWithClips_AndLivesHud(&quot;Assets/Scenes/Level2.unity&quot;)" fullname="Level2LayoutTests.Levels_HaveAudioWithClips_AndLivesHud(&quot;Assets/Scenes/Level2.unity&quot;)" methodname="Levels_HaveAudioWithClips_AndLivesHud" classname="Level2LayoutTests" runstate="Runnable" seed="88730297" result="Passed" start-time="2026-10-26 15:49:01Z" end-time="2026-10-26 15:49:01Z" duration="0.271074" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+      </test-suite>
+      <test-suite type="TestFixture" id="1026" name="MobileConfigTests" fullname="MobileConfigTests" classname="MobileConfigTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-26 15:49:01Z" end-time="2026-10-26 15:49:03Z" duration="1.083063" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1027" name="ActiveInputHandling_IsInputSystemOnly" fullname="MobileConfigTests.ActiveInputHandling_IsInputSystemOnly" methodname="ActiveInputHandling_IsInputSystemOnly" classname="MobileConfigTests" runstate="Runnable" seed="14647677" result="Passed" start-time="2026-10-26 15:49:01Z" end-time="2026-10-26 15:49:01Z" duration="0.000843" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1029" name="AndroidApplicationIdentifier_IsValid" fullname="MobileConfigTests.AndroidApplicationIdentifier_IsValid" methodname="AndroidApplicationIdentifier_IsValid" classname="MobileConfigTests" runstate="Runnable" seed="806454581" result="Passed" start-time="2026-10-26 15:49:01Z" end-time="2026-10-26 15:49:01Z" duration="0.004158" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1033" name="Level_HasThreeOnScreenButtons_AndWiredAdapter" fullname="MobileConfigTests.Level_HasThreeOnScreenButtons_AndWiredAdapter" methodname="Level_HasThreeOnScreenButtons_AndWiredAdapter" classname="MobileConfigTests" runstate="Runnable" seed="1030034988" result="Passed" start-time="2026-10-26 15:49:01Z" end-time="2026-10-26 15:49:02Z" duration="0.470266" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1028" name="Orientation_IsLandscapeOnly" fullname="MobileConfigTests.Orientation_IsLandscapeOnly" methodname="Orientation_IsLandscapeOnly" classname="MobileConfigTests" runstate="Runnable" seed="1664537182" result="Passed" start-time="2026-10-26 15:49:02Z" end-time="2026-10-26 15:49:02Z" duration="0.001121" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-suite type="ParameterizedMethod" id="1032" name="Scenes_UseInputSystemUIModule" fullname="MobileConfigTests.Scenes_UseInputSystemUIModule" classname="MobileConfigTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 15:49:02Z" end-time="2026-10-26 15:49:03Z" duration="0.602081" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1030" name="Scenes_UseInputSystemUIModule(&quot;Assets/Scenes/Menu.unity&quot;)" fullname="MobileConfigTests.Scenes_UseInputSystemUIModule(&quot;Assets/Scenes/Menu.unity&quot;)" methodname="Scenes_UseInputSystemUIModule" classname="MobileConfigTests" runstate="Runnable" seed="687950305" result="Passed" start-time="2026-10-26 15:49:02Z" end-time="2026-10-26 15:49:02Z" duration="0.302400" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1031" name="Scenes_UseInputSystemUIModule(&quot;Assets/Scenes/Level.unity&quot;)" fullname="MobileConfigTests.Scenes_UseInputSystemUIModule(&quot;Assets/Scenes/Level.unity&quot;)" methodname="Scenes_UseInputSystemUIModule" classname="MobileConfigTests" runstate="Runnable" seed="674149868" result="Passed" start-time="2026-10-26 15:49:02Z" end-time="2026-10-26 15:49:03Z" duration="0.296717" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+            <output><![CDATA[Saving results to: C:/Users/Hilarion/AppData/LocalLow/DefaultCompany/2D platformer v2\TestResults.xml
+]]></output>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

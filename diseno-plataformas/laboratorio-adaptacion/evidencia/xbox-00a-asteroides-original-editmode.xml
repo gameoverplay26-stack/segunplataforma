@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 15:55:49Z" end-time="2026-10-26 15:55:50Z" duration="0,0468675">
+  <test-suite type="TestSuite" id="1000" name="UnityUnitTestingTutorial" fullname="UnityUnitTestingTutorial" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-26 15:55:49Z" end-time="2026-10-26 15:55:50Z" duration="0.046868" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1006" name="EditModeTests.dll" fullname="C:/Developer/unity/2026/clases-en-vivo/proyectos-unity/Asteroides/asteroide-final/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-26 15:55:49Z" end-time="2026-10-26 15:55:50Z" duration="0.037840" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="31852" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestFixture" id="1001" name="AndroidBuildConfigTests" fullname="AndroidBuildConfigTests" classname="AndroidBuildConfigTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-26 15:55:49Z" end-time="2026-10-26 15:55:50Z" duration="0.036118" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-case id="1004" name="ApiMinima_EsAlMenos25" fullname="AndroidBuildConfigTests.ApiMinima_EsAlMenos25" methodname="ApiMinima_EsAlMenos25" classname="AndroidBuildConfigTests" runstate="Runnable" seed="1189385310" result="Passed" start-time="2026-10-26 15:55:49Z" end-time="2026-10-26 15:55:50Z" duration="0.009301" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1003" name="Arquitecturas_IncluyenARM64" fullname="AndroidBuildConfigTests.Arquitecturas_IncluyenARM64" methodname="Arquitecturas_IncluyenARM64" classname="AndroidBuildConfigTests" runstate="Runnable" seed="1709688393" result="Failed" start-time="2026-10-26 15:55:50Z" end-time="2026-10-26 15:55:50Z" duration="0.002642" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+            <stack-trace><![CDATA[at AndroidBuildConfigTests.Arquitecturas_IncluyenARM64 () [0x00007] in C:\Developer\unity\2026\clases-en-vivo\proyectos-unity\Asteroides\asteroide-final\Assets\Tests\EditMode\AndroidBuildConfigTests.cs:25
+]]></stack-trace>
+          </failure>
+        </test-case>
+        <test-case id="1005" name="Build_GeneraApkYNoAab" fullname="AndroidBuildConfigTests.Build_GeneraApkYNoAab" methodname="Build_GeneraApkYNoAab" classname="AndroidBuildConfigTests" runstate="Runnable" seed="743344530" result="Passed" start-time="2026-10-26 15:55:50Z" end-time="2026-10-26 15:55:50Z" duration="0.000671" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1002" name="ScriptingBackend_EsIL2CPP" fullname="AndroidBuildConfigTests.ScriptingBackend_EsIL2CPP" methodname="ScriptingBackend_EsIL2CPP" classname="AndroidBuildConfigTests" runstate="Runnable" seed="160572869" result="Failed" start-time="2026-10-26 15:55:50Z" end-time="2026-10-26 15:55:50Z" duration="0.004553" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[  Expected: IL2CPP
+  But was:  Mono2x
+]]></message>
+            <stack-trace><![CDATA[at AndroidBuildConfigTests.ScriptingBackend_EsIL2CPP () [0x0000c] in C:\Developer\unity\2026\clases-en-vivo\proyectos-unity\Asteroides\asteroide-final\Assets\Tests\EditMode\AndroidBuildConfigTests.cs:17
+]]></stack-trace>
+          </failure>
+          <output><![CDATA[NullReferenceException: Object reference not set to an instance of an object
+UnityEditor.TestTools.CodeCoverage.Utils.CoverageUtils.GetFilteringLogParams (UnityEditor.TestTools.CodeCoverage.AssemblyFiltering assemblyFiltering, UnityEditor.TestTools.CodeCoverage.PathFiltering pathFiltering, System.String[] otherParams) (at ./Library/PackageCache/com.unity.testtools.codecoverage@19a841221620/Editor/Utils/CoverageUtils.cs:320)
+UnityEditor.TestTools.CodeCoverage.OpenCover.OpenCoverReporter.OutputVisitedCoverageReport (System.Boolean clearProgressBar, System.Boolean logNoCoverageResultsSavedWarning, UnityEditor.TestTools.TestRunner.Api.ITestAdaptor testData) (at ./Library/PackageCache/com.unity.testtools.codecoverage@19a841221620/Editor/CoverageFormats/OpenCover/OpenCoverReporter.cs:208)
+UnityEditor.TestTools.CodeCoverage.OpenCover.OpenCoverReporter.OnRunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor testResults) (at ./Library/PackageCache/com.unity.testtools.codecoverage@19a841221620/Editor/CoverageFormats/OpenCover/OpenCoverReporter.cs:131)
+UnityEditor.TestTools.CodeCoverage.CoverageReporterListener.RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor result) (at ./Library/PackageCache/com.unity.testtools.codecoverage@19a841221620/Editor/CoverageReporterListener.cs:59)
+UnityEditor.TestTools.TestRunner.Api.CallbacksDelegator+<>c__DisplayClass9_0.<RunFinished>b__0 (UnityEditor.TestTools.TestRunner.Api.ICallbacks callbacks) (at ./Library/PackageCache/com.unity.test-framework@0b7a23ab2e1d/UnityEditor.TestRunner/Api/CallbacksDelegator.cs:55)
+UnityEditor.TestTools.TestRunner.Api.CallbacksDelegator.TryInvokeAllCallbacks (System.Action`1[T] callbackAction) (at ./Library/PackageCache/com.unity.test-framework@0b7a23ab2e1d/UnityEditor.TestRunner/Api/CallbacksDelegator.cs:135)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions()
+
+Saving results to: C:/Developer/unity/2026/clases-en-vivo/diseno-plataformas/laboratorio-adaptacion/evidencia/xbox-00a-asteroides-original-editmode.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

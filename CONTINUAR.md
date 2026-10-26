@@ -66,6 +66,7 @@ Los IDs de decisión no se mezclan: `D4-xx` (cátedra, en `status-unidad.md`), `
 | Unity Hub + **Unity 6000.3.11f1** | Módulos: **Android Build Support** (OpenJDK, SDK, NDK) y Windows Build Support | Abrir los proyectos, correr tests y builds. **No cambiar de versión de Unity** |
 | Inno Setup 6 (`winget install JRSoftware.InnoSetup`, por usuario) | — | Instalador de PC de los proyectos porteados |
 | Python 3 (probado con 3.12) + `pip install python-pptx==1.0.2 matplotlib` | — | Generar los `.pptx` y los gráficos de la U5 |
+| Visual Studio 2022 + carga de trabajo UWP + herramientas C++ de UWP + Windows SDK 10.0.19041 o posterior | Instalados el 2026-10-26 en la máquina de la cátedra | Paquetes UWP para la demo en Xbox (`Tools-Xbox/generar_builds_xbox.ps1`) |
 | Microsoft PowerPoint (opcional) | — | Exportar slides a PNG para revisarlas (COM desde PowerShell) |
 | Claude Code | — | Los agents y skills del repo (`.claude/agents`, `.claude/skills`) y `.claude/settings.json` viajan con git; `.claude/settings.local.json` es personal y no viaja |
 
@@ -90,7 +91,7 @@ python scripts/build_decks.py --por-clase            # además, un .pptx por sec
 
 ---
 
-## 4. Dónde quedamos (2026-10-25)
+## 4. Dónde quedamos (2026-10-26)
 
 **Cátedra, Unidad 4 (Móvil)**
 - La **Clase 1 se dio hasta la slide 15** (A4.1). Quedan **dos encuentros de 90 min** (decisión del 2026-10-13).
@@ -112,6 +113,8 @@ python scripts/build_decks.py --por-clase            # además, un .pptx por sec
 
 **Cátedra, Unidad 5 (Consolas)**
 - 2026-10-24: `unidad-05/01-desarrollo-tema-consolas.md` (PROPUESTO): consolas actuales, historia, ranking, histograma, ciclo de vida, regiones, precios 2026 y decisiones de diseño. Gráficos: `python scripts/graficos_consolas.py` (requiere `matplotlib`). Slides de la Clase 1 + anexo: `unidad-05/Unidad-5-2026-completa.pptx` (24 slides), fuente `04-diapositivas.md`, generar con `python scripts/graficos_consolas.py --slides` y `python scripts/build_decks.py` (`--version N` para no pisar). Falta: el resto de la unidad (certificación, mandos, multijugador, optimización).
+- **2026-10-26, estado relevado:** teoría `01` PROPUESTA; slides solo de la Clase 1; 2 actividades en clase; **TP 4 inexistente**; F3–F8 y F10 sin iniciar.
+- **Demo en Xbox (DEC-LAB-008 resuelta):** Xbox Series X de la docente en **Developer Mode** + paquetes UWP instalados por Device Portal (sin tienda ni nube). Cuatro paquetes: Asteroides y Platformer **originales** (sin cambios de gameplay) y **de consola** (copias `proyectos-unity/Asteroides-Xbox/` y `2D-Platformer-Xbox/` con la capa `Assets/Scripts/Console/`). Script `proyectos-unity/Tools-Xbox/generar_builds_xbox.ps1`. Guías: `laboratorio-adaptacion/GUIA-XBOX-DOCENTE.md` (docente) y `unidad-05/06-guia-alumnos-de-pc-a-xbox.md` (alumnos). Registro y evidencia: `laboratorio-adaptacion/PORTEO-XBOX.md`. **Los 4 `.msix` se generaron el 2026-10-26** (en `Builds/Xbox-Paquete/` de cada proyecto; no se versionan). Tests de la capa en verde, sin regresiones. **Pendiente:** activar el Dev Mode en la consola y hacer la prueba (tabla del paso 8 de la guía).
 
 **Repo (2026-10-25):** `.gitignore` ampliado (estado de IDE, `CodeCoverage/Report-history/`, `/entregas/`, `/evidencias/`) y esos archivos sacados del índice. En Asteroides se versionó el Build Profile de Android y el paquete `com.unity.device-simulator.devices` 1.0.1. En el Platformer **original** se descartó la reimportación de TextMesh Pro que hizo Unity 6 al abrirlo: debe quedar en la línea base `e766f8c` (abrir solo la v2).
 

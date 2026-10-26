@@ -1,0 +1,49 @@
+# Generado por Unity, no debe versionarse
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Aa]ssets/_Recovery/
+/[Aa]ssets/_Recovery.meta
+
+# Archivos de proyecto de IDEs generados por Unity
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Archivos específicos de Unity
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+sysinfo.txt
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# Crashlytics
+crashlytics-build.properties
+
+# Packages: se versiona manifest.json y packages-lock.json, no el cache resuelto
+/[Pp]ackages/[Bb]ackup/
+
+# Reportes de Code Coverage (generados al correr los tests, no son fuente)
+/CodeCoverage/

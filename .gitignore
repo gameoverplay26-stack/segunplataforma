@@ -36,6 +36,10 @@ crashlytics-build.properties
 # Reportes de cobertura que se regeneran en cada corrida (el Report/ actual sí se versiona como evidencia)
 **/CodeCoverage/Report-history/
 
+# Certificados de prueba de los paquetes UWP para Xbox (clave privada: se regeneran con Tools-Xbox/generar_builds_xbox.ps1)
+*.pfx
+**/Certificados/
+
 # --- Proyectos de terceros / archivos locales que no se versionan ---
 proyectos-unity/Match-3-Game/
 proyectos-unity/com.unity.multiplayer.samples.coop/

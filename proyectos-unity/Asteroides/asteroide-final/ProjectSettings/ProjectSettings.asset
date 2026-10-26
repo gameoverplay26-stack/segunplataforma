@@ -791,13 +791,13 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Template_3D
+  metroPackageName: Catedra.Asteroides.Original
   metroPackageVersion: 
-  metroCertificatePath: 
+  metroCertificatePath: Certificados/xbox-prueba.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: Catedra Diseno segun Plataforma
+  metroCertificateIssuer: Catedra Diseno segun Plataforma
+  metroCertificateNotAfter: 801603623b84de01
   metroApplicationDescription: Template_3D
   wsaImages: {}
   metroTileShortName: 
@@ -815,7 +815,9 @@ PlayerSettings:
   metroSplashScreenUseBackgroundColor: 0
   syncCapabilities: 0
   platformCapabilities: {}
-  metroTargetDeviceFamilies: {}
+  metroTargetDeviceFamilies:
+    Desktop: True
+    Xbox: True
   metroFTAName: 
   metroFTAFileTypes: []
   metroProtocolName: 

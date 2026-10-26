@@ -397,6 +397,9 @@ PlayerSettings:
   - m_BuildTarget: Standalone
     m_StaticBatching: 1
     m_DynamicBatching: 0
+  - m_BuildTarget: Windows Store Apps
+    m_StaticBatching: 1
+    m_DynamicBatching: 0
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []
   m_BuildTargetGraphicsJobMode: []
@@ -720,13 +723,13 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: 2D platformer
+  metroPackageName: Catedra.Platformer.Original
   metroPackageVersion: 
-  metroCertificatePath: 
+  metroCertificatePath: Certificados/xbox-prueba.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: Catedra Diseno segun Plataforma
+  metroCertificateIssuer: Catedra Diseno segun Plataforma
+  metroCertificateNotAfter: 00f4104b3c84de01
   metroApplicationDescription: 2D platformer
   wsaImages: {}
   metroTileShortName: 
@@ -743,7 +746,9 @@ PlayerSettings:
   metroSplashScreenUseBackgroundColor: 0
   syncCapabilities: 0
   platformCapabilities: {}
-  metroTargetDeviceFamilies: {}
+  metroTargetDeviceFamilies:
+    Desktop: True
+    Xbox: True
   metroFTAName: 
   metroFTAFileTypes: []
   metroProtocolName: 

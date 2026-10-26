@@ -1,7 +1,7 @@
 # Status de unidades — Diseño según Plataformas de Juego (U4–U7)
 
 Archivo de control único. **Se actualiza al final de cada sesión de trabajo.**
-Última actualización: **2026-10-25**.
+Última actualización: **2026-10-26**.
 
 ## Reglas de trabajo vigentes
 
@@ -42,6 +42,7 @@ F1 Auditoría · F2 Investigación · F3 Correcciones · F4 Objetivos · F5 Acti
 | `diseno-plataformas/unidad-04/06-investigacion-recursos.md` | F2, F9: 61 fichas, videos, PDFs, datos, no verificados, tabla de fuentes | ✅ |
 | `diseno-plataformas/unidad-05/00-investigacion-preliminar.md` | Auditoría (15 ítems), 52 fichas, 19 videos, certificación pública vs. NDA | Insumo crudo |
 | `diseno-plataformas/unidad-05/01-desarrollo-tema-consolas.md` + `datos/` + `scripts/graficos_consolas.py` + `imagenes/` | Desarrollo del tema: categorías de consola, consolas actuales, historia, ranking, histograma, ciclo de vida, regiones, precios 2026, decisiones de diseño, errores frecuentes, uso en clase 40/60 | PROPUESTO |
+| `diseno-plataformas/unidad-05/06-guia-alumnos-de-pc-a-xbox.md` | Guía para alumnos: predecir, jugar sin mouse, comprobar en la demo de la docente en Xbox y leer la capa de consola. Procedimiento de la docente en `laboratorio-adaptacion/GUIA-XBOX-DOCENTE.md` | PROPUESTO |
 | `diseno-plataformas/unidad-06/00-investigacion-preliminar.md` | Auditoría (16 ítems), 69 fichas, 14 videos, análisis de virtualización y contenedores | Insumo crudo |
 | `diseno-plataformas/unidad-07/00-investigacion-preliminar.md` | Auditoría, 45 fichas, videos, tabla de tendencias | Insumo crudo (revisar sección C) |
 | `diseno-plataformas/transversal/auditoria-bibliografia-y-fuentes-academicas.md` | Auditoría de los 10 libros del programa, libros reales, 21 papers, 12 videos | Insumo crudo |
@@ -131,3 +132,4 @@ F1 Auditoría · F2 Investigación · F3 Correcciones · F4 Objetivos · F5 Acti
 | 2026-10-24 | Pedido del usuario: desarrollar el tema de consolas con consolas, histogramas, datos históricos y actuales. `unidad-05/01-desarrollo-tema-consolas.md` con datos verificados (Nintendo IR al 30-jun-2026, SIE Business Data, PlayStation Blog, Xbox Wire, Steam Store) y 6 gráficos generados por script (paleta dataviz). Microsoft no publica unidades de Xbox: queda fuera de los gráficos. No se hicieron slides (regla 13) |
 | 2026-10-24 | Pedido del usuario: slides del tema con el formato de la U4. Fuente `unidad-05/04-diapositivas.md`; generador `unidad-05/scripts/build_decks.py` (reutiliza el de la U4; destacado `consola:`, pie "Unidad V"). `Unidad-5-2026-completa.pptx`: Clase 1 "La consola tiene dueño" (20 slides, 90 min, teoría 36 / práctica 54) + anexo de datos (4). Gráficos para slides con `graficos_consolas.py --slides`. Revisadas exportando a PNG con PowerPoint; 24/24 notas empiezan con glosario |
 | 2026-10-25 | **Informe del usuario:** las builds de la U4 se probaron en celulares reales; se marcan hechas las tareas de prueba en teléfono (sin evidencia archivada en el repo). El TP 3 queda en pausa, y con él la defensa por video y D4-05. El Build Profile de Android de Asteroides se versionó (`cd33c42`) |
+| 2026-10-26 | **Estado de la U5 y demo en Xbox.** Estado relevado: teoría `01` PROPUESTA; slides solo de la Clase 1 (24); 2 actividades en clase; **TP 4 inexistente**; F3–F8 y F10 sin iniciar. Pedido del usuario: mostrar Asteroides y el Platformer en la Xbox Series X de la docente sin tienda ni nube → vía **Developer Mode + UWP** (DEC-LAB-008 resuelta). Versiones original y de consola, guía docente y guía de alumnos (`unidad-05/06-…`). Detalle: `laboratorio-adaptacion/PORTEO-XBOX.md` |
