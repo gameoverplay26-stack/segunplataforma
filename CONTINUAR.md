@@ -4,7 +4,7 @@ Punto de entrada para retomar el trabajo **desde cualquier computadora**. La mem
 
 **Uso:** en la otra máquina, clonar el repo, abrir Claude Code en la raíz y escribir **"continuá"**. Claude lee este archivo (lo indica `CLAUDE.md`) y el archivo de estado del frente que corresponda.
 
-- **Última actualización:** 2026-10-25
+- **Última actualización:** 2026-10-26
 - **Al cerrar cada sesión:** actualizar la sección 4 ("Dónde quedamos") y el archivo de estado del frente trabajado, y luego commit + push. Si no se pushea, la otra máquina no ve el trabajo.
 
 ---
@@ -115,7 +115,7 @@ python scripts/build_decks.py --por-clase            # además, un .pptx por sec
 
 **Repo (2026-10-25):** `.gitignore` ampliado (estado de IDE, `CodeCoverage/Report-history/`, `/entregas/`, `/evidencias/`) y esos archivos sacados del índice. En Asteroides se versionó el Build Profile de Android y el paquete `com.unity.device-simulator.devices` 1.0.1. En el Platformer **original** se descartó la reimportación de TextMesh Pro que hizo Unity 6 al abrirlo: debe quedar en la línea base `e766f8c` (abrir solo la v2).
 
-**SDD Arena (2026-10-25):** **GDD aprobado y fase 6 cerrada** (tag `etapa-02-gdd-complete`). Últimas decisiones: DEC-042 (asteroides solo por el borde superior), DEC-043 (MVP de un nivel; más niveles = futuro), DEC-044 (un asteroide por vez) y DEC-045 (caída vertical); 40 REQ. **Siguiente:** Technical Specification (READY, no iniciada; arranca con orden explícita del usuario). Ver `docs/SDD-STATUS.md`.
+**SDD Arena (2026-10-26):** GDD (fase 6) y **Technical Specification (fase 7) cerradas** (tags `etapa-02-gdd-complete` y `etapa-03-technical-specification-complete`). Spec técnica en `docs/03-technical-specification/`: TECH-001…TECH-023; Windows, Android y WebGL; 16:9 en PC y 9:16 en Android con franjas; Input System solo teclado + táctil; URP + uGUI; balance aprobado; 7 sonidos y gráficos de Kenney (CC0, se importan en Implementation). **Siguiente:** Architecture Specification (READY, no iniciada; arranca con orden explícita del usuario). El usuario autorizó commitear al terminar cada tarea corta de la fase.
 
 ---
 
