@@ -34,9 +34,10 @@ u4.CALLOUTS = (("consola", "PARA CONSOLA", u4.TEAL),) + tuple(c for c in u4.CALL
 
 
 def footer(slide, deck, s, total):
-    """Pie de la U4 con el numero de unidad de esta (el original dice 'Unidad IV')."""
+    """Pie de la U4 con el numero de unidad de esta (el original dice 'Unidad IV').
+    Desde la v2 la unidad se organiza en bloques que se dan segun el tiempo: el pie dice 'Bloque N'."""
     tf = u4.textbox(slide, u4.MARGIN, u4.FOOTER_Y, u4.SLIDE_W - 2 * u4.MARGIN, u4.Inches(0.3), u4.MSO_ANCHOR.MIDDLE)
-    where = "Anexo" if deck["title"].startswith("Anexo") else "Clase %d" % deck["num"]
+    where = "Anexo" if deck["title"].startswith("Anexo") else "Bloque %d" % deck["num"]
     u4.run(tf.paragraphs[0], "Diseño según Plataformas de Juego · Unidad V · %s · %s" % (where, deck["title"]), 10, u4.MUTED)
     tf2 = u4.textbox(slide, u4.SLIDE_W - u4.MARGIN - u4.Inches(1), u4.FOOTER_Y, u4.Inches(1), u4.Inches(0.3), u4.MSO_ANCHOR.MIDDLE)
     p2 = tf2.paragraphs[0]
@@ -48,7 +49,7 @@ u4.footer = footer
 
 
 def build_unido(decks, out_dir, version=None):
-    """Un solo .pptx con la clase y el anexo, numeracion continua; el pie conserva la seccion."""
+    """Un solo .pptx con los bloques y los anexos, numeracion continua; el pie conserva la seccion."""
     prs = Presentation()
     prs.slide_width, prs.slide_height = u4.SLIDE_W, u4.SLIDE_H
     total = sum(len(d["slides"]) for d in decks)

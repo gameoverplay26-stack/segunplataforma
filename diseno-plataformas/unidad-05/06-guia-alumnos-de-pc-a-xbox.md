@@ -1,7 +1,7 @@
 # Guía para alumnos: de la PC a la Xbox
 
 Unidad V · Consolas · Caso guía: *Asteroides* (y el 2D Platformer como transferencia).
-Estado: **PROPUESTO**. Su peso en el TP 4 lo define la titular.
+Estado: **PROPUESTO**. Es la actividad **A5.5** (Bloque 4, slides 43 y 48 de `Unidad-5-2026-completa-v2.pptx`). Su peso en el TP 4 lo define la titular.
 
 ## El problema
 

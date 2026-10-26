@@ -13,26 +13,35 @@ El generador reutiliza el de la Unidad 4 (`unidad-04/scripts/build_decks.py`): m
 - **Anexo: datos y fuentes** (consulta, no se expone): tablas completas, ventas por ejercicio, fuentes y lo no verificado.
 - Estado: **PROPUESTO**. Certificación, mandos, accesibilidad, multijugador y optimización (investigación preliminar) se tratan más adelante en la unidad.
 
-Reparto en minutos (los minutos van en el kicker; el generador no los muestra en la slide):
+**Versión 2 (2026-10-26): unidad completa.** Pedido del usuario: terminar la Unidad 5 en **un solo archivo**, con unos **150 minutos de exposición** sin contar los prácticos, y avanzar según el tiempo. Arquitectura aprobada por el usuario el 2026-10-26: `03-arquitectura-unidad.md`. Archivo: `Unidad-5-2026-completa-v2.pptx` (`python scripts/build_decks.py --version 2`); la versión 1 no se pisa.
+- La Clase 1 pasa a ser el **Bloque 1** (todavía no se dio). Solo cambia el kicker de la portada.
+- Bloques nuevos: 2 certificación, 3 mando y TV, 4 demo en Xbox (Developer Mode), 5 multijugador y rendimiento, 6 cierre y TP 4 (PROPUESTO).
+- Anexo A (datos y fuentes, antes slides 21–24, ahora 64–67) y **Anexo B** nuevo: Xbox en Developer Mode, paso a paso (68–74), resumen de `../laboratorio-adaptacion/GUIA-XBOX-DOCENTE.md`.
+- El pie dice "Bloque N" en lugar de "Clase N": los bloques se dan según el tiempo, no son encuentros fijos.
 
-| Bloque | Slides | Minutos | Tipo |
+Reparto en minutos (los minutos van en el kicker; el generador no los muestra en la slide). La exposición incluye apertura, teoría y la demo de la docente:
+
+| Bloque | Slides | Exposición | Práctica (aparte) |
 |---|---|---|---|
-| Apertura | 2 | 8 | Teoría |
-| La consola como plataforma | 3–6 | 14 | Teoría |
-| Historia y datos | 7–14 | 14 | Teoría |
-| Actividad 1: leer los gráficos | 15 | 20 | Práctica |
-| De los datos a las decisiones + Actividad 2 | 16–17 | 26 | Práctica |
-| Puesta en común, límites, errores y cierre | 18–20 | 8 | Práctica |
-| **Total** | | **90** | **Teoría 36 (40 %) · Práctica 54 (60 %)** |
+| 1. La consola tiene dueño | 1–20 | 36 | 54 (A5.1, A5.2) |
+| 2. Las reglas del dueño: certificación | 21–29 | 25 | 30 (A5.3) |
+| 3. Mando y TV a tres metros | 30–38 | 25 | 30 (A5.4) |
+| 4. Asteroides llega a la Xbox | 39–48 | 25 (con demo de 10) | 25 (A5.5) |
+| 5. El modelo más débil manda | 49–59 | 30 | 30 (A5.6) |
+| 6. Cierre de la unidad y TP 4 | 60–63 | 9 | — |
+| Anexos A y B (consulta, no se exponen) | 64–74 | — | — |
+| **Total** | **74** | **150** | **169** |
+
+Con 150 minutos de exposición, el 40/60 pediría unos 225 de práctica. Las actividades suman 169, y cada una indica si se puede pasar a tarea.
 
 ---
 
-# DECK 1 | La consola tiene dueño | Unidad V · Clase 1
+# DECK 1 | La consola tiene dueño | Unidad V · Bloque 1
 
 ## 1 | Diseño según Plataforma: Consolas
 tipo: portada
-kicker: UNIDAD V · CLASE 1
-- La consola tiene dueño
+kicker: UNIDAD V · BLOQUE 1
+- Bloque 1: La consola tiene dueño
 - Diseño según Plataformas de Juego · Ing. Elsa Daniela Ramírez · FI – UNJu · 2026
 notas:
 Glosario (conceptos cortos para la docente):
@@ -451,9 +460,811 @@ Síntesis en tres ideas:
 Más adelante en la unidad: los requisitos públicos de certificación de Microsoft, los mandos (Input System, remapeo, glifos), accesibilidad, multijugador local y optimización.
 Para la próxima: traer la matriz de la Actividad 2 terminada; se usa como punto de partida.
 
-# DECK 2 | Anexo: datos y fuentes | Unidad V · Anexo de consulta
+# DECK 2 | Las reglas del dueño: certificación | Unidad V · Bloque 2
 
-## 21 | Ventas de vida: tabla completa
+## 21 | Diseño según Plataforma: Consolas
+tipo: portada
+kicker: UNIDAD V · BLOQUE 2
+- Bloque 2: Las reglas del dueño, certificación
+- Diseño según Plataformas de Juego · Ing. Elsa Daniela Ramírez · FI – UNJu · 2026
+notas:
+Glosario (conceptos cortos para la docente):
+• Certificación: revisión técnica que hace el fabricante antes de dejar publicar un juego o un parche.
+• Requisito: condición que el juego debe cumplir para que el fabricante lo acepte.
+Bloque de 25 minutos de exposición más la actividad A5.3 (30 minutos, en clase o de tarea).
+Idea fuerza: en consola, "terminado" no lo decide el equipo sino el fabricante. Hay requisitos escritos y pruebas que el juego tiene que pasar.
+Rigor: de los tres fabricantes, solo Microsoft publica sus requisitos y sus casos de prueba. De Sony y Nintendo se enseñan únicamente los pasos públicos del alta. No describir TRC ni Lotcheck: están bajo NDA y lo que circula son rumores.
+
+## 22 | ¿Lo publicamos?
+tipo: contenido
+kicker: APERTURA · 3 MIN
+- Asteroides ya se juega con mando
+- Lo enviamos a la tienda
+- Vuelve rechazado
+- ¿Qué pidió el fabricante?
+pregunta: ¿Quién decide que el juego está terminado?
+notas:
+Glosario (conceptos cortos para la docente):
+• Tienda: el único canal de venta de la consola (Microsoft Store en Xbox, PlayStation Store, Nintendo eShop).
+• Rechazo de certificación: devolución del juego con la lista de requisitos que no cumple.
+Relato: "Llevamos Asteroides a consola con la matriz del bloque anterior. Funciona con mando. Lo enviamos y vuelve rechazado".
+Dejar que propongan motivos durante 2 minutos y anotarlos. Respuestas esperadas: se cuelga, no se puede usar sin mouse, no pausa si se desconecta el mando, textos chicos, nombres de botones incorrectos.
+Cerrar: varias de esas intuiciones son requisitos escritos. Microsoft los publica y los vamos a leer.
+
+## 23 | Cómo se entra a una consola
+tipo: contenido
+kicker: CERTIFICACIÓN · 4 MIN
+| Fabricante | Paso público | Bajo NDA |
+| Microsoft | ID@Xbox: mayor de 18, NDA | GDK para consola |
+| Sony | PlayStation Partners + GDPA | Requisitos (TRC) |
+| Nintendo | Registro, NDA, revisión | Guías (Lotcheck) |
+| Unity | Pro o clave del fabricante | — |
+fuente: Microsoft Game Dev, Publish (ID@Xbox); microsoft/GDK; SIE, Showing your Game to PlayStation; Nintendo Developer Portal, The Process; Unity, Console development
+notas:
+Glosario (conceptos cortos para la docente):
+• NDA: acuerdo de confidencialidad.
+• GDK: Game Development Kit de Microsoft. Es público para PC desde julio de 2021; la versión para consolas (GDKX) es solo para socios licenciados.
+• GDPA: Global Developer and Publisher Agreement, el contrato de Sony que da acceso a las herramientas.
+• TRC y Lotcheck: nombres de los requisitos y la revisión de Sony y de Nintendo. No son públicos.
+Desarrollo de cada fila (todo verificado en fuentes oficiales):
+- Microsoft (ID@Xbox): ser mayor de 18 años, firmar un NDA, estar en un país donde Microsoft opere. El GDK está en GitHub desde julio de 2021, pero el que compila para consola es solo para socios.
+- Sony: registro en PlayStation Partners con un plan de proyecto; después de la aprobación y la firma del GDPA se accede a herramientas y documentación. Desde 2022, Sony presta un dev kit y un test kit a socios nuevos aprobados (a devolver en dos años).
+- Nintendo: registro (mayoría de edad), aceptar NDA y términos, formulario de acceso a Switch; para publicar: acuerdo de publicación, clasificación por edad y "submit your game for review by Nintendo".
+- Unity: para compilar a plataformas cerradas hace falta Unity Pro activo o una clave de plataforma que entrega el fabricante, más la aprobación de cada fabricante. No citar precios de Unity Pro (no verificados).
+Error a evitar: decir que el GDK "se liberó en 2024". Fue en 2021, y solo para PC.
+
+## 24 | Qué es público y qué no
+tipo: contenido
+kicker: CERTIFICACIÓN · 3 MIN
+| Qué | Xbox | PlayStation | Nintendo |
+| Requisitos completos | Público | NDA | NDA |
+| Casos de prueba | Público | NDA | NDA |
+| Terminología | Pública (parte NDA) | NDA | NDA |
+| Pasos de alta | Públicos | Públicos | Públicos |
+consola: Solo Xbox deja leer el reglamento antes de firmar
+fuente: Microsoft, XBOX Requirements v16.4 y Test Cases (Microsoft Learn); 00-investigacion-preliminar.md, sección F
+notas:
+Glosario (conceptos cortos para la docente):
+• XR (Xbox Requirements): requisitos que un juego debe cumplir para publicarse en Xbox. Versión 16.4, septiembre de 2026.
+• Caso de prueba: procedimiento paso a paso que usa el fabricante para comprobar un requisito.
+Desarrollo:
+- Microsoft publica en Microsoft Learn el texto completo de los XR y sus casos de prueba, sin pedir cuenta. Es el único corpus oficial abierto de certificación de consola.
+- Aun en Xbox hay partes reservadas: la lista de requisitos de terminología enlaza a una "Forbidden Terms List" marcada como tema bajo NDA. Es la prueba de que existe esa frontera.
+- Sony y Nintendo publican cómo darse de alta, no qué revisan.
+- Por eso en la materia usamos los XR como modelo de lo que pide un fabricante. No suponer que Sony y Nintendo piden exactamente lo mismo.
+Dato que cambió en 2026: el XR-017 (clasificación por edad) se eliminó de los XR en agosto de 2026; según Microsoft, la clasificación se sigue validando al enviar el juego. No enseñarlo como requisito vigente.
+
+## 25 | Obligatorio y recomendado
+tipo: contenido
+kicker: CERTIFICACIÓN · 3 MIN
+comparacion: +XR (requisitos): Obligatorios, Se certifican // Sin cumplirlos, no se publica | XAG (accesibilidad): Recomendadas, Buenas prácticas // No son una lista de control
+panel: ancho
+fuente: Microsoft, XBOX Requirements v16.4; Microsoft, Xbox Accessibility Guidelines (índice)
+notas:
+Glosario (conceptos cortos para la docente):
+• XAG (Xbox Accessibility Guidelines): guías de accesibilidad de Microsoft para juegos.
+• Accesibilidad: que el juego pueda jugarlo la mayor cantidad posible de personas, incluidas personas con discapacidad.
+Dos capas que se confunden seguido:
+- Los XR son la condición para publicar: el juego se certifica contra ellos.
+- Las XAG son buenas prácticas. Microsoft aclara que no están pensadas como una lista de control de cumplimiento.
+- Algunas ideas aparecen en las dos capas: el XR-003 exige que el juego sea navegable con mando, y la XAG 112 recomienda que toda la UI se pueda recorrer solo con entrada digital.
+Error frecuente: "si cumplo las XAG, certifico" o "la accesibilidad es un requisito de certificación". Son cosas distintas: la accesibilidad es una decisión de diseño que se toma igual.
+
+## 26 | Seis requisitos que tocan a Asteroides
+tipo: contenido
+kicker: CERTIFICACIÓN · 5 MIN
+| XR | Qué pide |
+| 003 | Todo navegable con mando |
+| 112 | Al reanudar, revisar usuario y mando |
+| 115 | Mando quitado: pedir otro |
+| 130 | Mismos modos en toda la generación |
+| 022 | Nombres oficiales de botones |
+| 074 | Avisar si se pierde la conexión |
+consola: El XR-003 solo ya deja fuera al Asteroides original
+fuente: Microsoft, XBOX Requirements for XBOX Games v16.4 (XR-003, XR-022, XR-074, XR-112, XR-115, XR-130)
+notas:
+Glosario (conceptos cortos para la docente):
+• Suspender y reanudar: la consola congela el juego cuando el jugador sale al menú del sistema, y lo retoma después.
+• Mando activo: el que está usando el jugador en ese momento.
+• Generación: la familia de consolas de una época (Series S y Series X son la misma generación).
+Desarrollo de cada fila:
+- XR-003 (calidad): "On consoles, the game must be fully navigable with a controller". Incluye que el audio se comporte bien al conectar o desconectar auriculares.
+- XR-112: al reanudar después de suspender, el juego tiene que validar el par usuario-mando (el jugador puede haber cambiado de perfil).
+- XR-115: si se quita el mando activo, el juego tiene que permitir establecer un nuevo mando activo.
+- XR-130: los mismos modos de juego en todos los modelos de la generación. Por eso el modelo más débil fija el piso (lo vimos en el bloque anterior).
+- XR-022: usar la terminología oficial: "Menu button", "View button", "XBOX button", "LB". Nada de "Start" ni "Select".
+- XR-074: avisar al jugador si se pierde la conectividad. Asteroides no usa red: N/A, pero hay que decirlo.
+Pregunta rápida: ¿cuáles de estos cumple hoy el Asteroides original? Respuesta esperada: ninguno de los cuatro primeros. El menú depende del mouse y no hay pausa.
+
+## 27 | Un caso de prueba público
+tipo: contenido
+kicker: CERTIFICACIÓN · 3 MIN
+flujo: Jugando | Se sacan las pilas del mando | El juego avisa | Se conecta otro mando | La partida sigue || Caso 115-02: pasa si el juego pide un nuevo mando activo
+panel: ancho
+fuente: Microsoft, XBOX Requirements and Test Cases (casos 115-02 y 112-08)
+notas:
+Glosario (conceptos cortos para la docente):
+• Caso de prueba: procedimiento paso a paso para comprobar un requisito, con un criterio claro de "pasa" o "no pasa".
+Desarrollo:
+- El caso 115-02 retira las pilas del mando en distintos momentos del juego (menú, partida, carga). Pasa si "the user is prompted to re-establish a new active controller".
+- Otro caso público, el 112-08: suspender el juego 10 minutos, cambiar del perfil A al perfil B y reanudar.
+- Estos casos sirven como plantilla del plan de pruebas del TP 4: precondición, pasos, resultado esperado.
+- En el aula se pueden ejecutar con un mando en la PC, salvo lo que depende del sistema de la consola (suspender, perfiles), que queda como UNKNOWN o se prueba en la demo en Xbox.
+
+## 28 | Del registro a la tienda
+tipo: contenido
+kicker: CERTIFICACIÓN · 4 MIN
+flujo: Registro y NDA | Kit de desarrollo | Desarrollo | Clasificación por edad | Certificación | Tienda | Parches, también certificados
+panel: ancho
+fuente: Nintendo, The Process; SIE, Showing your Game to PlayStation; IARC (globalratings.com); PEGI; ESRB
+notas:
+Glosario (conceptos cortos para la docente):
+• Clasificación por edad: etiqueta que indica para qué edades es apto el juego (PEGI en Europa, ESRB en América del Norte).
+• IARC: sistema internacional de clasificación para juegos digitales. Es gratuito para el desarrollador.
+• Parche: actualización de un juego ya publicado.
+Recorrido genérico, armado con lo que publican los tres fabricantes:
+1. Registro y NDA (ver la slide 23).
+2. Kit de desarrollo: Sony los presta a socios nuevos; las condiciones de Microsoft y Nintendo no son públicas.
+3. Desarrollo con el SDK del fabricante.
+4. Clasificación por edad: Nintendo la pide explícitamente antes de enviar. Lo que se diseña cambia la etiqueta: PEGI tiene descriptores como "In-game purchases" y "Unrestricted communication"; la ESRB informa "interactive elements" como compras o interacción entre usuarios.
+5. Certificación: el fabricante prueba el juego contra sus requisitos.
+6. Material de tienda y lanzamiento. Nintendo permite autopublicar en su eShop, con precio y fecha decididos por el desarrollador.
+7. Parches: también se certifican. Un error que en PC se arregla en una hora, en consola puede tardar días.
+Consecuencia de diseño: el chat libre, el contenido generado por usuarios y las compras dentro del juego cambian la clasificación y suman requisitos (privacidad y comunicación). Diseñar eso cuesta más que programarlo.
+
+## 29 | Actividad A5.3: auditar Asteroides
+tipo: actividad
+kicker: ACTIVIDAD · 30 MIN · GRUPOS DE 3 · O TAREA
+| XR | Qué pide | Asteroides hoy (archivo:línea) | ¿Cumple? |
+| 003 | | | |
+| 112 | | | |
+| 115 | | | |
+| 130 | | | |
+| 022 | | | |
+| 074 | | | |
+actividad: Evidencia en el código + 2 casos de prueba como el 115-02
+notas:
+Glosario (conceptos cortos para la docente):
+• Evidencia: el archivo y la línea que demuestran por qué se cumple o no un requisito.
+• N/A: no aplica, con el motivo escrito.
+Consigna completa (25 min de trabajo + 5 de puesta en común):
+1. Abrir `proyectos-unity/Asteroides/asteroide-final` (la versión original).
+2. Para cada XR, completar qué pide (slide 26), qué hace hoy el juego con archivo y línea, y el estado: cumple, no cumple o N/A con motivo.
+3. Escribir dos casos de prueba con el formato del 115-02: precondición, pasos y resultado esperado.
+Respuestas esperadas:
+- 003: no cumple. El botón Start no se puede apretar con mando: el EventSystem del prefab Game usa el StandaloneInputModule y no hay botón con foco inicial.
+- 112 y 115: no cumple. No hay pausa ni reacción a la desconexión del mando (no hay OnApplicationPause ni onDeviceChange).
+- 130: N/A en PC. En consola, cumple si el juego tiene un solo modo y lo ofrece en todos los modelos.
+- 022: N/A hoy (no hay textos de botones); se vuelve obligatorio cuando se agregue la ayuda de controles.
+- 074: N/A: el juego no usa red.
+Si el tiempo no alcanza: pasa a tarea y es la base del checklist del TP 4.
+
+# DECK 3 | Mando y TV a tres metros | Unidad V · Bloque 3
+
+## 30 | Diseño según Plataforma: Consolas
+tipo: portada
+kicker: UNIDAD V · BLOQUE 3
+- Bloque 3: Mando y TV a tres metros
+- Diseño según Plataformas de Juego · Ing. Elsa Daniela Ramírez · FI – UNJu · 2026
+notas:
+Glosario (conceptos cortos para la docente):
+• Experiencia de 10 pies: diseño de interfaz pensado para una pantalla a unos tres metros, que se usa con mando desde un sillón.
+Bloque de 25 minutos de exposición más la actividad A5.4 (30 minutos, en clase o de tarea).
+Idea fuerza: el mando no es "otro teclado". Cambia cómo se navega, qué se ve a distancia y quién puede jugar.
+Continuidad: en el porteo a móvil separamos la intención del dispositivo. Acá la misma idea sirve para el mando, el remapeo y los mandos adaptados.
+
+## 31 | Sin mouse, a tres metros
+tipo: contenido
+kicker: APERTURA · 3 MIN
+- Sillón a tres metros
+- Solo un mando en la mano
+- Asteroides pide "Start"
+- ¿Cómo lo apretás?
+pregunta: ¿Qué parte de Asteroides depende del mouse?
+notas:
+Glosario (conceptos cortos para la docente):
+• Foco: el elemento de la interfaz que está seleccionado y responde al botón de confirmar.
+Relato: "Conectamos Asteroides a la TV, le damos un mando a alguien en el sillón. La nave ya se mueve con el stick, porque en el porteo a móvil le agregamos el Input System. Pero en la pantalla de inicio hay un botón Start y nadie lo puede apretar".
+Respuesta esperada: el menú. El gameplay ya está desacoplado del dispositivo; la interfaz no.
+Dato del código (verificado): el prefab Game de Asteroides trae un EventSystem con StandaloneInputModule (el módulo del Input Manager antiguo) y ningún botón tiene el foco al arrancar.
+
+## 32 | Acción, no botón
+tipo: contenido
+kicker: MANDO · 5 MIN
+diagrama: Dispositivo: Teclado, Mando, Táctil, Mando adaptado | Acción: Mover, Disparar, Pausa, Confirmar | Juego: Nave, Menús || El remapeo cambia la flecha de abajo, no el juego
+- Acciones: qué quiere el jugador
+- Bindings: con qué control
+- Esquemas: teclado, mando, táctil
+fuente: Unity, Input System, Input Bindings (control schemes, rebinding)
+notas:
+Glosario (conceptos cortos para la docente):
+• Acción (Input Action): algo que el jugador quiere hacer, con nombre propio (Mover, Disparar).
+• Binding: la asociación entre una acción y un control concreto (barra espaciadora, botón A).
+• Esquema de control (Control Scheme): grupo de bindings para un tipo de dispositivo (teclado y mouse, mando, táctil).
+• Mando adaptado: control diseñado para personas con discapacidad motriz (Xbox Adaptive Controller, Access Controller de PS5).
+Desarrollo:
+- Es la misma idea de capas del porteo a móvil, con un nombre técnico: acciones y bindings del Input System.
+- Los esquemas de control usan grupos de bindings para asignar las acciones a distintos tipos de dispositivo.
+- Si el juego trabaja con acciones, agregar un mando o permitir el remapeo no toca la nave: solo cambia la flecha entre dispositivo y acción.
+- En Asteroides, ShipInputAdapter ya define Mover y Disparar con teclado y mando. Falta lo mismo para los menús y para la pausa.
+
+## 33 | Remapear es accesibilidad
+tipo: contenido
+kicker: MANDO · 3 MIN
+- Cada jugador elige sus botones
+- Se guarda entre partidas
+- Guía: nivel básico
+fuente: Game Accessibility Guidelines ("Allow controls to be remapped / reconfigured", nivel Basic); Unity, Input System (PerformInteractiveRebinding, SaveBindingOverridesAsJson)
+notas:
+Glosario (conceptos cortos para la docente):
+• Remapeo: que el jugador cambie qué botón hace cada acción.
+• Game Accessibility Guidelines: guía colaborativa de estudios, especialistas y académicos, con niveles básico, intermedio y avanzado.
+Desarrollo:
+- Las Game Accessibility Guidelines ponen "permitir remapear o reconfigurar los controles" en el nivel básico de la categoría motriz: es de lo primero que se espera.
+- En el Input System: PerformInteractiveRebinding() espera a que el jugador apriete el control nuevo, y SaveBindingOverridesAsJson() / LoadBindingOverridesFromJson() lo guardan y lo recuperan.
+- El remapeo sirve a quien tiene una mano con menos movilidad, a quien usa un mando adaptado y a quien simplemente prefiere otra distribución.
+Límite: remapear no resuelve todo. Si el juego exige mantener apretados dos botones a la vez o tocarlos muy rápido, el problema es de diseño, no de mapeo.
+
+## 34 | Mandos especiales: mejora, no requisito
+tipo: contenido
+kicker: MANDO · 4 MIN
+| Mando | Lo propio | En Unity sin SDK |
+| DualSense | Gatillos adaptativos, hápticos | Luz y vibración en PC |
+| Joy-Con 2 | Sensor de mouse, HD Rumble 2 | No |
+| Xbox Adaptive | 19 entradas de 3,5 mm | Mando común |
+| Access (PS5) | 4 entradas, 30 perfiles | Mando común |
+consola: El juego tiene que andar con cualquier mando
+fuente: SIE, Introducing DualSense; PlayStation, DualSense en PC; Nintendo, Switch 2 Tech Specs; Microsoft, Xbox Adaptive Controller; SIE, Access controller; Unity, Input System Gamepad support
+notas:
+Glosario (conceptos cortos para la docente):
+• Gatillo adaptativo: gatillo del DualSense que cambia su resistencia según lo que pasa en el juego.
+• Háptica (HD Rumble): vibración precisa que transmite texturas, no solo un temblor.
+• SDK de plataforma: kit de desarrollo del fabricante; para consola está bajo NDA.
+Desarrollo:
+- DualSense: hápticos y gatillos adaptativos en L2 y R2. En PC, la háptica "requires a USB connection" y no funciona en Mac ni en móviles. En Unity, sin el SDK de Sony: color de la barra de luz (SetLightBarColor) y vibración simple (SetMotorSpeeds) en escritorio.
+- Joy-Con 2: acelerómetro, giroscopio, sensor de mouse, HD Rumble 2 y botón C (datos oficiales de Nintendo). Sus funciones distintivas dependen del SDK de Nintendo.
+- Unity aclara que la vibración de los mandos de consola conectados a su consola solo funciona instalando los paquetes de entrada de cada consola (bajo NDA).
+- Xbox Adaptive Controller: 19 entradas de 3,5 mm y 2 USB, desarrollado con AbleGamers, SpecialEffect y otras organizaciones. Access Controller de PS5: 4 entradas de 3,5 mm, hasta 30 perfiles.
+Regla de diseño: las funciones de un mando son una mejora opcional. Nunca pueden ser la única forma de jugar ni de recibir una información importante, porque el jugador puede usar otro mando o uno adaptado.
+Aclaración sobre la columna "Mando común": no verificamos cómo ve Unity cada mando adaptado. La idea es que el juego no suponga un mando estándar.
+
+## 35 | Glifos y nombres oficiales
+tipo: contenido
+kicker: MANDO · 3 MIN
+- Glifo del mando que se usa
+- "Menu", no "Start"
+- Lista prohibida: bajo NDA
+fuente: Microsoft, XBOX Required Terminology List; Valve, Steam Deck Compatibility Review
+notas:
+Glosario (conceptos cortos para la docente):
+• Glifo: el dibujo del botón en pantalla (la A verde del mando de Xbox, el triángulo de PlayStation).
+Desarrollo:
+- Los glifos tienen que coincidir con el dispositivo que el jugador está usando. Valve lo exige para el sello "Verified" de Steam Deck, y es lo esperable en cualquier consola.
+- Microsoft publica una lista de términos obligatorios: "Menu button", "View button", "XBOX button", "left bumper" o "LB", "vibration". Esa lista enlaza a una "Forbidden Terms List" que es un tema bajo NDA.
+- En Asteroides no hay textos de botones todavía. Cuando se agregue una ayuda de controles, hay que mostrar el glifo y el nombre según el mando activo.
+Error frecuente: escribir "Press Start" en una versión para Xbox. Ese botón se llama Menu.
+
+## 36 | Texto que se lee desde el sillón
+tipo: contenido
+kicker: TV · 4 MIN
+| Dónde | Texto mínimo |
+| Consola, 1080p | 26 px |
+| Consola, 4K | 52 px |
+| PC, 1080p | 18 px |
+| Steam Deck (a 30 cm) | 9 px |
+consola: Además, escalable hasta el 200 %
+fuente: Microsoft, XAG 101 Text display; Valve, Steam Deck Compatibility Review
+notas:
+Glosario (conceptos cortos para la docente):
+• px a 1080p: altura del texto medida en píxeles cuando la pantalla tiene 1080 líneas.
+Desarrollo:
+- La XAG 101 recomienda, en consola, un mínimo por defecto de 26 px de altura a 1080p (52 px en 4K). En PC, 18 px a 1080p. Recomienda también que el jugador pueda escalar el texto hasta el 200 %, glifos incluidos.
+- Valve pide, para Steam Deck Verified, texto legible a 12 pulgadas (unos 30 cm), con un mínimo de 9 px.
+- Por qué la diferencia: la TV está a unos tres metros; la Steam Deck, en las manos.
+- En Unity se mide la altura real del texto en pantalla, no el número de fontSize: depende del Canvas Scaler. La capa de consola de Asteroides hace esa cuenta (lo vemos en el bloque de la demo).
+
+## 37 | Zona segura y foco visible
+tipo: contenido
+kicker: TV · 3 MIN
+- Nada esencial en el 5 % del borde
+- Siempre un elemento con foco
+- Todo con cruceta, sin mouse
+fuente: Microsoft, Designing for Xbox and TV (UWP, archivado); Microsoft, XAG 112 UI navigation
+notas:
+Glosario (conceptos cortos para la docente):
+• Zona segura de TV: margen de la pantalla que algunas TV recortan; no conviene poner ahí información importante.
+• Cruceta (D-pad): el botón en cruz del mando.
+Desarrollo:
+- Microsoft recomendaba, para apps en TV, dibujar solo elementos no esenciales dentro del 5 % de los bordes. La guía está archivada y es para apps UWP, no para juegos: se usa como referencia del concepto, no como requisito.
+- XAG 112: la UI tiene que ser navegable solo con teclado o con la entrada digital del mando, con un orden de foco lógico y menús lineales que den la vuelta.
+- Foco visible: el elemento seleccionado tiene que distinguirse a distancia. El "Selected" por defecto de Unity casi no cambia de color.
+Continuidad con móvil: la zona segura de la TV es la prima de la safe area del teléfono (muescas y bordes). Mismo problema, otra causa.
+
+## 38 | Actividad A5.4: solo con mando
+tipo: actividad
+kicker: ACTIVIDAD · 30 MIN · GRUPOS DE 3 · O TAREA
+| Acción | Teclado | Mando | Mando adaptado |
+| Mover | | | |
+| Disparar | | | |
+| Confirmar (menú) | | | |
+| Pausa | | | |
+actividad: Jugar sin mouse, mapear, bocetar el remapeo y medir el texto
+notas:
+Glosario (conceptos cortos para la docente):
+• Boceto: dibujo a mano de la pantalla, sin implementarla.
+Consigna completa (25 min de trabajo + 5 de puesta en común):
+1. Abrir `asteroide-final` y jugar **sin tocar el mouse**: con mando o con teclado. Anotar dónde se traba.
+2. Completar el mapa de controles. En la columna "Mando adaptado", pensar en un jugador que solo puede usar dos botones grandes.
+3. Bocetar en papel la pantalla de remapeo: cómo se elige la acción, cómo se espera el botón nuevo y cómo se vuelve atrás, todo con cruceta.
+4. Medir un texto del juego: con el Game view a 1920×1080, ¿llega a 26 px? (captura y regla de píxeles, o la cuenta con el Canvas Scaler).
+Respuesta esperada para el paso 1: el juego no pasa de la pantalla de inicio con mando; con teclado tampoco, porque nada tiene foco.
+Si el tiempo no alcanza: los pasos 3 y 4 pasan a tarea y alimentan la parte de adaptación del TP 4.
+
+# DECK 4 | Asteroides llega a la Xbox | Unidad V · Bloque 4
+
+## 39 | Diseño según Plataforma: Consolas
+tipo: portada
+kicker: UNIDAD V · BLOQUE 4
+- Bloque 4: Asteroides llega a la Xbox
+- Diseño según Plataformas de Juego · Ing. Elsa Daniela Ramírez · FI – UNJu · 2026
+notas:
+Glosario (conceptos cortos para la docente):
+• Developer Mode: modo de una Xbox comercial que permite instalar y probar software propio sin publicarlo.
+Bloque de 25 minutos de exposición (incluye la demo en la consola de la docente) más la actividad A5.5 (25 minutos).
+Preparación antes de clase: seguir el Anexo B. La consola tiene que estar en Developer Mode, con los cuatro paquetes instalados y probados. Llevar un mando con pilas de repuesto (se usan en la demo).
+Plan B si la consola no está o falla: mostrar las dos versiones en el Editor con un mando conectado a la PC (`asteroide-final` y `Asteroides-Xbox`). La idea se ve igual; lo que se pierde es la TV y el sistema de la consola.
+
+## 40 | Compila... ¿se juega?
+tipo: contenido
+kicker: APERTURA · 2 MIN
+- Mismo juego, dos versiones
+- Original: sin cambios
+- Consola: una capa encima
+- Hoy, en una Xbox real
+pregunta: ¿Cuál de las dos pasaría el XR-003?
+notas:
+Glosario (conceptos cortos para la docente):
+• Versión original: Asteroides tal como quedó después del porteo a móvil.
+• Capa de consola: código agregado que adapta la UI y el ciclo de vida, sin tocar el gameplay.
+Relato: "Les traje Asteroides y el Platformer en dos versiones cada uno, instalados en mi Xbox. Las originales no tienen ningún cambio para consola. Las otras tienen una capa agregada. Antes de verlas, ustedes van a predecir qué pasa".
+Unir con lo anterior: en la actividad A5.3 encontraron que el original no cumple el XR-003. Ahora lo vamos a ver en la TV.
+
+## 41 | Dos caminos a la consola
+tipo: contenido
+kicker: XBOX · 4 MIN
+| Camino | Acceso | Sirve para |
+| GDK (ID@Xbox) | Socio, NDA | Publicar |
+| Developer Mode | Cuenta gratuita | Probar, no publicar |
+consola: Un juego en Developer Mode: 5 GB y 4 núcleos
+fuente: Microsoft, Xbox Developer Mode activation; System resources for UWP apps and games; UWP on Xbox FAQ; Open a developer account (Partner Center)
+notas:
+Glosario (conceptos cortos para la docente):
+• UWP (Universal Windows Platform): formato de aplicaciones de Windows que también corre en Xbox en Developer Mode.
+• Partner Center: portal de Microsoft para desarrolladores. Abrir la cuenta individual no tiene costo.
+Desarrollo:
+- El camino oficial para publicar es el GDK con extensiones de Xbox, que exige ser socio (ID@Xbox), firmar NDA y usar un kit de desarrollo.
+- Cualquier Xbox comercial se puede pasar a Developer Mode con la app Xbox Dev Mode y una cuenta de Partner Center, que no cobra registro (verificado el 2026-10-26 en Microsoft Learn; pide verificar la identidad).
+- En Developer Mode se instalan paquetes UWP por red local. Microsoft ya no acepta juegos UWP en la tienda de Xbox: sirve para probar, no para publicar.
+- Recursos de un juego UWP en la consola: hasta 5 GB de memoria, 4 núcleos exclusivos y 2 compartidos, la GPU completa. Si se instala como "app", baja a 1 GB.
+- Unity 6000.3 todavía genera UWP con la familia Xbox. Que corra en la consola lo comprobamos hoy.
+Límite: esto no es certificar ni usar el sistema de Xbox (usuarios, logros, guardado en la nube).
+
+## 42 | Del proyecto a la TV
+tipo: contenido
+kicker: XBOX · 3 MIN
+flujo: Unity: build UWP x64 | Visual Studio: paquete .msix | Device Portal: instalar | Dev Home: jugar || Sin tienda ni nube: todo por la red local
+panel: ancho
+fuente: PORTEO-XBOX.md; GUIA-XBOX-DOCENTE.md; Microsoft, Device Portal for Xbox
+notas:
+Glosario (conceptos cortos para la docente):
+• Paquete .msix: archivo instalable de una aplicación de Windows, firmado con un certificado.
+• Device Portal: página web que sirve la consola en Developer Mode para instalar y administrar paquetes desde la PC.
+• Dev Home: la pantalla de inicio de la consola en Developer Mode.
+Recorrido real que se hizo para esta clase (evidencia en PORTEO-XBOX.md):
+1. Unity 6000.3 genera una solución de Visual Studio para UWP, x64, con las familias Xbox y Desktop (script BuildXbox.cs).
+2. Visual Studio compila el C++ que genera IL2CPP y arma el paquete .msix firmado con un certificado de prueba.
+3. Desde el navegador de la PC, en el Device Portal de la consola, se instala el paquete con su dependencia (VCLibs).
+4. El juego aparece en Dev Home y se juega con el mando.
+Todo lo hace un script: `proyectos-unity/Tools-Xbox/generar_builds_xbox.ps1`. Los cuatro paquetes pesan entre 28 y 38 MB.
+Problema que apareció al hacerlo: faltaba el Windows SDK; sin él, Unity no genera UWP. El detalle de instalación está en el Anexo B.
+
+## 43 | A5.5 · Predecir
+tipo: actividad
+kicker: ACTIVIDAD · 8 MIN · INDIVIDUAL
+| Prueba | Original | Consola |
+| Se abre en la Xbox | | |
+| Start solo con mando | | |
+| Nave con stick y A | | |
+| Botón con foco visible | | |
+| Menu pausa | | |
+| Mando desconectado: aviso | | |
+actividad: PASS o FAIL, con una razón de una línea
+notas:
+Glosario (conceptos cortos para la docente):
+• PASS / FAIL: pasa o no pasa la prueba.
+Consigna: cada alumno completa la predicción antes de ver la demo, sin mirar el código de la versión de consola. Es la parte 1 de la guía de alumnos (`unidad-05/06-guia-alumnos-de-pc-a-xbox.md`).
+Pista si nadie arranca: "la nave ya se movía con mando en la versión de móvil. ¿Y el menú?".
+Las respuestas esperadas (hipótesis del código) están en la tabla de la guía de la docente, paso 8. No darlas ahora.
+
+## 44 | Demo: las dos versiones en la Xbox
+tipo: demo
+kicker: DEMO DE LA DOCENTE · 10 MIN
+- 1. Asteroides original: Start con el mando
+- 2. Asteroides de consola: foco amarillo
+- 3. En partida: Menu pausa y reanuda
+- 4. Sacar las pilas: aviso y pausa
+- 5. Platformer: lo mismo, más rápido
+notas:
+Glosario (conceptos cortos para la docente):
+• Overlay de pausa: capa semitransparente con un mensaje que tapa el juego mientras está en pausa.
+Guion de la demo (la cámara del aula enfocando la TV, o captura del Device Portal en el proyector):
+1. Abrir "Asteroides (original)". Intentar empezar con el mando. Resultado esperado según el código: no se puede, porque ningún botón tiene el foco y el módulo de UI es el antiguo. Dejar que lo vean fallar. Es el centro de la clase.
+2. Abrir "Asteroides (consola)". El botón Start aparece resaltado en amarillo; con A empieza la partida.
+3. Jugar, apretar Menu (≡): la partida se congela con el cartel "PAUSA". Volver a apretar: sigue.
+4. Sacar las pilas del mando en plena partida: aparece "Se desconectó el control". Volver a ponerlas y apretar Menu. Es el caso de prueba 115-02 hecho en vivo.
+5. Platformer original y de consola: el menú del original tampoco tiene foco; el de consola, sí, y no muestra el botón Quit.
+Registrar lo que pase: los resultados reales van a la tabla del paso 8 de la guía de la docente y a PORTEO-XBOX.md. Si algo no sale como se esperaba, es un resultado válido: mostrarlo y discutirlo.
+Estado al preparar estas slides: los paquetes se generaron y los tests pasan; el comportamiento en la consola era UNKNOWN hasta la primera prueba de la docente.
+
+## 45 | Qué agregó la capa
+tipo: contenido
+kicker: XBOX · 3 MIN
+codigo: ../../proyectos-unity/Asteroides-Xbox/Assets/Scripts/Console/ConsoleLayer.cs:144-147,156-157 ## 144–147: cambia el módulo de UI antiguo por el del Input System ; 156–157: si nada tiene foco, se lo da al botón de más arriba
+panel: ancho
+fuente: proyectos-unity/Asteroides-Xbox/Assets/Scripts/Console/ConsoleLayer.cs
+notas:
+Glosario (conceptos cortos para la docente):
+• EventSystem: componente de Unity que decide qué elemento de la UI recibe la entrada.
+• Input module: la pieza del EventSystem que lee los dispositivos. El StandaloneInputModule lee el Input Manager antiguo; el InputSystemUIInputModule lee el Input System.
+Lectura del código (líneas reales del archivo; el método completo va de la 140 a la 158):
+- 144–147: si el EventSystem tiene el módulo antiguo, lo quita y agrega el del Input System con sus acciones por defecto (navegar con cruceta y stick, confirmar con A).
+- 156–157: cada cuadro, si no hay nada seleccionado (o lo seleccionado ya no está activo), selecciona el botón usable de más arriba en pantalla.
+- Se instala sola al arrancar: no se tocó ninguna escena.
+Lo que la capa hace además (sin mostrarlo en la slide): color amarillo para el estado "Selected", oculta los botones que llaman a Quit, pausa con Menu, con la desconexión del mando y con la pérdida de foco, y agranda los textos de menos de 26 px a 1080p.
+Decisión de diseño: la capa se instala sola con [RuntimeInitializeOnLoadMethod]. No se editaron escenas ni prefabs, y el gameplay (Ship.cs) es el mismo en las dos versiones.
+
+## 46 | El error que encontraron los tests
+tipo: contenido
+kicker: XBOX · 2 MIN
+flujo: El joystick en pantalla se oculta | Se quita su mando virtual | La capa cree que se desconectó un mando | El juego se pausa solo || Corrección: solo cuentan los mandos físicos
+panel: ancho
+fuente: PORTEO-XBOX.md, sección 3; ConsoleRules.cs, líneas 14–17
+notas:
+Glosario (conceptos cortos para la docente):
+• Mando virtual: dispositivo que crea el Input System para los controles en pantalla (OnScreenStick, OnScreenButton); el juego lo ve como un gamepad.
+• Mando físico: un dispositivo real; en el Input System, device.native es verdadero.
+Historia real de esta adaptación:
+- Los tests de Play Mode de Asteroides de consola dieron 5 fallas en la primera corrida.
+- Causa: en PC y en consola, el script que oculta los controles táctiles los apaga al arrancar. Al apagarse, el joystick en pantalla quita su mando virtual. La capa lo interpretaba como "se desconectó el mando" y pausaba durante la carga.
+- Corrección: solo pausa si el dispositivo es un mando y es físico (device.native). Después de corregir, los 5 tests pasaron y no hubo regresiones.
+Moraleja para el TP: lo agregado para una plataforma (los controles táctiles de móvil) puede romper otra. Sin tests, este error se habría descubierto en la consola, delante del curso.
+
+## 47 | Qué NO resuelve esta demo
+tipo: contenido
+kicker: XBOX · 1 MIN
+- No es certificación
+- Sin usuarios ni logros de Xbox
+- Rendimiento: solo observado
+- Nada sobre PlayStation ni Nintendo
+notas:
+Glosario (conceptos cortos para la docente):
+• PLM (Process Lifetime Management): cómo el sistema suspende, reanuda y cierra las aplicaciones.
+Desarrollo:
+- No se cumplen los XR por correr en Developer Mode: certificar exige el programa de socios.
+- No se usa el GDK: no hay usuarios de Xbox, logros, partidas en la nube ni el PLM real del sistema. La pausa por pérdida de foco es una aproximación con OnApplicationFocus.
+- El rendimiento se observa en el Device Portal, pero 5 GB y 4 núcleos no son el hardware completo de un kit de desarrollo.
+- Los requisitos de Sony y Nintendo no son públicos: no se puede decir que esta adaptación alcance para esas consolas.
+
+## 48 | A5.5 · Comprobar y leer el código
+tipo: actividad
+kicker: ACTIVIDAD · 17 MIN · GRUPOS DE 3
+- ¿Qué predicciones fallaron y por qué?
+- Encontrar en el código las 3 pausas
+- ¿Por qué Menu no pausa en un menú?
+- ¿Qué cambió en Ship.cs? (pista: nada)
+actividad: Guía de alumnos, partes 3 y 4
+notas:
+Glosario (conceptos cortos para la docente):
+• PauseReason: el enum con los tres motivos de pausa (botón Menu, mando perdido, foco perdido).
+Consigna: partes 3 y 4 de `unidad-05/06-guia-alumnos-de-pc-a-xbox.md`.
+1. Completar la columna "Resultado" y marcar cada predicción como acertada o no, con una línea de explicación.
+2. En `proyectos-unity/Asteroides-Xbox/Assets/Scripts/Console/`, responder las seis preguntas de la guía.
+Respuestas esperadas:
+- Tres pausas: botón Menu (MenuPressed), mando físico desconectado (OnDeviceChange) y pérdida de foco (OnApplicationFocus).
+- Menu no pausa en un menú porque la capa considera que se está jugando solo si no hay ningún botón a la vista (GameplayActive).
+- Ship.cs no cambió. ShipInputAdapter solo agrega SetConsolePaused, para dejar de leer el mando mientras el juego está en pausa.
+Si se extiende: comparar con git los archivos de `asteroide-final` y `Asteroides-Xbox`.
+
+# DECK 5 | El modelo más débil manda | Unidad V · Bloque 5
+
+## 49 | Diseño según Plataforma: Consolas
+tipo: portada
+kicker: UNIDAD V · BLOQUE 5
+- Bloque 5: El modelo más débil manda, multijugador y rendimiento
+- Diseño según Plataformas de Juego · Ing. Elsa Daniela Ramírez · FI – UNJu · 2026
+notas:
+Glosario (conceptos cortos para la docente):
+• Presupuesto de rendimiento: tiempo de cuadro, memoria y almacenamiento que el juego puede usar en un modelo de consola.
+Bloque de 30 minutos de exposición más la actividad A5.6 (30 minutos, en clase o de tarea).
+Idea fuerza: una limitación de hardware puede quitar un modo de juego entero, no solo bajar los gráficos. Y optimizar sin medir es adivinar.
+Alcance: el multijugador en línea se da solo a nivel conceptual. Implementar netcode es otra materia.
+
+## 50 | Dos jugadores en el sillón
+tipo: contenido
+kicker: APERTURA · 2 MIN
+- Asteroides cooperativo
+- Dos naves, una TV
+- ¿Pantalla dividida?
+pregunta: ¿Qué cuesta agregar un segundo jugador?
+notas:
+Glosario (conceptos cortos para la docente):
+• Multijugador local (couch co-op): varios jugadores en la misma consola y la misma pantalla.
+Relato: "El publisher pide un modo cooperativo para dos en el sillón, porque en consola se vende bien".
+Respuestas esperadas: un segundo mando, una segunda nave, quizá dividir la pantalla. Casi nadie piensa en la memoria ni en el rendimiento: ahí va el bloque.
+
+## 51 | Compartida o dividida
+tipo: contenido
+kicker: MULTIJUGADOR · 4 MIN
+comparacion: +Pantalla compartida: Una cámara, Más barata // Los jugadores no pueden separarse | Pantalla dividida: Una cámara por jugador, Cada uno ve su zona // N cámaras: N veces el render
+panel: ancho
+fuente: R. Terrell, Shared-Multi-Split Screen Design (Game Developer, 2011); Unity, Player Input Manager component
+notas:
+Glosario (conceptos cortos para la docente):
+• Pantalla dividida (split-screen): la pantalla se parte en una vista por jugador.
+• Pantalla compartida: todos los jugadores en la misma vista; la cámara los encuadra a todos.
+• Render: el trabajo de dibujar un cuadro.
+Desarrollo:
+- Pantalla compartida: una sola cámara. Es la opción natural de Asteroides, donde la acción ocurre en una sola pantalla fija. Costo bajo; límite: los jugadores no pueden alejarse.
+- Pantalla dividida: cada jugador tiene su cámara y su vista. Libertad de movimiento, pero cada cámara repite el trabajo de dibujar la escena.
+- Hay variantes, como la pantalla dividida dinámica, que se une cuando los jugadores están cerca (Terrell cita Bionic Commando Rearmed). Es un artículo de opinión profesional: sirve para discutir, no como dato.
+Conexión con el bloque: en una consola de memoria justa, "N veces el render" puede no entrar. Es el caso de la slide 53.
+
+## 52 | Sumar jugadores con el Input System
+tipo: contenido
+kicker: MULTIJUGADOR · 3 MIN
+- Se une apretando un botón
+- Un mando por jugador
+- Pantalla dividida automática
+- Límite de jugadores
+fuente: Unity, Input System 1.20, Player Input Manager component; Microsoft, XR-045
+notas:
+Glosario (conceptos cortos para la docente):
+• PlayerInputManager: componente del Input System que crea un jugador por cada mando que se une.
+Desarrollo:
+- El PlayerInputManager permite unirse al apretar un botón en un mando que no está asignado, por una acción o de forma manual.
+- Tiene una opción de pantalla dividida que reparte el espacio entre los jugadores activos, y un límite de jugadores.
+- Cada jugador recibe sus propias acciones: la idea de acción contra botón de este bloque se repite por jugador.
+- Requisito público relacionado: el XR-045 (privilegios de multijugador) aclara que el privilegio de juego en línea no aplica al multijugador local en el mismo dispositivo. De ahí se infiere que jugar en el sillón no exige la suscripción en línea (INFERENCIA).
+Para la práctica (opcional): la lista de videos oficial del Input System tiene uno de multijugador local con el Player Input Manager (ver fuentes del bloque en la investigación).
+
+## 53 | Caso: Baldur's Gate 3 en Series S
+tipo: contenido
+kicker: MULTIJUGADOR · 4 MIN
+flujo: Series S: 10 GB de memoria | Pantalla dividida: dos vistas | No entra al lanzar | Sin pantalla dividida en S | Patch 8 la agrega || XR-130: los mismos modos en toda la generación
+panel: ancho
+fuente: Kotaku (24-ago-2023), Wccftech (28-ago-2023), Shacknews (28-ene-2025): prensa; las fuentes primarias no se pudieron abrir
+notas:
+Glosario (conceptos cortos para la docente):
+• Series S / Series X: los dos modelos de la generación actual de Xbox: 10 GB de memoria contra 16 GB.
+• Paridad: que todos los modelos de la generación ofrezcan los mismos modos de juego.
+El caso, como lo contó la prensa:
+- Larian, el estudio, anunció que la versión de Series S no tendría cooperativo en pantalla dividida (declaración de Swen Vincke citada por Kotaku). La causa señalada fue la memoria.
+- Phil Spencer (Xbox), citado por Kotaku, reconoció que hay funciones de Series X que no están en Series S. La cuenta oficial de Xbox, citada por Wccftech, dijo que seguirían trabajando en el tema.
+- Según Shacknews, el Patch 8 agregó la pantalla dividida en Series S.
+- El XR-130 exige los mismos modos de juego en toda la generación. Cómo se resolvió formalmente para BG3 no es público: decir que hubo una "excepción" es una INFERENCIA.
+Advertencia: las fuentes primarias (el posteo de Vincke, la nota de Eurogamer, la página del Patch 8) no se pudieron abrir. Se cita como lo relata la prensa.
+Lección: una limitación de memoria quitó un modo de juego, no solo gráficos. Por eso el diseño parte del modelo más débil.
+
+## 54 | En línea: el modelo mental
+tipo: contenido
+kicker: MULTIJUGADOR · 3 MIN
+| Concepto | Qué resuelve |
+| Servidor con autoridad | Una sola verdad, menos trampas |
+| Predicción del cliente | Respuesta inmediata |
+| Interpolación | Otros jugadores sin saltos |
+| Compensación de lag | Quién disparó primero |
+fuente: G. Gambetta, Fast-Paced Multiplayer (partes I, II y IV)
+notas:
+Glosario (conceptos cortos para la docente):
+• Servidor autoritativo: el servidor decide qué pasó; los clientes solo proponen.
+• Latencia (lag): demora entre que el jugador actúa y el servidor se entera.
+Desarrollo (nivel conceptual, sin implementar):
+- Servidor con autoridad: "the one and only authority" es el servidor. Evita que cada cliente tenga su propia versión del mundo.
+- Predicción del cliente y reconciliación: el cliente aplica la acción enseguida y la corrige cuando llega la respuesta del servidor.
+- Interpolación: los demás jugadores se muestran un poco en el pasado para que se muevan sin saltos (la parte III de Gambetta, sobre interpolación, no se abrió: se cita el concepto desde la parte I).
+- Compensación de lag: el servidor "rebobina" para decidir si un disparo acertó con lo que veía el jugador.
+Fuera de alcance: rollback propio, snapshots, NAT, servidores dedicados. En Unity hay herramientas para demostrarlo (Multiplayer Play Mode, Network Simulator), no para enseñar netcode a fondo.
+
+## 55 | ¿Cuánta latencia tolera tu juego?
+tipo: contenido
+kicker: MULTIJUGADOR · 3 MIN
+| Tipo de acción | Tolerancia medida |
+| Tiro preciso en primera persona | −35 % de precisión a 100 ms |
+| Tercera persona, deportes | Sin caída hasta unos 500 ms |
+| Para probar | 100, 200, 500 y 1000 ms |
+fuente: M. y K. Claypool, Latency and Player Actions in Online Games (CACM, 2006); Unity, Testing multiplayer games with artificial network conditions
+notas:
+Glosario (conceptos cortos para la docente):
+• Precisión y plazo: Claypool clasifica las acciones según cuánta precisión piden y cuánto tiempo hay para hacerlas.
+• Jitter: variación de la latencia de un paquete a otro.
+Desarrollo:
+- Claypool y Claypool (2006) clasifican las acciones por precisión y plazo, y distinguen el modelo de avatar (primera o tercera persona) del omnipresente (estrategia). En tiro de precisión en primera persona, la precisión cae alrededor de un 35 % a 100 ms; en tercera persona y deportes no hay caída significativa hasta unos 500 ms.
+- La guía de Unity para probar multijugador sugiere probar a 100, 200, 500 y 1000 ms, y advierte que probar solo con demora, sin pérdida de paquetes ni jitter, no es realista. Valores de referencia de Boss Room en escritorio: 100–150 ms y 5–10 % de pérdida.
+Pregunta: ¿qué tipo de acción es disparar en Asteroides? Precisa y con plazo corto: tolera poca latencia. Un Asteroides en línea necesitaría predicción.
+
+## 56 | Medir antes de optimizar
+tipo: contenido
+kicker: RENDIMIENTO · 4 MIN
+flujo: Objetivo: 60 fps = 16,6 ms | Medir con el Profiler | ¿CPU o GPU? | Aislar la causa | Aplicar una técnica | Volver a medir
+panel: ancho
+fuente: Unity 6000.3 Manual, Profiler Highlights module y Frame Debugger; Unity, Ultimate guide to profiling Unity games (Unity 6 edition)
+notas:
+Glosario (conceptos cortos para la docente):
+• Presupuesto de cuadro: tiempo máximo para dibujar un cuadro: 16,6 ms a 60 fps, 33,3 ms a 30 fps (es aritmética: 1000 / fps).
+• CPU-bound / GPU-bound: el cuadro tarda por culpa del procesador o de la placa de video.
+• Profiler: la herramienta de Unity que mide cuánto tarda cada parte del juego.
+El ciclo:
+1. Objetivo: elegir fps por modelo (por ejemplo, 60 en Series X y 30 en el modo más débil).
+2. Medir: Profiler conectado al build, no solo en el Editor.
+3. ¿CPU o GPU? El módulo Highlights marca en rojo los cuadros donde la CPU se pasa del objetivo y en amarillo los de GPU.
+4. Aislar: Frame Debugger (recorre los pasos de dibujo de un cuadro), Profile Analyzer y Memory Profiler.
+5. Aplicar una sola técnica (slide siguiente).
+6. Volver a medir: si no mejora, se deshace.
+Error frecuente: "optimizar" bajando la calidad de todo sin medir. Puede que el problema esté en la CPU y bajar texturas no cambie nada.
+
+## 57 | Cada técnica, su problema
+tipo: contenido
+kicker: RENDIMIENTO · 4 MIN
+| Problema | Técnica en Unity 6.3 |
+| Muchas llamadas de dibujo (CPU) | GPU Resident Drawer, SRP Batcher |
+| Geometría lejana | LOD Group, Mesh LOD |
+| Objetos tapados | Occlusion culling |
+| Memoria de texturas | Compresión, mipmaps, streaming |
+| GPU que no llega | Resolución dinámica |
+consola: "Dynamic batching" ya no se recomienda
+fuente: Unity 6000.3 Manual: Choose a method for optimizing draw calls; GPU Resident Drawer; Static and dynamic batching; Level of detail; Occlusion culling; Introduction to mipmaps; Dynamic Resolution
+notas:
+Glosario (conceptos cortos para la docente):
+• Draw call (llamada de dibujo): pedido de la CPU a la GPU para dibujar algo. Muchas llamadas cargan la CPU.
+• LOD (nivel de detalle): versiones más simples de un objeto para cuando está lejos.
+• Mipmaps: copias reducidas de una textura; ocupan un 33 % más de memoria y disco, pero se ven mejor de lejos.
+Desarrollo (orden actualizado a Unity 6.3):
+- Llamadas de dibujo, en URP/HDRP: primero GPU Resident Drawer (requiere Forward+ y compute shaders, no OpenGL ES), después SRP Batcher, después GPU instancing. "For most uses, dynamic batching is no longer recommended".
+- Geometría: LOD Group (más flexible) y, nuevo en 6.3, Mesh LOD (reduce polígonos con poca memoria).
+- Objetos tapados: occlusion culling horneado o, en URP/HDRP, por GPU.
+- Texturas: compresión, mipmaps (+33 %) y Mipmap Streaming para cargar solo los niveles necesarios.
+- GPU variable: Dynamic Resolution dibuja a menor resolución cuando hace falta.
+Importante para la actividad: Asteroides usa el pipeline Built-in y el Platformer usa URP 2D. Las técnicas de URP no aplican a Asteroides. Elegir la técnica según el pipeline es parte del ejercicio.
+Error frecuente: aplicar recetas de Unity 2019 en Unity 6 (por ejemplo, empezar por dynamic batching).
+
+## 58 | Un juego, varios presupuestos
+tipo: contenido
+kicker: RENDIMIENTO · 3 MIN
+| Modelo | Pantalla | Memoria |
+| Switch 2 portátil | 7,9", 1920×1080 | No publicada |
+| Switch 2 en dock | Hasta 3840×2160 a 60 | No publicada |
+| Xbox Series S | Objetivo 1440p | 10 GB |
+| Xbox Series X | 4K | 16 GB |
+consola: Se diseña para el piso y se escala hacia arriba
+fuente: Nintendo, Switch 2 Tech Specs; Microsoft, Xbox Series S y Series X
+notas:
+Glosario (conceptos cortos para la docente):
+• Piso de diseño: la configuración mínima en la que el juego tiene que funcionar bien.
+• Escalar: agregar resolución, efectos o detalle cuando el modelo lo permite.
+Desarrollo:
+- Switch 2 es una sola consola con dos presupuestos: portátil (pantalla de 7,9" a 1920×1080) y dock (hasta 3840×2160 a 60 fps). La memoria (12 GB) aparece en buscadores, pero no está en el texto oficial que se pudo leer: no usarla como dato.
+- Xbox: Series S, objetivo 1440p con 10 GB; Series X, 4K con 16 GB.
+- Con el XR-130 (mismos modos en toda la generación), el modelo más débil fija qué se puede ofrecer; el más potente solo mejora la imagen.
+- Asteroides y el Platformer son livianos: el problema no es si corren, sino tener la medición que lo demuestre (actividad A5.6).
+
+## 59 | Actividad A5.6: medir antes de optimizar
+tipo: actividad
+kicker: ACTIVIDAD · 30 MIN · GRUPOS DE 3 · O TAREA
+| Medición | Asteroides | Platformer |
+| Pipeline | | |
+| ms por cuadro (peor) | | |
+| ¿CPU o GPU? | | |
+| Causa principal | | |
+| Técnica elegida y por qué | | |
+actividad: Captura del Profiler + presupuesto de 16,6 ms + una técnica
+notas:
+Glosario (conceptos cortos para la docente):
+• Peor cuadro: el más lento del tramo medido; importa más que el promedio, porque es el que se siente como tirón.
+Consigna completa (25 min de trabajo + 5 de puesta en común):
+1. Abrir el Profiler (Window → Analysis → Profiler) y jugar un minuto de cada juego en el Editor; si hay tiempo, con un build de desarrollo conectado.
+2. Anotar el peor cuadro en ms y si el problema es de CPU o de GPU (módulo Highlights).
+3. Identificar la causa principal con el Profiler o el Frame Debugger.
+4. Elegir UNA técnica de la slide 57 que corresponda al pipeline de cada juego y explicar por qué; no hace falta aplicarla.
+Respuestas esperadas: los dos juegos entran holgados en 16,6 ms en una PC del aula. La respuesta correcta puede ser "no hace falta optimizar, y esta es la medición que lo muestra". En Asteroides, si aparece algo, suele ser la creación de objetos (asteroides y láseres): conecta con el defecto del pool del porteo a móvil.
+Error a vigilar: proponer GPU Resident Drawer para Asteroides, que usa Built-in.
+Si el tiempo no alcanza: pasa a tarea y es el presupuesto de rendimiento del TP 4.
+
+# DECK 6 | Cierre de la unidad y TP 4 | Unidad V · Bloque 6
+
+## 60 | Errores frecuentes de la unidad
+tipo: contenido
+kicker: CIERRE · 3 MIN
+| Error | Corrección |
+| "Si compila para Windows, anda en Xbox" | Paquete UWP en Dev Mode o GDK |
+| "Si la nave se mueve, está listo" | Menús, foco y pausa también |
+| "Accesibilidad = certificación" | XR obliga, XAG recomienda |
+| "Uso los gatillos del DualSense" | Mejora opcional, nunca requisito |
+| "Optimizo y después mido" | Primero medir |
+| "Sony pide lo mismo que Xbox" | Sus requisitos no son públicos |
+notas:
+Glosario (conceptos cortos para la docente):
+• Paridad: mismos modos de juego en todos los modelos de una generación.
+Desarrollo de cada error, con el bloque donde se trató:
+- Windows y Xbox: un .exe no se instala en una Xbox. En Developer Mode se instala un paquete UWP; para publicar hace falta el GDK (bloque 4).
+- "Si la nave se mueve": el original de Asteroides lo demostró en la demo: el gameplay funcionaba y el menú no (bloques 3 y 4).
+- Accesibilidad y certificación: dos capas distintas (bloque 2).
+- Funciones de un mando: siempre opcionales; el jugador puede usar otro mando o uno adaptado (bloque 3).
+- Medir: el ciclo medir → aislar → aplicar → volver a medir (bloque 5).
+- Sony y Nintendo: solo se conocen sus pasos de alta (bloque 2).
+
+## 61 | TP 4: dossier de plataforma, consola
+tipo: contenido
+kicker: TP 4 · 3 MIN · PROPUESTO
+| Entregable | Sale de |
+| Consola elegida, con datos y fecha | A5.2 |
+| Checklist XR aplicado | A5.3 |
+| Mando y UI implementados | A5.4, capa de consola |
+| Plan de 4 casos de prueba | Caso 115-02 |
+| Presupuesto de rendimiento medido | A5.6 |
+| Qué NO resolvimos | Todo el bloque |
+fuente: 03-arquitectura-unidad.md, sección 3 (PROPUESTO; peso y nota: los define la titular)
+notas:
+Glosario (conceptos cortos para la docente):
+• Dossier de plataforma: documento del integrador con un capítulo por plataforma (móvil, consola, PC, emergentes) para el mismo juego.
+Consigna (PROPUESTA; el peso en la nota y la fecha los define la titular):
+- Sobre Asteroides o el 2D Platformer, el grupo entrega el capítulo "Consola" del dossier:
+1. Consola elegida, justificada con al menos tres datos con fuente y fecha (A5.2).
+2. Checklist de los seis XR de la slide 26, con evidencia en el código (A5.3).
+3. Adaptación implementada en Unity: menús sin mouse con foco visible, pausa con Menu y al desconectarse el mando, texto de 26 px o más a 1080p. Se puede partir de la capa de consola del repo o escribirla desde cero; si se parte del repo, se explica cada parte con palabras propias.
+4. Plan de pruebas con cuatro casos al estilo de los XR, ejecutados en PC con mando, con resultado PASS, FAIL o UNKNOWN y evidencia (captura o test).
+5. Presupuesto de rendimiento medido (A5.6).
+6. Qué no resolvieron y por qué.
+Evidencia mínima: un test de Unity que pase (por ejemplo, que el menú tenga foco al cargar) y las capturas.
+
+## 62 | Rúbrica del TP 4 (borrador)
+tipo: contenido
+kicker: TP 4 · 2 MIN · PROPUESTO
+| Criterio | Logrado si... |
+| Datos y fuentes | Cada dato con fuente y fecha |
+| Requisitos | Cada XR con evidencia o N/A |
+| Implementación | Funciona sin mouse, con test |
+| Pruebas | 4 casos con resultado y evidencia |
+| Rendimiento | Medición real, técnica justificada |
+notas:
+Glosario (conceptos cortos para la docente):
+• Rúbrica: tabla de criterios y niveles para corregir de forma pareja.
+Borrador de cuatro niveles por criterio (insuficiente, en proceso, logrado, destacado). En la slide se muestra solo el nivel "logrado".
+- Datos y fuentes: insuficiente si hay datos sin fecha o fuentes inventadas; destacado si marca lo que falta (por ejemplo, Xbox sin cifras).
+- Requisitos: insuficiente si dice "cumple" sin evidencia; destacado si propone cómo comprobar lo que en PC queda UNKNOWN.
+- Implementación: insuficiente si necesita mouse en algún punto; destacado si agrega remapeo o glifos según el mando.
+- Pruebas: insuficiente si no tiene resultado esperado; destacado si un caso es un test automático.
+- Rendimiento: insuficiente si "optimiza" sin medir; destacado si muestra antes y después.
+Pendiente de la titular: la equivalencia con la nota (como en la U4, D4-05) y si la defensa es oral o en video.
+
+## 63 | Cierre de la unidad
+tipo: cierre
+kicker: CIERRE · 1 MIN
+- La consola tiene dueño
+- El dueño pone las reglas
+- El modelo más débil manda
+- Medir, probar, recién después afirmar
+notas:
+Glosario (conceptos cortos para la docente):
+• Límite de plataforma: lo que el juego no puede hacer o tiene que hacer por la plataforma donde corre.
+Síntesis con la pregunta de la materia, "¿quién pone el límite?":
+- En móvil lo ponía el dispositivo (batería, temperatura, pulgar).
+- En consola lo pone el fabricante: modelos, mandos, requisitos, certificación, tienda.
+- El diseño parte del modelo más débil y de las reglas públicas, y se demuestra con mediciones y pruebas, no con opiniones.
+Más adelante en la materia: el límite pasa a ser la diversidad del hardware de PC.
+
+# DECK 7 | Anexo A: datos y fuentes | Unidad V · Anexo de consulta
+
+## 64 | Ventas de vida: tabla completa
 tipo: contenido
 kicker: ANEXO · CONSULTA
 subtabla: Nintendo (al 30-jun-2026)
@@ -485,7 +1296,7 @@ Glosario (conceptos cortos para la docente):
 Fuentes: Nintendo IR, Dedicated Video Game Sales Units (https://www.nintendo.co.jp/ir/en/finance/hard_soft/index.html); SIE, Business Data & Sales (https://sonyinteractive.com/en/our-company/business-data-sales/). Datos en datos/ventas-hardware.csv.
 Microsoft no publica unidades de Xbox One ni de Series X|S; las de Xbox y Xbox 360 que circulan en prensa no se verificaron.
 
-## 22 | Ventas por ejercicio fiscal
+## 65 | Ventas por ejercicio fiscal
 tipo: contenido
 kicker: ANEXO · CONSULTA
 subtabla: Nintendo Switch (millones)
@@ -514,7 +1325,7 @@ Glosario (conceptos cortos para la docente):
 • FY3/2021: ejercicio de Nintendo que termina en marzo de 2021 (abril de 2020 a marzo de 2021).
 Fuentes: Nintendo IR, Consolidated Sales Transition by Region (planilla al 31-mar-2026). PS5: 16,0 y 18,5 M según Game Developer (8-may-2026, resultados de Sony); 7,8, 11,5 y 19,1 M de los 20-F de Sony citados por el buscador (tabla no abierta); 20,8 M = 93,7 M menos los otros cinco ejercicios. Coherencia: 38,4 M a mar-2023 contra el hito oficial de 40 M en jul-2023.
 
-## 23 | Fuentes de los datos
+## 66 | Fuentes de los datos
 tipo: contenido
 kicker: ANEXO · CONSULTA
 | ID | Fuente | Aporta |
@@ -532,7 +1343,7 @@ Glosario (conceptos cortos para la docente):
 Las URL completas están en diseno-plataformas/unidad-05/datos/fuentes.md y las fichas B en 00-investigacion-preliminar.md.
 Criterio de la cátedra: los conceptos pueden venir de prensa profesional; las cifras se toman de la fuente oficial. Cuando solo hubo prensa (Newzoo, BG3), se dice en la slide.
 
-## 24 | No verificado: no usar como dato
+## 67 | No verificado: no usar como dato
 tipo: contenido
 kicker: ANEXO · CONSULTA
 - Unidades de Xbox (360, Series)
@@ -548,4 +1359,139 @@ Detalle:
 3. Crisis de 1983 y su relación con los sistemas de licencias de Nintendo: conocimiento general.
 4. Newzoo: el total de 2025 (USD 201.600 M) y los porcentajes de crecimiento se leyeron en GamesBeat; los montos por segmento difieren entre versiones del informe.
 5. Fechas exactas de lanzamiento de Xbox Series X|S (nov-2020) y Steam Deck (2022).
-6. Ventas de PS5 de los tres primeros ejercicios (ver slide 22).
+6. Ventas de PS5 de los tres primeros ejercicios (ver slide 65).
+
+# DECK 8 | Anexo B: Xbox en Developer Mode, paso a paso | Unidad V · Anexo de consulta
+
+## 68 | Antes de empezar
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+| Qué | Detalle |
+| Consola | Xbox One o Series, 5 GB libres |
+| Cuenta | Partner Center, individual, gratis |
+| PC | Visual Studio 2022 + UWP + SDK |
+| Unity | 6000.3.11f1 con soporte UWP |
+| Red | La misma, mejor con cable |
+consola: En Developer Mode no corren los juegos comprados
+fuente: GUIA-XBOX-DOCENTE.md (sección 0); Microsoft, Getting started with UWP app development on Xbox One
+notas:
+Glosario (conceptos cortos para la docente):
+• Windows SDK: kit de desarrollo de Windows; sin él, Unity no genera proyectos UWP.
+Este anexo resume `diseno-plataformas/laboratorio-adaptacion/GUIA-XBOX-DOCENTE.md`. Ante cualquier duda, manda la guía.
+Detalle de la PC: Visual Studio 2022 con la carga de trabajo "Desarrollo de la Plataforma universal de Windows", las herramientas C++ de UWP (v143) y el Windows SDK 10.0.19041 o posterior. En la PC de la cátedra se instalaron el 2026-10-26 (SDK 10.0.26100).
+Mientras la consola está en Developer Mode, los juegos y apps comerciales no corren. Se vuelve al modo normal en un minuto, sin perder nada.
+
+## 69 | 1. Cuenta y Developer Mode
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- 1. storedeveloper.microsoft.com: Individual
+- 2. Verificar identidad: documento y selfie
+- 3. En la Xbox: app Xbox Dev Mode
+- 4. Anotar el código de activación
+- 5. partner.microsoft.com/xboxconfig/devices
+- 6. Agree and activate → Switch and restart
+fuente: Microsoft, Steps to open a Microsoft Store developer account; Microsoft, Xbox Developer Mode activation
+notas:
+Glosario (conceptos cortos para la docente):
+• Activación: vincular la consola a la cuenta de desarrollador. Cada cuenta tiene un número limitado de activaciones.
+Detalle:
+- El registro sin costo solo funciona entrando por storedeveloper.microsoft.com ("Get started for free"); otros caminos muestran el flujo viejo.
+- Consola de modelo japonés: no se verificó si la app Xbox Dev Mode aparece con la región de Japón. Si no aparece, cambiar la región en Configuración → Sistema → Idioma y ubicación.
+- Después de "Switch and restart", la consola reinicia (tarda más que lo normal) y abre Dev Home.
+
+## 70 | 2. Dev Home y Device Portal
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- 1. Iniciar sesión con un usuario
+- 2. Anotar la IP de Dev Home
+- 3. Remote Access Settings
+- 4. Enable Xbox Device Portal + clave
+- 5. En la PC: abrir la URL que muestra
+- 6. Settings: Treat UWP apps as games
+fuente: Microsoft, Device Portal for Xbox; Microsoft, UWP on Xbox FAQ
+notas:
+Glosario (conceptos cortos para la docente):
+• Device Portal: página web de la consola en Developer Mode para instalar y administrar paquetes desde la PC.
+Detalle:
+- Sin usuario con sesión iniciada, la instalación falla con el error 0x87e10008.
+- En Dev Home: Home → Remote Access → Remote Access Settings; tildar "Enable Xbox Device Portal" y fijar usuario y contraseña.
+- El navegador muestra una advertencia de certificado: es esperable (Detalles → Ir a la página web).
+- "Treat UWP apps as games by default" (Settings → Preference Settings): sin esto, el paquete corre como app, con 1 GB de memoria en lugar de 5 GB.
+
+## 71 | 3. Generar los paquetes
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- 1. Cerrar Unity
+- 2. PowerShell en la raíz del repositorio
+- 3. Correr generar_builds_xbox.ps1
+- 4. Paquetes en Builds/Xbox-Paquete/
+fuente: proyectos-unity/Tools-Xbox/generar_builds_xbox.ps1; PORTEO-XBOX.md, sección 5
+notas:
+Glosario (conceptos cortos para la docente):
+• Certificado de prueba: certificado autofirmado que firma el paquete; sirve para instalar en Developer Mode, no para publicar.
+• Master: configuración de compilación optimizada, sin herramientas de depuración.
+Comando (desde la raíz del repositorio):
+powershell -ExecutionPolicy Bypass -File proyectos-unity\Tools-Xbox\generar_builds_xbox.ps1
+Para algunos proyectos: agregar -Proyectos "Asteroides-Xbox,2D-Platformer-Xbox".
+Qué hace el script con cada proyecto:
+1. Crea el certificado de prueba en Certificados/ (no se versiona: tiene clave privada).
+2. Corre Unity en batchmode con BuildXbox.Build: UWP, x64, familias Xbox y Desktop.
+3. Compila con msbuild en Master x64 y arma el paquete.
+4. Deja todo en Builds/Xbox-Paquete/<Nombre>_1.0.0.0_x64_Master_Test/: el .msix, el .cer y Dependencies/x64/Microsoft.VCLibs.x64.14.00.appx.
+Paquetes generados el 2026-10-26: Asteroides original y de consola (27,6 MB cada uno) y Platformer original y de consola (37,8 MB cada uno).
+Si falla: Logs/build-xbox.log (Unity) o Logs/build-xbox-msbuild.log (Visual Studio).
+
+## 72 | 4. Instalar y jugar
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- 1. Device Portal → Home → Add
+- 2. Elegir el .msix
+- 3. Agregar Microsoft.VCLibs.x64
+- 4. Install y esperar
+- 5. Lanzar desde Dev Home
+- 6. Captura: Media capture
+fuente: Microsoft, Windows Device Portal overview (instalar paquetes); Microsoft, Device Portal for Xbox
+notas:
+Glosario (conceptos cortos para la docente):
+• Dependencia: paquete que el juego necesita para correr (acá, las bibliotecas de C++ de Visual Studio).
+Detalle:
+- Si el portal pide el certificado, usar el .cer de la misma carpeta.
+- Si dice que ya está instalado: cerrar el juego, quitarlo (Actions → Remove) y volver a agregarlo.
+- Plan B: abrir la solución de Builds/UWP en Visual Studio, x64, Master, Remote Machine con la IP de la consola y F5; la primera vez pide el PIN que muestra Dev Home.
+- Rendimiento en vivo: Device Portal → Performance.
+
+## 73 | 5. Protocolo de prueba
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+| Prueba | Original | Consola |
+| Se instala y abre | PASS? | PASS? |
+| Todo el flujo con mando | FAIL? | PASS? |
+| Foco visible | FAIL? | PASS? |
+| Menu pausa | FAIL? | PASS? |
+| Sin pilas: aviso | FAIL? | PASS? |
+| Frame rate estable | Medir | Medir |
+fuente: GUIA-XBOX-DOCENTE.md, paso 8 (hipótesis del código, no resultados)
+notas:
+Glosario (conceptos cortos para la docente):
+• Hipótesis: lo que se espera según el código; se confirma o se refuta en la consola.
+Los signos de pregunta son a propósito: es lo esperado, no lo observado. Al probar, reemplazar por PASS, FAIL o UNKNOWN y pasar los resultados a PORTEO-XBOX.md, sección 7, con fecha y capturas del Device Portal.
+La tabla completa, con los dos juegos y diez pruebas (incluidas Quit, imagen dentro de la TV y frame rate), está en el paso 8 de la guía de la docente.
+
+## 74 | 6. Volver y problemas frecuentes
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+| Síntoma | Qué hacer |
+| No aparece Xbox Dev Mode | Cambiar la región |
+| Error 0x87e10008 | Iniciar sesión en la consola |
+| No abre el Device Portal | Misma red, cable |
+| "Ya está instalado" | Quitar y reinstalar |
+| El juego va lento | Instalar como juego |
+consola: Para volver: Dev Home → Leave developer mode
+fuente: GUIA-XBOX-DOCENTE.md, pasos 9 y 10; Microsoft, UWP on Xbox FAQ
+notas:
+Glosario (conceptos cortos para la docente):
+• Desactivar: quitar la consola de la cuenta de desarrollador desde el Partner Center (por ejemplo, si se vende la consola).
+Detalle:
+- Volver al modo normal: Dev Home → Quick Actions → Leave developer mode. Para volver a Developer Mode, la app Xbox Dev Mode → Switch and restart; no hace falta activar de nuevo.
+- Unity con el error "Could not find any supported UWP SDK": falta el Windows SDK (slide 68).
+- Unity avisa que el proyecto está abierto: cerrarlo y volver a correr el script.
