@@ -115,7 +115,7 @@ python scripts/build_decks.py --por-clase            # además, un .pptx por sec
 
 **Repo (2026-10-25):** `.gitignore` ampliado (estado de IDE, `CodeCoverage/Report-history/`, `/entregas/`, `/evidencias/`) y esos archivos sacados del índice. En Asteroides se versionó el Build Profile de Android y el paquete `com.unity.device-simulator.devices` 1.0.1. En el Platformer **original** se descartó la reimportación de TextMesh Pro que hizo Unity 6 al abrirlo: debe quedar en la línea base `e766f8c` (abrir solo la v2).
 
-**SDD Arena:** ver `docs/SDD-STATUS.md` (no se trabajó en esta sesión).
+**SDD Arena (2026-10-25):** **GDD aprobado y fase 6 cerrada** (tag `etapa-02-gdd-complete`). Últimas decisiones: DEC-042 (asteroides solo por el borde superior), DEC-043 (MVP de un nivel; más niveles = futuro), DEC-044 (un asteroide por vez) y DEC-045 (caída vertical); 40 REQ. **Siguiente:** Technical Specification (READY, no iniciada; arranca con orden explícita del usuario). Ver `docs/SDD-STATUS.md`.
 
 ---
 
