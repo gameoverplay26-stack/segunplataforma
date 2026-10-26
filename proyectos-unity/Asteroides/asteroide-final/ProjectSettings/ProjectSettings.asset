@@ -797,7 +797,7 @@ PlayerSettings:
   metroCertificatePassword: 
   metroCertificateSubject: Catedra Diseno segun Plataforma
   metroCertificateIssuer: Catedra Diseno segun Plataforma
-  metroCertificateNotAfter: 801603623b84de01
+  metroCertificateNotAfter: 80ae496b4e84de01
   metroApplicationDescription: Template_3D
   wsaImages: {}
   metroTileShortName: 

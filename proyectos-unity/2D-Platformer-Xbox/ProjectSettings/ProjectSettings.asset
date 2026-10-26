@@ -729,7 +729,7 @@ PlayerSettings:
   metroCertificatePassword: 
   metroCertificateSubject: Catedra Diseno segun Plataforma
   metroCertificateIssuer: Catedra Diseno segun Plataforma
-  metroCertificateNotAfter: 8092a4b63784de01
+  metroCertificateNotAfter: 00495e435684de01
   metroApplicationDescription: 2D platformer
   wsaImages: {}
   metroTileShortName: 
