@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="17" result="Passed" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-19 19:08:56Z" end-time="2026-10-19 19:09:10Z" duration="13,2958307">
+  <test-suite type="TestSuite" id="1032" name="2D platformer v2" fullname="2D platformer v2" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-19 19:08:56Z" end-time="2026-10-19 19:09:10Z" duration="13.295831" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1022" name="PlayModeTests.dll" fullname="P:/2D-Platformer-Unity-v2/Library/ScriptAssemblies/PlayModeTests.dll" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-10-19 19:08:56Z" end-time="2026-10-19 19:09:10Z" duration="13.279581" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="25348" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestFixture" id="1001" name="GameplayTests" fullname="GameplayTests" classname="GameplayTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-19 19:08:56Z" end-time="2026-10-19 19:09:04Z" duration="7.778257" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1005" name="Coin_PlaysCoinSound" fullname="GameplayTests.Coin_PlaysCoinSound" methodname="Coin_PlaysCoinSound" classname="GameplayTests" runstate="Runnable" seed="1201094284" result="Passed" start-time="2026-10-19 19:08:56Z" end-time="2026-10-19 19:08:57Z" duration="0.827688" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Font Asset [LiberationSans SDF - Fallback] Units Per EM set to 2048. Please commit the newly serialized value.
+]]></output>
+        </test-case>
+        <test-case id="1002" name="Death_LosesOneLife_PlaysSound_AndEmptiesOneHeart" fullname="GameplayTests.Death_LosesOneLife_PlaysSound_AndEmptiesOneHeart" methodname="Death_LosesOneLife_PlaysSound_AndEmptiesOneHeart" classname="GameplayTests" runstate="Runnable" seed="1992017475" result="Passed" start-time="2026-10-19 19:08:57Z" end-time="2026-10-19 19:08:58Z" duration="0.387310" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Died
+]]></output>
+        </test-case>
+        <test-case id="1003" name="Death_WithLivesLeft_ReloadsSameLevel_KeepingLives" fullname="GameplayTests.Death_WithLivesLeft_ReloadsSameLevel_KeepingLives" methodname="Death_WithLivesLeft_ReloadsSameLevel_KeepingLives" classname="GameplayTests" runstate="Runnable" seed="1413573645" result="Passed" start-time="2026-10-19 19:08:58Z" end-time="2026-10-19 19:09:00Z" duration="2.642891" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Died
+]]></output>
+        </test-case>
+        <test-case id="1006" name="Jump_PlaysJumpSound" fullname="GameplayTests.Jump_PlaysJumpSound" methodname="Jump_PlaysJumpSound" classname="GameplayTests" runstate="Runnable" seed="1071489792" result="Passed" start-time="2026-10-19 19:09:00Z" end-time="2026-10-19 19:09:01Z" duration="0.374521" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1004" name="LastDeath_ShowsGameOver_InsteadOfReloading" fullname="GameplayTests.LastDeath_ShowsGameOver_InsteadOfReloading" methodname="LastDeath_ShowsGameOver_InsteadOfReloading" classname="GameplayTests" runstate="Runnable" seed="2082647335" result="Passed" start-time="2026-10-19 19:09:01Z" end-time="2026-10-19 19:09:03Z" duration="2.397670" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Died
+]]></output>
+        </test-case>
+        <test-case id="1007" name="Level1Complete_OffersNextLevel_Level2Complete_DoesNot" fullname="GameplayTests.Level1Complete_OffersNextLevel_Level2Complete_DoesNot" methodname="Level1Complete_OffersNextLevel_Level2Complete_DoesNot" classname="GameplayTests" runstate="Runnable" seed="1312851910" result="Passed" start-time="2026-10-19 19:09:03Z" end-time="2026-10-19 19:09:04Z" duration="0.755184" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1008" name="Level2_Enemy_KillsPlayerOnContact" fullname="GameplayTests.Level2_Enemy_KillsPlayerOnContact" methodname="Level2_Enemy_KillsPlayerOnContact" classname="GameplayTests" runstate="Runnable" seed="1079317486" result="Passed" start-time="2026-10-19 19:09:04Z" end-time="2026-10-19 19:09:04Z" duration="0.374424" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Died
+]]></output>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1009" name="InputAdapterTests" fullname="InputAdapterTests" classname="InputAdapterTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 19:09:04Z" end-time="2026-10-19 19:09:05Z" duration="1.209061" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1011" name="GamepadSouth_Jumps" fullname="InputAdapterTests.GamepadSouth_Jumps" methodname="GamepadSouth_Jumps" classname="InputAdapterTests" runstate="Runnable" seed="1352583066" result="Passed" start-time="2026-10-19 19:09:04Z" end-time="2026-10-19 19:09:05Z" duration="0.478112" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1010" name="KeyboardRightArrow_MovesPlayerRight" fullname="InputAdapterTests.KeyboardRightArrow_MovesPlayerRight" methodname="KeyboardRightArrow_MovesPlayerRight" classname="InputAdapterTests" runstate="Runnable" seed="1552091288" result="Passed" start-time="2026-10-19 19:09:05Z" end-time="2026-10-19 19:09:05Z" duration="0.716586" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1012" name="OnScreenControlsTests" fullname="OnScreenControlsTests" classname="OnScreenControlsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 19:09:05Z" end-time="2026-10-19 19:09:07Z" duration="1.182297" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1014" name="OnScreenJumpButton_Jumps" fullname="OnScreenControlsTests.OnScreenJumpButton_Jumps" methodname="OnScreenJumpButton_Jumps" classname="OnScreenControlsTests" runstate="Runnable" seed="1720912635" result="Passed" start-time="2026-10-19 19:09:05Z" end-time="2026-10-19 19:09:06Z" duration="0.397711" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1013" name="OnScreenRightButton_MovesWhileHeld_StopsOnRelease" fullname="OnScreenControlsTests.OnScreenRightButton_MovesWhileHeld_StopsOnRelease" methodname="OnScreenRightButton_MovesWhileHeld_StopsOnRelease" classname="OnScreenControlsTests" runstate="Runnable" seed="1343655071" result="Passed" start-time="2026-10-19 19:09:06Z" end-time="2026-10-19 19:09:07Z" duration="0.769171" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1015" name="PlayerIntentTests" fullname="PlayerIntentTests" classname="PlayerIntentTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-19 19:09:07Z" end-time="2026-10-19 19:09:10Z" duration="3.107052" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1020" name="GroundRay_InMidAir_IsNotGrounded" fullname="PlayerIntentTests.GroundRay_InMidAir_IsNotGrounded" methodname="GroundRay_InMidAir_IsNotGrounded" classname="PlayerIntentTests" runstate="Runnable" seed="359049683" result="Passed" start-time="2026-10-19 19:09:07Z" end-time="2026-10-19 19:09:07Z" duration="0.383728" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1019" name="JumpIntent_WhenGrounded_GivesUpwardVelocity" fullname="PlayerIntentTests.JumpIntent_WhenGrounded_GivesUpwardVelocity" methodname="JumpIntent_WhenGrounded_GivesUpwardVelocity" classname="PlayerIntentTests" runstate="Runnable" seed="1921648397" result="Passed" start-time="2026-10-19 19:09:07Z" end-time="2026-10-19 19:09:07Z" duration="0.434009" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1017" name="MoveIntentLeft_FacesLeft" fullname="PlayerIntentTests.MoveIntentLeft_FacesLeft" methodname="MoveIntentLeft_FacesLeft" classname="PlayerIntentTests" runstate="Runnable" seed="1895610960" result="Passed" start-time="2026-10-19 19:09:07Z" end-time="2026-10-19 19:09:08Z" duration="0.442743" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1016" name="MoveIntentRight_MovesPlayerRightAndFacesRight" fullname="PlayerIntentTests.MoveIntentRight_MovesPlayerRightAndFacesRight" methodname="MoveIntentRight_MovesPlayerRightAndFacesRight" classname="PlayerIntentTests" runstate="Runnable" seed="1208197699" result="Passed" start-time="2026-10-19 19:09:08Z" end-time="2026-10-19 19:09:09Z" duration="0.675099" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1021" name="SecondJumpIntent_InAir_DoubleJumpsOnlyOnce" fullname="PlayerIntentTests.SecondJumpIntent_InAir_DoubleJumpsOnlyOnce" methodname="SecondJumpIntent_InAir_DoubleJumpsOnlyOnce" classname="PlayerIntentTests" runstate="Runnable" seed="1186193061" result="Passed" start-time="2026-10-19 19:09:09Z" end-time="2026-10-19 19:09:09Z" duration="0.547311" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1018" name="ZeroIntent_StopsHorizontalVelocity" fullname="PlayerIntentTests.ZeroIntent_StopsHorizontalVelocity" methodname="ZeroIntent_StopsHorizontalVelocity" classname="PlayerIntentTests" runstate="Runnable" seed="1803646094" result="Passed" start-time="2026-10-19 19:09:09Z" end-time="2026-10-19 19:09:10Z" duration="0.608727" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/Hilarion/AppData/LocalLow/DefaultCompany/2D platformer v2\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

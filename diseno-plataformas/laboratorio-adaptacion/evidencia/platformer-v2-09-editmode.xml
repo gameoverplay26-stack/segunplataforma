@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="15" result="Passed" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-19 19:43:16Z" end-time="2026-10-19 19:43:22Z" duration="6,1037524">
+  <test-suite type="TestSuite" id="1000" name="2D platformer v2" fullname="2D platformer v2" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-19 19:43:16Z" end-time="2026-10-19 19:43:22Z" duration="6.103752" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1022" name="EditModeTests.dll" fullname="C:/Developer/unity/Platformer-v2/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-19 19:43:16Z" end-time="2026-10-19 19:43:22Z" duration="6.093859" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="18812" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1002" name="GameSessionTests" fullname="GameSessionTests" classname="GameSessionTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-19 19:43:16Z" end-time="2026-10-19 19:43:16Z" duration="0.045368" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1004" name="LoseLife_SubtractsOne" fullname="GameSessionTests.LoseLife_SubtractsOne" methodname="LoseLife_SubtractsOne" classname="GameSessionTests" runstate="Runnable" seed="1307728596" result="Passed" start-time="2026-10-19 19:43:16Z" end-time="2026-10-19 19:43:16Z" duration="0.021145" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1005" name="LosingAllLives_IsGameOver_AndNeverNegative" fullname="GameSessionTests.LosingAllLives_IsGameOver_AndNeverNegative" methodname="LosingAllLives_IsGameOver_AndNeverNegative" classname="GameSessionTests" runstate="Runnable" seed="1247266448" result="Passed" start-time="2026-10-19 19:43:16Z" end-time="2026-10-19 19:43:16Z" duration="0.000666" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1006" name="NewGame_AfterGameOver_RestoresLives" fullname="GameSessionTests.NewGame_AfterGameOver_RestoresLives" methodname="NewGame_AfterGameOver_RestoresLives" classname="GameSessionTests" runstate="Runnable" seed="461188549" result="Passed" start-time="2026-10-19 19:43:16Z" end-time="2026-10-19 19:43:16Z" duration="0.000411" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1003" name="NewGame_StartsWithThreeLives" fullname="GameSessionTests.NewGame_StartsWithThreeLives" methodname="NewGame_StartsWithThreeLives" classname="GameSessionTests" runstate="Runnable" seed="391830292" result="Passed" start-time="2026-10-19 19:43:16Z" end-time="2026-10-19 19:43:16Z" duration="0.000541" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1007" name="Level2LayoutTests" fullname="Level2LayoutTests" classname="Level2LayoutTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-19 19:43:16Z" end-time="2026-10-19 19:43:18Z" duration="2.678588" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1008" name="BuildSettings_HaveMenuLevelAndLevel2" fullname="Level2LayoutTests.BuildSettings_HaveMenuLevelAndLevel2" methodname="BuildSettings_HaveMenuLevelAndLevel2" classname="Level2LayoutTests" runstate="Runnable" seed="1782938481" result="Passed" start-time="2026-10-19 19:43:16Z" end-time="2026-10-19 19:43:16Z" duration="0.002124" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1009" name="Level2_HasMoreAndWiderPitsThanLevel1_ButJumpable" fullname="Level2LayoutTests.Level2_HasMoreAndWiderPitsThanLevel1_ButJumpable" methodname="Level2_HasMoreAndWiderPitsThanLevel1_ButJumpable" classname="Level2LayoutTests" runstate="Runnable" seed="1709499958" result="Passed" start-time="2026-10-19 19:43:16Z" end-time="2026-10-19 19:43:17Z" duration="1.278574" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1010" name="Level2_HasThreePatrollingEnemiesTaggedKillzone" fullname="Level2LayoutTests.Level2_HasThreePatrollingEnemiesTaggedKillzone" methodname="Level2_HasThreePatrollingEnemiesTaggedKillzone" classname="Level2LayoutTests" runstate="Runnable" seed="471654358" result="Passed" start-time="2026-10-19 19:43:17Z" end-time="2026-10-19 19:43:17Z" duration="0.372034" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-suite type="ParameterizedMethod" id="1013" name="Levels_HaveAudioWithClips_AndLivesHud" fullname="Level2LayoutTests.Levels_HaveAudioWithClips_AndLivesHud" classname="Level2LayoutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 19:43:17Z" end-time="2026-10-19 19:43:18Z" duration="1.023194" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1011" name="Levels_HaveAudioWithClips_AndLivesHud(&quot;Assets/Scenes/Level.unity&quot;)" fullname="Level2LayoutTests.Levels_HaveAudioWithClips_AndLivesHud(&quot;Assets/Scenes/Level.unity&quot;)" methodname="Levels_HaveAudioWithClips_AndLivesHud" classname="Level2LayoutTests" runstate="Runnable" seed="790085913" result="Passed" start-time="2026-10-19 19:43:18Z" end-time="2026-10-19 19:43:18Z" duration="0.463609" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1012" name="Levels_HaveAudioWithClips_AndLivesHud(&quot;Assets/Scenes/Level2.unity&quot;)" fullname="Level2LayoutTests.Levels_HaveAudioWithClips_AndLivesHud(&quot;Assets/Scenes/Level2.unity&quot;)" methodname="Levels_HaveAudioWithClips_AndLivesHud" classname="Level2LayoutTests" runstate="Runnable" seed="325369093" result="Passed" start-time="2026-10-19 19:43:18Z" end-time="2026-10-19 19:43:18Z" duration="0.373710" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+      </test-suite>
+      <test-suite type="TestFixture" id="1014" name="MobileConfigTests" fullname="MobileConfigTests" classname="MobileConfigTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-19 19:43:18Z" end-time="2026-10-19 19:43:22Z" duration="3.366877" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1015" name="ActiveInputHandling_IsInputSystemOnly" fullname="MobileConfigTests.ActiveInputHandling_IsInputSystemOnly" methodname="ActiveInputHandling_IsInputSystemOnly" classname="MobileConfigTests" runstate="Runnable" seed="845594631" result="Passed" start-time="2026-10-19 19:43:18Z" end-time="2026-10-19 19:43:18Z" duration="0.001291" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1017" name="AndroidApplicationIdentifier_IsValid" fullname="MobileConfigTests.AndroidApplicationIdentifier_IsValid" methodname="AndroidApplicationIdentifier_IsValid" classname="MobileConfigTests" runstate="Runnable" seed="470081768" result="Passed" start-time="2026-10-19 19:43:18Z" end-time="2026-10-19 19:43:18Z" duration="0.002994" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1021" name="Level_HasThreeOnScreenButtons_AndWiredAdapter" fullname="MobileConfigTests.Level_HasThreeOnScreenButtons_AndWiredAdapter" methodname="Level_HasThreeOnScreenButtons_AndWiredAdapter" classname="MobileConfigTests" runstate="Runnable" seed="249754409" result="Passed" start-time="2026-10-19 19:43:18Z" end-time="2026-10-19 19:43:21Z" duration="2.498749" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1016" name="Orientation_IsLandscapeOnly" fullname="MobileConfigTests.Orientation_IsLandscapeOnly" methodname="Orientation_IsLandscapeOnly" classname="MobileConfigTests" runstate="Runnable" seed="1286864241" result="Passed" start-time="2026-10-19 19:43:21Z" end-time="2026-10-19 19:43:21Z" duration="0.001399" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-suite type="ParameterizedMethod" id="1020" name="Scenes_UseInputSystemUIModule" fullname="MobileConfigTests.Scenes_UseInputSystemUIModule" classname="MobileConfigTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 19:43:21Z" end-time="2026-10-19 19:43:22Z" duration="0.856369" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1018" name="Scenes_UseInputSystemUIModule(&quot;Assets/Scenes/Menu.unity&quot;)" fullname="MobileConfigTests.Scenes_UseInputSystemUIModule(&quot;Assets/Scenes/Menu.unity&quot;)" methodname="Scenes_UseInputSystemUIModule" classname="MobileConfigTests" runstate="Runnable" seed="1589885587" result="Passed" start-time="2026-10-19 19:43:21Z" end-time="2026-10-19 19:43:21Z" duration="0.434326" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1019" name="Scenes_UseInputSystemUIModule(&quot;Assets/Scenes/Level.unity&quot;)" fullname="MobileConfigTests.Scenes_UseInputSystemUIModule(&quot;Assets/Scenes/Level.unity&quot;)" methodname="Scenes_UseInputSystemUIModule" classname="MobileConfigTests" runstate="Runnable" seed="1766432818" result="Passed" start-time="2026-10-19 19:43:21Z" end-time="2026-10-19 19:43:22Z" duration="0.415164" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+            <output><![CDATA[Saving results to: C:/Users/Hilarion/AppData/LocalLow/DefaultCompany/2D platformer v2\TestResults.xml
+]]></output>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
