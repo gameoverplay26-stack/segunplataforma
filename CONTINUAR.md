@@ -4,7 +4,7 @@ Punto de entrada para retomar el trabajo **desde cualquier computadora**. La mem
 
 **Uso:** en la otra máquina, clonar el repo, abrir Claude Code en la raíz y escribir **"continuá"**. Claude lee este archivo (lo indica `CLAUDE.md`) y el archivo de estado del frente que corresponda.
 
-- **Última actualización:** 2026-10-24
+- **Última actualización:** 2026-10-25
 - **Al cerrar cada sesión:** actualizar la sección 4 ("Dónde quedamos") y el archivo de estado del frente trabajado, y luego commit + push. Si no se pushea, la otra máquina no ve el trabajo.
 
 ---
@@ -90,7 +90,7 @@ python scripts/build_decks.py --por-clase            # además, un .pptx por sec
 
 ---
 
-## 4. Dónde quedamos (2026-10-10)
+## 4. Dónde quedamos (2026-10-25)
 
 **Cátedra, Unidad 4 (Móvil)**
 - La **Clase 1 se dio hasta la slide 15** (A4.1). Quedan **dos encuentros de 90 min** (decisión del 2026-10-13).
@@ -103,15 +103,17 @@ python scripts/build_decks.py --por-clase            # además, un .pptx por sec
 - **Asteroides:** porteo de entrada **implementado** (Input System 1.19.0, `ShipInputAdapter`, `Ship.SetIntent`, joystick y botón en pantalla, 3 tests). Tests: 10–11 de 14 en verde; las 3 hipótesis del pool fallan siempre por un defecto real, y hay 1 test inestable causado por el mismo defecto. Ver `laboratorio-adaptacion/PORTEO-ASTEROIDES.md`.
 - **UNKNOWN:** comportamiento en el Device Simulator y en un teléfono real (no se ejecutó de forma interactiva).
 - **Siguiente paso técnico propuesto:** probar en el Device Simulator y en un teléfono.
-- **2D Platformer v2 (2026-10-19):** copia en `proyectos-unity/2D-Platformer-Unity-v2/` porteada a móvil (Input System, botones ◀ ▶ SALTAR en pantalla, orientación horizontal, safe area). Edit Mode 6/6, Play Mode 8/10 y **APK generado**. Las 2 fallas son un defecto del original: salto infinito (R-PLT-09). **Después (mismo día): salto corregido (DEC-LAB-015), sonido (moneda, salto, muerte), 3 vidas con Game Over (DEC-LAB-016) y nivel 2 con más huecos y enemigos; tests 15/15 + 17/17.** Falta probarlo jugando (sonido, nivel 2 completo). El original no se tocó. **Sin commit.** Ver `laboratorio-adaptacion/PORTEO-PLATFORMER.md`.
+- **2D Platformer v2 (2026-10-19):** copia en `proyectos-unity/2D-Platformer-Unity-v2/` porteada a móvil (Input System, botones ◀ ▶ SALTAR en pantalla, orientación horizontal, safe area). Edit Mode 6/6, Play Mode 8/10 y **APK generado**. Las 2 fallas son un defecto del original: salto infinito (R-PLT-09). **Después (mismo día): salto corregido (DEC-LAB-015), sonido (moneda, salto, muerte), 3 vidas con Game Over (DEC-LAB-016) y nivel 2 con más huecos y enemigos; tests 15/15 + 17/17.** Falta probarlo jugando (sonido, nivel 2 completo). El original no se tocó. Commit `49ea3e4`. Ver `laboratorio-adaptacion/PORTEO-PLATFORMER.md`.
 - **Rutas largas:** en la máquina con el repo en `Documents\2026\Videojuegos\…`  Unity falla al importar (límite de 260 caracteres). Usar `subst P: "<repo>\proyectos-unity"` o clonar en la ruta corta (ENV-01).
 - Pendientes: DEC-LAB-004, 005, 007, 008, 013, 014; laboratorio de *Unravel* **en pausa por pedido del usuario** (DEC-LAB-009 a 012).
 - DEC-LAB-002: el usuario decidió modificar Asteroides pese a la licencia de Kodeco (solo para pruebas y clase). **No volver a plantearlo como bloqueo.**
 
-- **Match 3 UI Testing v2 (2026-10-24):** copia migrada a 6000.3.11f1 del tutorial de Kodeco (original 2019.4.21f1 intacto en `proyectos-unity/unity-ui-testing-tutorial-main/`). Junction `C:\Developer\unity\Match3-v2`. 5 tests Play Mode nuevos en verde, APK (IL2CPP ARM64) e instalador `Match3-UI-Testing-Setup.exe` generados con `Tools\generar_builds.ps1`. Falta probarlo en un teléfono. **Sin commit.** Ver `proyectos-unity/Match3-UI-Testing-v2/README.md`.
+- **Match 3 UI Testing v2 (2026-10-24):** copia migrada a 6000.3.11f1 del tutorial de Kodeco (original 2019.4.21f1 intacto en `proyectos-unity/unity-ui-testing-tutorial-main/`). Junction `C:\Developer\unity\Match3-v2`. 5 tests Play Mode nuevos en verde, APK (IL2CPP ARM64) e instalador `Match3-UI-Testing-Setup.exe` generados con `Tools\generar_builds.ps1`. Falta probarlo en un teléfono. Commit `7943840`. Ver `proyectos-unity/Match3-UI-Testing-v2/README.md`.
 
 **Cátedra, Unidad 5 (Consolas)**
 - 2026-10-24: `unidad-05/01-desarrollo-tema-consolas.md` (PROPUESTO): consolas actuales, historia, ranking, histograma, ciclo de vida, regiones, precios 2026 y decisiones de diseño. Gráficos: `python scripts/graficos_consolas.py` (requiere `matplotlib`). Slides de la Clase 1 + anexo: `unidad-05/Unidad-5-2026-completa.pptx` (24 slides), fuente `04-diapositivas.md`, generar con `python scripts/graficos_consolas.py --slides` y `python scripts/build_decks.py` (`--version N` para no pisar). Falta: el resto de la unidad (certificación, mandos, multijugador, optimización).
+
+**Repo (2026-10-25):** `.gitignore` ampliado (estado de IDE, `CodeCoverage/Report-history/`, `/entregas/`, `/evidencias/`) y esos archivos sacados del índice. En Asteroides se versionó el Build Profile de Android y el paquete `com.unity.device-simulator.devices` 1.0.1. En el Platformer **original** se descartó la reimportación de TextMesh Pro que hizo Unity 6 al abrirlo: debe quedar en la línea base `e766f8c` (abrir solo la v2).
 
 **SDD Arena:** ver `docs/SDD-STATUS.md` (no se trabajó en esta sesión).
 
@@ -121,9 +123,9 @@ python scripts/build_decks.py --por-clase            # además, un .pptx por sec
 
 | Qué | Por qué | Qué hacer |
 |---|---|---|
-| `diseno-plataformas/trabajo-practico/` | Entregas de estudiantes (PDF) y un instalador `.exe`; no se suben sin decisión explícita del usuario | Copiar a mano o preguntar al usuario |
+| `entregas/` (una subcarpeta por TP) | Entregas de estudiantes: datos de terceros. Ignorada por `.gitignore` | Copiar a mano |
+| `evidencias/` | Fotos personales (no son de la cátedra). Ignorada por `.gitignore` | Copiar a mano si hace falta |
 | `proyectos-unity/*.zip` (incluido el ZIP original del Platformer, versión 2022.3.13f1) | `.gitignore` excluye `*.zip` | La línea base migrada ya está en git (commit `e766f8c`) |
 | `Match-3-Game/`, Boss Room, `_archivos/` | Ignorados por `.gitignore` | Copiar a mano si hacen falta |
 | `Library/`, `Logs/`, `Temp/`, `UserSettings/` de cada proyecto Unity | Se regeneran | Nada |
 | Memoria local de Claude (`~/.claude/projects/.../memory/`) | Local de la máquina | Su contenido relevante está en la sección 2 |
-| `proyectos-unity/Asteroides/asteroide-final/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json` | Aparece modificado solo por fin de línea | No commitear |
