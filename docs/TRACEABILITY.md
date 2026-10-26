@@ -40,8 +40,8 @@ Matriz única de trazabilidad del proyecto SDD. La convención está en `.claude
 | REQ-029 | HUD de tiempo (SHOULD) | DEC-031 | — | MANUAL | — | — | — | — | — | — | GDD aprobado |
 | REQ-030 | HUD de vida (SHOULD) | DEC-031 | — | MANUAL + INT | — | — | — | — | — | — | GDD aprobado |
 | REQ-031 | Reinicio directo a la cuenta regresiva (SHOULD) | DEC-031, DEC-040 | — | INT + MANUAL | — | — | — | — | — | — | GDD aprobado |
-| REQ-032 | Dificultad progresiva (COULD) | DEC-031 | — | N/A (COULD no planificado) | — | — | — | — | — | — | GDD aprobado |
-| REQ-033 | Feedback audiovisual (COULD) | DEC-031 | — | N/A (COULD no planificado) | — | — | — | — | — | — | GDD aprobado |
+| REQ-032 | Dificultad progresiva (COULD) | DEC-031 | — | INT + MANUAL (audio) | — | — | — | — | — | — | GDD aprobado |
+| REQ-033 | Feedback audiovisual (COULD; audio incorporado al alcance) | DEC-031, DEC-055 | — | N/A (COULD no planificado) | — | — | — | — | — | — | GDD aprobado |
 | REQ-034 | Mismo gameplay PC/Mobile; intenciones comunes | DEC-005 (DEFERRED), DEC-010, DEC-022 | M1 | INT + MANUAL | — | — | — | — | — | — | GDD aprobado |
 | REQ-035 | Exclusiones del MVP (OUT OF SCOPE) | DEC-002, 003, 006, 009, 010, 011, 012, 013, 029, 043 | — | DOC (N/A: ausencia de funcionalidad) | — | — | — | — | — | — | GDD aprobado |
 | REQ-036 | La vida se limita a 0 (incluidos contactos simultáneos) | DEC-036, DEC-020, DEC-021 | M11 | UNIT | — | — | — | — | — | — | GDD aprobado |

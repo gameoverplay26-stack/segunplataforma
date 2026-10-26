@@ -182,7 +182,7 @@ Pantalla previa ──(acción de inicio)──► Cuenta regresiva (3 s) ──
 | SHOULD | HUD de vida durante la partida | DEC-031 | REQ-030 |
 | SHOULD | Reinicio sin reiniciar la aplicación | DEC-031 | REQ-031 |
 | COULD | Dificultad progresiva dentro de la partida | DEC-031 | REQ-032 |
-| COULD | Feedback audiovisual básico | DEC-031 | REQ-033 |
+| COULD | Feedback audiovisual básico (audio incorporado al alcance por DEC-055) | DEC-031, DEC-055 | REQ-033 |
 
 **OUT OF SCOPE del MVP** → REQ-035:
 
@@ -275,7 +275,7 @@ Pantalla previa ──(acción de inicio)──► Cuenta regresiva (3 s) ──
 | REQ-030 | S | HUD de vida durante la partida | Durante la partida activa se muestra la vida actual y se actualiza tras cada contacto | MANUAL + INT | DEC-031 |
 | REQ-031 | S | Reinicio sin reiniciar la aplicación, directo a la cuenta regresiva | Dado un resultado, cuando el jugador realiza la acción de reinicio, entonces comienza la cuenta regresiva (REQ-002) sin pasar por la pantalla previa, y la nueva partida parte del estado inicial de REQ-003 | INT + MANUAL | DEC-031, DEC-040 |
 | REQ-032 | C | Dificultad progresiva | Sin especificar: se detalla solo si se incorpora al alcance | N/A (COULD no planificado) | DEC-031 |
-| REQ-033 | C | Feedback audiovisual básico | Sin especificar: se detalla solo si se incorpora al alcance | N/A (COULD no planificado) | DEC-031 |
+| REQ-033 | C | Feedback audiovisual básico | **Audio incorporado al alcance (DEC-055, 2026-10-25):** dado un evento de gameplay de la lista aprobada en la Technical Specification, entonces suena su efecto; la parte visual sigue sin especificar | INT + MANUAL (audio) | DEC-031, DEC-055 |
 
 ### 13.7 Plataforma y alcance
 
