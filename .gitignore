@@ -6,11 +6,35 @@
 [Uu]ser[Ss]ettings/
 [Bb]uild/
 [Bb]uilds/
+[Mm]emoryCaptures/
+[Rr]ecordings/
 *.csproj
 *.sln
 *.slnx
 *.apk
 *.aab
+*.unityproj
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+sysinfo.txt
+crashlytics-build.properties
+# Visual Studio / Rider / VS Code (estado local del IDE)
+.vs/
+.idea/
+.vscode/
+*.suo
+*.user
+*.userprefs
+# Reportes de cobertura que se regeneran en cada corrida (el Report/ actual sí se versiona como evidencia)
+**/CodeCoverage/Report-history/
 
 # --- Proyectos de terceros / archivos locales que no se versionan ---
 proyectos-unity/Match-3-Game/
@@ -18,6 +42,10 @@ proyectos-unity/com.unity.multiplayer.samples.coop/
 /com.unity.multiplayer.samples.coop/
 proyectos-unity/_archivos/
 *.zip
+
+# --- Entregas de alumnos (datos de terceros) y evidencias personales: solo locales ---
+/entregas/
+/evidencias/
 
 # --- Office / sistema ---
 ~$*
