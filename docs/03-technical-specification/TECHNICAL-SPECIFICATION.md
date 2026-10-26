@@ -1,7 +1,7 @@
 # Technical Specification — Asteroid Survival
 
 > **Fase SDD:** Technical Specification, fase 7. **Estado:** DRAFT, pendiente de decisiones abiertas (§12) y de aprobación del usuario.
-> **Entradas normativas:** GDD aprobado (`docs/02-gdd/GDD.md`, tag `etapa-02-gdd-complete`, REQ-001…REQ-040) y las decisiones `DEC-046`…`DEC-055` de `docs/SDD-STATUS.md`.
+> **Entradas normativas:** GDD aprobado (`docs/02-gdd/GDD.md`, tag `etapa-02-gdd-complete`, REQ-001…REQ-040) y las decisiones `DEC-046`…`DEC-059` de `docs/SDD-STATUS.md`.
 > **Qué es:** los requisitos técnicos verificables (`TECH-###`) que el proyecto `Arena-SDD/` tiene que cumplir: motor, paquetes, plataformas, área de juego, valores de balance, input, colisiones, tiempo, aleatoriedad, audio, assets y testing.
 > **Qué no es:** no es Architecture Specification. No define clases, interfaces, eventos ni la forma del código; eso queda para la fase siguiente (ARCH-###). Tampoco crea el proyecto Unity ni instala paquetes: eso ocurre en Implementation.
 > **Convención:** cada TECH cita su origen entre corchetes y su forma de verificación. Lo marcado **PROPUESTO** se aprueba con el checkpoint de esta fase; lo marcado **PENDIENTE** espera una decisión del usuario (§12).
@@ -23,10 +23,10 @@ Verificación: `EditorSettings.asset` (`m_SerializationMode: 2`) y `git status` 
 
 | Paquete | Versión | Para qué | Origen |
 |---|---|---|---|
-| `com.unity.inputsystem` | 1.19.0 | Input de PC, gamepad (PENDIENTE) y táctil | DEC-048 |
+| `com.unity.inputsystem` | 1.19.0 | Input de teclado (PC y WebGL) y táctil (Android) | DEC-048, DEC-056 |
 | `com.unity.test-framework` | 1.6.0 | Unit e integration tests (Edit Mode y Play Mode) | Discovery, CLAUDE.md §9 |
-| `com.unity.ugui` | 2.0.0 | Interfaz (incluye TextMeshPro) | **PENDIENTE TS-09** |
-| `com.unity.feature.2d` y URP 17.3.0 | 2.0.2 / 17.3.0 | Plantilla 2D y render | **PENDIENTE TS-09** |
+| `com.unity.ugui` | 2.0.0 | Interfaz (incluye TextMeshPro) | DEC-057 |
+| `com.unity.feature.2d` y `com.unity.render-pipelines.universal` | 2.0.2 / 17.3.0 | Plantilla 2D de Unity 6 y render URP | DEC-057 |
 
 Cualquier paquete adicional requiere autorización explícita del usuario para ese paquete (CLAUDE.md §8).
 Verificación: `Packages/manifest.json` no tiene otras dependencias directas que las de esta tabla y las que agregue la plantilla elegida.
@@ -55,16 +55,16 @@ Verificación: el log de build de cada destino.
 **TECH-008 — Orientación.** Windows y WebGL de escritorio: **horizontal**. Android: **vertical fija** (sin rotación automática). [DEC-047]
 Verificación: Player Settings de cada destino; MANUAL en el teléfono.
 
-**TECH-009 — Área de juego = lo que muestra la cámara, estirado.** El área es el rectángulo visible de una cámara ortográfica y **ocupa toda la pantalla**, sin franjas. Su **alto mide siempre 10 unidades** de mundo; el **ancho depende de la proporción** de la pantalla (por ejemplo, 17,8 unidades en 16:9 horizontal y 4,6 unidades en 9:19,5 vertical). Los bordes de §9 del GDD (bloqueo de la nave, eliminación de asteroides y proyectiles) son los bordes de ese rectángulo. [DEC-047] [DEC-012]
-**Afecta a REQ-034 (INC-11):** el ancho cambia con la pantalla, así que el espacio para esquivar y el rango de aparición también cambian.
-Verificación: UNIT (cálculo del área a partir de la proporción) + MANUAL en cada destino.
+**TECH-009 — Área de juego fija con franjas.** El área es un rectángulo de **tamaño fijo en unidades de mundo**, con **alto de 10 unidades**, mostrado por una cámara ortográfica. Si la pantalla tiene otra proporción, el área no se deforma ni se estira: se agregan **franjas** (letterbox o pillarbox) y la interfaz queda dentro del área. Los bordes de §9 del GDD (bloqueo de la nave, eliminación de asteroides y proyectiles) son los bordes de ese rectángulo, no los de la pantalla. [DEC-059] [DEC-047] [DEC-012]
+**PENDIENTE (INC-11):** la proporción del área: **una única** para todas las plataformas, o **una por orientación** (horizontal en PC y WebGL, vertical en Android).
+Verificación: UNIT (los bordes del área no dependen de la resolución) + MANUAL en cada destino y en dos proporciones de pantalla.
 
-**TECH-010 — Valores ligados al alto del área.** Las velocidades y los tamaños se definen como **fracciones del alto del área**. Así, el tiempo que tarda un asteroide en caer y el tamaño relativo de los objetos son iguales en todos los dispositivos; lo único que cambia entre pantallas es el ancho (TECH-009). [DEC-047] [DEC-052]
+**TECH-010 — Valores ligados al alto del área.** Las velocidades y los tamaños se definen como **fracciones del alto del área** (*H* = 10 unidades). Así, el tiempo de caída y el tamaño relativo de los objetos no dependen del dispositivo. [DEC-052] [DEC-058]
 Verificación: UNIT (conversión de fracción a unidades de mundo).
 
-## 5. Valores de balance (PROPUESTO, DEC-052)
+## 5. Valores de balance (APROBADOS, DEC-058)
 
-**TECH-011 — Tabla de balance inicial.** Los valores del GDD se mantienen; los que quedaban diferidos (TD-2) se proponen así. *H* = alto del área (10 unidades).
+**TECH-011 — Tabla de balance inicial.** Los valores del GDD se mantienen; los que quedaban diferidos (TD-2) son estos, aprobados por el usuario el 2026-10-26 (DEC-058). *H* = alto del área (10 unidades).
 
 | Valor | Propuesta | Origen | Comentario |
 |---|---|---|---|
@@ -91,14 +91,14 @@ Verificación: UNIT (validación de rangos y uso de una configuración de test).
 
 **TECH-013 — Input System con un mapa de acciones.** Un único asset de acciones con estas cuatro acciones, que son las intenciones del GDD §11. [DEC-048] [DEC-005]
 
-| Acción | Tipo | Teclado (PC y WebGL) | Táctil (Android) | Gamepad |
-|---|---|---|---|---|
-| Mover | Valor `Vector2` | WASD y flechas | Joystick en pantalla | PENDIENTE |
-| Disparar | Botón, se mantiene | Espacio | Botón en pantalla | PENDIENTE |
-| Iniciar | Botón | Enter o Espacio en la pantalla previa | Botón de la pantalla previa | PENDIENTE |
-| Reiniciar | Botón | R o Enter en la pantalla final | Botón de la pantalla final | PENDIENTE |
+| Acción | Tipo | Teclado (PC y WebGL) | Táctil (Android) |
+|---|---|---|---|
+| Mover | Valor `Vector2` | WASD y flechas | Joystick en pantalla |
+| Disparar | Botón, se mantiene | Espacio | Botón en pantalla |
+| Iniciar | Botón | Enter o Espacio en la pantalla previa | Botón de la pantalla previa |
+| Reiniciar | Botón | R o Enter en la pantalla final | Botón de la pantalla final |
 
-El táctil usa los controles en pantalla del propio Input System (On-Screen Stick y On-Screen Button).
+El táctil usa los controles en pantalla del propio Input System (On-Screen Stick y On-Screen Button). **Sin gamepad** (DEC-056).
 Verificación: INT (acciones simuladas con el soporte de testing del Input System) + MANUAL en cada destino.
 
 **TECH-014 — Solo el Input System nuevo.** *Active Input Handling* = **Input System Package (New)**, no "Both": el laboratorio de porteo registró que Unity 6.3 declara "Both" no soportado en Android. [DEC-048]
@@ -120,7 +120,7 @@ Verificación: UNIT (dos generadores con la misma semilla dan la misma secuencia
 
 ## 8. Interfaz y audio
 
-**TECH-019 — Interfaz.** PENDIENTE TS-09 (uGUI o UI Toolkit). Pantallas: previa con la acción de iniciar (REQ-001), cuenta regresiva (REQ-002), HUD de vida, tiempo y score (REQ-028…030), pantalla final con resultado y score (REQ-009) y reinicio (REQ-031).
+**TECH-019 — Interfaz.** **uGUI** con TextMeshPro, dentro del área de juego (TECH-009) [DEC-057]. Pantallas: previa con la acción de iniciar (REQ-001), cuenta regresiva (REQ-002), HUD de vida, tiempo y score (REQ-028…030), pantalla final con resultado y score (REQ-009) y reinicio (REQ-031).
 Verificación: MANUAL + INT.
 
 **TECH-020 — Audio.** Un efecto por evento de la lista de `ASSETS-LICENCIAS.md` §3 (PROPUESTO): disparo, asteroide destruido, nave dañada, Game Over, partida completada, cada segundo de la cuenta regresiva, e iniciar o reiniciar. Archivos OGG; audio 2D (sin posición en el espacio); sin música. [DEC-055] [REQ-033]
@@ -170,9 +170,8 @@ TECH sin REQ propio, de soporte del proceso: TECH-001…TECH-007 (motor, proyect
 
 | ID | Pendiente | Afecta |
 |---|---|---|
-| TS-03 | ¿Gamepad en PC además del teclado? | TECH-004, TECH-013 |
-| TS-09 | Render (2D URP o Built-in) e interfaz (uGUI o UI Toolkit) | TECH-004, TECH-019 |
-| INC-11 | Autorizar la corrección de REQ-034 por el área estirada | TECH-009, REQ-034 |
-| DEC-052 | Aprobar los valores de TECH-011 | TECH-011 |
+| INC-11 | Proporción del área con franjas: única para todas las plataformas, o una por orientación (con REQ-034 corregido) | TECH-008, TECH-009, REQ-034 |
 | DEC-055 | Aprobar la lista de sonidos de TECH-020 | TECH-020 |
-| — | Aprobar lo marcado PROPUESTO en TECH-005, TECH-006 y TECH-011 | — |
+| — | Aprobar lo marcado PROPUESTO en TECH-005 y TECH-006 | — |
+
+Resueltos el 2026-10-26: gamepad (DEC-056, sin gamepad), render e interfaz (DEC-057, URP + uGUI), balance (DEC-058) y franjas en lugar de estirar (DEC-059).
