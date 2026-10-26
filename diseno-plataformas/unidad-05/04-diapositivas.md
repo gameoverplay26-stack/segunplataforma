@@ -3,7 +3,7 @@
 Fuente única de las diapositivas de la Unidad 5, tema "Diseño según plataforma: consolas". Contenido desarrollado en `01-desarrollo-tema-consolas.md`; datos y fuentes en `datos/`.
 
 Generar desde `diseno-plataformas/unidad-05/`:
-1. `python scripts/graficos_consolas.py --slides` (gráficos sin título, en `imagenes/slides/`; requiere `matplotlib`).
+1. `python scripts/graficos_consolas.py --slides` (gráficos sin título, en `imagenes/slides/`; requiere `matplotlib`) y `python scripts/capturas_xbox.py` (imágenes del Anexo B, en `imagenes/xbox/`; requiere Pillow).
 2. `python scripts/build_decks.py` → `Unidad-5-2026-completa.pptx`. Con `--version N` se genera `-vN` sin pisar la anterior (requiere `python-pptx` y Pillow).
 
 El generador reutiliza el de la Unidad 4 (`unidad-04/scripts/build_decks.py`): misma paleta, mismo layout y **la misma sintaxis** (ver el encabezado de `unidad-04/04-diapositivas.md`). Única diferencia: el destacado de la unidad es `consola:` ("PARA CONSOLA") en lugar de `movil:`.
@@ -19,6 +19,10 @@ El generador reutiliza el de la Unidad 4 (`unidad-04/scripts/build_decks.py`): m
 - Anexo A (datos y fuentes, antes slides 21–24, ahora 64–67) y **Anexo B** nuevo: Xbox en Developer Mode, paso a paso (68–74), resumen de `../laboratorio-adaptacion/GUIA-XBOX-DOCENTE.md`.
 - El pie dice "Bloque N" en lugar de "Clase N": los bloques se dan según el tiempo, no son encuentros fijos.
 
+**Versión 3 (2026-10-26): Anexo B paso a paso con imágenes.** Pedido del usuario: una sección de guía bien detallada, con capturas de pantalla generadas desde el script. El Anexo B pasa de 7 a 20 slides (68–87), un paso por slide, con su imagen y círculos numerados que coinciden con las viñetas. Las imágenes las genera `scripts/capturas_xbox.py`. Las de la PC (slides 77 y 78) salen de datos reales: el log `proyectos-unity/Tools-Xbox/ultima-corrida.log` y la carpeta del paquete de Asteroides original. Las de la consola, el Partner Center y el Device Portal son **recreaciones esquemáticas**, rotuladas en cada imagen, porque no hay capturas de la consola. Una captura real guardada en `imagenes/xbox/reales/` con el mismo nombre reemplaza a la recreación. Archivo: `Unidad-5-2026-completa-v3.pptx` (87 slides, `--version 3`). Los bloques 1–6 y el Anexo A no cambian. La v2 no se pisa.
+
+**Versión 4 (2026-10-26): rasgos de la adaptación a consola.** Pedido del usuario: sumar a la unidad los rasgos principales de la adaptación del juego original a consola. Slide nueva **46 "Original y consola, lado a lado"** en el Bloque 4, después de "Qué agregó la capa": tabla de cinco rasgos (foco con mando, pausa, texto mínimo, botón Salir, gameplay), verificada contra el código de `asteroide-final`, `2D-Platformer-Unity-v2` y la capa `Assets/Scripts/Console/`. Las slides 46–87 pasan a 47–88 y se corrigieron las referencias internas. El Bloque 4 sube de 25 a 27 minutos de exposición. Archivo: `Unidad-5-2026-completa-v4.pptx` (88 slides, `--version 4`). La v3 no se pisa.
+
 Reparto en minutos (los minutos van en el kicker; el generador no los muestra en la slide). La exposición incluye apertura, teoría y la demo de la docente:
 
 | Bloque | Slides | Exposición | Práctica (aparte) |
@@ -26,11 +30,11 @@ Reparto en minutos (los minutos van en el kicker; el generador no los muestra en
 | 1. La consola tiene dueño | 1–20 | 36 | 54 (A5.1, A5.2) |
 | 2. Las reglas del dueño: certificación | 21–29 | 25 | 30 (A5.3) |
 | 3. Mando y TV a tres metros | 30–38 | 25 | 30 (A5.4) |
-| 4. Asteroides llega a la Xbox | 39–48 | 25 (con demo de 10) | 25 (A5.5) |
-| 5. El modelo más débil manda | 49–59 | 30 | 30 (A5.6) |
-| 6. Cierre de la unidad y TP 4 | 60–63 | 9 | — |
-| Anexos A y B (consulta, no se exponen) | 64–74 | — | — |
-| **Total** | **74** | **150** | **169** |
+| 4. Asteroides llega a la Xbox | 39–49 | 27 (con demo de 10) | 25 (A5.5) |
+| 5. El modelo más débil manda | 50–60 | 30 | 30 (A5.6) |
+| 6. Cierre de la unidad y TP 4 | 61–64 | 9 | — |
+| Anexos A y B (consulta, no se exponen) | 65–88 | — | — |
+| **Total** | **88** | **152** | **169** |
 
 Con 150 minutos de exposición, el 40/60 pediría unos 225 de práctica. Las actividades suman 169, y cada una indica si se puede pasar a tarea.
 
@@ -920,10 +924,35 @@ Lectura del código (líneas reales del archivo; el método completo va de la 14
 - 144–147: si el EventSystem tiene el módulo antiguo, lo quita y agrega el del Input System con sus acciones por defecto (navegar con cruceta y stick, confirmar con A).
 - 156–157: cada cuadro, si no hay nada seleccionado (o lo seleccionado ya no está activo), selecciona el botón usable de más arriba en pantalla.
 - Se instala sola al arrancar: no se tocó ninguna escena.
-Lo que la capa hace además (sin mostrarlo en la slide): color amarillo para el estado "Selected", oculta los botones que llaman a Quit, pausa con Menu, con la desconexión del mando y con la pérdida de foco, y agranda los textos de menos de 26 px a 1080p.
+Lo que la capa hace además lo resume la slide siguiente: foco amarillo, pausa, texto de 26 px y sin botón Salir.
 Decisión de diseño: la capa se instala sola con [RuntimeInitializeOnLoadMethod]. No se editaron escenas ni prefabs, y el gameplay (Ship.cs) es el mismo en las dos versiones.
 
-## 46 | El error que encontraron los tests
+## 46 | Original y consola, lado a lado
+tipo: contenido
+kicker: XBOX · 2 MIN
+| Rasgo | Original | Consola |
+| Menú con mando | Sin foco | Foco amarillo |
+| Pausa | No existe | Menu, mando, foco |
+| Texto mínimo | Sin control | 26 px a 1080p |
+| Botón Salir | Visible | Oculto |
+| Gameplay | Ship.cs | Ship.cs, sin cambios |
+consola: Se agrega una capa; el juego no se reescribe
+fuente: PORTEO-XBOX.md, sección 3; proyectos-unity/Asteroides-Xbox/Assets/Scripts/Console/ (ConsoleLayer.cs, ConsoleRules.cs, PauseState.cs, ConsoleText.cs)
+notas:
+Glosario (conceptos cortos para la docente):
+• Foco: el elemento de la UI que recibe la entrada del mando; tiene que verse siempre.
+• XAG 101: guía de accesibilidad de Xbox sobre el tamaño del texto (26 px de cuerpo a 1080p en consola).
+• Capa de consola: los cinco archivos de Assets/Scripts/Console/, iguales en Asteroides y en el Platformer salvo ConsoleText.cs.
+Rasgos principales de la adaptación, fila por fila (todo verificado en el código de las dos versiones):
+- Menú con mando: en el original nada tiene el foco y Asteroides trae el módulo de UI del Input Manager (StandaloneInputModule), así que con el mando no se puede empezar. La capa cambia el módulo por el del Input System, da el foco al botón de más arriba y lo pinta de amarillo (XR-003 y XAG 112, vistos en los bloques 2 y 3).
+- Pausa: ninguno de los dos originales tiene pausa. La capa pausa por tres motivos: botón Menu (≡) durante la partida, mando físico desconectado y pérdida de foco de la aplicación. Congela el tiempo (Time.timeScale = 0), silencia el audio y muestra un cartel. Los adaptadores de entrada dejan de leer el mando mientras dura. La pausa por mando desconectado es el primer paso hacia el XR-115 (no elige un mando activo nuevo: eso pide el GDK).
+- Texto mínimo: la capa sube a 26 px a 1080p los textos más chicos (Text y, en el Platformer, también TextMesh Pro), con la misma cuenta que hace el Canvas Scaler.
+- Botón Salir: solo lo tiene el Platformer (Asteroides original no tiene). En consola la aplicación la cierra el sistema, por eso la capa oculta los botones que llaman a Quit.
+- Gameplay: Ship.cs y PlayerController.cs son los mismos. En los adaptadores de entrada solo se agregó SetConsolePaused.
+Idea para cerrar: adaptar a consola fue sumar UI, ciclo de vida y legibilidad alrededor del juego, no reescribirlo. Es la misma estrategia que el porteo a móvil de la Unidad 4: un adaptador por plataforma y el gameplay intacto.
+Límite: la tabla dice qué hace el código. Que en la TV se vea y se sienta así es lo que comprobó (o no) la demo; el tamaño real del texto en la TV no se midió.
+
+## 47 | El error que encontraron los tests
 tipo: contenido
 kicker: XBOX · 2 MIN
 flujo: El joystick en pantalla se oculta | Se quita su mando virtual | La capa cree que se desconectó un mando | El juego se pausa solo || Corrección: solo cuentan los mandos físicos
@@ -939,7 +968,7 @@ Historia real de esta adaptación:
 - Corrección: solo pausa si el dispositivo es un mando y es físico (device.native). Después de corregir, los 5 tests pasaron y no hubo regresiones.
 Moraleja para el TP: lo agregado para una plataforma (los controles táctiles de móvil) puede romper otra. Sin tests, este error se habría descubierto en la consola, delante del curso.
 
-## 47 | Qué NO resuelve esta demo
+## 48 | Qué NO resuelve esta demo
 tipo: contenido
 kicker: XBOX · 1 MIN
 - No es certificación
@@ -955,7 +984,7 @@ Desarrollo:
 - El rendimiento se observa en el Device Portal, pero 5 GB y 4 núcleos no son el hardware completo de un kit de desarrollo.
 - Los requisitos de Sony y Nintendo no son públicos: no se puede decir que esta adaptación alcance para esas consolas.
 
-## 48 | A5.5 · Comprobar y leer el código
+## 49 | A5.5 · Comprobar y leer el código
 tipo: actividad
 kicker: ACTIVIDAD · 17 MIN · GRUPOS DE 3
 - ¿Qué predicciones fallaron y por qué?
@@ -977,7 +1006,7 @@ Si se extiende: comparar con git los archivos de `asteroide-final` y `Asteroides
 
 # DECK 5 | El modelo más débil manda | Unidad V · Bloque 5
 
-## 49 | Diseño según Plataforma: Consolas
+## 50 | Diseño según Plataforma: Consolas
 tipo: portada
 kicker: UNIDAD V · BLOQUE 5
 - Bloque 5: El modelo más débil manda, multijugador y rendimiento
@@ -989,7 +1018,7 @@ Bloque de 30 minutos de exposición más la actividad A5.6 (30 minutos, en clase
 Idea fuerza: una limitación de hardware puede quitar un modo de juego entero, no solo bajar los gráficos. Y optimizar sin medir es adivinar.
 Alcance: el multijugador en línea se da solo a nivel conceptual. Implementar netcode es otra materia.
 
-## 50 | Dos jugadores en el sillón
+## 51 | Dos jugadores en el sillón
 tipo: contenido
 kicker: APERTURA · 2 MIN
 - Asteroides cooperativo
@@ -1002,7 +1031,7 @@ Glosario (conceptos cortos para la docente):
 Relato: "El publisher pide un modo cooperativo para dos en el sillón, porque en consola se vende bien".
 Respuestas esperadas: un segundo mando, una segunda nave, quizá dividir la pantalla. Casi nadie piensa en la memoria ni en el rendimiento: ahí va el bloque.
 
-## 51 | Compartida o dividida
+## 52 | Compartida o dividida
 tipo: contenido
 kicker: MULTIJUGADOR · 4 MIN
 comparacion: +Pantalla compartida: Una cámara, Más barata // Los jugadores no pueden separarse | Pantalla dividida: Una cámara por jugador, Cada uno ve su zona // N cámaras: N veces el render
@@ -1017,9 +1046,9 @@ Desarrollo:
 - Pantalla compartida: una sola cámara. Es la opción natural de Asteroides, donde la acción ocurre en una sola pantalla fija. Costo bajo; límite: los jugadores no pueden alejarse.
 - Pantalla dividida: cada jugador tiene su cámara y su vista. Libertad de movimiento, pero cada cámara repite el trabajo de dibujar la escena.
 - Hay variantes, como la pantalla dividida dinámica, que se une cuando los jugadores están cerca (Terrell cita Bionic Commando Rearmed). Es un artículo de opinión profesional: sirve para discutir, no como dato.
-Conexión con el bloque: en una consola de memoria justa, "N veces el render" puede no entrar. Es el caso de la slide 53.
+Conexión con el bloque: en una consola de memoria justa, "N veces el render" puede no entrar. Es el caso de la slide 54.
 
-## 52 | Sumar jugadores con el Input System
+## 53 | Sumar jugadores con el Input System
 tipo: contenido
 kicker: MULTIJUGADOR · 3 MIN
 - Se une apretando un botón
@@ -1037,7 +1066,7 @@ Desarrollo:
 - Requisito público relacionado: el XR-045 (privilegios de multijugador) aclara que el privilegio de juego en línea no aplica al multijugador local en el mismo dispositivo. De ahí se infiere que jugar en el sillón no exige la suscripción en línea (INFERENCIA).
 Para la práctica (opcional): la lista de videos oficial del Input System tiene uno de multijugador local con el Player Input Manager (ver fuentes del bloque en la investigación).
 
-## 53 | Caso: Baldur's Gate 3 en Series S
+## 54 | Caso: Baldur's Gate 3 en Series S
 tipo: contenido
 kicker: MULTIJUGADOR · 4 MIN
 flujo: Series S: 10 GB de memoria | Pantalla dividida: dos vistas | No entra al lanzar | Sin pantalla dividida en S | Patch 8 la agrega || XR-130: los mismos modos en toda la generación
@@ -1055,7 +1084,7 @@ El caso, como lo contó la prensa:
 Advertencia: las fuentes primarias (el posteo de Vincke, la nota de Eurogamer, la página del Patch 8) no se pudieron abrir. Se cita como lo relata la prensa.
 Lección: una limitación de memoria quitó un modo de juego, no solo gráficos. Por eso el diseño parte del modelo más débil.
 
-## 54 | En línea: el modelo mental
+## 55 | En línea: el modelo mental
 tipo: contenido
 kicker: MULTIJUGADOR · 3 MIN
 | Concepto | Qué resuelve |
@@ -1075,7 +1104,7 @@ Desarrollo (nivel conceptual, sin implementar):
 - Compensación de lag: el servidor "rebobina" para decidir si un disparo acertó con lo que veía el jugador.
 Fuera de alcance: rollback propio, snapshots, NAT, servidores dedicados. En Unity hay herramientas para demostrarlo (Multiplayer Play Mode, Network Simulator), no para enseñar netcode a fondo.
 
-## 55 | ¿Cuánta latencia tolera tu juego?
+## 56 | ¿Cuánta latencia tolera tu juego?
 tipo: contenido
 kicker: MULTIJUGADOR · 3 MIN
 | Tipo de acción | Tolerancia medida |
@@ -1092,7 +1121,7 @@ Desarrollo:
 - La guía de Unity para probar multijugador sugiere probar a 100, 200, 500 y 1000 ms, y advierte que probar solo con demora, sin pérdida de paquetes ni jitter, no es realista. Valores de referencia de Boss Room en escritorio: 100–150 ms y 5–10 % de pérdida.
 Pregunta: ¿qué tipo de acción es disparar en Asteroides? Precisa y con plazo corto: tolera poca latencia. Un Asteroides en línea necesitaría predicción.
 
-## 56 | Medir antes de optimizar
+## 57 | Medir antes de optimizar
 tipo: contenido
 kicker: RENDIMIENTO · 4 MIN
 flujo: Objetivo: 60 fps = 16,6 ms | Medir con el Profiler | ¿CPU o GPU? | Aislar la causa | Aplicar una técnica | Volver a medir
@@ -1112,7 +1141,7 @@ El ciclo:
 6. Volver a medir: si no mejora, se deshace.
 Error frecuente: "optimizar" bajando la calidad de todo sin medir. Puede que el problema esté en la CPU y bajar texturas no cambie nada.
 
-## 57 | Cada técnica, su problema
+## 58 | Cada técnica, su problema
 tipo: contenido
 kicker: RENDIMIENTO · 4 MIN
 | Problema | Técnica en Unity 6.3 |
@@ -1137,7 +1166,7 @@ Desarrollo (orden actualizado a Unity 6.3):
 Importante para la actividad: Asteroides usa el pipeline Built-in y el Platformer usa URP 2D. Las técnicas de URP no aplican a Asteroides. Elegir la técnica según el pipeline es parte del ejercicio.
 Error frecuente: aplicar recetas de Unity 2019 en Unity 6 (por ejemplo, empezar por dynamic batching).
 
-## 58 | Un juego, varios presupuestos
+## 59 | Un juego, varios presupuestos
 tipo: contenido
 kicker: RENDIMIENTO · 3 MIN
 | Modelo | Pantalla | Memoria |
@@ -1157,7 +1186,7 @@ Desarrollo:
 - Con el XR-130 (mismos modos en toda la generación), el modelo más débil fija qué se puede ofrecer; el más potente solo mejora la imagen.
 - Asteroides y el Platformer son livianos: el problema no es si corren, sino tener la medición que lo demuestre (actividad A5.6).
 
-## 59 | Actividad A5.6: medir antes de optimizar
+## 60 | Actividad A5.6: medir antes de optimizar
 tipo: actividad
 kicker: ACTIVIDAD · 30 MIN · GRUPOS DE 3 · O TAREA
 | Medición | Asteroides | Platformer |
@@ -1174,14 +1203,14 @@ Consigna completa (25 min de trabajo + 5 de puesta en común):
 1. Abrir el Profiler (Window → Analysis → Profiler) y jugar un minuto de cada juego en el Editor; si hay tiempo, con un build de desarrollo conectado.
 2. Anotar el peor cuadro en ms y si el problema es de CPU o de GPU (módulo Highlights).
 3. Identificar la causa principal con el Profiler o el Frame Debugger.
-4. Elegir UNA técnica de la slide 57 que corresponda al pipeline de cada juego y explicar por qué; no hace falta aplicarla.
+4. Elegir UNA técnica de la slide 58 que corresponda al pipeline de cada juego y explicar por qué; no hace falta aplicarla.
 Respuestas esperadas: los dos juegos entran holgados en 16,6 ms en una PC del aula. La respuesta correcta puede ser "no hace falta optimizar, y esta es la medición que lo muestra". En Asteroides, si aparece algo, suele ser la creación de objetos (asteroides y láseres): conecta con el defecto del pool del porteo a móvil.
 Error a vigilar: proponer GPU Resident Drawer para Asteroides, que usa Built-in.
 Si el tiempo no alcanza: pasa a tarea y es el presupuesto de rendimiento del TP 4.
 
 # DECK 6 | Cierre de la unidad y TP 4 | Unidad V · Bloque 6
 
-## 60 | Errores frecuentes de la unidad
+## 61 | Errores frecuentes de la unidad
 tipo: contenido
 kicker: CIERRE · 3 MIN
 | Error | Corrección |
@@ -1202,7 +1231,7 @@ Desarrollo de cada error, con el bloque donde se trató:
 - Medir: el ciclo medir → aislar → aplicar → volver a medir (bloque 5).
 - Sony y Nintendo: solo se conocen sus pasos de alta (bloque 2).
 
-## 61 | TP 4: dossier de plataforma, consola
+## 62 | TP 4: dossier de plataforma, consola
 tipo: contenido
 kicker: TP 4 · 3 MIN · PROPUESTO
 | Entregable | Sale de |
@@ -1226,7 +1255,7 @@ Consigna (PROPUESTA; el peso en la nota y la fecha los define la titular):
 6. Qué no resolvieron y por qué.
 Evidencia mínima: un test de Unity que pase (por ejemplo, que el menú tenga foco al cargar) y las capturas.
 
-## 62 | Rúbrica del TP 4 (borrador)
+## 63 | Rúbrica del TP 4 (borrador)
 tipo: contenido
 kicker: TP 4 · 2 MIN · PROPUESTO
 | Criterio | Logrado si... |
@@ -1246,7 +1275,7 @@ Borrador de cuatro niveles por criterio (insuficiente, en proceso, logrado, dest
 - Rendimiento: insuficiente si "optimiza" sin medir; destacado si muestra antes y después.
 Pendiente de la titular: la equivalencia con la nota (como en la U4, D4-05) y si la defensa es oral o en video.
 
-## 63 | Cierre de la unidad
+## 64 | Cierre de la unidad
 tipo: cierre
 kicker: CIERRE · 1 MIN
 - La consola tiene dueño
@@ -1264,7 +1293,7 @@ Más adelante en la materia: el límite pasa a ser la diversidad del hardware de
 
 # DECK 7 | Anexo A: datos y fuentes | Unidad V · Anexo de consulta
 
-## 64 | Ventas de vida: tabla completa
+## 65 | Ventas de vida: tabla completa
 tipo: contenido
 kicker: ANEXO · CONSULTA
 subtabla: Nintendo (al 30-jun-2026)
@@ -1296,7 +1325,7 @@ Glosario (conceptos cortos para la docente):
 Fuentes: Nintendo IR, Dedicated Video Game Sales Units (https://www.nintendo.co.jp/ir/en/finance/hard_soft/index.html); SIE, Business Data & Sales (https://sonyinteractive.com/en/our-company/business-data-sales/). Datos en datos/ventas-hardware.csv.
 Microsoft no publica unidades de Xbox One ni de Series X|S; las de Xbox y Xbox 360 que circulan en prensa no se verificaron.
 
-## 65 | Ventas por ejercicio fiscal
+## 66 | Ventas por ejercicio fiscal
 tipo: contenido
 kicker: ANEXO · CONSULTA
 subtabla: Nintendo Switch (millones)
@@ -1325,7 +1354,7 @@ Glosario (conceptos cortos para la docente):
 • FY3/2021: ejercicio de Nintendo que termina en marzo de 2021 (abril de 2020 a marzo de 2021).
 Fuentes: Nintendo IR, Consolidated Sales Transition by Region (planilla al 31-mar-2026). PS5: 16,0 y 18,5 M según Game Developer (8-may-2026, resultados de Sony); 7,8, 11,5 y 19,1 M de los 20-F de Sony citados por el buscador (tabla no abierta); 20,8 M = 93,7 M menos los otros cinco ejercicios. Coherencia: 38,4 M a mar-2023 contra el hito oficial de 40 M en jul-2023.
 
-## 66 | Fuentes de los datos
+## 67 | Fuentes de los datos
 tipo: contenido
 kicker: ANEXO · CONSULTA
 | ID | Fuente | Aporta |
@@ -1343,7 +1372,7 @@ Glosario (conceptos cortos para la docente):
 Las URL completas están en diseno-plataformas/unidad-05/datos/fuentes.md y las fichas B en 00-investigacion-preliminar.md.
 Criterio de la cátedra: los conceptos pueden venir de prensa profesional; las cifras se toman de la fuente oficial. Cuando solo hubo prensa (Newzoo, BG3), se dice en la slide.
 
-## 67 | No verificado: no usar como dato
+## 68 | No verificado: no usar como dato
 tipo: contenido
 kicker: ANEXO · CONSULTA
 - Unidades de Xbox (360, Series)
@@ -1359,11 +1388,11 @@ Detalle:
 3. Crisis de 1983 y su relación con los sistemas de licencias de Nintendo: conocimiento general.
 4. Newzoo: el total de 2025 (USD 201.600 M) y los porcentajes de crecimiento se leyeron en GamesBeat; los montos por segmento difieren entre versiones del informe.
 5. Fechas exactas de lanzamiento de Xbox Series X|S (nov-2020) y Steam Deck (2022).
-6. Ventas de PS5 de los tres primeros ejercicios (ver slide 65).
+6. Ventas de PS5 de los tres primeros ejercicios (ver slide 66).
 
 # DECK 8 | Anexo B: Xbox en Developer Mode, paso a paso | Unidad V · Anexo de consulta
 
-## 68 | Antes de empezar
+## 69 | Antes de empezar
 tipo: contenido
 kicker: ANEXO B · CONSULTA
 | Qué | Detalle |
@@ -1377,54 +1406,143 @@ fuente: GUIA-XBOX-DOCENTE.md (sección 0); Microsoft, Getting started with UWP a
 notas:
 Glosario (conceptos cortos para la docente):
 • Windows SDK: kit de desarrollo de Windows; sin él, Unity no genera proyectos UWP.
-Este anexo resume `diseno-plataformas/laboratorio-adaptacion/GUIA-XBOX-DOCENTE.md`. Ante cualquier duda, manda la guía.
+Este anexo es la versión paso a paso, con imágenes, de `diseno-plataformas/laboratorio-adaptacion/GUIA-XBOX-DOCENTE.md`. Ante cualquier duda, manda la guía.
+Sobre las imágenes (versión 3): las de la PC (slides 78 y 79) salen de datos reales, del log de la última corrida y de la carpeta del paquete. Las de la consola, el Partner Center y el Device Portal son RECREACIONES ESQUEMÁTICAS dibujadas por `scripts/capturas_xbox.py`, porque no hay capturas de la consola. Cada imagen lo dice en la franja de abajo: verde = real, naranja = recreación. Los números en círculo coinciden con los pasos de la slide. Las etiquetas exactas pueden variar con la versión del sistema de la consola.
+Para reemplazar una recreación por una captura real: guardar el PNG con el mismo nombre en `imagenes/xbox/reales/` y volver a correr `capturas_xbox.py` y `build_decks.py`.
 Detalle de la PC: Visual Studio 2022 con la carga de trabajo "Desarrollo de la Plataforma universal de Windows", las herramientas C++ de UWP (v143) y el Windows SDK 10.0.19041 o posterior. En la PC de la cátedra se instalaron el 2026-10-26 (SDK 10.0.26100).
-Mientras la consola está en Developer Mode, los juegos y apps comerciales no corren. Se vuelve al modo normal en un minuto, sin perder nada.
+Mientras la consola está en Developer Mode, los juegos y apps comerciales no corren. Se vuelve al modo normal en un minuto, sin perder nada (slide 87).
 
-## 69 | 1. Cuenta y Developer Mode
+## 70 | El recorrido completo
 tipo: contenido
 kicker: ANEXO B · CONSULTA
-- 1. storedeveloper.microsoft.com: Individual
-- 2. Verificar identidad: documento y selfie
-- 3. En la Xbox: app Xbox Dev Mode
-- 4. Anotar el código de activación
-- 5. partner.microsoft.com/xboxconfig/devices
-- 6. Agree and activate → Switch and restart
-fuente: Microsoft, Steps to open a Microsoft Store developer account; Microsoft, Xbox Developer Mode activation
+| Dónde | Pasos | Slides |
+| Navegador de la PC | Cuenta y activación | 70–72 |
+| Consola | Developer Mode y Dev Home | 73–75 |
+| Navegador de la PC | Device Portal | 76 |
+| PowerShell | Generar los paquetes | 77–78 |
+| Device Portal | Instalar | 79–82 |
+| Consola | Jugar y medir | 83–85 |
+consola: Slides 70–76: una sola vez por consola. Slides 77–85: cada vez que cambia el juego
+fuente: GUIA-XBOX-DOCENTE.md, pasos 1 a 9
+notas:
+Glosario (conceptos cortos para la docente):
+• Developer Mode: modo de la consola comercial que permite instalar paquetes propios. No es un kit de desarrollo.
+La primera vez lleva más o menos una hora: el registro, la verificación de identidad y el primer reinicio son lo que más tarda. Después, reinstalar un juego lleva unos minutos.
+
+## 71 | Paso 1 · La cuenta de desarrollador
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- 1. storedeveloper.microsoft.com → Get started for free
+- 2. Elegir Individual developer
+- Verificar identidad: documento y selfie
+- Entrar al Partner Center
+captura: imagenes/xbox/xb-01-registro.png | Registro sin costo: entrar por storedeveloper.microsoft.com
+fuente: Microsoft, Steps to open a Microsoft Store developer account
+notas:
+Glosario (conceptos cortos para la docente):
+• Partner Center: el panel de Microsoft para desarrolladores. Acá solo se usa para activar la consola.
+Detalle:
+- El registro sin costo solo funciona entrando por storedeveloper.microsoft.com. Otros caminos muestran el flujo viejo, que cobraba.
+- La verificación se hace desde el celular, con buena luz.
+- Si el Partner Center (Apps & Games) no aparece enseguida, esperar unos 5 minutos y recargar.
+- La cuenta no publica nada: solo habilita la consola.
+
+## 72 | Paso 2 · El código en la consola
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- Tienda de la consola: Xbox Dev Mode
+- Instalarla y abrirla
+- 1. Anotar el código que muestra
+- No cerrar la app hasta activar
+captura: imagenes/xbox/xb-02-codigo.png | La app Xbox Dev Mode muestra el código de activación
+fuente: Microsoft, Xbox Developer Mode activation
+notas:
+Glosario (conceptos cortos para la docente):
+• Código de activación: identifica a esta consola. Se ingresa una vez en el Partner Center.
+El código de la imagen es de ejemplo. El real lo genera la consola.
+Consola de modelo japonés: no se verificó si la app aparece con la región de Japón. Si no aparece, cambiar la región en Configuración → Sistema → Idioma y ubicación, y buscarla de nuevo.
+
+## 73 | Paso 3 · Activar desde la PC
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- partner.microsoft.com/xboxconfig/devices
+- 1. Escribir el código
+- 2. Agree and activate
+- La consola muestra el progreso
+captura: imagenes/xbox/xb-03-activar.png | Partner Center: activar la consola con el código
+fuente: Microsoft, Xbox Developer Mode activation
 notas:
 Glosario (conceptos cortos para la docente):
 • Activación: vincular la consola a la cuenta de desarrollador. Cada cuenta tiene un número limitado de activaciones.
-Detalle:
-- El registro sin costo solo funciona entrando por storedeveloper.microsoft.com ("Get started for free"); otros caminos muestran el flujo viejo.
-- Consola de modelo japonés: no se verificó si la app Xbox Dev Mode aparece con la región de Japón. Si no aparece, cambiar la región en Configuración → Sistema → Idioma y ubicación.
-- Después de "Switch and restart", la consola reinicia (tarda más que lo normal) y abre Dev Home.
+Iniciar sesión con la misma cuenta del paso 1. Desde esta misma página se desactiva la consola, por ejemplo si se vende (slide 87).
 
-## 70 | 2. Dev Home y Device Portal
+## 74 | Paso 4 · Reiniciar en Developer Mode
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- Al terminar la activación:
+- 1. Switch and restart
+- El reinicio tarda más de lo normal
+- Al volver, abre Dev Home
+captura: imagenes/xbox/xb-04-switch.png | Xbox Dev Mode al terminar la activación
+fuente: Microsoft, Xbox Developer Mode activation
+notas:
+Glosario (conceptos cortos para la docente):
+• Dev Home: la pantalla de inicio de la consola en Developer Mode. Si aparece Dev Home, la consola está en Developer Mode.
+No apagar la consola durante el reinicio.
+
+## 75 | Paso 5 · Dev Home: usuario e IP
 tipo: contenido
 kicker: ANEXO B · CONSULTA
 - 1. Iniciar sesión con un usuario
-- 2. Anotar la IP de Dev Home
-- 3. Remote Access Settings
-- 4. Enable Xbox Device Portal + clave
-- 5. En la PC: abrir la URL que muestra
-- 6. Settings: Treat UWP apps as games
+- 2. Anotar la IP (arriba a la izquierda)
+- Después: Remote Access Settings
+captura: imagenes/xbox/xb-05-dev-home.png | Dev Home: usuario con sesión iniciada e IP de la consola
+consola: Sin usuario con sesión iniciada, la instalación falla con 0x87e10008
+fuente: GUIA-XBOX-DOCENTE.md, paso 3; Microsoft, UWP on Xbox FAQ
+notas:
+Glosario (conceptos cortos para la docente):
+• IP: la dirección de la consola en la red local. Es la que se escribe en el navegador de la PC.
+La IP de la imagen (192.168.0.50) es de ejemplo. Dev Home la muestra arriba a la izquierda. La PC y la consola tienen que estar en la misma red, mejor con cable.
+
+## 76 | Paso 6 · Habilitar el Device Portal
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- Home → Remote Access Settings
+- 1. Enable Xbox Device Portal
+- 2. Set username and password
+- 3. Anotar la URL que aparece
+captura: imagenes/xbox/xb-06-remote-access.png | Remote Access Settings en Dev Home
+fuente: Microsoft, Device Portal for Xbox
+notas:
+Glosario (conceptos cortos para la docente):
+• Device Portal: página web de la consola en Developer Mode. Desde la PC permite instalar y administrar paquetes, capturar la pantalla y medir el rendimiento.
+Usar un usuario y una contraseña solo para esto, no los de la cuenta de Microsoft. La URL tiene la forma https://<IP>:11443.
+
+## 77 | Paso 7 · Abrir el Device Portal en la PC
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- Abrir la URL en el navegador
+- 1. Aviso de certificado: es esperable
+- 2. Avanzado → 3. Continuar a la IP
+- Usuario y clave del paso 6
+- Una vez: Treat UWP apps as games
+captura: imagenes/xbox/xb-07-certificado.png + imagenes/xbox/xb-08-preferencias.png | Aviso del navegador · Settings → Preference Settings
 fuente: Microsoft, Device Portal for Xbox; Microsoft, UWP on Xbox FAQ
 notas:
 Glosario (conceptos cortos para la docente):
-• Device Portal: página web de la consola en Developer Mode para instalar y administrar paquetes desde la PC.
+• Certificado propio: la consola firma su página con un certificado que el navegador no conoce. Por eso avisa, y en este caso es esperable.
 Detalle:
-- Sin usuario con sesión iniciada, la instalación falla con el error 0x87e10008.
-- En Dev Home: Home → Remote Access → Remote Access Settings; tildar "Enable Xbox Device Portal" y fijar usuario y contraseña.
-- El navegador muestra una advertencia de certificado: es esperable (Detalles → Ir a la página web).
-- "Treat UWP apps as games by default" (Settings → Preference Settings): sin esto, el paquete corre como app, con 1 GB de memoria en lugar de 5 GB.
+- Según el navegador y su versión, el aviso dice "Avanzado → Continuar a … (no seguro)" o "Detalles → Ir a la página web". Es lo mismo.
+- "Treat UWP apps as games by default" (Settings → Preference Settings): sin esto, el paquete corre como app, con 1 GB de memoria y parte de la GPU, en lugar de 5 GB y la GPU completa. Se tilda una sola vez, antes de instalar. Si un juego ya se instaló sin esto, reinstalarlo.
 
-## 71 | 3. Generar los paquetes
+## 78 | Paso 8 · Generar los paquetes en la PC
 tipo: contenido
 kicker: ANEXO B · CONSULTA
 - 1. Cerrar Unity
 - 2. PowerShell en la raíz del repositorio
 - 3. Correr generar_builds_xbox.ps1
-- 4. Paquetes en Builds/Xbox-Paquete/
+- 4. Esperar Unity y msbuild
+captura: imagenes/xbox/pc-01-powershell.png | Salida real del script (26/10/2026)
 fuente: proyectos-unity/Tools-Xbox/generar_builds_xbox.ps1; PORTEO-XBOX.md, sección 5
 notas:
 Glosario (conceptos cortos para la docente):
@@ -1437,30 +1555,114 @@ Qué hace el script con cada proyecto:
 1. Crea el certificado de prueba en Certificados/ (no se versiona: tiene clave privada).
 2. Corre Unity en batchmode con BuildXbox.Build: UWP, x64, familias Xbox y Desktop.
 3. Compila con msbuild en Master x64 y arma el paquete.
-4. Deja todo en Builds/Xbox-Paquete/<Nombre>_1.0.0.0_x64_Master_Test/: el .msix, el .cer y Dependencies/x64/Microsoft.VCLibs.x64.14.00.appx.
-Paquetes generados el 2026-10-26: Asteroides original y de consola (27,6 MB cada uno) y Platformer original y de consola (37,8 MB cada uno).
+4. Deja todo en Builds/Xbox-Paquete/<Nombre>_1.0.0.0_x64_Master_Test/.
+Cuánto tarda: de 1 a 5 minutos de Unity y varios minutos de compilación de C++ por proyecto.
+La imagen muestra solo los proyectos que terminaron en la última corrida registrada (ultima-corrida.log). Antes de la clase, comprobar que estén los cuatro paquetes.
 Si falla: Logs/build-xbox.log (Unity) o Logs/build-xbox-msbuild.log (Visual Studio).
 
-## 72 | 4. Instalar y jugar
+## 79 | Paso 9 · Qué archivos se suben
 tipo: contenido
 kicker: ANEXO B · CONSULTA
-- 1. Device Portal → Home → Add
-- 2. Elegir el .msix
-- 3. Agregar Microsoft.VCLibs.x64
-- 4. Install y esperar
-- 5. Lanzar desde Dev Home
-- 6. Captura: Media capture
-fuente: Microsoft, Windows Device Portal overview (instalar paquetes); Microsoft, Device Portal for Xbox
+- Por cada juego, dos archivos:
+- El .msix del juego
+- Dependencies/x64: VCLibs x64
+- El .cer, solo si el portal lo pide
+- ARM, ARM64 y x86: no (la Xbox es x64)
+captura: imagenes/xbox/pc-02-carpeta.png | Carpeta real del paquete de Asteroides (original)
+fuente: PORTEO-XBOX.md, sección 5; Microsoft, Windows Device Portal overview
 notas:
 Glosario (conceptos cortos para la docente):
 • Dependencia: paquete que el juego necesita para correr (acá, las bibliotecas de C++ de Visual Studio).
-Detalle:
-- Si el portal pide el certificado, usar el .cer de la misma carpeta.
-- Si dice que ya está instalado: cerrar el juego, quitarlo (Actions → Remove) y volver a agregarlo.
-- Plan B: abrir la solución de Builds/UWP en Visual Studio, x64, Master, Remote Machine con la IP de la consola y F5; la primera vez pide el PIN que muestra Dev Home.
-- Rendimiento en vivo: Device Portal → Performance.
+• .appxsym: símbolos de depuración. Sirven para leer un crash en la PC, no se instalan.
+Install.ps1 y Add-AppDevPackage.ps1 son para instalar en una PC con Windows, no en la consola.
+Para llevar el paquete a otra PC, copiar la carpeta completa.
 
-## 73 | 5. Protocolo de prueba
+## 80 | Paso 10 · Device Portal: Add
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- Device Portal → Home
+- Sección My games & apps
+- 1. Add
+- Se abre el asistente de instalación
+captura: imagenes/xbox/xb-10-add.png | Home del Device Portal, antes de instalar
+fuente: Microsoft, Windows Device Portal overview (instalar paquetes)
+notas:
+Glosario (conceptos cortos para la docente):
+• Sideload: instalar un paquete sin pasar por la tienda. Es lo que hace el Device Portal.
+Instalar de a un juego. Repetir los pasos 10 a 13 por cada paquete.
+
+## 81 | Paso 11 · Elegir el paquete
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- 1. Choose file → el .msix
+- No elegir los .appx de Dependencies
+- 2. Next
+captura: imagenes/xbox/xb-11-msix.png | Asistente, primera pantalla: el paquete del juego
+fuente: Microsoft, Windows Device Portal overview (instalar paquetes)
+notas:
+Glosario (conceptos cortos para la docente):
+• .msix: el paquete de instalación de una app de Windows (UWP). Contiene el juego compilado y su manifiesto.
+Según la versión del Device Portal, el asistente puede mostrar los pasos en una sola pantalla. El orden es el mismo: paquete, dependencias, instalar.
+
+## 82 | Paso 12 · Dependencia y certificado
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- 1. Agregar VCLibs x64 (.appx)
+- Si la consola ya la tiene, la saltea
+- El .cer, solo si lo pide
+- 2. Start y esperar
+captura: imagenes/xbox/xb-12-dependencias.png | Asistente, segunda pantalla: dependencias
+fuente: GUIA-XBOX-DOCENTE.md, paso 6; Microsoft, Windows Device Portal overview
+notas:
+Glosario (conceptos cortos para la docente):
+• VCLibs: las bibliotecas de ejecución de C++ de Visual Studio. El código de IL2CPP las necesita para correr.
+Archivo: Dependencies/x64/Microsoft.VCLibs.x64.14.00.appx, junto al paquete.
+Si falta la dependencia, la instalación falla. La solución es repetir este paso.
+
+## 83 | Paso 13 · Instalado: lanzar o quitar
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- Aparece en My games & apps
+- 1. Actions → Launch
+- 2. Actions → Remove, para reinstalar
+captura: imagenes/xbox/xb-13-instalado.png | El juego instalado y el menú Actions
+fuente: Microsoft, Device Portal for Xbox
+notas:
+Glosario (conceptos cortos para la docente):
+• Reinstalar: el portal rechaza un paquete con el mismo nombre y versión que uno instalado. Primero se quita el viejo.
+Para quitar: cerrar el juego, Actions → Remove, y volver a hacer los pasos 10 a 12.
+Plan B de instalación: abrir la solución de Builds/UWP en Visual Studio, x64, Master, Remote Machine con la IP de la consola, autenticación Universal (Unencrypted Protocol), y F5. La primera vez pide el PIN que se ve en Dev Home con "Show Visual Studio pin".
+
+## 84 | Paso 14 · Jugar con el control
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- 1. Dev Home → elegir el juego
+- Usar solo el control
+- Menú, partida, pausa y fin
+- Comparar original y consola
+captura: imagenes/xbox/xb-14-jugar.png | Dev Home con los cuatro paquetes instalados
+fuente: GUIA-XBOX-DOCENTE.md, paso 7
+notas:
+Glosario (conceptos cortos para la docente):
+• Foco: el botón que el control tiene seleccionado. En consola tiene que verse siempre.
+La idea de la prueba es comprobar qué pasa cuando no hay mouse ni teclado. También se puede lanzar desde el Device Portal (Actions → Launch).
+
+## 85 | Paso 15 · Evidencia: captura y rendimiento
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+- 1. Device Portal → Media capture
+- 2. Capture Screenshot
+- 3. Performance: CPU y frame rate
+- Guardar con fecha
+captura: imagenes/xbox/xb-15-evidencia.png | Media capture y Performance, desde la PC
+fuente: Microsoft, Device Portal for Xbox
+notas:
+Glosario (conceptos cortos para la docente):
+• Evidencia: la captura o la medición que respalda un PASS o un FAIL.
+Las capturas que se tomen acá pueden reemplazar las recreaciones de este anexo (ver notas de la slide 69).
+Las capturas y mediciones van a PORTEO-XBOX.md, sección 7, con fecha.
+
+## 86 | Paso 16 · Protocolo de prueba
 tipo: contenido
 kicker: ANEXO B · CONSULTA
 | Prueba | Original | Consola |
@@ -1477,21 +1679,34 @@ Glosario (conceptos cortos para la docente):
 Los signos de pregunta son a propósito: es lo esperado, no lo observado. Al probar, reemplazar por PASS, FAIL o UNKNOWN y pasar los resultados a PORTEO-XBOX.md, sección 7, con fecha y capturas del Device Portal.
 La tabla completa, con los dos juegos y diez pruebas (incluidas Quit, imagen dentro de la TV y frame rate), está en el paso 8 de la guía de la docente.
 
-## 74 | 6. Volver y problemas frecuentes
+## 87 | Paso 17 · Volver al modo normal
 tipo: contenido
 kicker: ANEXO B · CONSULTA
-| Síntoma | Qué hacer |
-| No aparece Xbox Dev Mode | Cambiar la región |
-| Error 0x87e10008 | Iniciar sesión en la consola |
-| No abre el Device Portal | Misma red, cable |
-| "Ya está instalado" | Quitar y reinstalar |
-| El juego va lento | Instalar como juego |
-consola: Para volver: Dev Home → Leave developer mode
-fuente: GUIA-XBOX-DOCENTE.md, pasos 9 y 10; Microsoft, UWP on Xbox FAQ
+- 1. Dev Home → Quick Actions
+- 2. Leave developer mode
+- La consola reinicia en modo normal
+- Para volver: Xbox Dev Mode → Switch and restart
+captura: imagenes/xbox/xb-16-salir.png | Quick Actions en Dev Home
+consola: No se pierden juegos ni partidas, y no hace falta activar de nuevo
+fuente: GUIA-XBOX-DOCENTE.md, paso 9; Microsoft, Xbox Developer Mode activation
 notas:
 Glosario (conceptos cortos para la docente):
-• Desactivar: quitar la consola de la cuenta de desarrollador desde el Partner Center (por ejemplo, si se vende la consola).
+• Desactivar: quitar la consola de la cuenta de desarrollador desde el Partner Center (por ejemplo, si se vende la consola). Es distinto de salir del Developer Mode.
+
+## 88 | Problemas frecuentes
+tipo: contenido
+kicker: ANEXO B · CONSULTA
+| Síntoma | Qué hacer | Slide |
+| No aparece Xbox Dev Mode | Cambiar la región | 71 |
+| Error 0x87e10008 | Iniciar sesión en la consola | 74 |
+| No abre el Device Portal | Misma red, cable | 75 |
+| Falta una dependencia | Agregar VCLibs x64 | 81 |
+| "Ya está instalado" | Quitar y reinstalar | 82 |
+| El juego va lento | Instalar como juego | 76 |
+fuente: GUIA-XBOX-DOCENTE.md, paso 10; Microsoft, UWP on Xbox FAQ
+notas:
+Glosario (conceptos cortos para la docente):
+• Región: configuración de país de la consola; define qué apps muestra la tienda.
 Detalle:
-- Volver al modo normal: Dev Home → Quick Actions → Leave developer mode. Para volver a Developer Mode, la app Xbox Dev Mode → Switch and restart; no hace falta activar de nuevo.
-- Unity con el error "Could not find any supported UWP SDK": falta el Windows SDK (slide 68).
-- Unity avisa que el proyecto está abierto: cerrarlo y volver a correr el script.
+- Unity con el error "Could not find any supported UWP SDK": falta el Windows SDK (slide 69).
+- Unity avisa que el proyecto está abierto: cerrarlo y volver a correr el script (slide 78).
